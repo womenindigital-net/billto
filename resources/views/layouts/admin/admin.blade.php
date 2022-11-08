@@ -18,6 +18,7 @@
         <!-- App Css-->
         <link href="{{ asset('assets/admin')}}/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
+        
     </head>
 
     <body data-sidebar="dark">
@@ -58,15 +59,14 @@
         <script src="{{ asset('assets/admin')}}/assets/libs/metismenu/metisMenu.min.js"></script>
         <script src="{{ asset('assets/admin')}}/assets/libs/simplebar/simplebar.min.js"></script>
         <script src="{{ asset('assets/admin')}}/assets/libs/node-waves/waves.min.js"></script>
-
-        <!-- apexcharts -->
         <script src="{{ asset('assets/admin')}}/assets/libs/apexcharts/apexcharts.min.js"></script>
-
-        <!-- dashboard init -->
         <script src="{{ asset('assets/admin')}}/assets/js/pages/dashboard.init.js"></script>
-
-        <!-- App js -->
         <script src="{{ asset('assets/admin')}}/assets/js/app.js"></script>
+        <script src="{{ asset('assets/admin')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+        <script src="{{ asset('assets/admin')}}/assets/js/pages/form-validation.init.js"></script>
+
+
+
         </body>
 
         </html>
