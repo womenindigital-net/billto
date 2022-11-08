@@ -20,4 +20,5 @@ Route::group([  'prefix' => 'admin',
                 'namespace' => 'Admin'
             ], function () {
                 Route::get('dashboard', [PageController::class, 'index'])->name('dashboard');
+                Route::get('package/create', [PageController::class, 'create']);
             });

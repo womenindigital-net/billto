@@ -11,4 +11,9 @@ class PageController extends Controller
     {
         return view('admin.home');
     }
+
+    public function create()
+    {
+       return view('admin.create-packege');
+    }
 }
