@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\SubscriptionPackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,6 @@ Route::group([  'prefix' => 'admin',
                 'namespace' => 'Admin'
             ], function () {
                 Route::get('dashboard', [PageController::class, 'index'])->name('dashboard');
-                Route::get('package/create', [PageController::class, 'create']);
+                Route::get('package/create', [SubscriptionPackageController::class, 'create']);
+                Route::post('package/create', [SubscriptionPackageController::class, 'store']);
             });
