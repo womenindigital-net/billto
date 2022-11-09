@@ -19,6 +19,7 @@
 </head>
 
 <body>
+ 
     <div class="page" size="A4">
         <div class="">
             <div class="d-flex p-5">
@@ -40,7 +41,7 @@
                             <img src="{{ asset('public/storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="" width="150" class="img-fluid">
                             @else
                             <h1>NO LOGO</h1>
-                            @endif                            
+                            @endif
                             <div class="logo_bottom pt-4">
                                 <div class="d-flex justify-content-between pb-2">
                                     <h4 class="m-0 pe-2">Due Date: </h4> <span>{{ $invoiceData->invoice_dou_date }}</span>
@@ -66,7 +67,7 @@
                                 <span class="fw-bolder">{{ $invoiceData->invoice_date }}</span>
                             </div>
                         </div>
-                        <table class="table table-striped border">
+                        <table class="table table-striped border ">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -85,9 +86,9 @@
                                     </td>
                                 </tr>
                                 @empty
-                                    
+
                                 @endforelse
-                                
+
                                 <tr>
                                     <th colspan="2">Paid</th>
                                     <td class="d-flex justify-content-between">
@@ -102,7 +103,7 @@
                                 <h4 class="m-0 pe-1">Due: </h4>
                                 <span>{{  $invoiceData->currency }} {{ $due }}</span>
                             </div>
-                            <div  class="d-flex justify-content-between"> 
+                            <div  class="d-flex justify-content-between">
                                 <h4 class="m-0 pe-1">Total With {{ $invoiceData->invoice_tax_percent }}% Tax: </h4>
                                 <span>{{  $invoiceData->currency }} {{ $invoiceData->total }}</span>
                             </div>
@@ -118,7 +119,7 @@
                     </section>
                     <section class="terms-conditions border-top pt-3">
                         <h4>Terms</h4>
-                        @if ($invoiceData->invoice_terms)  
+                        @if ($invoiceData->invoice_terms)
                         <p>{{ $invoiceData->invoice_terms }}</p>
                         @else
                             <p>ON TERM</p>

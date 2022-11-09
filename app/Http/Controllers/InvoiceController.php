@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
@@ -65,8 +66,8 @@ class InvoiceController extends Controller
             'invoice_notes' => 'max:1024',
             'invoice_terms' => 'max:1024',
         ]);
-        
-        
+
+
         if ($request->id != null) {
             // Tax Calculation Formula Start
             $taxPercentage = $request->invoice_tax;
@@ -93,7 +94,7 @@ class InvoiceController extends Controller
                     $file->move(public_path('storage/invoice/logo'), $filename);
                 }
             } elseif ($id != null && $invoice_logo != null) {
-                
+
                 $find = Invoice::findOrFail($id);
                 $image_path         = public_path("storage/invoice/logo//") . $find->invoice_logo;
                 if (File::exists($image_path)) {
@@ -187,7 +188,39 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function download($id)
+    // public function download($id)
+    // {
+    //     $invoiceData = Invoice::where('id', $id)->get([
+    //         'invoice_logo',
+    //         'invoice_form',
+    //         'currency',
+    //         'invoice_to',
+    //         'invoice_id',
+    //         'invoice_date',
+    //         'invoice_payment_term',
+    //         'invoice_dou_date',
+    //         'invoice_po_number',
+    //         'invoice_notes',
+    //         'invoice_terms',
+    //         'invoice_tax_percent',
+    //         'requesting_advance_amount_percent',
+    //         // 'invoice_amu_paid_percent',
+    //         // 'invoice_amu_paid',
+    //         'total',
+    //     ])->first();
+    //     $productsDatas = Invoice::find($id)->products->skip(0)->take(6);
+    //     $due = $invoiceData->total;
+    //     //  - $invoiceData->invoice_amu_paid;
+    //     // dd(Auth::user()->plan);
+    //     if (Auth::user()->plan == 'free') {
+    //         return view('invoices.free.invoice_1')->with(compact('invoiceData', 'productsDatas', 'due'));
+    //     } elseif (Auth::user()->plan == 'premium') {
+    //         return view('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'due'));
+    //     }
+    // }
+
+
+     public function invoice_download($id)
     {
         $invoiceData = Invoice::where('id', $id)->get([
             'invoice_logo',
@@ -209,12 +242,14 @@ class InvoiceController extends Controller
         ])->first();
         $productsDatas = Invoice::find($id)->products->skip(0)->take(6);
         $due = $invoiceData->total;
-        //  - $invoiceData->invoice_amu_paid;
-        // dd(Auth::user()->plan);
         if (Auth::user()->plan == 'free') {
-            return view('invoices.free.invoice_1')->with(compact('invoiceData', 'productsDatas', 'due'));
+            $pdf = Pdf::loadView('invoices.free.invoice_1',compact('invoiceData', 'productsDatas', 'due'));
+            return $pdf->stream('invoices.free.invoice_1.pdf');
         } elseif (Auth::user()->plan == 'premium') {
-            return view('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'due'));
+            $pdf = Pdf::loadView('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'due'));
+            return $pdf->stream('invoices.wid.pdf');
+
         }
     }
+
 }

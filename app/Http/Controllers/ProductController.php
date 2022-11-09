@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -41,13 +42,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $validated = $request->validate([
             'product_name' => 'required|max:255',
             'product_quantity' => 'required|integer|digits_between:1,10',
             'product_rate' => 'required|integer|digits_between:1,10'
         ]);
-        
+
         $productAmount = $request->product_quantity * $request->product_rate;
 
         $id = $request->id;
@@ -129,7 +130,7 @@ class ProductController extends Controller
                 'productAmount' => $productAmount
             ];
         }
-     
+
         return response()->json($productData);
     }
 
@@ -142,16 +143,18 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product_amount =  Product::where('id', $id)->get(['invoice_id', 'product_amount'])->first();
-        
+
         $invoiceData =  Invoice::where('id', $product_amount->invoice_id)->get(['invoice_tax_percent', 'total'])->first();
-        
+
         $total = ( $product_amount->product_amount * $invoiceData->invoice_tax_percent)/100;
         $afterTotal = $invoiceData->total -  $total - $product_amount->product_amount;
         Invoice::where('id', $product_amount->invoice_id)->update(['total' => $afterTotal]);
-        
+
         Product::where('id', $id)->delete();
         return response()->json([
             'success' => 'Record deleted successfully!'
         ]);
     }
+
+
 }
