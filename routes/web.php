@@ -41,7 +41,8 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
     Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('store.');
     Route::post('/invoices/complete/{id}', [InvoiceController::class, 'complete'])->name('complete.');
-    Route::get('/invoice/download/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
+    // Route::get('/invoice/download/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
+    Route::get('/invoice/download/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 });
 
 

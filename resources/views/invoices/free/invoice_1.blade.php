@@ -5,13 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Custom Css -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&display=swap');
 
@@ -29,7 +23,7 @@
         .invoice_page {
             box-shadow: var(--pageShadow);
             margin: 0 auto;
-            background: linear-gradient(to right, #FFF 0%, #FFF 60%, #A950A0 40%, #A950A0 100%);
+            background:  #A950A0 100%;
         }
 
         .invoice_page[size="A4"] {
@@ -129,12 +123,19 @@
         .right_image {
             padding-top: 42px;
         }
+        .top_section{
+           display: flex;
+        }
+        .left_content{
+            width: 50%;
+            float: left;
+        }
     </style>
 
-    <title>Invoice</title>
+    <title>Billto Invoice</title>
 </head>
 
-<body>
+<body >
     <div class="invoice_page" size="A4">
         <div class="page">
             <div class="top_section d-flex">
@@ -146,8 +147,8 @@
                 <div class="right_content col-4">
                     <div class="logo">
                         @if ($invoiceData->invoice_logo)
-                        <img src="{{ asset('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="" width="150" class="img-fluid">
-                        @else
+                        <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}"  width="150" alt="">
+                       @else
                         <h1>NO LOGO</h1>
                         @endif
                     </div>
@@ -168,6 +169,7 @@
 
                 </div>
             </div>
+
             <div class="bill_to_area border-top mb-5">
                 <div class="bill_to d-flex justify-content-between pt-2">
                     <p>Bill To :{{ $invoiceData->invoice_to }}</p>
@@ -232,19 +234,12 @@
                                     <p>ON TERM</p>
                                 @endif</p>
                         </div>
-
-
-                    </div>
-                    <div class="right_image">
-                        <img src="sign.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        window.print();
-    </script>
+
 </body>
 
 </html>
