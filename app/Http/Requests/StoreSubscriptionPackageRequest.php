@@ -28,7 +28,8 @@ class StoreSubscriptionPackageRequest extends FormRequest
             'packageDuration' => 'nullable',
             'price' => 'nullable',
             'templateQuantity' => 'nullable',
-            'limitInvoiceGenerate' => 'nullable'
+            'limitInvoiceGenerate' => 'nullable',
+            'template'=>'nullable',
         ];
     }
 }

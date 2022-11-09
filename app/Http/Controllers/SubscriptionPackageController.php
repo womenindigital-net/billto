@@ -6,6 +6,8 @@ use App\Models\SubscriptionPackage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubscriptionPackageRequest;
 use App\Http\Requests\UpdateSubscriptionPackageRequest;
+use App\Models\SubscriptionPackageTemplate;
+use CreateSubscriptionPackageTemplatesTable;
 
 class SubscriptionPackageController extends Controller
 {
@@ -39,13 +41,24 @@ class SubscriptionPackageController extends Controller
     {
     //    $validatedData = $request->validated();
     // SubscriptionPackage::create($validatedData);
-    $SubscriptionPackage = new SubscriptionPackage();
+      $SubscriptionPackage = new SubscriptionPackage();
         $SubscriptionPackage->packageName = $request->packageName;
         $SubscriptionPackage->packageDuration = $request->packageDuration;
         $SubscriptionPackage->price = $request->price;
         $SubscriptionPackage->templateQuantity = $request->templateQuantity;
         $SubscriptionPackage->limitInvoiceGenerate = $request->limitInvoiceGenerate;
         $SubscriptionPackage->save();
+
+       $gat_id = $SubscriptionPackage->id;
+       $tamp_names =$request->template;
+
+       foreach( $tamp_names AS  $tamp_name){
+         SubscriptionPackageTemplate::create([
+            'subscriptionPackageId' => $gat_id,
+            'template' => $tamp_name,
+        ]);
+       }
+       return redirect()->back()->with('message', 'Successfully create Package.');
     }
 
     /**

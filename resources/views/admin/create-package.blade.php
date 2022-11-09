@@ -31,6 +31,13 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
+                                <div>
+                                    @if (session()->has('message'))
+                                        <div class="alert alert-success">
+                                            {{ session('message') }}
+                                        </div>
+                                    @endif
+                                </div>
                                 <h4 class="card-title">Create package</h4>
                                 <hr>
                                 <form action="{{ url('admin/package/create') }}" method="POST" class="needs-validation" novalidate>
@@ -74,25 +81,72 @@
                                     </div>
                                     <div class="row mt-3">
                                         <h3 class="mb-3">Choose tamplate</h3>
-                                        <div class="col-2">
-                                            <label class="form-label">Tamplate One</label> <br>
-                                            <input type="checkbox" style="height: 20px; width:20px">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class=" d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_1" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"  >Tamplate One</label>
+                                                </div>
+                                                <div class=" d-flex">
+                                                    <input type="checkbox"  name="template[]" value="tamplate_2" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Two</label>
+                                                </div>
+                                                <div class=" d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_3" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Three</label>
+                                                </div>
+
+                                                <div class=" d-flex">
+                                                    <input type="checkbox"  name="template[]" value="tamplate_4" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Four</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-2">
-                                            <label class="form-label">Tamplate two</label> <br>
-                                            <input type="checkbox" style="height: 20px; width:20px">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_5" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Five</label>
+                                                </div>
+                                                <div class=" d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_6" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Six</label>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_7" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Seve</label>
+                                                </div>
+
+                                                <div class=" d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_8" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Eight</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-2">
-                                            <label class="form-label">Tamplate three</label> <br>
-                                            <input type="checkbox" style="height: 20px; width:20px">
-                                        </div>
-                                        <div class="col-2">
-                                            <label class="form-label">Tamplate Four</label> <br>
-                                            <input type="checkbox" style="height: 20px; width:20px">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_9" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Nine</label>
+                                                </div>
+                                                <div class=" d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_10" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Ten</label>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_11"  style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate Eleven</label>
+                                                </div>
+
+                                                <div class=" d-flex">
+                                                    <input type="checkbox" name="template[]" value="tamplate_12" style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2"   >Tamplate twelve</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div>
+                                    <div class="row mt-2">
+                                        <div class="d-flex justify-content-start">
                                             <button class="btn btn-primary mt-3" type="submit">Submit</button>
                                         </div>
                                     </div>
