@@ -28,7 +28,7 @@ class SubscriptionPackageController extends Controller
      */
     public function create()
     {
-       return view('admin.create-package');
+       return view('admin.package.create-package');
     }
 
     /**
@@ -49,12 +49,12 @@ class SubscriptionPackageController extends Controller
         $SubscriptionPackage->limitInvoiceGenerate = $request->limitInvoiceGenerate;
         $SubscriptionPackage->save();
 
-       $gat_id = $SubscriptionPackage->id;
+       $get_id = $SubscriptionPackage->id;
        $tamp_names =$request->template;
 
        foreach( $tamp_names AS  $tamp_name){
          SubscriptionPackageTemplate::create([
-            'subscriptionPackageId' => $gat_id,
+            'subscriptionPackageId' => $get_id,
             'template' => $tamp_name,
         ]);
        }
