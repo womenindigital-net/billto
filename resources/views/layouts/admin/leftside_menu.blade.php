@@ -11,47 +11,31 @@
 
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="bx bx-home-circle"></i><span class="badge rounded-pill bg-info float-end">04</span>
+                                    <i class="bx bx-home-circle"></i><span
+                                        class="badge rounded-pill bg-info float-end">04</span>
                                     <span key="t-dashboards">Dashboards</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="index.html" key="t-default">Default</a></li>
-                                    <li><a href="dashboard-saas.html" key="t-saas">Saas</a></li>
-                                    <li><a href="dashboard-crypto.html" key="t-crypto">Crypto</a></li>
-                                    <li><a href="dashboard-blog.html" key="t-blog">Blog</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="bx bx-layout"></i>
-                                    <span key="t-layouts">Layouts</span>
+                                    <span key="t-layouts">Package</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li>
-                                        <a href="javascript: void(0);" class="has-arrow" key="t-vertical">Vertical</a>
+                                        <a href="javascript: void(0);" class="has-arrow"
+                                            key="t-horizontal">Subscription Package</a>
                                         <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="layouts-light-sidebar.html" key="t-light-sidebar">Light Sidebar</a></li>
-                                            <li><a href="layouts-compact-sidebar.html" key="t-compact-sidebar">Compact Sidebar</a></li>
-                                            <li><a href="layouts-icon-sidebar.html" key="t-icon-sidebar">Icon Sidebar</a></li>
-                                            <li><a href="layouts-boxed.html" key="t-boxed-width">Boxed Width</a></li>
-                                            <li><a href="layouts-preloader.html" key="t-preloader">Preloader</a></li>
-                                            <li><a href="layouts-colored-sidebar.html" key="t-colored-sidebar">Colored Sidebar</a></li>
-                                            <li><a href="layouts-scrollable.html" key="t-scrollable">Scrollable</a></li>
+                                            <li><a href="{{ url('http://127.0.0.1:8000/admin/package/create') }}" key="t-horizontal">Package create</a></li>
                                         </ul>
                                     </li>
-
-                                    <li>
-                                        <a href="javascript: void(0);" class="has-arrow" key="t-horizontal">Horizontal</a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="layouts-horizontal.html" key="t-horizontal">Horizontal</a></li>
-                                            <li><a href="layouts-hori-topbar-light.html" key="t-topbar-light">Topbar light</a></li>
-                                            <li><a href="layouts-hori-boxed-width.html" key="t-boxed-width">Boxed width</a></li>
-                                            <li><a href="layouts-hori-preloader.html" key="t-preloader">Preloader</a></li>
-                                            <li><a href="layouts-hori-colored-header.html" key="t-colored-topbar">Colored Header</a></li>
-                                            <li><a href="layouts-hori-scrollable.html" key="t-scrollable">Scrollable</a></li>
-                                        </ul>
-                                    </li>
+                                    {{-- <li>
+                                        <a href="#" key="t-default">Something</a>
+                                    </li> --}}
                                 </ul>
                             </li>
 
@@ -61,7 +45,8 @@
 
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="bx bx-calendar"></i><span class="badge rounded-pill bg-success float-end">New</span>
+                                    <i class="bx bx-calendar"></i><span
+                                        class="badge rounded-pill bg-success float-end">New</span>
                                     <span key="t-dashboards">Calendars</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
@@ -92,7 +77,8 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="ecommerce-products.html" key="t-products">Products</a></li>
-                                    <li><a href="ecommerce-product-detail.html" key="t-product-detail">Product Detail</a></li>
+                                    <li><a href="ecommerce-product-detail.html" key="t-product-detail">Product
+                                            Detail</a></li>
                                     <li><a href="ecommerce-orders.html" key="t-orders">Orders</a></li>
                                     <li><a href="ecommerce-customers.html" key="t-customers">Customers</a></li>
                                     <li><a href="ecommerce-cart.html" key="t-cart">Cart</a></li>
@@ -128,13 +114,17 @@
                                     <li><a href="email-read.html" key="t-read-email">Read Email</a></li>
                                     <li>
                                         <a href="javascript: void(0);">
-                                            <span class="badge rounded-pill badge-soft-success float-end" key="t-new">New</span>
+                                            <span class="badge rounded-pill badge-soft-success float-end"
+                                                key="t-new">New</span>
                                             <span key="t-email-templates">Templates</span>
                                         </a>
                                         <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="email-template-basic.html" key="t-basic-action">Basic Action</a></li>
-                                            <li><a href="email-template-alert.html" key="t-alert-email">Alert Email</a></li>
-                                            <li><a href="email-template-billing.html" key="t-bill-email">Billing Email</a></li>
+                                            <li><a href="email-template-basic.html" key="t-basic-action">Basic
+                                                    Action</a></li>
+                                            <li><a href="email-template-alert.html" key="t-alert-email">Alert
+                                                    Email</a></li>
+                                            <li><a href="email-template-billing.html" key="t-bill-email">Billing
+                                                    Email</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -214,16 +204,23 @@
                                     <li><a href="auth-login-2.html" key="t-login-2">Login 2</a></li>
                                     <li><a href="auth-register.html" key="t-register">Register</a></li>
                                     <li><a href="auth-register-2.html" key="t-register-2">Register 2</a></li>
-                                    <li><a href="auth-recoverpw.html" key="t-recover-password">Recover Password</a></li>
-                                    <li><a href="auth-recoverpw-2.html" key="t-recover-password-2">Recover Password 2</a></li>
+                                    <li><a href="auth-recoverpw.html" key="t-recover-password">Recover Password</a>
+                                    </li>
+                                    <li><a href="auth-recoverpw-2.html" key="t-recover-password-2">Recover Password
+                                            2</a></li>
                                     <li><a href="auth-lock-screen.html" key="t-lock-screen">Lock Screen</a></li>
                                     <li><a href="auth-lock-screen-2.html" key="t-lock-screen-2">Lock Screen 2</a></li>
                                     <li><a href="auth-confirm-mail.html" key="t-confirm-mail">Confirm Email</a></li>
-                                    <li><a href="auth-confirm-mail-2.html" key="t-confirm-mail-2">Confirm Email 2</a></li>
-                                    <li><a href="auth-email-verification.html" key="t-email-verification">Email verification</a></li>
-                                    <li><a href="auth-email-verification-2.html" key="t-email-verification-2">Email Verification 2</a></li>
-                                    <li><a href="auth-two-step-verification.html" key="t-two-step-verification">Two Step Verification</a></li>
-                                    <li><a href="auth-two-step-verification-2.html" key="t-two-step-verification-2">Two Step Verification 2</a></li>
+                                    <li><a href="auth-confirm-mail-2.html" key="t-confirm-mail-2">Confirm Email 2</a>
+                                    </li>
+                                    <li><a href="auth-email-verification.html" key="t-email-verification">Email
+                                            verification</a></li>
+                                    <li><a href="auth-email-verification-2.html" key="t-email-verification-2">Email
+                                            Verification 2</a></li>
+                                    <li><a href="auth-two-step-verification.html" key="t-two-step-verification">Two
+                                            Step Verification</a></li>
+                                    <li><a href="auth-two-step-verification-2.html"
+                                            key="t-two-step-verification-2">Two Step Verification 2</a></li>
                                 </ul>
                             </li>
 
@@ -263,11 +260,13 @@
                                     <li><a href="ui-modals.html" key="t-modals">Modals</a></li>
                                     <li><a href="ui-offcanvas.html" key="t-offcanvas">Offcanvas</a></li>
                                     <li><a href="ui-rangeslider.html" key="t-range-slider">Range Slider</a></li>
-                                    <li><a href="ui-session-timeout.html" key="t-session-timeout">Session Timeout</a></li>
+                                    <li><a href="ui-session-timeout.html" key="t-session-timeout">Session Timeout</a>
+                                    </li>
                                     <li><a href="ui-progressbars.html" key="t-progress-bars">Progress Bars</a></li>
                                     <li><a href="ui-placeholders.html" key="t-placeholders">Placeholders</a></li>
                                     <li><a href="ui-sweet-alert.html" key="t-sweet-alert">Sweet-Alert</a></li>
-                                    <li><a href="ui-tabs-accordions.html" key="t-tabs-accordions">Tabs & Accordions</a></li>
+                                    <li><a href="ui-tabs-accordions.html" key="t-tabs-accordions">Tabs &
+                                            Accordions</a></li>
                                     <li><a href="ui-typography.html" key="t-typography">Typography</a></li>
                                     <li><a href="ui-toasts.html" key="t-toasts">Toasts</a></li>
                                     <li><a href="ui-video.html" key="t-video">Video</a></li>
@@ -287,7 +286,8 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="form-elements.html" key="t-form-elements">Form Elements</a></li>
                                     <li><a href="form-layouts.html" key="t-form-layouts">Form Layouts</a></li>
-                                    <li><a href="form-validation.html" key="t-form-validation">Form Validation</a></li>
+                                    <li><a href="form-validation.html" key="t-form-validation">Form Validation</a>
+                                    </li>
                                     <li><a href="form-advanced.html" key="t-form-advanced">Form Advanced</a></li>
                                     <li><a href="form-editors.html" key="t-form-editors">Form Editors</a></li>
                                     <li><a href="form-uploads.html" key="t-form-upload">Form File Upload</a></li>
@@ -306,7 +306,8 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="tables-basic.html" key="t-basic-tables">Basic Tables</a></li>
                                     <li><a href="tables-datatable.html" key="t-data-tables">Data Tables</a></li>
-                                    <li><a href="tables-responsive.html" key="t-responsive-table">Responsive Table</a></li>
+                                    <li><a href="tables-responsive.html" key="t-responsive-table">Responsive Table</a>
+                                    </li>
                                     <li><a href="tables-editable.html" key="t-editable-table">Editable Table</a></li>
                                 </ul>
                             </li>
@@ -323,7 +324,8 @@
                                     <li><a href="charts-flot.html" key="t-flot-charts">Flot Charts</a></li>
                                     <li><a href="charts-tui.html" key="t-ui-charts">Toast UI Charts</a></li>
                                     <li><a href="charts-knob.html" key="t-knob-charts">Jquery Knob Charts</a></li>
-                                    <li><a href="charts-sparkline.html" key="t-sparkline-charts">Sparkline Charts</a></li>
+                                    <li><a href="charts-sparkline.html" key="t-sparkline-charts">Sparkline Charts</a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -334,7 +336,8 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="icons-boxicons.html" key="t-boxicons">Boxicons</a></li>
-                                    <li><a href="icons-materialdesign.html" key="t-material-design">Material Design</a></li>
+                                    <li><a href="icons-materialdesign.html" key="t-material-design">Material
+                                            Design</a></li>
                                     <li><a href="icons-dripicons.html" key="t-dripicons">Dripicons</a></li>
                                     <li><a href="icons-fontawesome.html" key="t-font-awesome">Font Awesome</a></li>
                                 </ul>
@@ -360,7 +363,8 @@
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li><a href="javascript: void(0);" key="t-level-1-1">Level 1.1</a></li>
                                     <li>
-                                        <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Level 1.2</a>
+                                        <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Level
+                                            1.2</a>
                                         <ul class="sub-menu" aria-expanded="true">
                                             <li><a href="javascript: void(0);" key="t-level-2-1">Level 2.1</a></li>
                                             <li><a href="javascript: void(0);" key="t-level-2-2">Level 2.2</a></li>
