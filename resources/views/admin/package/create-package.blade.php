@@ -38,7 +38,7 @@
                                 </div>
                                 <h4 class="card-title">Create package</h4>
                                 <hr>
-                                <form action="{{ url('admin/package/create') }}" method="POST" class="needs-validation" novalidate>
+                                <form action="{{ url('admin/package/store') }}" method="POST" class="needs-validation" novalidate>
                                     @csrf
                                     <div class="row">
                                         <div class="col-4">

@@ -27,10 +27,11 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li>
-                                        <a href="javascript: void(0);" class="has-arrow"
-                                            key="t-horizontal">Subscription Package</a>
+                                        <a href="javascript: void(0);" class="has-arrow" key="t-horizontal">Subscription
+                                            Package</a>
                                         <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="{{ url('http://127.0.0.1:8000/admin/package/create') }}" key="t-horizontal">Package create</a></li>
+                                            <li><a href="{{ url('admin/package/page') }}" key="t-horizontal">Package
+                                                    create</a></li>
                                         </ul>
                                     </li>
                                     {{-- <li>

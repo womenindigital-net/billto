@@ -21,6 +21,6 @@ Route::group([  'prefix' => 'admin',
                 'namespace' => 'Admin'
             ], function () {
                 Route::get('dashboard', [PageController::class, 'index'])->name('dashboard');
-                Route::get('package/create', [SubscriptionPackageController::class, 'create']);
-                Route::post('package/create', [SubscriptionPackageController::class, 'store']);
+                Route::get('package/page', [SubscriptionPackageController::class, 'create']);
+                Route::post('package/store', [SubscriptionPackageController::class, 'store']);
             });
