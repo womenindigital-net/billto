@@ -20,29 +20,35 @@
                                 </ul>
                             </li>
 
+                            {{-- package --}}
+                            {{-- Subscription package --}}
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="bx bx-layout"></i>
-                                    <span key="t-layouts">Package</span>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="bx bx-package"></i>
+                                    <span key="t-dashboards">Subscription Package</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="true">
-                                    <li>
-                                        <a href="javascript: void(0);" class="has-arrow" key="t-horizontal">Subscription
-                                            Package</a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="{{ url('admin/package/page') }}" key="t-horizontal">Package
-                                                    create</a></li>
-                                        </ul>
-                                    </li>
-                                    {{-- <li>
-                                        <a href="#" key="t-default">Something</a>
-                                    </li> --}}
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ url('admin/package/page') }}" key="t-horizontal">Subscription package
+                                        create</a></li>
+                                        <li><a href="{{ url('admin/package/list') }}" key="t-horizontal">Subscription package
+                                            list</a></li>
+                                </ul>
+                            </li>
+                            {{-- Organization package --}}
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="bx bx-package"></i>
+                                    <span key="t-dashboards">Organizatin Package</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ url('') }}" key="t-horizontal">Organization package
+                                        create</a></li>
+                                        <li><a href="{{ url('') }}" key="t-horizontal">Organization Package
+                                            list</a></li>
                                 </ul>
                             </li>
 
                             <li class="menu-title" key="t-apps">Apps</li>
-
-
 
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">
