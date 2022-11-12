@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\OrganizationPackageController;
 use App\Http\Controllers\SubscriptionPackageController;
+use App\Models\OrganizationPackage;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,16 @@ Route::group([  'prefix' => 'admin',
                 'as' => 'admin.',
                 'namespace' => 'Admin'
             ], function () {
-                Route::get('dashboard', [PageController::class, 'index'])->name('dashboard');
-                Route::get('package/page', [SubscriptionPackageController::class, 'create']);
-                Route::post('package/store', [SubscriptionPackageController::class, 'store']);
+                Route::get('/dashboard', [PageController::class, 'index'])->name('dashboard');
+                // subscription Package Route
+                Route::get('/package/page', [SubscriptionPackageController::class, 'create']);
+                Route::post('/package/store', [SubscriptionPackageController::class, 'store']);
+                Route::get('/package/{id}/edit', [SubscriptionPackageController::class, 'edit']);
+                Route::put('/package/{id}', [SubscriptionPackageController::class, 'update']);
+                Route::get('/package/{id}/delete', [SubscriptionPackageController::class, 'destroy']);
+                Route::get('/package/list', [SubscriptionPackageController::class, 'index']);
+                //organization package route
+                Route::get('/organization/package/page', [OrganizationPackageController::class, 'create']);
+                Route::post('/organization/package/store', [OrganizationPackageController::class, 'store']);
+                Route::get('/organization/package/list', [OrganizationPackageController::class, 'index']);
             });

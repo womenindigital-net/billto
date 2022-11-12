@@ -32,9 +32,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-header">
-                                    <h3>Subscription List
-                                        <a href="{{ url('admin/package/page') }}" class="btn btn-primary btn-sm text-white  float-end ">Add
-                                            Package
+                                    <h3>Organization List
+                                        <a href="{{ url('admin/organization/package/page') }}" class="btn btn-primary btn-sm text-white  float-end ">Add
+                                        Organigation Package
                                         </a>
                                     </h3>
                                 </div>
@@ -46,7 +46,8 @@
                                         <th>Package Duration</th>
                                         <th>Package Price</th>
                                         <th>Template Quantity</th>
-                                        <th>Limit Invoice Generate</th>
+                                        <th>Limit bill Generate</th>
+                                        <th>Employee Quantity</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -54,11 +55,12 @@
                                         @forelse ($packages as $package)
                                         <tr>
                                             <td>{{ $package->id }}</td>
-                                            <td>{{ $package->packageName }}</td>
-                                            <td>{{ $package->packageDuration}}</td>
+                                            <td>{{ $package->organizationPackageName }}</td>
+                                            <td>{{ $package->organizationPackageDuration}}</td>
                                             <td>{{ $package->price }}</td>
-                                            <td>{{ $package->templateQuantity }}</td>
-                                            <td>{{ $package->limitInvoiceGenerate }}</td>
+                                            <td>{{ $package->organizationPackageQuantity }}</td>
+                                            <td>{{ $package->limitBillGenerate }}</td>
+                                            <td>{{ $package->organizationEmployeeLimitation }}</td>
                                             {{-- <td>{{ $package->status == '1' ? 'Hidden' : 'Visible' }}</td> --}}
                                             <td>
                                                 <a href="{{ url('admin/package/'.$package->id.'/edit') }}" class="btn btn-sm btn-success">Edit</a>
@@ -66,7 +68,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="7">No subscription package Available</td>
+                                            <td colspan="7">No Organization package Available</td>
                                         </tr>
                                     @endforelse
                                     </tbody>

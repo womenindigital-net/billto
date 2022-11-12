@@ -37,48 +37,55 @@
                                     @endif
                                 </div>
                                 <div class="card p-2 mt-1">
-                                    <h3>Create subscription package
-                                        <a href="{{ url('admin/package/list') }}"
-                                            class="btn btn-primary btn-sm text-white  float-end ">List
+                                    <h3>Create organization package
+                                        <a href="{{ url('admin/organization/package/list') }}"
+                                            class="btn btn-primary btn-sm text-white  float-end ">Organization List
                                         </a>
                                     </h3>
                                 </div>
                                 <hr>
-                                <form action="{{ url('admin/package/store') }}" method="POST" class="needs-validation" novalidate>
+                                <form action="{{ url('admin/organization/package/store') }}" method="POST" class="needs-validation" novalidate>
                                     @csrf
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom01" class="form-label">Package name</label>
-                                                <input type="text" name="packageName" class="form-control" id="validationCustom01"
+                                                <label for="validationCustom01" class="form-label">Organization Package Name</label>
+                                                <input type="text" name="organizationPackageName" class="form-control" id="validationCustom01"
                                                      required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom02" class="form-label">Package Duration</label>
-                                                <input type="text" name="packageDuration" class="form-control" id="validationCustom02"
+                                                <label for="validationCustom02" class="form-label">Organization Package Duration</label>
+                                                <input type="text" name="organizationPackageDuration" class="form-control" id="validationCustom02"
                                                       required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Package Price</label>
+                                                <label for="validationCustom03" class="form-label">Organization Package Price</label>
                                                 <input type="number" name="price"  class="form-control" id="validationCustom02"
                                                       required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Tamplate Quantity</label>
-                                                <input type="number" name="templateQuantity" class="form-control" id="validationCustom02"
+                                                <label for="validationCustom03" class="form-label">Organizatin Tamplate Quantity</label>
+                                                <input type="number" name="organizationPackageQuantity" class="form-control" id="validationCustom02"
                                                       required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Limit invoice generate</label>
-                                                <input type="number" name="limitInvoiceGenerate" class="form-control" id="validationCustom02"
+                                                <label for="validationCustom03" class="form-label">Limit Bill Generate</label>
+                                                <input type="number" name="limitBillGenerate" class="form-control" id="validationCustom02"
+                                                      required>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="mb-3">
+                                                <label for="validationCustom03" class="form-label">Organization Employee Limitation</label>
+                                                <input type="number" name="organizationEmployeeLimitation" class="form-control" id="validationCustom02"
                                                       required>
                                             </div>
                                         </div>
