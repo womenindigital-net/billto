@@ -134,8 +134,10 @@ function currency1(){
               button =
               Toast.fire({
                 icon: 'success',
-                title: 'Invoice Created',
+                title: ' Successfuly Invoice Created ',
+
               })
+              location.reload()
             }
             $('#downlodeInvoice').removeClass("disabled");
           },

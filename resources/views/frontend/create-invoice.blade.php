@@ -24,8 +24,12 @@
     </div>
   </div>
 </div>
+
+@php
+$templete_value = $template_name;
+@endphp
 <!-- banner section Start -->
-<section class="bill_banner_section">
+<section class="bill_banner_section @php echo Session::get('hidden_session');@endphp">
   <div style="background-color: #FFB317;">
     <div class="container py-5">
       <div class="row">
@@ -41,7 +45,7 @@
             of invoices?
           </p>
           <div class="pt-2 banner_footer">
-            <span class="px-4 py-2">OK, got it</span>
+            <span class="px-4 py-2"><a href="{{ url('notice/div/hidden') }}" class="text-dark">OK, got it</a></span>
             <a href="#" class="ps-4">Read the docs</a>
           </div>
         </div>
@@ -86,7 +90,7 @@
                   </div>
                 </div>
               </div>
-             
+
               <div class="col-md-8">
                 <div class="d-flex ">
                   <label class="form-label pe-2 pt-1">Currency: </label>
@@ -351,7 +355,7 @@
               </tr>
             </thead>
             <tbody id="tableBody">
-             
+
             </tbody>
 
           </table>
@@ -505,10 +509,18 @@
         <h2 class="h2_title">Choose Your Invoice Template</h2>
         <p class="fs-sm fw-bolder">Start creating your professional bill</p>
       </div>
+
+@if(!$templete_value=="")
+    <style>
+        .border_select{
+            border: 3px solid green;
+        }
+
+    </style>
       <div class="row text-center">
-        <div class="col-md-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
+        <div class="col-md-4 @if($templete_value=="template_1")border_select @else  @endif"><a href="#" > <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
         </div>
-        <div class="col-md-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
+        <div class="col-md-4 @if($templete_value=="template_2")border_select @else  @endif"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
         </div>
         <div class="col-md-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
         </div>
@@ -519,6 +531,9 @@
         <div class="col-md-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
         </div>
       </div>
+      @else
+      data nai
+  @endif
     </div>
   </div>
 </section>

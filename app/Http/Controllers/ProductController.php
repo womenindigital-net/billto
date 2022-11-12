@@ -54,7 +54,8 @@ class ProductController extends Controller
         $id = $request->id;
 
         $data = array(
-            'user_id' => Auth::user()->id
+             'user_id' => Auth::user()->id
+
         );
 
         $invoice =  Invoice::updateOrCreate(['id' => $id], $data);

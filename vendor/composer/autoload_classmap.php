@@ -37,6 +37,7 @@ return array(
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
     'App\\Http\\Requests\\StoreSubscriptionPackageRequest' => $baseDir . '/app/Http/Requests/StoreSubscriptionPackageRequest.php',
     'App\\Http\\Requests\\UpdateSubscriptionPackageRequest' => $baseDir . '/app/Http/Requests/UpdateSubscriptionPackageRequest.php',
+    'App\\Models\\ComplateInvoiceCount' => $baseDir . '/app/Models/ComplateInvoiceCount.php',
     'App\\Models\\Invoice' => $baseDir . '/app/Models/Invoice.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\SubscriptionPackage' => $baseDir . '/app/Models/SubscriptionPackage.php',

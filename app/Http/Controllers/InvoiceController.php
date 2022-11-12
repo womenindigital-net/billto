@@ -7,11 +7,13 @@ use App\Models\Invoice;
 use App\Models\Product;
 use Carbon\Cli\Invoker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use App\Models\ComplateInvoiceCount;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
@@ -22,6 +24,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+        $template_name = '';
         $user = Auth::user()->id;
         $lastInvoice = Invoice::where('user_id', $user)
                     ->orderBy('created_at', 'desc')
@@ -33,8 +36,30 @@ class InvoiceController extends Controller
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
         $invoiceCountNew += 1;
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew'));
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
+
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
     }
+
+public function index_home($id)
+{
+   $template_name = $id;
+    $user = Auth::user()->id;
+    $lastInvoice = Invoice::where('user_id', $user)
+                ->orderBy('created_at', 'desc')
+                ->get([
+                        'invoice_form',
+                        'invoice_to',
+                    ])
+                ->first();
+    $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
+    $invoiceCountNew += 1;
+
+    return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
+
+
+
+}
 
     /**
      * Show the form for creating a new resource.
@@ -54,19 +79,48 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'currency' => 'required|max:30',
-            'invoice_form' => 'required|max:1024',
-            'invoice_to' => 'required|max:1024',
-            'invoice_id' => 'required',
-            'invoice_date' => 'required|date',
-            'invoice_payment_term' => 'max:30',
-            'invoice_dou_date' => 'date|after:invoice_date',
-            'invoice_po_number' => 'max:30',
-            'invoice_notes' => 'max:1024',
-            'invoice_terms' => 'max:1024',
-        ]);
+        // $validated = $request->validate([
+        //     'currency' => 'required|max:30',
+        //     'invoice_form' => 'required|max:1024',
+        //     'invoice_to' => 'required|max:1024',
+        //     'invoice_id' => 'required',
+        //     'invoice_date' => 'required|date',
+        //     'invoice_payment_term' => 'max:30',
+        //     'invoice_dou_date' => 'date|after:invoice_date',
+        //     'invoice_po_number' => 'max:30',
+        //     'invoice_notes' => 'max:1024',
+        //     'invoice_terms' => 'max:1024',
+        // ]);
 
+
+        $user_id = Auth::user()->id;
+
+        // ei toko kaje lagbe
+
+    //    foreach($check as $check_data){
+    //     $current_invoice_total =  $check_data->current_invoice_total;
+    //    }
+    //    if($current_invoice_total<=5){
+    //     echo "sojog ache";
+    //     echo $current_invoice_total;
+    //    }else{
+    //     echo "sojog nai";
+    //     echo $current_invoice_total;
+    //    }
+      // ei toko kaje lagbe
+      
+      $check = ComplateInvoiceCount::where('user_id',$user_id)->first();
+        if ($check) {
+            ComplateInvoiceCount::where('user_id', $user_id)->increment('invoice_count_total');
+            ComplateInvoiceCount::where('user_id', $user_id)->increment('current_invoice_total');
+        } else {
+            ComplateInvoiceCount::insert([
+            'user_id' =>  $user_id,
+            'invoice_count_total' => 1,
+            'current_invoice_total' => 1,
+            'created_at'=>Carbon::now()
+           ]);
+        }
 
         if ($request->id != null) {
             // Tax Calculation Formula Start

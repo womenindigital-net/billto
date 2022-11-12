@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 @section('title', 'Billto.io')
 @push('frontend_css')
-    
+
 @endpush
 @section('frontend_content')
 <!-- Banner Start -->
@@ -11,6 +11,7 @@
         <div class="row align-items-center">
           <div class="col-md-6">
             <a href="{{ route('create') }}" class="btn billto_btn">Create Bill</a>
+            <a href="{{ url('/clear-cache') }}" class="btn billto_btn">cache Clear</a>
           </div>
           <div class="col-md-6 text-end">
             <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" alt="" srcset="">
@@ -70,8 +71,12 @@
           <p class="fs-sm fw-bolder">Start creating your professional bill</p>
         </div>
         <div class="row text-center">
-          <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-07.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
-          <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-02.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
+            @php
+                $id1 = "template_1";
+                $id2 = "template_2";
+            @endphp
+          <div class="col-md-4 mt-4"><a href="{{ url('home/invoice/page/'.$id1) }}"> <img src="{{ asset('assets/frontend/img/demo/Invoice-07.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
+          <div class="col-md-4 mt-4"><a href="{{ url('home/invoice/page/'.$id2) }}"> <img src="{{ asset('assets/frontend/img/demo/Invoice-02.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
           <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-03.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
           <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-04.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
           <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-05.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
@@ -83,5 +88,5 @@
   <!-- Invoice Template End -->
 @endsection
 @push('frontend_js')
-    
+
 @endpush
