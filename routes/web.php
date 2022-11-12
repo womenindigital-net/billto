@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Frontend\PagesController;
+use App\Http\Controllers\Frontend\SubscriptionPackContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,27 +35,31 @@ require __DIR__.'/socialite.php';
 
 // Invoice Route
 
-Route::post('/products/create', [ProductController::class, 'index']);
-Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
-Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
-Route::PUT('/products/update', [ProductController::class, 'update']);
+// Route::post('/products/create', [ProductController::class, 'index']);
+// Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
+// Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+// Route::PUT('/products/update', [ProductController::class, 'update']);
 
 
 Route::group(['middleware' => ['auth','verified']], function () {
 
-    // Route::post('/products/create', [ProductController::class, 'index']);
-    // Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
-    // Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
-    // Route::PUT('/products/update', [ProductController::class, 'update']);
-
+    Route::post('/products/create', [ProductController::class, 'index']);
+    Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
+    Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+    Route::PUT('/products/update', [ProductController::class, 'update']);
     Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
     Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('store.');
     Route::get('home/invoice/page/{id}', [InvoiceController::class, 'index_home']);
 
-
     Route::post('/invoices/complete/{id}', [InvoiceController::class, 'complete'])->name('complete.');
     // Route::get('/invoice/download/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
+
+    //payment payment gateway
+    Route::get('/payment-gateway/{package_id}', [SubscriptionPackContoller::class, 'payment_gateway']);
+
+
+
 });
 
 
