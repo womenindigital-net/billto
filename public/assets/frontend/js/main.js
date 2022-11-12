@@ -39,7 +39,7 @@ const okButton = Swal.mixin({
 
 function completeInvoice(){
   var complete = 'complete';
- 
+
   // console.log([complete,total]);
 }
 // currency Symble
@@ -93,7 +93,7 @@ function currency1(){
                     $('#product_quantity').removeClass("is-invalid");
                     $('#product_quantity').addClass("is-valid");
                 }
-                
+
                 if (error.responseJSON.errors.product_rate != null)
                 {
                     $('#product_rate').addClass("is-invalid");
@@ -103,7 +103,7 @@ function currency1(){
                     $('#product_rate').removeClass("is-invalid");
                     $('#product_rate').addClass("is-valid");
                 }
-                
+
             }
           });
         }
@@ -131,11 +131,13 @@ function currency1(){
               })
             }else{
               $("#downlodeInvoice").attr("href", "/invoice/download/"+response);
-              button = 
+              button =
               Toast.fire({
                 icon: 'success',
-                title: 'Invoice Created',
+                title: ' Successfuly Invoice Created ',
+
               })
+              location.reload()
             }
             $('#downlodeInvoice').removeClass("disabled");
           },
@@ -144,7 +146,7 @@ function currency1(){
                 icon: 'error',
                 title: 'Fill UP Invoice Form Properly',
               })
-            // Invoice Validation 
+            // Invoice Validation
             if (error.responseJSON.errors.invoice_form != null)
               {
                   $('#invoice_form').addClass("is-invalid");
@@ -154,7 +156,7 @@ function currency1(){
                   $('#invoice_form').removeClass("is-invalid");
                   $('#invoice_form').addClass("is-valid");
               }
-              
+
               if (error.responseJSON.errors.invoice_to != null)
               {
                   $('#invoice_to').addClass("is-invalid");
@@ -308,12 +310,12 @@ function currency1(){
 
     }
 
-    // Sub total 
+    // Sub total
     function total(itemAmount) {
         $('#subtotal').text(itemAmount);
     }
 
-    // Tax 
+    // Tax
     function total(itemAmount) {
         $('#subtotal').text(itemAmount);
         var itemAmount = $('#subtotal').text() * 1;
@@ -328,7 +330,7 @@ function currency1(){
         if(advance > 0){
           var paid = (total * advance )/100;
           $('#invoice_amu_paid').val(paid);
-        }else{     
+        }else{
           var paid = $('#invoice_amu_paid').val() * 1;
         }
         var balanceDue = total - paid;
@@ -342,7 +344,7 @@ function currency1(){
     var product_rate = $('#product_rate-'+id).text();
 
     var product_amount = product_quantity * product_rate;
-    
+
     // $("#tableRow-"+id).css("display", "none");
     var input = '';
     input = input + "<tr id='editInput-"+id+"'>"
@@ -492,10 +494,9 @@ function currency1(){
           $("#editInput-"+id).replaceWith(data);
         },
         error: function (error) {
-          
+
         }
     });
   }
 
 
-  

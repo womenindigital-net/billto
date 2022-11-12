@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Frontend\PagesController;
@@ -33,13 +34,24 @@ require __DIR__.'/socialite.php';
 
 // Invoice Route
 
+Route::post('/products/create', [ProductController::class, 'index']);
+Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
+Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+Route::PUT('/products/update', [ProductController::class, 'update']);
+
+
 Route::group(['middleware' => ['auth','verified']], function () {
-    Route::post('/products/create', [ProductController::class, 'index']);
-    Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
-    Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
-    Route::PUT('/products/update', [ProductController::class, 'update']);
+
+    // Route::post('/products/create', [ProductController::class, 'index']);
+    // Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
+    // Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+    // Route::PUT('/products/update', [ProductController::class, 'update']);
+
     Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
     Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('store.');
+    Route::get('home/invoice/page/{id}', [InvoiceController::class, 'index_home']);
+
+
     Route::post('/invoices/complete/{id}', [InvoiceController::class, 'complete'])->name('complete.');
     // Route::get('/invoice/download/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
@@ -52,5 +64,11 @@ Route::get('/clear-cache', function() {
     Artisan::call('config:clear');
     Artisan::call('route:clear');
     Artisan::call('optimize');
-    return "Application cache cleared!";
+    return redirect()->back();
 });
+Route::get('/notice/div/hidden', function() {
+    Session::put('hidden_session', 'd-none');
+
+    return redirect()->back();
+});
+

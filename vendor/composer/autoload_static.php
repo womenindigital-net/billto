@@ -637,6 +637,7 @@ class ComposerStaticInit954efb0a80de338c9d5c968e8bdaed9a
         'App\\Http\\Requests\\StoreSubscriptionPackageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreSubscriptionPackageRequest.php',
         'App\\Http\\Requests\\UpdateOrganizationPackageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateOrganizationPackageRequest.php',
         'App\\Http\\Requests\\UpdateSubscriptionPackageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateSubscriptionPackageRequest.php',
+        'App\\Models\\ComplateInvoiceCount' => __DIR__ . '/../..' . '/app/Models/ComplateInvoiceCount.php',
         'App\\Models\\Invoice' => __DIR__ . '/../..' . '/app/Models/Invoice.php',
         'App\\Models\\OrganizationPackage' => __DIR__ . '/../..' . '/app/Models/OrganizationPackage.php',
         'App\\Models\\OrganizationPackageTemplate' => __DIR__ . '/../..' . '/app/Models/OrganizationPackageTemplate.php',

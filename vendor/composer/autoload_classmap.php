@@ -40,6 +40,7 @@ return array(
     'App\\Http\\Requests\\StoreSubscriptionPackageRequest' => $baseDir . '/app/Http/Requests/StoreSubscriptionPackageRequest.php',
     'App\\Http\\Requests\\UpdateOrganizationPackageRequest' => $baseDir . '/app/Http/Requests/UpdateOrganizationPackageRequest.php',
     'App\\Http\\Requests\\UpdateSubscriptionPackageRequest' => $baseDir . '/app/Http/Requests/UpdateSubscriptionPackageRequest.php',
+    'App\\Models\\ComplateInvoiceCount' => $baseDir . '/app/Models/ComplateInvoiceCount.php',
     'App\\Models\\Invoice' => $baseDir . '/app/Models/Invoice.php',
     'App\\Models\\OrganizationPackage' => $baseDir . '/app/Models/OrganizationPackage.php',
     'App\\Models\\OrganizationPackageTemplate' => $baseDir . '/app/Models/OrganizationPackageTemplate.php',
