@@ -41,9 +41,9 @@
                                     <span key="t-dashboards">Organizatin Package</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{ url('') }}" key="t-horizontal">Organization package
+                                    <li><a href="{{ url('admin/organization/package/page') }}" key="t-horizontal">Organization package
                                         create</a></li>
-                                        <li><a href="{{ url('') }}" key="t-horizontal">Organization Package
+                                        <li><a href="{{ url('admin/organization/package/list') }}" key="t-horizontal">Organization Package
                                             list</a></li>
                                 </ul>
                             </li>
