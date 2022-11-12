@@ -33,5 +33,8 @@ Route::group([  'prefix' => 'admin',
                 //organization package route
                 Route::get('/organization/package/page', [OrganizationPackageController::class, 'create']);
                 Route::post('/organization/package/store', [OrganizationPackageController::class, 'store']);
+                Route::get('/organization/package/{id}/edit', [OrganizationPackageController::class, 'edit']);
+                Route::put('/organization/package/{id}', [OrganizationPackageController::class, 'update']);
+                Route::get('organization/package/{id}/delete', [OrganizationPackageController::class, 'destroy']);
                 Route::get('/organization/package/list', [OrganizationPackageController::class, 'index']);
             });

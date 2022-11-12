@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <!--************************************
-            ********** Main content Start ***********
-            ************************************-->
+                ********** Main content Start ***********
+                ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -44,49 +44,62 @@
                                     </h3>
                                 </div>
                                 <hr>
-                                <form action="{{ url('admin/organization/package/store') }}" method="POST" class="needs-validation" novalidate>
+                                <form action="{{ url('admin/organization/package/store') }}" method="POST"
+                                    class="needs-validation" novalidate>
                                     @csrf
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom01" class="form-label">Organization Package Name</label>
-                                                <input type="text" name="organizationPackageName" class="form-control" id="validationCustom01"
-                                                     required>
+                                                <label for="validationCustom01" class="form-label">Organization Package
+                                                    Name</label>
+                                                <input type="text" name="organizationPackageName" class="form-control"
+                                                    id="validationCustom01" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom02" class="form-label">Organization Package Duration</label>
-                                                <input type="text" name="organizationPackageDuration" class="form-control" id="validationCustom02"
-                                                      required>
+                                                <label for="validationCustom03" class="form-label">Organization Package
+                                                    Duration</label>
+                                                <select class="form-select" name="organizationPackageDuration"
+                                                    id="validationCustom03" required>
+                                                    <option selected disabled value="">Select package</option>
+                                                    <option value="30">One Month</option>
+                                                    <option value="90">three Month</option>
+                                                    <option value="180">Six Month</option>
+                                                    <option value="365">One Year</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Organization Package Price</label>
-                                                <input type="number" name="price"  class="form-control" id="validationCustom02"
-                                                      required>
+                                                <label for="validationCustom03" class="form-label">Organization Package
+                                                    Price</label>
+                                                <input type="number" name="price" class="form-control"
+                                                    id="validationCustom02" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Organizatin Tamplate Quantity</label>
-                                                <input type="number" name="organizationPackageQuantity" class="form-control" id="validationCustom02"
-                                                      required>
+                                                <label for="validationCustom03" class="form-label">Organizatin Tamplate
+                                                    Quantity</label>
+                                                <input type="number" name="organizationPackageQuantity"
+                                                    class="form-control" id="validationCustom02" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Limit Bill Generate</label>
-                                                <input type="number" name="limitBillGenerate" class="form-control" id="validationCustom02"
-                                                      required>
+                                                <label for="validationCustom03" class="form-label">Limit Bill
+                                                    Generate</label>
+                                                <input type="number" name="limitBillGenerate" class="form-control"
+                                                    id="validationCustom02" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Organization Employee Limitation</label>
-                                                <input type="number" name="organizationEmployeeLimitation" class="form-control" id="validationCustom02"
-                                                      required>
+                                                <label for="validationCustom03" class="form-label">Organization Employee
+                                                    Limitation</label>
+                                                <input type="number" name="organizationEmployeeLimitation"
+                                                    class="form-control" id="validationCustom02" required>
                                             </div>
                                         </div>
                                     </div>
@@ -95,63 +108,75 @@
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_1" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"  >Tamplate One</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_1"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate One</label>
                                                 </div>
                                                 <div class=" d-flex">
-                                                    <input type="checkbox"  name="template[]" value="tamplate_2" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Two</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_2"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Two</label>
                                                 </div>
                                                 <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_3" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Three</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_3"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Three</label>
                                                 </div>
 
                                                 <div class=" d-flex">
-                                                    <input type="checkbox"  name="template[]" value="tamplate_4" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Four</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_4"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Four</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_5" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Five</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_5"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Five</label>
                                                 </div>
                                                 <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_6" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Six</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_6"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Six</label>
                                                 </div>
                                                 <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_7" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Seve</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_7"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Seve</label>
                                                 </div>
 
                                                 <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_8" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Eight</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_8"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Eight</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_9" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Nine</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_9"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Nine</label>
                                                 </div>
                                                 <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_10" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Ten</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_10"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Ten</label>
                                                 </div>
                                                 <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_11"  style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Eleven</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_11"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate Eleven</label>
                                                 </div>
 
                                                 <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_12" style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate twelve</label>
+                                                    <input type="checkbox" name="template[]" value="tamplate_12"
+                                                        style="height: 20px; width:20px">
+                                                    <label class="form-label ms-2">Tamplate twelve</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,8 +196,8 @@
 
 
                 <!--************************************
-                 ********** Main content END ***********
-                 ************************************-->
+                     ********** Main content END ***********
+                     ************************************-->
 
             </div>
             <!-- container-fluid -->
