@@ -103,32 +103,32 @@ class SubscriptionPackageController extends Controller
         foreach ($templats as $tmp) {
 
             if ($tmp->template == "tamplate_1") {
-                echo $check1 = "checked";
+                $check1 = "checked";
             } else if ($tmp->template == "tamplate_2") {
-                echo  $check2 = "checked";
+                $check2 = "checked";
             } else if ($tmp->template == "tamplate_3") {
-                echo  $check3 = "checked";
+                $check3 = "checked";
             } else if ($tmp->template == "tamplate_4") {
-                echo  $check4 = "checked";
+                $check4 = "checked";
             } else if ($tmp->template == "tamplate_5") {
-                echo  $check5 = "checked";
+                $check5 = "checked";
             } else if ($tmp->template == "tamplate_6") {
-                echo  $check6 = "checked";
+                $check6 = "checked";
             } else if ($tmp->template == "tamplate_7") {
-                echo  $check7 = "checked";
+                $check7 = "checked";
             } else if ($tmp->template == "tamplate_8") {
-                echo  $check8 = "checked";
+                $check8 = "checked";
             } else if ($tmp->template == "tamplate_9") {
-                echo  $check9 = "checked";
+                $check9 = "checked";
             } else if ($tmp->template == "tamplate_10") {
-                echo  $check10 = "checked";
+                $check10 = "checked";
             } else if ($tmp->template == "tamplate_11") {
-                echo  $check11 = "checked";
+                $check11 = "checked";
             } else if ($tmp->template == "tamplate_12") {
-                echo  $check12 = "checked";
+                $check12 = "checked";
             }
         }
-        return view('admin.package.edit-package', compact('subscriptionPackage', 'check1', 'check2', 'check3', 'check4', 'check5', 'check6', 'check7','check8','check9','check10','check11','check12'));
+        return view('admin.package.edit-package', compact('subscriptionPackage', 'check1', 'check2', 'check3', 'check4', 'check5', 'check6', 'check7', 'check8', 'check9', 'check10', 'check11', 'check12'));
     }
 
     /**
@@ -171,6 +171,6 @@ class SubscriptionPackageController extends Controller
         $subscriptionPackage = SubscriptionPackage::findOrFail($id);
         $subscriptionPackage->delete();
         SubscriptionPackageTemplate::where('subscriptionPackageId', $id)->delete();
-
+        return redirect()->back()->with('message', 'Successfully Delete Package.');
     }
 }

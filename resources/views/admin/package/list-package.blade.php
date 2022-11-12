@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <!--************************************
-                ********** Main content Start ***********
-                ************************************-->
+                        ********** Main content Start ***********
+                        ************************************-->
 
                 <div class="row">
 
@@ -32,43 +32,64 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-header">
+                                    <div>
+                                        @if (session()->has('message'))
+                                            <div class="alert alert-danger">
+                                                {{ session('message') }}
+                                            </div>
+                                        @endif
+                                    </div>
                                     <h3>Subscription List
-                                        <a href="{{ url('admin/package/page') }}" class="btn btn-primary btn-sm text-white  float-end ">Add
+                                        <a href="{{ url('admin/package/page') }}"
+                                            class="btn btn-primary btn-sm text-white  float-end ">Add
                                             Package
                                         </a>
                                     </h3>
                                 </div>
                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                     <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Package Name</th>
-                                        <th>Package Duration</th>
-                                        <th>Package Price</th>
-                                        <th>Template Quantity</th>
-                                        <th>Limit Invoice Generate</th>
-                                        <th>Action</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Package Name</th>
+                                            <th>Package Duration</th>
+                                            <th>Package Price</th>
+                                            <th>Template Quantity</th>
+                                            <th>Limit Invoice Generate</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($packages as $package)
-                                        <tr>
-                                            <td>{{ $package->id }}</td>
-                                            <td>{{ $package->packageName }}</td>
-                                            <td>{{ $package->packageDuration}}</td>
-                                            <td>{{ $package->price }}</td>
-                                            <td>{{ $package->templateQuantity }}</td>
-                                            <td>{{ $package->limitInvoiceGenerate }}</td>
-                                            {{-- <td>{{ $package->status == '1' ? 'Hidden' : 'Visible' }}</td> --}}
-                                            <td>
-                                                <a href="{{ url('admin/package/'.$package->id.'/edit') }}" class="btn btn-sm btn-success">Edit</a>
-                                                <a href="{{ url('admin/package/'.$package->id.'/delete') }}" onclick="return confirm('Are you sure, you want to delete ')" class="btn btn-sm btn-danger">delete</a>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="7">No subscription package Available</td>
-                                        </tr>
-                                    @endforelse
+                                            <tr>
+                                                <td>{{ $package->id }}</td>
+                                                <td>{{ $package->packageName }}</td>
+                                                <td>{{ $package->packageDuration }}</td>
+                                                <td>{{ $package->price }}</td>
+                                                <td>{{ $package->templateQuantity }}</td>
+                                                <td>{{ $package->limitInvoiceGenerate }}</td>
+                                                {{-- <td>{{ $package->status == '1' ? 'Hidden' : 'Visible' }}</td> --}}
+                                                <td>
+                                                    {{-- <a href="{{ url('admin/package/' . $package->id . '/edit') }}"
+                                                        class="btn btn-sm btn-success">Edit</a>
+                                                    <a href="{{ url('admin/package/' . $package->id . '/delete') }}"
+                                                        onclick="return confirm('Are you sure, you want to delete ')"
+                                                        class="btn btn-sm btn-danger">delete</a> --}}
+                                                    <a href="{{ url('admin/package/' . $package->id . '/edit') }}"
+                                                        type="button"
+                                                        class="btn btn-sm btn-success btn-rounded waves-effect waves-light mb-2 me-1"
+                                                        class="btn btn-sm btn-success"> <i class="mdi mdi-pencil"></i></a>
+                                                    <a type="button"
+                                                        href="{{ url('admin/package/' . $package->id . '/delete') }}"
+                                                        onclick="return confirm('Are you sure, you want to delete ')"
+                                                        class="btn btn-sm mb-2 me-1 btn-danger btn-rounded waves-effect waves-light">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="7">No subscription package Available</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
 
@@ -77,8 +98,8 @@
                     </div> <!-- end col -->
                 </div>
                 <!--************************************
-                     ********** Main content END ***********
-                     ************************************-->
+                             ********** Main content END ***********
+                             ************************************-->
 
             </div>
             <!-- container-fluid -->
