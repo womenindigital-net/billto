@@ -86,6 +86,42 @@
     </div>
   </section>
   <!-- Invoice Template End -->
+  <!-- Package subscription start -->
+    <section>
+       <div class="container mt-5">
+        <div class="text-center pb-5">
+            <h2 class="h2_title">Choose Your Package</h2>
+            <p class="fs-sm fw-bolder">Start creating your professional bill</p>
+          </div>
+        <div class="row mb-5">
+            @foreach ($subcription_package as $sub_package)
+            @php
+                $day = $sub_package->packageDuration;
+
+            @endphp
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body text-center bg-success">
+                        <h5 class="card-title">{{ $sub_package->packageName }}</h5>
+                     </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> Invoice Template: <strong>{{ $sub_package->templateQuantity }}</strong> </li>
+                        <li class="list-group-item">Total invoice Genarate: <strong>{{ $sub_package->templateQuantity }}</strong></li>
+                        <li class="list-group-item">Package Duration: <strong> @php
+                              if($day==30){ echo "1 Month"; }elseif($day=="60"){ echo "2 Month";}elseif($day<=365){  echo "1 Year"; }
+                        @endphp</strong></li>
+                        <li class="list-group-item">Package Price: <strong>Tk. {{ $sub_package->price }}</strong></li>
+                    </ul>
+                    <div class="card-body text-center">
+                        <a href="{{ url('payment-gateway',$sub_package->id)}}" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+       </div>
+    </section>
+  <!--  Package subscription  End -->
 @endsection
 @push('frontend_js')
 
