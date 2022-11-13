@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\InvoiceTemplateController;
 use App\Http\Controllers\OrganizationPackageController;
 use App\Http\Controllers\SubscriptionPackageController;
 use App\Models\OrganizationPackage;
@@ -37,4 +38,8 @@ Route::group([  'prefix' => 'admin',
                 Route::put('/organization/package/{id}', [OrganizationPackageController::class, 'update']);
                 Route::get('organization/package/{id}/delete', [OrganizationPackageController::class, 'destroy']);
                 Route::get('/organization/package/list', [OrganizationPackageController::class, 'index']);
+                //manage template
+                Route::get('/manage/template/page', [InvoiceTemplateController::class, 'create']);
+                Route::post('/manage/template/store', [InvoiceTemplateController::class, 'store']);
+
             });

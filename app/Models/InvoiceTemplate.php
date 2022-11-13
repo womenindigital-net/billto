@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class InvoiceTemplate extends Model
 {
     use HasFactory;
+    protected $table = 'invoice_templates';
+    protected $fillable = [
+        'templateName',
+        'templateDesignHtml',
+    ];
 }
