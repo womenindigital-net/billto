@@ -100,85 +100,24 @@
                                     </div>
                                     <div class="row mt-3">
                                         <h3 class="mb-3">Choose tamplate</h3>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_1" {{ $check1 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"  >Tamplate One</label>
+                                        <div class="row">
+                                            @foreach ($invoiceTemplates as $invoiceTemplate)
+                                                <div class="col-md-4 mb-2">
+                                                    <div class=" d-flex">
+                                                        <input type="checkbox" name="template[]" value="{{ $taplate_id = $invoiceTemplate->id }}"
+                                                            @foreach ($templats as $template)
+                                                            @if ($taplate_id == $template->template) checked @else @endif
+                                                            @endforeach
+                                                         style="height: 20px; width:20px" >
+                                                        <label class="form-label ms-2">{{ $invoiceTemplate->templateName }}</label>
+                                                    </div>
                                                 </div>
-                                                <div class=" d-flex">
-                                                    <input type="checkbox"  name="template[]" value="tamplate_2" {{ $check2 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Two</label>
-                                                </div>
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_3" {{ $check3 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Three</label>
-                                                </div>
-
-                                                <div class=" d-flex">
-                                                    <input type="checkbox"  name="template[]" value="tamplate_4" {{ $check4 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Four</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_5" {{ $check5 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Five</label>
-                                                </div>
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_6" {{ $check6 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Six</label>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_7" {{ $check7 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Seve</label>
-                                                </div>
-
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_8" {{ $check8 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Eight</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_9" {{ $check9 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Nine</label>
-                                                </div>
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_10" {{ $check10 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Ten</label>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_11" {{ $check11 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate Eleven</label>
-                                                </div>
-
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_12" {{ $check12 }}
-                                                    style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2"   >Tamplate twelve</label>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="d-flex justify-content-start">
-                                            <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                                            <button class="btn btn-primary mt-3" type="submit">Update</button>
                                         </div>
                                     </div>
                                 </form>

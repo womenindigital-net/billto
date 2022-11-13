@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <!--************************************
-                ********** Main content Start ***********
-                ************************************-->
+                        ********** Main content Start ***********
+                        ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -105,106 +105,45 @@
                                     </div>
                                     <div class="row mt-3">
                                         <h3 class="mb-3">Choose tamplate</h3>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_1"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate One</label>
-                                                </div>
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_2"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Two</label>
-                                                </div>
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_3"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Three</label>
-                                                </div>
 
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_4"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Four</label>
+                                        <div class="row">
+                                            @foreach ($invoiceTemplates as $invoiceTemplate)
+                                                <div class="col-md-4 mb-2">
+                                                    <div class=" d-flex">
+                                                        <input type="checkbox" name="template[]" value="{{ $invoiceTemplate->id }}"
+                                                            style="height: 20px; width:20px">
+                                                        <label class="form-label ms-2">{{ $invoiceTemplate->templateName }}</label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_5"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Five</label>
-                                                </div>
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_6"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Six</label>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_7"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Seve</label>
-                                                </div>
-
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_8"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Eight</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_9"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Nine</label>
-                                                </div>
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_10"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Ten</label>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_11"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate Eleven</label>
-                                                </div>
-
-                                                <div class=" d-flex">
-                                                    <input type="checkbox" name="template[]" value="tamplate_12"
-                                                        style="height: 20px; width:20px">
-                                                    <label class="form-label ms-2">Tamplate twelve</label>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="d-flex justify-content-start">
-                                            <button class="btn btn-primary mt-3" type="submit">Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
+
                             </div>
+                            <div class="row mt-2">
+                                <div class="d-flex justify-content-start">
+                                    <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                                </div>
+                            </div>
+                            </form>
                         </div>
-                        <!-- end card -->
-                    </div> <!-- end col -->
-
-                </div>
-
-
-                <!--************************************
-                     ********** Main content END ***********
-                     ************************************-->
+                    </div>
+                    <!-- end card -->
+                </div> <!-- end col -->
 
             </div>
-            <!-- container-fluid -->
-        </div>
-        <!-- End Page-content -->
-        <!-- end main content-->
 
-    @endsection
-    @push('admin_style_js')
-    @endpush
+
+            <!--************************************
+                             ********** Main content END ***********
+                             ************************************-->
+
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    <!-- end main content-->
+
+@endsection
+@push('admin_style_js')
+@endpush
