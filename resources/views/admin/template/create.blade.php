@@ -37,7 +37,7 @@
                                     @endif
                                 </div>
                                 <h3 class="mb-3">Create Tamplate</h3>
-                                <form action="{{ url('admin/manage/template/store') }}" method="POST" class="needs-validation"
+                                <form action="{{ url('admin/manage/template/store') }}" method="POST" enctype="multipart/form-data" class="needs-validation"
                                     novalidate>
                                     @csrf
                                     <div class="row">
@@ -62,12 +62,12 @@
                                                             <td>{{ $invoiceTemplate->templateDesignHtml }}</td>
                                                             {{-- <td>{{ $package->status == '1' ? 'Hidden' : 'Visible' }}</td> --}}
                                                             <td>
-                                                                <a href="{{ url('admin/organization/package/' . $invoiceTemplate->id . '/edit') }}"
+                                                                <a href="{{ url('admin/manage/template/' . $invoiceTemplate->id . '/edit') }}"
                                                                     type="button"
                                                                     class="btn btn-sm btn-success btn-rounded waves-effect waves-light mb-2 me-1"
                                                                     class="btn btn-sm btn-success"> <i class="mdi mdi-pencil"></i></a>
                                                                 <a type="button"
-                                                                    href="{{ url('admin/organization/package/' . $invoiceTemplate->id . '/delete') }}"
+                                                                    href="{{ url('admin/manage/template/' . $invoiceTemplate->id . '/delete') }}"
                                                                     onclick="return confirm('Are you sure, you want to delete ')"
                                                                     class="btn btn-sm mb-2 me-1 btn-danger btn-rounded waves-effect waves-light">
                                                                     <i class="fas fa-trash-alt"></i>
@@ -83,7 +83,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-4 ">
                                             <div class="mb-3">
                                                 <label for="validationCustom01" class="form-label">Template name</label>
                                                 <input type="text" name="templateName" class="form-control"
@@ -98,7 +98,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Template Image</label>
                                                 <div>
-                                                    <input type="file" name="templateName" class="form-control"
+                                                    <input type="file" name="templateImage" class="form-control"
                                                     id="validationCustom01" required>
                                                 </div>
                                             </div>

@@ -21,6 +21,20 @@
                             </li>
 
                             {{-- package --}}
+
+                             {{-- manage template --}}
+                             <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="bx bx-package"></i>
+                                    <span key="t-dashboards">Manage Template</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ url('admin/manage/template/page') }}" key="t-horizontal">Add tamplate</a></li>
+                                        {{-- <li><a href="{{ url('admin/') }}" key="t-horizontal">Organization Package
+                                            list</a></li> --}}
+                                </ul>
+                            </li>
+                            
                             {{-- Subscription package --}}
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">
@@ -47,18 +61,7 @@
                                             list</a></li>
                                 </ul>
                             </li>
-                            {{-- manage template --}}
-                            <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="bx bx-package"></i>
-                                    <span key="t-dashboards">Manage Template</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{ url('admin/manage/template/page') }}" key="t-horizontal">Add tamplate</a></li>
-                                        {{-- <li><a href="{{ url('admin/') }}" key="t-horizontal">Organization Package
-                                            list</a></li> --}}
-                                </ul>
-                            </li>
+
 
                             <li class="menu-title" key="t-apps">Apps</li>
 

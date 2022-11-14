@@ -41,5 +41,8 @@ Route::group([  'prefix' => 'admin',
                 //manage template
                 Route::get('/manage/template/page', [InvoiceTemplateController::class, 'create']);
                 Route::post('/manage/template/store', [InvoiceTemplateController::class, 'store']);
+                Route::get('/manage/template/{id}/edit', [InvoiceTemplateController::class, 'edit']);
+                Route::put('/manage/template/{id}', [InvoiceTemplateController::class, 'update']);
+                Route::get('/manage/template/{id}/delete', [InvoiceTemplateController::class, 'destroy']);
 
             });

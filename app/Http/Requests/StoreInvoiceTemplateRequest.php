@@ -26,6 +26,7 @@ class StoreInvoiceTemplateRequest extends FormRequest
         return [
             'templateName'=>'nullable',
             'templateDesignHtml'=>'nullable',
+            'templateImage' => 'nullable'
         ];
     }
 }

@@ -12,5 +12,6 @@ class InvoiceTemplate extends Model
     protected $fillable = [
         'templateName',
         'templateDesignHtml',
+        'templateImage'
     ];
 }
