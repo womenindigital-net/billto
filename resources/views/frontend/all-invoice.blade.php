@@ -1,24 +1,40 @@
 @extends('layouts.frontend.app')
 @section('title', 'Home page')
 @push('frontend_css')
+    <!-- DataTables -->
+    {{-- <link href="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+    <!-- Responsive datatable examples -->
+    {{-- <link href="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" --}}
+        {{-- type="text/css" /> --}}
+    <!-- Multi Item Selection examples -->
+    {{-- <link href="{{ asset('assets/admin/plugins/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<!-- DataTables -->
-<link href="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<!-- Responsive datatable examples -->
-<link href="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<!-- Multi Item Selection examples -->
-<link href="{{ asset('assets/admin/plugins/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<style>
-.dataTables_filter,.datatable_length{
-    margin-bottom: 10px !important;
-}
-div.dataTables_wrapper div.dataTables_paginate,.dataTables_info{
-     margin-top: 10px !important;
-}
-</style>
+    {{-- dashborad link --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap"
+        rel="stylesheet">
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
+    <!--dashboard custom css-->
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/dashboard.css') }}">
+
+    <style>
+        .dataTables_filter,
+        .datatable_length {
+            margin-bottom: 10px !important;
+        }
+
+        div.dataTables_wrapper div.dataTables_paginate,
+        .dataTables_info {
+            margin-top: 10px !important;
+        }
+
+    </style>
 @endpush
 @section('frontend_content')
     <!-- Sub Nav Start -->
@@ -27,11 +43,12 @@ div.dataTables_wrapper div.dataTables_paginate,.dataTables_info{
             <div class="container">
                 <div class="row">
                     <div class="nav col">
-                    <p class="m-0" style="display: flex;align-items: center;">You are here:&#160;<span><a href="/" class="nav-item hover">&#160;Home</a> &#8921;</span> <span
-                            style="color: #FFB317 !important;">&#160;User</span></p>
+                        <p class="m-0" style="display: flex;align-items: center;">You are here:&#160;<span><a
+                                    href="/" class="nav-item hover">&#160;Home</a> &#8921;</span> <span
+                                style="color: #FFB317 !important;">&#160;User</span></p>
                     </div>
                     <div class="col text-end">
-                         <a href="{{ route('create') }}" class="btn billto_btn">Create Bill</a>
+                        <a href="{{ route('create') }}" class="btn billto_btn">Create Bill</a>
                     </div>
                 </div>
             </div>
@@ -46,19 +63,28 @@ div.dataTables_wrapper div.dataTables_paginate,.dataTables_info{
                     <h2 class="h2_title mb-4">Welcome back to Billto</h2>
                     <div class="dashboard_link">
                         <a class="" href="{{ route('create') }}">Invoice</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Tax Invoice</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Proforma Invoice</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Receipt</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Sales Receipt</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Cash Receipt</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Tax
+                            Invoice</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Proforma
+                            Invoice</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button"
+                            aria-disabled="true">Receipt</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Sales
+                            Receipt</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Cash
+                            Receipt</a>
                         <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Quote</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Estimate Credit Memo</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Credit Note</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Purchase Order</a>
-                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Delivery Note</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Estimate
+                            Credit Memo</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Credit
+                            Note</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Purchase
+                            Order</a>
+                        <a href="#" class="btn disabled" tabindex="-1" role="button" aria-disabled="true">Delivery
+                            Note</a>
                     </div>
                 </div>
-                <div class="row dashboard_menu">
+                {{-- <div class="row dashboard_menu">
                     <div class="col-md-12 p-0">
                         <ul class="nav nav-tabs">
                             <li class="nav-item px-1">
@@ -146,15 +172,41 @@ div.dataTables_wrapper div.dataTables_paginate,.dataTables_info{
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card-box">
+                </div> --}}
+            </div>
+        </div>
+    </section>
+    <section class="page-top">
+        <div class="side-bar">
 
+            <div class="logo text-center">
+                <a href="index.html"><img src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}" alt="Logo"></a>
+                <h5 style="">Women In Digital</h5>
+                <p>womenindigital.net@gmail.com</p>
+                <a href="#" class="nav-icon"><i class="fa fa-bars"></i></a>
+            </div>
 
-                        </div>
-                    </div>
-                </div> <!-- end row -->
+            <div class="mobile_menu canvas-menu">
+                <a href="#" class="nav-icon"><span aria-hidden="true">×</span></a>
+                <nav class=''>
+                    <ul>
+
+                        <li class='sub-menu'><a href='#invoice'><img src="{{ asset('assets/frontend/img/icon/page.png') }}" alt="">My Invoices<div
+                                    class='fa fa-caret-down right'></div></a>
+                            <ul>
+                                <li><a href='#invoice'>All Invoices</a></li>
+                                <li><a href='#invoice'>Over Due</a></li>
+                                <li><a href='#invoice'>Pertially Paid</a></li>
+                                <li><a href='#invoice'>Unpaid</a></li>
+                                <li><a href='#invoice'>Send by Email</a></li>
+                                <li><a href='#invoice'>Trush</a></li>
+                            </ul>
+                        </li>
+                        <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/contact.png') }}" alt="">My Customers</a></li>
+                        <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/group.png') }}" alt="">My Reports</a></li>
+                        <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/settings.png') }}" alt="">Settings</a></li>
+                    </ul>
+                </nav>
             </div>
 
         </div>
@@ -162,68 +214,59 @@ div.dataTables_wrapper div.dataTables_paginate,.dataTables_info{
     <!-- Sign in form End -->
 @endsection
 @push('frontend_js')
-<!-- Required datatable js -->
-<script src="{{ asset('assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
-<!-- Buttons examples -->
-<script src="{{ asset('assets/admin/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/datatables/jszip.min.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/datatables/pdfmake.min.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/datatables/vfs_fonts.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/datatables/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <!-- Required datatable js -->
+    <script src="{{ asset('assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <!-- Buttons examples -->
+    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/datatables/buttons.print.min.js') }}"></script>
 
-<!-- Key Tables -->
-<script src="{{ asset('assets/admin/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
+    <!-- Key Tables -->
+    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
 
-<!-- Responsive examples -->
-<script src="{{ asset('assets/admin/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+    <!-- Responsive examples -->
+    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 
-<!-- Selection table -->
-<script src="{{ asset('assets/admin/plugins/datatables/dataTables.select.min.js') }}"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    $(document).ready(function() {
+    <!-- Selection table -->
+    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.select.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
 
-        // Default Datatable
-        $('#datatable').DataTable();
+            // Default Datatable
+            $('#datatable').DataTable();
 
-        //Buttons examples
-        var table = $('#datatable-buttons').DataTable({
-            lengthChange: false,
-            buttons: ['copy', 'excel', 'pdf']
-        });
+            //Buttons examples
+            var table = $('#datatable-buttons').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf']
+            });
 
-        // Key Tables
+            // Key Tables
 
-        $('#key-table').DataTable({
-            keys: true
-        });
+            $('#key-table').DataTable({
+                keys: true
+            });
 
-        // Responsive Datatable
-        $('#responsive-datatable').DataTable();
+            // Responsive Datatable
+            $('#responsive-datatable').DataTable();
 
-        // Multi Selection Datatable
-        $('#selection-datatable').DataTable({
-            select: {
-                style: 'multi'
-            }
-        });
+            // Multi Selection Datatable
+            $('#selection-datatable').DataTable({
+                select: {
+                    style: 'multi'
+                }
+            });
 
-        table.buttons().container()
+            table.buttons().container()
                 .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
-    } );
-
-</script>
-
-
-
-<script>
-
-
-
-
-</script>
+        });
+    </script>
 @endpush
