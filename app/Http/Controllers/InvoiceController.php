@@ -31,6 +31,7 @@ class InvoiceController extends Controller
                     ->get([
                             'invoice_form',
                             'invoice_to',
+                            'id',
                         ])
                     ->first();
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
@@ -38,7 +39,7 @@ class InvoiceController extends Controller
 
         return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
+        // return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
     }
 
 public function index_home($id)
@@ -50,12 +51,15 @@ public function index_home($id)
                 ->get([
                         'invoice_form',
                         'invoice_to',
-                    ])
+                        'id',
+                        ])
                 ->first();
+
+
     $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
     $invoiceCountNew += 1;
 
-    return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
+    return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name',));
 
 
 
@@ -79,18 +83,18 @@ public function index_home($id)
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'currency' => 'required|max:30',
-        //     'invoice_form' => 'required|max:1024',
-        //     'invoice_to' => 'required|max:1024',
-        //     'invoice_id' => 'required',
-        //     'invoice_date' => 'required|date',
-        //     'invoice_payment_term' => 'max:30',
-        //     'invoice_dou_date' => 'date|after:invoice_date',
-        //     'invoice_po_number' => 'max:30',
-        //     'invoice_notes' => 'max:1024',
-        //     'invoice_terms' => 'max:1024',
-        // ]);
+        $validated = $request->validate([
+            'currency' => 'required|max:30',
+            'invoice_form' => 'required|max:1024',
+            'invoice_to' => 'required|max:1024',
+            'invoice_id' => 'required',
+            'invoice_date' => 'required|date',
+            'invoice_payment_term' => 'max:30',
+            'invoice_dou_date' => 'date|after:invoice_date',
+            'invoice_po_number' => 'max:30',
+            'invoice_notes' => 'max:1024',
+            'invoice_terms' => 'max:1024',
+        ]);
 
 
         $user_id = Auth::user()->id;
@@ -108,7 +112,7 @@ public function index_home($id)
     //     echo $current_invoice_total;
     //    }
       // ei toko kaje lagbe
-      
+
       $check = ComplateInvoiceCount::where('user_id',$user_id)->first();
         if ($check) {
             ComplateInvoiceCount::where('user_id', $user_id)->increment('invoice_count_total');
@@ -181,6 +185,7 @@ public function index_home($id)
                 'requesting_advance_amount_percent' => $request->requesting_advance_amount,
                 'total' => $total,
                 'invoice_status' => 'complete',
+                'template_name'=>$request->template_name,
             );
             $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
             // invoice Data End
@@ -293,12 +298,13 @@ public function index_home($id)
             // 'invoice_amu_paid_percent',
             // 'invoice_amu_paid',
             'total',
+            'template_name',
         ])->first();
         $productsDatas = Invoice::find($id)->products->skip(0)->take(6);
         $due = $invoiceData->total;
         if (Auth::user()->plan == 'free') {
-            $pdf = Pdf::loadView('invoices.free.invoice_1',compact('invoiceData', 'productsDatas', 'due'));
-            return $pdf->stream('invoices.free.invoice_1.pdf');
+            $pdf = Pdf::loadView('invoices.free.all_invoice',compact('invoiceData', 'productsDatas', 'due'));
+            return $pdf->stream('invoices.free.all_invoice.pdf');
         } elseif (Auth::user()->plan == 'premium') {
             $pdf = Pdf::loadView('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'due'));
             return $pdf->stream('invoices.wid.pdf');

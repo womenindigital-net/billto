@@ -25,6 +25,7 @@
   <!-- Bootstrap icons v1.7.2 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
+ 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
     *{

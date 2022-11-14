@@ -494,9 +494,9 @@ $templete_value = $template_name;
         <button type="submit" id="completeInvoice" class="btn send-invoice py-2 px-4" @if (isset($invoiceData))@else disabled
         @endif >@if (isset($invoiceData)) {{ "Update Invoice" }} @else{{ "Complete Invoice" }}@endif </button>
         <a href="#" class="btn send-invoice py-2 px-4 disabled" role="button" aria-disabled="true" onclick="completeInvoice()">Send Invoice</a>
-        <a href="#" id="downlodeInvoice" target="_blank" class="btn send-downlod py-2 px-4 disabled" >Download Invoice</a>
+        <a href="{{ route('invoice.download',$lastInvoice->id) }}" id="downlodeInvoice" target="_blank" class="btn send-downlod py-2 px-4 " >Download Invoice</a>
       </div>
-    </form>
+
   </div>
 </section>
 <!-- Invoice Section End -->
@@ -509,34 +509,199 @@ $templete_value = $template_name;
         <h2 class="h2_title">Choose Your Invoice Template</h2>
         <p class="fs-sm fw-bolder">Start creating your professional bill</p>
       </div>
+ <style>
+ .custom-radio input {
+    display: none;
+  }
 
-@if(!$templete_value=="")
-    <style>
-        .border_select{
-            border: 3px solid green;
-        }
+  .radio-btn {
+    width: 100%;
+    border: 3px solid transparent;
+    display: inline-block;
+    border-radius: 2px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 0 20px #c3c3c367;
+    cursor: pointer;
+    height: 336px;
+  }
+
+  .radio-btn > i {
+    color: #ffffff;
+    background-color: #8373e6;
+    font-size: 20px;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) scale(4);
+    border-radius: 50%;
+    padding: 0px 5px;
+    transition: 0.2s;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 9999;
+  }
+
+  .radio-btn .hobbies-icon {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .radio-btn .hobbies-icon i {
+    color: #8373e6;
+    line-height: 80px;
+    font-size: 60px;
+  }
+
+  .radio-btn .hobbies-icon h3 {
+    color: #8373e6;
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .custom-radio input:checked + .radio-btn {
+    border: 3px solid #8373e6;
+  }
+
+  .custom-radio input:checked + .radio-btn > i {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  .radio-btn img{
+    width: 100%;
+  }
+
 
     </style>
-      <div class="row text-center">
-        <div class="col-md-4 @if($templete_value=="template_1")border_select @else  @endif"><a href="#" > <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
-        </div>
-        <div class="col-md-4 @if($templete_value=="template_2")border_select @else  @endif"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
-        </div>
-        <div class="col-md-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
-        </div>
-        <div class="col-md-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
-        </div>
-        <div class="col-md-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
-        </div>
-        <div class="col-md-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/1.jpg') }}" alt="" height="360" srcset=""></a>
-        </div>
-      </div>
+@if(!$templete_value=="")
+
+        <div class="row text-center">
+            <label class="custom-radio col-sm-3 mb-2">
+                <input type="radio" name="template_name" value="template_1"  @if($templete_value=="template_1") checked @else  @endif />
+                <span class="radio-btn"
+                  > <i class="bi bi-check-lg"></i>
+                  <div class="hobbies-icon">
+                    <img src="{{ asset('assets/frontend/img/demo/Invoice-01.png') }}" alt="" style="border: 1px solid #ccc;">
+                  </div>
+                </span>
+              </label>
+              <label class="custom-radio col-sm-3">
+                <input type="radio" name="template_name"  value="template_2" @if($templete_value=="template_2") checked @else  @endif   />
+                <span class="radio-btn"
+                  > <i class="bi bi-check-lg"></i>
+                  <div class="hobbies-icon">
+                    <img src="{{ asset('assets/frontend/img/demo/Invoice-02.png') }}" alt="" style="border: 1px solid #ccc;">
+                  </div>
+                </span>
+              </label>
+              <label class="custom-radio col-sm-3">
+                <input type="radio" name="template_name"  />
+                <span class="radio-btn"
+                  > <i class="bi bi-check-lg"></i>
+                  <div class="hobbies-icon">
+                    <img src="{{ asset('assets/frontend/img/demo/Invoice-03.png') }}" alt="" style="border: 1px solid #ccc;">
+                  </div>
+                </span>
+              </label>
+              <label class="custom-radio col-sm-3">
+                <input type="radio" name="template_name"  />
+                <span class="radio-btn"
+                  > <i class="bi bi-check-lg"></i>
+                  <div class="hobbies-icon">
+                    <img src="{{ asset('assets/frontend/img/demo/Invoice-04.png') }}" alt="" style="border: 1px solid #ccc;">
+                  </div>
+                </span>
+              </label>
+              <label class="custom-radio col-sm-3">
+                <input type="radio" name="template_name"  />
+                <span class="radio-btn"
+                  > <i class="bi bi-check-lg"></i>
+                  <div class="hobbies-icon">
+                    <img src="{{ asset('assets/frontend/img/demo/Invoice-05.png') }}" alt="" style="border: 1px solid #ccc;">
+                  </div>
+                </span>
+              </label>
+              <label class="custom-radio col-sm-3">
+                <input type="radio" name="template_name"  />
+                <span class="radio-btn"
+                  > <i class="bi bi-check-lg"></i>
+                  <div class="hobbies-icon">
+                    <img src="{{ asset('assets/frontend/img/demo/Invoice-06.png') }}" alt="" style="border: 1px solid #ccc;">
+                  </div>
+                </span>
+              </label>
+           </div>
+
       @else
-      data nai
+
+      <div class="row text-center">
+        <label class="custom-radio col-sm-3 mb-2">
+            <input type="radio" name="radio"  checked/>
+            <span class="radio-btn"
+              > <i class="bi bi-check-lg"></i>
+              <div class="hobbies-icon">
+                <img src="{{ asset('assets/frontend/img/demo/Invoice-01.png') }}" alt="" style="border: 1px solid #ccc;">
+              </div>
+            </span>
+          </label>
+          <label class="custom-radio col-sm-3">
+            <input type="radio" name="radio"  />
+            <span class="radio-btn"
+              > <i class="bi bi-check-lg"></i>
+              <div class="hobbies-icon">
+                <img src="{{ asset('assets/frontend/img/demo/Invoice-02.png') }}" alt="" style="border: 1px solid #ccc;">
+              </div>
+            </span>
+          </label>
+          <label class="custom-radio col-sm-3">
+            <input type="radio" name="radio"  />
+            <span class="radio-btn"
+              > <i class="bi bi-check-lg"></i>
+              <div class="hobbies-icon">
+                <img src="{{ asset('assets/frontend/img/demo/Invoice-03.png') }}" alt="" style="border: 1px solid #ccc;">
+              </div>
+            </span>
+          </label>
+          <label class="custom-radio col-sm-3">
+            <input type="radio" name="radio"  />
+            <span class="radio-btn"
+              > <i class="bi bi-check-lg"></i>
+              <div class="hobbies-icon">
+                <img src="{{ asset('assets/frontend/img/demo/Invoice-04.png') }}" alt="" style="border: 1px solid #ccc;">
+              </div>
+            </span>
+          </label>
+          <label class="custom-radio col-sm-3">
+            <input type="radio" name="radio"  />
+            <span class="radio-btn"
+              > <i class="bi bi-check-lg"></i>
+              <div class="hobbies-icon">
+                <img src="{{ asset('assets/frontend/img/demo/Invoice-05.png') }}" alt="" style="border: 1px solid #ccc;">
+              </div>
+            </span>
+          </label>
+          <label class="custom-radio col-sm-3">
+            <input type="radio" name="radio"  />
+            <span class="radio-btn"
+              > <i class="bi bi-check-lg"></i>
+              <div class="hobbies-icon">
+                <img src="{{ asset('assets/frontend/img/demo/Invoice-06.png') }}" alt="" style="border: 1px solid #ccc;">
+              </div>
+            </span>
+          </label>
+       </div>
+    </div>
   @endif
     </div>
   </div>
 </section>
+</form>
 <!-- Invoice Template End -->
 @if (isset($invoiceData->id))
 
