@@ -35,11 +35,6 @@ require __DIR__.'/socialite.php';
 
 // Invoice Route
 
-// Route::post('/products/create', [ProductController::class, 'index']);
-// Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
-// Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
-// Route::PUT('/products/update', [ProductController::class, 'update']);
-
 
 Route::group(['middleware' => ['auth','verified']], function () {
 
@@ -54,6 +49,10 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::post('/invoices/complete/{id}', [InvoiceController::class, 'complete'])->name('complete.');
     // Route::get('/invoice/download/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
+
+    // send invoice mail
+    Route::post('invoice/send',[InvoiceController::class,'send_invoice'])->name('sendmail.invoice');
+
 
     //payment payment gateway
     Route::get('/payment-gateway/{package_id}', [SubscriptionPackContoller::class, 'payment_gateway']);

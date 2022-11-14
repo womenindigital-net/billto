@@ -40,7 +40,7 @@ const okButton = Swal.mixin({
 function completeInvoice(){
   var complete = 'complete';
 
-  // console.log([complete,total]);
+//   console.log([complete,total]);
 }
 // currency Symble
 function currency1(){

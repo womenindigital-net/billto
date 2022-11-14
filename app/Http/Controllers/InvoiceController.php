@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InvoiceSendMail;
 use App\Models\User;
 use App\Models\Invoice;
 use App\Models\Product;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ComplateInvoiceCount;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class InvoiceController extends Controller
@@ -311,5 +313,19 @@ public function index_home($id)
 
         }
     }
+
+    public function send_invoice(Request $request)
+    {
+
+      $template_id = $request->template_id;
+      $emai_to     = $request->emai_to;
+      $email_subject     = $request->email_subject;
+      $email_body        = $request->email_body;
+
+      Mail::to($emai_to)->send(new InvoiceSendMail($template_id, $email_subject, $email_body  ));
+      return redirect()->back()->with("success","mail send successfully");
+
+ }
+
 
 }
