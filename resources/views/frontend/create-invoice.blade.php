@@ -493,7 +493,10 @@ $templete_value = $template_name;
       <div class="container p-0 pt-3">
         <button type="submit" id="completeInvoice" class="btn send-invoice py-2 px-4" @if (isset($invoiceData))@else disabled
         @endif >@if (isset($invoiceData)) {{ "Update Invoice" }} @else{{ "Complete Invoice" }}@endif </button>
-        <a href="#" class="btn send-invoice py-2 px-4 disabled" role="button" aria-disabled="true" onclick="completeInvoice()">Send Invoice</a>
+        {{-- <button href="#" class="btn send-invoice py-2 px-4 " role="button" aria-disabled="true" onclick="completeInvoice()">Send Invoice</button> --}}
+        <button type="button" class="btn send-invoice py-2 px-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Send Invoice
+          </button>
         <a href="{{ route('invoice.download',$lastInvoice->id) }}" id="downlodeInvoice" target="_blank" class="btn send-downlod py-2 px-4 " >Download Invoice</a>
       </div>
 
@@ -535,7 +538,7 @@ $templete_value = $template_name;
     left: 50%;
     transform: translateX(-50%) scale(4);
     border-radius: 50%;
-    padding: 0px 5px;
+    padding: 5px 5px;
     transition: 0.2s;
     pointer-events: none;
     opacity: 0;
@@ -703,6 +706,9 @@ $templete_value = $template_name;
 </section>
 </form>
 <!-- Invoice Template End -->
+
+
+
 @if (isset($invoiceData->id))
 
 @endif
@@ -716,3 +722,48 @@ $( document ).ready(function() {
 });
 </script>
 @endpush
+
+  <!-- Send invoice Modal start -->
+  <!-- Button trigger modal -->
+  <!-- Modal -->
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ route('sendmail.invoice') }}"  method="POST">
+            @csrf
+        <div class="modal-body">
+            <div class="row">
+
+              <div class="mb-3">
+                    <input type="text" name="template_id" value="{{ $lastInvoice->id }}" >
+                    <br>
+                    <label for="Input1" class="form-label">To</label>
+                    <input type="email" class="form-control" id="Input1" name="emai_to" placeholder="example@gmail.com">
+             </div>
+              <div class="mb-3">
+                    <label for="Input2" class="form-label">Subject</label>
+                    <input type="text" class="form-control" name="email_subject" id="Input2" value="Subject">
+             </div>
+              <div class="mb-3">
+                    <label for="Textarea1" class="form-label">Body</label>
+                    <textarea class="form-control" id="Textarea1" name="email_body" rows="2"> information </textarea>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal">  <i class="bi bi-x-circle"></i> Close</button>
+          <button  class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i> Send Mail</button>
+        </div>
+     </form>
+      </div>
+
+    </div>
+  </div>
+  <!-- Send invoice Modal End -->
