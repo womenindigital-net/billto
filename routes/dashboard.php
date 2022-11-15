@@ -10,4 +10,6 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::GET('/edit/invoices/{id}', [DashboardController::class, 'edit'])->name('edit.invoice');
     Route::GET('/settigns', [SettignsController::class, 'Settign'])->name('settigns');
     Route::GET('/default-setting', [SettignsController::class, 'DefaultSetting'])->name('default.setting');
+    Route::GET('/my-all-invoice', [SettignsController::class, 'Myallinvoice']);
+
 });
