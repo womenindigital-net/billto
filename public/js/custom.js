@@ -1,4 +1,4 @@
-jQuery(document).ready(function(){ 
+jQuery(document).ready(function(){
 
 	// Mobile menu
 	$('.nav-icon').click(function () {
@@ -7,9 +7,9 @@ jQuery(document).ready(function(){
 
 	});
 
-		
-		
-	
+
+
+
 
 });
 

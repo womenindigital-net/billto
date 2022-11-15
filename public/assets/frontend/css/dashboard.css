@@ -1,9 +1,14 @@
 #page-top {
     overflow-x: hidden !important;
 }
-
+.bg-color {
+    background-color: #D9D9D9
+    ;
+}
 .side-bar{
-  width: 300px;
+  width: 100%;
+  border-radius: 10px;
+  background: #fff;
 }
 .side-bar{
     padding:17px 17px 10px 10px ;
@@ -15,61 +20,69 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #686868;
 }
-nav {
+.dash_menu {
     position: relative;
 
 }
-nav ul {
+.dash_menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-nav ul li {
+
+.active {
+    background: #FFF;
+    color: #686868;
+    border-radius: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.dash_menu ul li {
   /* Sub Menu */
 }
-nav ul li:first-child {
+.dash_menu ul li:first-child {
  background: #DADADA;
     border-radius: 10px;
 }
-nav ul li:first-child::hover {
+.dash_menu ul li:first-child::hover {
     background: #FFFFFF;
 }
-nav ul li a img{
+.dash_menu ul li a img{
     padding-right: 16px;
 }
-nav ul li a {
+.dash_menu ul li a {
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     padding: 10px 15px;
     text-decoration: none;
     transition: 0.2s linear;
     color: #686868;
 }
-nav ul li a:hover {
+.dash_menu ul li a:hover {
     background: #DADADA;
     color: #686868;
     border-radius: 10px;
 }
-nav ul li ul li a:hover {
+.dash_menu ul li ul li a:hover {
     background: #FFF;
     color: #686868;
     border-radius: 10px;
     margin-left:15px;
     margin-right:15px;
 }
-nav ul li ul li{
+.dash_menu ul li ul li{
     padding-left: 20px;
 }
-nav ul li ul li:last-child{
+.dash_menu ul li ul li:last-child{
     padding-bottom: 10px;
 }
-nav ul li a .fa {
+.dash_menu ul li a .fa {
     width: 16px;
     text-align: center;
     margin-right: 5px;
     float:right;
 }
-nav ul li ul li a {
+.dash_menu ul li ul li a {
     border-left: 4px solid transparent;
     padding: 10px 20px;
 }
@@ -81,7 +94,7 @@ nav ul li ul li a {
     font-family: 'Be Vietnam';
     font-style: normal;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 18px;
     line-height: 147.5%;
     text-align: center;
     letter-spacing: 0.11em;
