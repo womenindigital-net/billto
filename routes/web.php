@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
     // Route::get('/invoice/download/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 
-    // send invoice mail
+    // send invoice mail with PDF
     Route::post('invoice/send',[InvoiceController::class,'send_invoice'])->name('sendmail.invoice');
 
 

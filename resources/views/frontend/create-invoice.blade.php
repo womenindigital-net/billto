@@ -538,7 +538,7 @@ $templete_value = $template_name;
     left: 50%;
     transform: translateX(-50%) scale(4);
     border-radius: 50%;
-    padding: 5px 5px;
+    padding: 0px 5px;
     transition: 0.2s;
     pointer-events: none;
     opacity: 0;
@@ -712,17 +712,6 @@ $templete_value = $template_name;
 @if (isset($invoiceData->id))
 
 @endif
-@endsection
-@push('frontend_js')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-// A $( document ).ready() block.
-$( document ).ready(function() {
-  allData();
-});
-</script>
-@endpush
-
   <!-- Send invoice Modal start -->
   <!-- Button trigger modal -->
   <!-- Modal -->
@@ -767,3 +756,18 @@ $( document ).ready(function() {
     </div>
   </div>
   <!-- Send invoice Modal End -->
+
+
+
+@endsection
+@push('frontend_js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+// A $( document ).ready() block.
+$( document ).ready(function() {
+  allData();
+});
+</script>
+@endpush
+
+
