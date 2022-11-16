@@ -2,6 +2,7 @@
 @section('display-none') d-none @endsection
 @section('d-block') d-block @endsection
 @section('all-invoice') active @endsection
+@section('all_invoice') left_manu @endsection
 @section("dashboard_content")
             <div class="container-fluid m-0 p-0">
                 <div class="row mt-2 m-0 p-0">

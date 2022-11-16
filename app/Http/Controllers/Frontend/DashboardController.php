@@ -38,4 +38,9 @@ class DashboardController extends Controller
         $invoiceData->delete();
         return response()->json(['message' => 'Delete Success']);
     }
+
+    //user dashboard setting
+    public function userSetting(){
+        return view('frontend.dashboard.setting');
+    }
 }
