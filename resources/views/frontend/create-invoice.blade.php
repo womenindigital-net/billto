@@ -25,9 +25,7 @@
   </div>
 </div>
 
-@php
-$templete_value = $template_name;
-@endphp
+
 <!-- banner section Start -->
 <section class="bill_banner_section @php echo Session::get('hidden_session');@endphp">
   <div style="background-color: #FFB317;">
@@ -490,14 +488,24 @@ $templete_value = $template_name;
 
         </div>
       </div>
+      @php
+        if(isset($lastInvoice)){
+            $last_invoice_id = $lastInvoice->id;
+        }else{
+            $last_invoice_id = 0;
+        }
+      @endphp
+
+
+
       <div class="container p-0 pt-3">
         <button type="submit" id="completeInvoice" class="btn send-invoice py-2 px-4" @if (isset($invoiceData))@else disabled
         @endif >@if (isset($invoiceData)) {{ "Update Invoice" }} @else{{ "Complete Invoice" }}@endif </button>
         {{-- <button href="#" class="btn send-invoice py-2 px-4 " role="button" aria-disabled="true" onclick="completeInvoice()">Send Invoice</button> --}}
-        <button type="button" class="btn send-invoice py-2 px-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn send-invoice py-2 px-4 @if($last_invoice_id==0) disabled @else @endif" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Send Invoice
           </button>
-        <a href="{{ route('invoice.download',$lastInvoice->id) }}" id="downlodeInvoice" target="_blank" class="btn send-downlod py-2 px-4 " >Download Invoice</a>
+        <a href="{{ route('invoice.download',$last_invoice_id) }}" id="downlodeInvoice" target="_blank" class="btn send-downlod py-2 px-4 @if($last_invoice_id==0) disabled @else @endif"  >Download Invoice</a>
       </div>
 
   </div>
@@ -582,124 +590,39 @@ $templete_value = $template_name;
 
 
     </style>
-@if(!$templete_value=="")
+
+
+
+@if(!$template_id=="")
 
         <div class="row text-center">
+            @foreach ($invoice_template as $invoice_temp )
             <label class="custom-radio col-sm-3 mb-2">
-                <input type="radio" name="template_name" value="template_1"  @if($templete_value=="template_1") checked @else  @endif />
+                <input type="radio" name="template_name" value="{{ $invoice_temp->id }}" @if($template_id==$invoice_temp->id) checked @else  @endif  />
                 <span class="radio-btn"
                   > <i class="bi bi-check-lg"></i>
                   <div class="hobbies-icon">
-                    <img src="{{ asset('assets/frontend/img/demo/Invoice-01.png') }}" alt="" style="border: 1px solid #ccc;">
+                    <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" style="border: 1px solid #ccc;">
                   </div>
                 </span>
               </label>
-              <label class="custom-radio col-sm-3">
-                <input type="radio" name="template_name"  value="template_2" @if($templete_value=="template_2") checked @else  @endif   />
-                <span class="radio-btn"
-                  > <i class="bi bi-check-lg"></i>
-                  <div class="hobbies-icon">
-                    <img src="{{ asset('assets/frontend/img/demo/Invoice-02.png') }}" alt="" style="border: 1px solid #ccc;">
-                  </div>
-                </span>
-              </label>
-              <label class="custom-radio col-sm-3">
-                <input type="radio" name="template_name"  />
-                <span class="radio-btn"
-                  > <i class="bi bi-check-lg"></i>
-                  <div class="hobbies-icon">
-                    <img src="{{ asset('assets/frontend/img/demo/Invoice-03.png') }}" alt="" style="border: 1px solid #ccc;">
-                  </div>
-                </span>
-              </label>
-              <label class="custom-radio col-sm-3">
-                <input type="radio" name="template_name"  />
-                <span class="radio-btn"
-                  > <i class="bi bi-check-lg"></i>
-                  <div class="hobbies-icon">
-                    <img src="{{ asset('assets/frontend/img/demo/Invoice-04.png') }}" alt="" style="border: 1px solid #ccc;">
-                  </div>
-                </span>
-              </label>
-              <label class="custom-radio col-sm-3">
-                <input type="radio" name="template_name"  />
-                <span class="radio-btn"
-                  > <i class="bi bi-check-lg"></i>
-                  <div class="hobbies-icon">
-                    <img src="{{ asset('assets/frontend/img/demo/Invoice-05.png') }}" alt="" style="border: 1px solid #ccc;">
-                  </div>
-                </span>
-              </label>
-              <label class="custom-radio col-sm-3">
-                <input type="radio" name="template_name"  />
-                <span class="radio-btn"
-                  > <i class="bi bi-check-lg"></i>
-                  <div class="hobbies-icon">
-                    <img src="{{ asset('assets/frontend/img/demo/Invoice-06.png') }}" alt="" style="border: 1px solid #ccc;">
-                  </div>
-                </span>
-              </label>
+              @endforeach
            </div>
-
       @else
-
-      <div class="row text-center">
-        <label class="custom-radio col-sm-3 mb-2">
-            <input type="radio" name="radio"  checked/>
-            <span class="radio-btn"
-              > <i class="bi bi-check-lg"></i>
-              <div class="hobbies-icon">
-                <img src="{{ asset('assets/frontend/img/demo/Invoice-01.png') }}" alt="" style="border: 1px solid #ccc;">
-              </div>
-            </span>
-          </label>
-          <label class="custom-radio col-sm-3">
-            <input type="radio" name="radio"  />
-            <span class="radio-btn"
-              > <i class="bi bi-check-lg"></i>
-              <div class="hobbies-icon">
-                <img src="{{ asset('assets/frontend/img/demo/Invoice-02.png') }}" alt="" style="border: 1px solid #ccc;">
-              </div>
-            </span>
-          </label>
-          <label class="custom-radio col-sm-3">
-            <input type="radio" name="radio"  />
-            <span class="radio-btn"
-              > <i class="bi bi-check-lg"></i>
-              <div class="hobbies-icon">
-                <img src="{{ asset('assets/frontend/img/demo/Invoice-03.png') }}" alt="" style="border: 1px solid #ccc;">
-              </div>
-            </span>
-          </label>
-          <label class="custom-radio col-sm-3">
-            <input type="radio" name="radio"  />
-            <span class="radio-btn"
-              > <i class="bi bi-check-lg"></i>
-              <div class="hobbies-icon">
-                <img src="{{ asset('assets/frontend/img/demo/Invoice-04.png') }}" alt="" style="border: 1px solid #ccc;">
-              </div>
-            </span>
-          </label>
-          <label class="custom-radio col-sm-3">
-            <input type="radio" name="radio"  />
-            <span class="radio-btn"
-              > <i class="bi bi-check-lg"></i>
-              <div class="hobbies-icon">
-                <img src="{{ asset('assets/frontend/img/demo/Invoice-05.png') }}" alt="" style="border: 1px solid #ccc;">
-              </div>
-            </span>
-          </label>
-          <label class="custom-radio col-sm-3">
-            <input type="radio" name="radio"  />
-            <span class="radio-btn"
-              > <i class="bi bi-check-lg"></i>
-              <div class="hobbies-icon">
-                <img src="{{ asset('assets/frontend/img/demo/Invoice-06.png') }}" alt="" style="border: 1px solid #ccc;">
-              </div>
-            </span>
-          </label>
+          <div class="row text-center">
+            @foreach ($invoice_template as $invoice_temp )
+            <label class="custom-radio col-sm-3 mb-2">
+                <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"  @if($invoice_temp->id==$template_id_check->id) checked @else  @endif  />
+                <span class="radio-btn"
+                  > <i class="bi bi-check-lg"></i>
+                  <div class="hobbies-icon">
+                    <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" style="border: 1px solid #ccc;">
+                  </div>
+                </span>
+              </label>
+              @endforeach
+           </div>
        </div>
-    </div>
   @endif
     </div>
   </div>
@@ -730,14 +653,14 @@ $templete_value = $template_name;
             <div class="row">
 
               <div class="mb-3">
-                    <input type="text" name="template_id" value="{{ $lastInvoice->id }}" >
+                    <input type="hidden" name="template_id" value="{{ 1 }}" >
                     <br>
                     <label for="Input1" class="form-label">To</label>
-                    <input type="email" class="form-control" id="Input1" name="emai_to" placeholder="example@gmail.com">
+                    <input type="email" class="form-control" id="Input1" name="emai_to" placeholder="example@gmail.com" required>
              </div>
               <div class="mb-3">
                     <label for="Input2" class="form-label">Subject</label>
-                    <input type="text" class="form-control" name="email_subject" id="Input2" value="Subject">
+                    <input type="text" class="form-control" name="email_subject" id="Input2" value="Subject" required>
              </div>
               <div class="mb-3">
                     <label for="Textarea1" class="form-label">Body</label>
@@ -762,6 +685,7 @@ $templete_value = $template_name;
 @endsection
 @push('frontend_js')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 // A $( document ).ready() block.
 $( document ).ready(function() {
@@ -769,5 +693,9 @@ $( document ).ready(function() {
 });
 </script>
 @endpush
+
+
+
+
 
 

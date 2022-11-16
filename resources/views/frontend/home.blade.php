@@ -71,17 +71,10 @@
           <p class="fs-sm fw-bolder">Start creating your professional bill</p>
         </div>
         <div class="row text-center">
-            @php
-                $id1 = "template_1";
-                $id2 = "template_2";
-            @endphp
-          <div class="col-md-4 mt-4"><a href="{{ url('home/invoice/page/'.$id1) }}"> <img src="{{ asset('assets/frontend/img/demo/Invoice-07.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
-          <div class="col-md-4 mt-4"><a href="{{ url('home/invoice/page/'.$id2) }}"> <img src="{{ asset('assets/frontend/img/demo/Invoice-02.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
-          <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-03.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
-          <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-04.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
-          <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-05.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
-          <div class="col-md-4 mt-4"><a href="#"> <img src="{{ asset('assets/frontend/img/demo/Invoice-06.png') }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
-        </div>
+            @foreach ($invoice_template as $invoice_temp )
+            <div class="col-md-4 mt-4"><a href="{{ url('home/invoice/page/'.$invoice_temp->id) }}"> <img src="{{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
+            @endforeach
+         </div>
       </div>
     </div>
   </section>

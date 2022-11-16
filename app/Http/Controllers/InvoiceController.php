@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\ComplateInvoiceCount;
+use App\Models\InvoiceTemplate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
@@ -27,7 +28,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $template_name = '';
+        $template_id="";
+        $template_id_check = InvoiceTemplate::get()->first();
         $user = Auth::user()->id;
         $lastInvoice = Invoice::where('user_id', $user)
             ->orderBy('created_at', 'desc')
@@ -39,15 +41,18 @@ class InvoiceController extends Controller
             ->first();
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
         $invoiceCountNew += 1;
+        $invoice_template = InvoiceTemplate::get();
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_name'));
+        // dd( $template_id);
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id','invoice_template','template_id_check'));
 
         // return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
     }
 
     public function index_home($id)
     {
-        $template_name = $id;
+        $template_id = $id;
+
         $user = Auth::user()->id;
         $lastInvoice = Invoice::where('user_id', $user)
             ->orderBy('created_at', 'desc')
@@ -58,11 +63,11 @@ class InvoiceController extends Controller
             ])
             ->first();
 
-
+        $invoice_template = InvoiceTemplate::get();
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
         $invoiceCountNew += 1;
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_name',));
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id','invoice_template'));
     }
 
     /**
