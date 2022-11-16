@@ -76,3 +76,8 @@ Route::get('/notice/div/hidden', function() {
     return redirect()->back();
 });
 
+Route::get('/alert', function() {
+  return view("alert");
+});
+
+

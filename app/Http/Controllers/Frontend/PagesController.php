@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\InvoiceTemplate;
 use App\Models\SubscriptionPackage;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,9 @@ class PagesController extends Controller
     public function index()
     {
        $subcription_package = SubscriptionPackage::get();
+       $invoice_template = InvoiceTemplate::get();
 
-        return view('frontend.home',compact('subcription_package'));
+        return view('frontend.home',compact('subcription_package','invoice_template'));
     }
 
     public function privacyPolicy()
