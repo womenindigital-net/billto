@@ -40,8 +40,14 @@ body {
 .dash_menu ul li {
   /* Sub Menu */
 }
-.dash_menu ul li:first-child {
+/* .dash_menu ul li:first-child {
  background: #DADADA;
+    border-radius: 10px;
+} */
+
+.left_manu {
+    background: #DADADA;
+    color: #686868;
     border-radius: 10px;
 }
 .dash_menu ul li:first-child::hover {

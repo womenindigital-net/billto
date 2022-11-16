@@ -6,7 +6,7 @@
         type="text/css" />
     <link href="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     <!-- Responsive datatable examples -->
-    {{-- <link href="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" --}}
+    {{-- <link href="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"> --}}
     {{-- type="text/css" /> --}}
     <!-- Multi Item Selection examples -->
     {{-- <link href="{{ asset('assets/admin/plugins/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap"
         rel="stylesheet">
     <!--bootstrap css-->
-    {{-- <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <!--dashboard custom css-->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/dashboard.css') }}">
 
@@ -32,6 +32,59 @@
         div.dataTables_wrapper div.dataTables_paginate,
         .dataTables_info {
             margin-top: 10px !important;
+        }
+
+        .order-card {
+            color: #fff;
+        }
+
+        .bg-c-blue {
+            background: linear-gradient(45deg, #4099ff, #73b4ff);
+        }
+
+        .bg-c-green {
+            background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+        }
+
+        .bg-c-yellow {
+            background: linear-gradient(45deg, #FFB64D, #ffcb80);
+        }
+
+        .bg-c-pink {
+            background: linear-gradient(45deg, #FF5370, #ff869a);
+        }
+
+
+        .card {
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+            box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+            border: none;
+            margin-bottom: 30px;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card .card-block {
+            padding:5px  0px;
+        }
+
+        .order-card i {
+            font-size: 26px;
+        }
+
+        .f-left {
+            float: left;
+        }
+
+        .f-right {
+            float: right;
+        }
+        .circle-bg {
+            background-color: #d5d0d0;
+        }
+        .cir-pink-bg {
+            background-color: #9a9494;
         }
     </style>
 @endpush
@@ -74,26 +127,28 @@
                             <nav class='dash_menu'>
                                 <ul>
 
-                                    <li class='sub-menu '><a href='#invoice'><img
-                                                src="{{ asset('assets/frontend/img/icon/page.png') }}" alt="">My
-                                            Invoices
+                                    <li class="sub-menu    @yield('all_invoice')">
+                                        <a href='#invoice'><img src="{{ asset('assets/frontend/img/icon/page.png') }}"
+                                                alt="">My Invoices
                                             <div class='fa fa-caret-down right'></div>
                                         </a>
 
                                         <ul class="@yield('d-block')">
-                                            <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All Invoices</a></li>
+                                            <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
+                                                    Invoices</a></li>
                                             <li><a href='#invoice' class="@yield('over-view') ">Over Due</a></li>
-                                            <li><a href='#invoice'  class="@yield('Pertially') " >Pertially Paid</a></li>
+                                            <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid</a></li>
                                             <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid</a></li>
                                             <li><a href='#invoice' class="@yield('SendbyEmail') ">Send by Email</a></li>
-                                            <li><a href='#invoice'  class="@yield('Trush') " >Trush</a></li>
+                                            <li><a href='#invoice' class="@yield('Trush') ">Trush</a></li>
                                         </ul>
                                     </li>
                                     <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/contact.png') }}"
                                                 alt="">My Customers</a></li>
                                     <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/group.png') }}"
                                                 alt="">My Reports</a></li>
-                                    <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/settings.png') }}"
+                                    <li><a href='{{ url('/all/invoices/user-setting') }}' class="@yield('setting')"><img
+                                                src="{{ asset('assets/frontend/img/icon/settings.png') }}"
                                                 alt="">Settings</a></li>
                                 </ul>
                             </nav>
@@ -107,39 +162,67 @@
             <div class="col-9 m-0 p-0">
 
 
-                @yield("dashboard_content")
+                @yield('dashboard_content')
 
                 <div class="container-fluid m-0 p-0 @yield('display-none')">
                     <div class="row mt-2 m-0 p-0">
-                        <div class="col-sm-3">
-                            <div class="card">
+                        <div class="col-md-3">
+                            <div class="card ">
                                 <div class="card-body">
-                                    <span>Total Invoice</span>
-                                    <h4>120</h4>
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Total Invoice</p>
+                                            <h4 class="mb-0">1,235</h4>
+                                        </div>
+                                        <div class="d-flex justify-content-end align-item-center  cir-pink-bg text-white px-4 rounded-circle">
+                                            <div class="m-auto"><i class="bi bi-receipt fs-6"></i></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="card">
+                        <div class="col-md-3">
+                            <div class="card bg-c-pink">
                                 <div class="card-body">
-                                    <span>Total Invoice</span>
-                                    <h4>120</h4>
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1 text-white">
+                                            <p class="text-white fw-medium ">Total Invoice</p>
+                                            <h4 class="mb-0 ">1,235</h4>
+                                        </div>
+                                        <div class="d-flex justify-content-end align-item-center text-white cir-pink-bg  px-4 rounded-circle">
+                                            <div class="m-auto"><i class="bi bi-bell-slash fs-6"></i> </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="card">
+                        <div class="col-md-3">
+                            <div class="card bg-c-yellow ">
                                 <div class="card-body">
-                                    <span>Total Invoice</span>
-                                    <h4>120</h4>
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1 text-white">
+                                            <p class="text-white fw-medium ">Total Invoice</p>
+                                            <h4 class="mb-0 ">1,235</h4>
+                                        </div>
+                                        <div class="d-flex justify-content-end align-item-center text-white cir-pink-bg   px-4 rounded-circle">
+                                            <div class="m-auto"><i class="bi bi-send fs-6"></i> </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="card">
+                        <div class="col-md-3">
+                            <div class="card bg-c-green ">
                                 <div class="card-body">
-                                    <span>Total Invoice</span>
-                                    <h4>120</h4>
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1 text-white">
+                                            <p class="text-white fw-medium ">Total Invoice</p>
+                                            <h4 class="mb-0 ">1,235</h4>
+                                        </div>
+                                        <div class="d-flex justify-content-end align-item-center text-white  cir-pink-bg px-4 rounded-circle">
+                                            <div class="m-auto"><i class="bi bi-bell-slash fs-6"></i> </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +238,6 @@
     <!-- Sign in form End -->
 @endsection
 @push('frontend_js')
-
     <!-- Required datatable js -->
     <script src="{{ asset('assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
@@ -211,5 +293,4 @@
                 .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
         });
     </script>
-
 @endpush
