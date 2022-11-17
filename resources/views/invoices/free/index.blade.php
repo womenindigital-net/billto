@@ -13,20 +13,23 @@
 
     .logo_area img {
         width: 100px;
+        padding-bottom:5px;
     }
 
     .logo_area {
         width: 30%;
         float: left;
         background: #FCB21C;
-        padding: 20px;
+        padding-top: 50px;
+        padding-bottom:50px;
         text-align: center;
     }
 
     .heading_area {
         text-align: right;
-        padding: 10px;
-        display: flex;
+        padding-top: 50px;
+        padding-bottom: 30px;
+        padding-right: 30px;
 
     }
 
@@ -50,7 +53,7 @@
     }
 
     .heading_area .i_title {
-        margin-top: 20px;
+        /* margin-top: 20px; */
     }
 
     .i_sub_title {
@@ -162,8 +165,8 @@
 
     <div class="invoice_body">
         <section class="first_section">
-            <div class="logo_area">
-                <img src="{{ public_path('storage/invoice/logo/u-logo.png') }}" alt="img">
+            <div class="logo_area" style="">
+                <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img">
                 <p><b>Company Name </b></p>
                 <p>123 Rockfeller Street,</p>
                 <p>New York, NY 12210</p>
