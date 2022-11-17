@@ -653,7 +653,7 @@
             <div class="row">
 
               <div class="mb-3">
-                    <input type="hidden" name="template_id" value="{{ 1 }}" >
+                    <input type="text" name="template_id" value="{{ $last_invoice_id }}" >
                     <br>
                     <label for="Input1" class="form-label">To</label>
                     <input type="email" class="form-control" id="Input1" name="emai_to" placeholder="example@gmail.com" required>
