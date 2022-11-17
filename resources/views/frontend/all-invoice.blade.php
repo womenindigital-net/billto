@@ -93,7 +93,7 @@
     <section class="sub_nav py-2 border-bottom">
         <div class="">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row mb-2">
                     <div class="nav col">
                         <p class="m-0" style="display: flex;align-items: center;">You are here:&#160;<span><a
                                     href="/" class="nav-item hover">&#160;Home</a> &#8921;</span> <span
@@ -109,11 +109,11 @@
     <!-- Sub Nav Start -->
     <!-- Sign in form Start -->
     <section class="container-fluid bg-color ">
-        <div class="row">
+        <div class="row ">
             <div class="col-sm-3 m-0">
 
-                <section class="page-top ">
-                    <div class="side-bar">
+                <section class="page-top mb-5 ">
+                    <div class="side-bar my-5">
                         <div class="logo text-center">
                             <a href="index.html"><img src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}"
                                     alt="Logo"></a>
@@ -164,7 +164,7 @@
 
                 @yield('dashboard_content')
 
-                <div class="container-fluid m-0 p-0 @yield('display-none')">
+                <div class="container-fluid my-5 m-0 p-0 @yield('display-none')">
                     <div class="row mt-2 m-0 p-0">
                         <div class="col-md-3">
                             <div class="card ">

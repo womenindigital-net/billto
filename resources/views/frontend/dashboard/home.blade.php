@@ -4,9 +4,9 @@
 @section('all-invoice') active @endsection
 @section('all_invoice') left_manu @endsection
 @section("dashboard_content")
-            <div class="container-fluid m-0 p-0">
-                <div class="row mt-2 m-0 p-0">
-                            <div class="col-md-12 p-3 p-md-5 border-start border-end border-bottom"  style="background: #F0F0F0;">
+            <div class="container-fluid my-5 m-0 p-0 ">
+                <div class="row mt-2 m-0 p-0 ">
+                            <div class="col-md-12 p-3 p-md-5 border-start border-end border-bottom rounded"  style="background: #F0F0F0;">
                                 <div class="px-2 py-3 py-md-5 border-start border-end border-bottom rounded"
                                     style="background: #fff;">
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
