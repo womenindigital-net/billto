@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 
 
     //dashboard user setting start
-    Route::get('/all/invoices/user-setting', [DashboardController::class, 'userSetting']);
+    Route::get('/all/invoices/user-setting', [DashboardController::class, 'userSettingEdit']);
+    Route::put('/all/invoices/user-setting{id}', [DashboardController::class, 'userUpdate']);
 });

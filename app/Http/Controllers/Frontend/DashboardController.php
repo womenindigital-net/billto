@@ -5,9 +5,12 @@ namespace App\Http\Controllers\frontend;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
 class DashboardController extends Controller
 {
@@ -40,7 +43,32 @@ class DashboardController extends Controller
     }
 
     //user dashboard setting
-    public function userSetting(){
-        return view('frontend.dashboard.setting');
+    public function userSettingEdit(){
+        $user_id = auth()->user()->id;
+        $user = User::where('id',$user_id)->get();
+
+        return view('frontend.dashboard.setting',compact('user'));
+    }
+    public function userUpdate(UpdateUserRequest $request, $id){
+        $get_id = $id;
+        $user = User::find($get_id);;
+        $user->name = $request->name;
+        $user->address = $request->address;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->name = $request->name;
+        if ($request->hasFile('profileImage')) {
+            $path = 'uploads/userImage/' . $user->profileImage;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+            $file = $request->file('profileImage');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/userImage/', $filename);
+            $user->profileImage = $filename;
+        }
+        $user->update();
+        return redirect()->back()->with('message', 'Successfully Update User profile.');
     }
 }

@@ -110,10 +110,18 @@
     <!-- Sign in form Start -->
     <section class="container-fluid bg-color ">
         <div class="row ">
-            <div class="col-sm-3 m-0">
+            <div class="col-sm-3 m-0 p-0">
+                <style>
+                    .side-bar{
+                        min-height: 68vh;
+                    }
+                    .border_right{
+                        border-right: 1px solid rgb(202, 199, 199);
+                    }
 
-                <section class="page-top mb-5 ">
-                    <div class="side-bar my-5">
+                </style>
+                <section class="page-top ">
+                    <div class="side-bar border_right">
                         <div class="logo text-center">
                             <a href="index.html"><img src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}"
                                     alt="Logo"></a>
@@ -164,7 +172,7 @@
 
                 @yield('dashboard_content')
 
-                <div class="container-fluid my-5 m-0 p-0 @yield('display-none')">
+                <div class="container-fluid  m-0 p-0 @yield('display-none')">
                     <div class="row mt-2 m-0 p-0">
                         <div class="col-md-3">
                             <div class="card ">
