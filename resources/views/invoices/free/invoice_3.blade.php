@@ -9,7 +9,11 @@
         display: flex;
         margin-bottom: 75px;
         justify-content: space-between;
+        /* position: relative; */
+        /* z-index: 2; */
+
     }
+
 
     .logo_area img {
         width: 100px;
@@ -19,10 +23,13 @@
     .logo_area {
         width: 30%;
         float: left;
-        background: #FCB21C;
+        background: #0370BF;
         padding-top: 50px;
         padding-bottom:100px;
         text-align: center;
+    }
+    .logo_area  p{
+        color: #FFF;
     }
 
     .heading_area {
@@ -96,7 +103,7 @@
 
             .left_Side_bar {
                 width: 30%;
-                background-color: #FCB21C;
+                background-color: #0370BF;
                 padding-top: 20px;
                 padding-bottom: 20px;
                 float: left;
@@ -112,7 +119,7 @@
                 padding: 5px;
                 /* margin: 0px 50px; */
                 /* border-bottom: 1px solid #FFFFFF; */
-                color: #686868;
+                color: #FFF;
                 text-align: center;
                 line-height: 24px;
                 font-size: 18px;
@@ -131,7 +138,7 @@
                 padding: 5px;
                 /* margin: 0px 50px; */
                 /* border-bottom: 1px solid #FFFFFF; */
-                color: #686868;
+                color: #FFF;
                 text-align: center;
                 line-height: 24px;
                 font-size: 18px;
@@ -167,9 +174,10 @@
                 width: 75%;
                 float: right;
                 text-align: right;
-                border-top: 2px solid #FCB21C;
+                /* border-top: 2px solid #FCB21C; */
+                padding-right: 57px;
             }
-            .page{
+                        .page{
                 background: var(--white);
                 display: block;
                 margin: 0 auto;
@@ -200,7 +208,7 @@
 
             </div>
 
-            <div class="heading_area">
+            <div class="heading_area" style="color: #686868;">
                 <div class="i_title">
                     <h1>INVOICE</h1>
                 </div>
@@ -224,7 +232,7 @@
 
         <section class="second_section">
             <div class="table">
-                <div style="margin-left: 70px; margin-right:60px; padding-top:30px;">
+                <div style="margin-left: 70px; margin-right:60px; padding-top:80px; padding-bottom:80px;">
                     <table class="table1" style="width:100%;  border-collapse: collapse;" class="">
                         <thead>
                             <tr>
@@ -288,26 +296,7 @@
                         </tbody>
                     </table>
                    
-                    <div style="margin-top: 100px; width:100%; display:flex;">
-                        <div class="empty_div"> </div>
-                        <div class="table_div">
-                            <table style="width: 100%;">
-                                <tr style="text-align: right">
-                                    <td>Subtotal</td>
-                                    <td>300.00 </td>
-                                </tr>
-                                <tr style="text-align: right">
-                                    <td>Sales Tax 6.25%</td>
-                                    <td>20.00</td>
-                                </tr>
-                                <tr style="text-align: right">
-                                    <td style="font-size: 18px;">Total</td>
-                                    <td style="font-size: 18px;">320.00</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                    </div>
+                    
                 </div>
             </div>
         </section>
@@ -338,20 +327,34 @@
             </div>
             <div class="right_Side_bar ">
                 <div class="i_footerright_area">
-                    <div class="e">
-                        <h1>Thank You for your business</h1>
-                        <p style="font-weight: 700;font-size: 14px;color: #FCB21C;">terms & conditions</p>
-                        <p>Payment is due within 15 days</p>
-                        <p>Please make checks payable to: Company Name</p>
+                    <div style="margin-top: 0; width:100%; display:flex;">
+                        <div class="empty_div"> </div>
+                        <div class="table_div">
+                            <table style="width: 100%;">
+                                <tr style="text-align: right;">
+                                    <td style="color: #686868;">Subtotal</td>
+                                    <td style="color: #686868;">300.00 </td>
+                                </tr>
+                                <tr style="text-align: right">
+                                    <td style="color: #686868;">Sales Tax 6.25%</td>
+                                    <td style="color: #686868;">20.00</td>
+                                </tr>
+                                <tr style="text-align: right">
+                                    <td style="font-size: 18px; color: #686868;">Total</td>
+                                    <td style="font-size: 18px; color: #686868;">320.00</td>
+                                </tr>
+                            </table>
+                        </div>
+
                     </div>
                     <div class="f">
-                        <div class="g">
-                            <p style="font-weight: 700;font-size: 14px;color: #FCB21C;">terms & conditions</p>
+                        <div class="thanks" style="padding-top: 20%;">
+                            <h5 style="color: #686868; font-weight: 400; font-size: 30px; padding-bottom:20px; border-top:2px solid #0370BF; width: 80%">Thank You for your business</h5>
+                        </div>
+                        <div class="g" style="color: #686868;">
+                            <p style="font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">terms & conditions</p>
                             <p>Payment is due within 15 days</p>
                             <p>Please make checks payable to: Company Name</p>
-                        </div>
-                        <div class="h">
-                            <!-- <img src="sig.png" alt="img"> -->
                         </div>
                     </div>
                 </div>
