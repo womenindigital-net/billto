@@ -15,8 +15,10 @@ class CreatePaymentGetwaysTable extends Migration
     {
         Schema::create('payment_getways', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('amount');
+            $table->integer('user_id')->nullable();
+            $table->integer('amount')->nullable();
+            $table->integer('subscription_package_id')->nullable();
+            $table->integer('organization_package_id')->nullable();
             $table->timestamps();
         });
     }

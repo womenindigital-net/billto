@@ -25,7 +25,6 @@
   </div>
 </div>
 
-
 <!-- banner section Start -->
 <section class="bill_banner_section @php echo Session::get('hidden_session');@endphp">
   <div style="background-color: #FFB317;">

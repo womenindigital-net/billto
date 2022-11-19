@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\InvoiceSendMail;
 use App\Models\User;
 use App\Models\Invoice;
 use App\Models\Product;
 use Carbon\Cli\Invoker;
 use Illuminate\Http\Request;
+use App\Mail\InvoiceSendMail;
 use Illuminate\Support\Carbon;
+use App\Models\InvoiceTemplate;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\ComplateInvoiceCount;
-use App\Models\InvoiceTemplate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
 
 class InvoiceController extends Controller
 {
@@ -28,9 +28,12 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $template_id="";
-        $template_id_check = InvoiceTemplate::get()->first();
         $user = Auth::user()->id;
+        Invoice::where('user_id', $user)->where('invoice_status','incomlete')->delete();
+
+        $template_id = "";
+        $template_id_check = InvoiceTemplate::get()->first();
+
         $lastInvoice = Invoice::where('user_id', $user)
             ->orderBy('created_at', 'desc')
             ->get([
@@ -43,17 +46,16 @@ class InvoiceController extends Controller
         $invoiceCountNew += 1;
         $invoice_template = InvoiceTemplate::get();
 
-        // dd( $template_id);
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id','invoice_template','template_id_check'));
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check'));
 
-        // return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew','template_name'));
     }
 
     public function index_home($id)
     {
         $template_id = $id;
-
         $user = Auth::user()->id;
+        Invoice::where('user_id', $user)->where('invoice_status','incomlete')->delete();
+
         $lastInvoice = Invoice::where('user_id', $user)
             ->orderBy('created_at', 'desc')
             ->get([
@@ -67,7 +69,7 @@ class InvoiceController extends Controller
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
         $invoiceCountNew += 1;
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id','invoice_template'));
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template'));
     }
 
     /**
@@ -100,106 +102,94 @@ class InvoiceController extends Controller
             'invoice_notes' => 'max:1024',
             'invoice_terms' => 'max:1024',
         ]);
-
-
         $user_id = Auth::user()->id;
 
-        // ei toko kaje lagbe
-
-        //    foreach($check as $check_data){
-        //     $current_invoice_total =  $check_data->current_invoice_total;
-        //    }
-        //    if($current_invoice_total<=5){
-        //     echo "sojog ache";
-        //     echo $current_invoice_total;
-        //    }else{
-        //     echo "sojog nai";
-        //     echo $current_invoice_total;
-        //    }
-        // ei toko kaje lagbe
-
+     // Chack package limit
+        $join_table_value = DB::table('users')
+            ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+            ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+            ->where('users.id', $user_id)
+            ->get();
+        foreach ($join_table_value as $join_table){ }
         $check = ComplateInvoiceCount::where('user_id', $user_id)->first();
-        if ($check) {
-            ComplateInvoiceCount::where('user_id', $user_id)->increment('invoice_count_total');
-            ComplateInvoiceCount::where('user_id', $user_id)->increment('current_invoice_total');
-        } else {
-            ComplateInvoiceCount::insert([
-                'user_id' =>  $user_id,
-                'invoice_count_total' => 1,
-                'current_invoice_total' => 1,
-                'created_at' => Carbon::now()
-            ]);
-        }
 
-        if ($request->id != null) {
-            // Tax Calculation Formula Start
-            $taxPercentage = $request->invoice_tax;
-            $products = Invoice::find($request->id)->products->pluck('product_amount')->sum();
-            $tax = ($taxPercentage * $products) / 100;
-            $total = $tax + $products;
-            // Tax Calculation Formula End
+        if($join_table->limitInvoiceGenerate >= $check->current_invoice_total){
 
-            // Amount Paid || Advance
-            // $advance_amount = $request->advance_amount;
-            // $totalpaid = ($total * $advance_amount)/100;
-            // Amount Paid || Advance
-
-            // invocie Logo name Strat
-            $id = $request->id;
-            $filename = null;
-            $invoice_logo = $request->invoice_logo;
-
-            if ($id == null && $invoice_logo != null) {
-                if ($request->file('invoice_logo')) {
-                    $file = $request->file('invoice_logo');
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = time() . '.' . $extension;
-                    $file->move(public_path('storage/invoice/logo'), $filename);
-                }
-            } elseif ($id != null && $invoice_logo != null) {
-
-                $find = Invoice::findOrFail($id);
-                $image_path         = public_path("storage/invoice/logo//") . $find->invoice_logo;
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                    // Create File
-                    $file = $request->file('invoice_logo');
-                    $extension = $file->getClientOriginalExtension();
-                    $filename = time() . '.' . $extension;
-                    $file->move(public_path('storage/invoice/logo'), $filename);
-                }
+            if ($check) {
+                ComplateInvoiceCount::where('user_id', $user_id)->increment('invoice_count_total');
+                ComplateInvoiceCount::where('user_id', $user_id)->increment('current_invoice_total');
+            } else {
+                ComplateInvoiceCount::insert([
+                    'user_id' =>  $user_id,
+                    'invoice_count_total' => 1,
+                    'current_invoice_total' => 1,
+                    'created_at' => Carbon::now()
+                ]);
             }
-            // invocie Logo name End
 
-            // Update Invoice Data
-            $data = array(
-                'invoice_logo' => $filename,
-                'currency' => $request->currency,
-                'invoice_form' => $request->invoice_form,
-                'invoice_to' => $request->invoice_to,
-                'invoice_id' => $request->invoice_id,
-                'invoice_date' => $request->invoice_date,
-                'invoice_payment_term' => $request->invoice_payment_term,
-                'invoice_dou_date' => $request->invoice_dou_date,
-                'invoice_po_number' => $request->invoice_po_number,
-                'invoice_notes' => $request->invoice_notes,
-                'invoice_terms' => $request->invoice_terms,
-                'invoice_tax_percent' => $request->invoice_tax,
-                // 'invoice_amu_paid_percent' => $advance_amount,
-                // 'invoice_amu_paid' => $totalpaid,
-                'requesting_advance_amount_percent' => $request->requesting_advance_amount,
-                'total' => $total,
-                'invoice_status' => 'complete',
-                'template_name' => $request->template_name,
-            );
-            $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
-            // invoice Data End
+            if ($request->id != null) {
+                // Tax Calculation Formula Start
+                $taxPercentage = $request->invoice_tax;
+                $products = Invoice::find($request->id)->products->pluck('product_amount')->sum();
+                $tax = ($taxPercentage * $products) / 100;
+                $total = $tax + $products;
 
-            return response()->json([$invoice->id]);
+
+                // invocie Logo name Strat
+                $id = $request->id;
+                $filename = null;
+                $invoice_logo = $request->invoice_logo;
+
+                if ($id == null && $invoice_logo != null) {
+                    if ($request->file('invoice_logo')) {
+                        $file = $request->file('invoice_logo');
+                        $extension = $file->getClientOriginalExtension();
+                        $filename = time() . '.' . $extension;
+                        $file->move(public_path('storage/invoice/logo'), $filename);
+                    }
+                } elseif ($id != null && $invoice_logo != null) {
+
+                    $find = Invoice::findOrFail($id);
+                    $image_path         = public_path("storage/invoice/logo//") . $find->invoice_logo;
+                    if (File::exists($image_path)) {
+                        File::delete($image_path);
+                        // Create File
+                        $file = $request->file('invoice_logo');
+                        $extension = $file->getClientOriginalExtension();
+                        $filename = time() . '.' . $extension;
+                        $file->move(public_path('storage/invoice/logo'), $filename);
+                    }
+                }
+                // invocie Logo name End
+
+                // Update Invoice Data
+                $data = array(
+                    'invoice_logo' => $filename,
+                    'currency' => $request->currency,
+                    'invoice_form' => $request->invoice_form,
+                    'invoice_to' => $request->invoice_to,
+                    'invoice_id' => $request->invoice_id,
+                    'invoice_date' => $request->invoice_date,
+                    'invoice_payment_term' => $request->invoice_payment_term,
+                    'invoice_dou_date' => $request->invoice_dou_date,
+                    'invoice_po_number' => $request->invoice_po_number,
+                    'invoice_notes' => $request->invoice_notes,
+                    'invoice_terms' => $request->invoice_terms,
+                    'invoice_tax_percent' => $request->invoice_tax,
+                    'requesting_advance_amount_percent' => $request->requesting_advance_amount,
+                    'total' => $total,
+                    'invoice_status' => 'complete',
+                    'template_name' => $request->template_name,
+                );
+                $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
+                // invoice Data End
+                return response()->json([$invoice->id]);
+            }
+            return response()->json(['message' => 'Please create product']);
+        }else{
+          return response()->json(['message' => '123']);
         }
-
-        return response()->json(['message' => 'Please create product']);
-    }
+      }
 
     /**
      * Display the specified resource.
@@ -346,13 +336,12 @@ class InvoiceController extends Controller
         $data['subject'] = "$request->email_subject";
         $data['body'] = "$request->email_body";
 
-        $data['template_id'] ="$template_id";
+        $data['template_id'] = "$template_id";
         $pdf = Pdf::loadView('invoices.sendMail.mail_pdf', $data);
 
-        Mail::send('invoices.sendMail.mail', $data,  function ($message) use ($data, $pdf){
+        Mail::send('invoices.sendMail.mail', $data,  function ($message) use ($data, $pdf) {
             $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
         });
-        return redirect()->back()->with('success',"Mail Successfully Send");
-
+        return redirect()->back()->with('success', "Mail Successfully Send");
     }
 }

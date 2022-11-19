@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaymentGetway;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,8 +49,17 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        $get_id = $user->id;
 
+        PaymentGetway::create([
+            'user_id'=> $get_id,
+            'amount'=>'0',
+            'subscription_package_id'=>'1',
+            'organization_package_id'=>'0',
+            'created_at'=>Carbon::now()
+        ]);
+
+        Auth::login($user);
         return redirect(RouteServiceProvider::HOME);
     }
 }
