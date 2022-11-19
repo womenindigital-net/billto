@@ -99,9 +99,9 @@
                      </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"> Invoice Template: <strong>{{ $sub_package->templateQuantity }}</strong> </li>
-                        <li class="list-group-item">Total invoice Genarate: <strong>{{ $sub_package->templateQuantity }}</strong></li>
+                        <li class="list-group-item">Total invoice Genarate: <strong>{{ $sub_package->limitInvoiceGenerate }}</strong></li>
                         <li class="list-group-item">Package Duration: <strong> @php
-                              if($day==30){ echo "1 Month"; }elseif($day=="60"){ echo "2 Month";}elseif($day<=365){  echo "1 Year"; }
+                              if($day<30){ echo "1 Month"; }elseif($day<60){ echo "2 Month";}elseif($day<=365){  echo "1 Year"; }
                         @endphp</strong></li>
                         <li class="list-group-item">Package Price: <strong>Tk. {{ $sub_package->price }}</strong></li>
                     </ul>

@@ -25,7 +25,7 @@
   <!-- Bootstrap icons v1.7.2 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
- 
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
     *{
@@ -69,8 +69,80 @@
     ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async></script>
-
   @stack('frontend_js')
+
+
+{{-- alert message show  --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+
+@if(session()->has('success'))
+<style>
+    .colored-toast {
+    background-color: #ffffff !important;
+  }
+  .colored-toast  {
+    color: rgb(93, 187, 97);
+    font-size: 15px;
+  }
+  </style>
+
+<script>
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    customClass: {
+        popup: 'colored-toast'
+    },
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+    Toast.fire({
+    icon: 'success',
+    title: '{{ session()->get("success") }}',
+  })
+  </script>
+@endif
+@if(session()->has('delete'))
+<style>
+    .colored-toast {
+    background-color: #f55c5c !important;
+  }
+  .colored-toast  {
+    color: rgb(253, 253, 253);
+    font-size: 15px;
+  }
+  </style>
+<script>
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    customClass: {
+        popup: 'colored-toast'
+    },
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+    Toast.fire({
+    icon: 'warning',
+    title: '{{ session()->get("delete") }}',
+  })
+  </script>
+@endif
+
+
+
   <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 </body>
 

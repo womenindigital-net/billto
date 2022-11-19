@@ -353,5 +353,6 @@ class InvoiceController extends Controller
             $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
         });
         return redirect()->back()->with('success',"Mail Successfully Send");
+
     }
 }
