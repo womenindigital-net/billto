@@ -80,7 +80,7 @@
   </section>
   <!-- Invoice Template End -->
   <!-- Package subscription start -->
-    <section>
+    {{-- <section>
        <div class="container mt-5">
         <div class="text-center pb-5">
             <h2 class="h2_title">Choose Your Package</h2>
@@ -113,7 +113,218 @@
             @endforeach
         </div>
        </div>
-    </section>
+    </section> --}}
+
+ <style>
+p a{
+  background: transparent !important;
+}
+
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+   content: '';
+   content: none;
+}
+
+
+
+table {
+   border-collapse: collapse;
+   border-spacing: 0;
+}
+
+
+
+h1,h2,h3,h4,h5,h6,p{
+  margin:0;
+  padding:0;
+
+}
+
+
+.plan h1{
+   font-style: normal;
+   font-weight: 400;
+   font-size: 36px;
+   color: #FFB317;
+   padding-bottom: 5px;
+
+}
+.plan p{
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   color: #898989;
+
+}
+.plan {
+   padding-top: 32px;
+   padding-bottom: 50px;
+   padding-left: 50px;
+   padding-right: 50px;
+}
+.Single_item {
+   text-align: center;
+   /* margin: 10px; */
+   border: 1px solid #CCCCCC;
+   padding: 10px;
+   border-radius: 6px;
+}
+.border_bottom {
+   border: 2px;
+   margin-right: 50px !important;
+   margin-left: 50px;
+   margin-bottom:10px;
+
+
+}
+
+.border_bottom_color1{
+    border: 1px solid #FCB21C;
+
+}
+.border_bottom_color2{
+    border: 1px solid #039DBF;
+
+}
+.border_bottom_color3{
+    border: 1px solid #A950A0;
+}
+.Single_item h5{
+   font-weight: 700;
+   font-size: 18px;
+   color: #000000;
+   padding-bottom: 8px;
+}
+.package_time p {
+
+   border-radius: 50%;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-right: 20px;
+   padding-left: 20px;
+   color: #FFF;
+   font-size: 14px;
+}
+.package_time_bg_color1 p {
+   background: linear-gradient(to top,#FB8700,#FCB21C);
+}
+.package_time_bg_color2 p {
+   background: linear-gradient(to top,#0370BF,#039DBF);
+}
+.package_time_bg_color3 p {
+   background: linear-gradient(to top,#F49AC1,#A950A0);
+}
+.package_time p span {
+
+   font-weight: 700;
+   font-size: 40px;
+   line-height: 40px;
+}
+.package_time {
+   width: 90px;
+   margin: auto;
+}
+
+
+/*table*/
+
+.table {
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: black;
+}
+/*table*/
+
+.Single_item a {
+   color: #FFF;
+   text-decoration: none;
+   background: rebeccapurple;
+   padding: 5px 20px;
+   border: 1px solid;
+   border-radius: 20px;
+}
+</style>
+    <div class="package_area mb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="plan text-center">
+                <h1>Our Pricing Plan</h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+           @php
+               $count1 = 1;
+               $count2 = 1;
+           @endphp
+            @foreach ($subcription_package as $sub_package)
+            @php
+                $day = $sub_package->packageDuration;
+
+            @endphp
+            <div class="col-4">
+
+              <!-- single item -->
+              <div class="Single_item ">
+                <h5>{{ $sub_package->packageName }}</h5>
+                <div class="border_bottom border_bottom_color{{$count1++}}" ></div>
+                <div class="package_time package_time_bg_color{{$count2++}}">
+                  <p><strong>$</strong> <span> {{ $sub_package->price }}</span><br> month</p>
+                </div>
+                <div class="table border">
+                  <table id="customers">
+                       <tr>
+                          <td style="width: 50%;">Invoice Template: </td>
+                          <td><strong>{{ $sub_package->templateQuantity }}</strong></td>
+                       </tr>
+                       <tr>
+                          <td> Total invoice Genarate:</td>
+                          <td> <strong>{{ $sub_package->limitInvoiceGenerate }}</strong> </td>
+                       </tr>
+                       <tr>
+                          <td> Package Duration: </td>
+                          <td><strong> @php
+                            if($day<30){ echo "1 Month"; }elseif($day<60){ echo "2 Month";}elseif($day<=365){  echo "1 Year"; }
+                            @endphp
+                        </strong> </td>
+                       </tr>
+                   </table>
+                </div>
+                <a href="{{ url('payment-gateway',$sub_package->id)}}">buttom</a>
+              </div>
+              <!-- single item -->
+            </div>
+        @endforeach
+          </div>
+        </div>
+      </div>
+
+
   <!--  Package subscription  End -->
 @endsection
 @push('frontend_js')

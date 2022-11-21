@@ -123,12 +123,23 @@ function currency1(){
           processData: false,
           dataType: 'json',
           success: function(response) {
-            console.log(response);
+            // console.log(response);
             if (response['message'] != null) {
-              okButton.fire({
-                icon: 'error',
-                title: response['message'],
-              })
+
+                Swal.fire({
+                    title: 'Your package limit is over! ',
+                    text: "Please Update Your Package..!",
+                    icon: 'error',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Goto Package Page',
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = '/';
+                    }
+                })
+
             }else{
               $("#downlodeInvoice").attr("href", "/invoice/download/"+response);
               button =

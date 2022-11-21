@@ -11,6 +11,7 @@ class PagesController extends Controller
 {
     public function index()
     {
+      
        $subcription_package = SubscriptionPackage::get();
        $invoice_template = InvoiceTemplate::get();
 
