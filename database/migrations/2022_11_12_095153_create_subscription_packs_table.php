@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubscriptionPackegesTable extends Migration
+class CreateSubscriptionPacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSubscriptionPackegesTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscription_pack', function (Blueprint $table) {
+        Schema::create('subscription_packs', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->integer('subcrip_package_id');
