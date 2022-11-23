@@ -60,16 +60,16 @@ class DashboardController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->name = $request->name;
-        if ($request->hasFile('profileImage')) {
-            $path = 'uploads/userImage/' . $user->profileImage;
+        if ($request->hasFile('picture__input')) {
+            $path = 'uploads/userImage/' . $user->picture__input;
             if(File::exists($path)){
                 File::delete($path);
             }
-            $file = $request->file('profileImage');
+            $file = $request->file('picture__input');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move('uploads/userImage/', $filename);
-            $user->profileImage = $filename;
+            $user->picture__input = $filename;
         }
         $user->update();
         return redirect()->back()->with('message', 'Successfully Update User profile.');

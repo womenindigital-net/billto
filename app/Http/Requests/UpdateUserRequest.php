@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             'address' => 'nullable',
             'email' => 'nullable',
             'phone' => 'nullable',
-            'profileImage' => 'nullable',
+            'picture__input' => 'nullable',
         ];
     }
 }

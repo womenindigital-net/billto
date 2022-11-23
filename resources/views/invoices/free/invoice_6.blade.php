@@ -9,7 +9,7 @@
         display: flex;
         margin-bottom: 75px;
         justify-content: space-between;
-        margin-top:-100px;
+
         /* position: relative; */
         /* z-index: 2; */
 
@@ -24,7 +24,7 @@
     .logo_area {
         width: 30%;
         float: left;
-        /* margin-top: -50px; */
+        padding-top: 50px;
         padding-bottom:100px;
         /* text-align: left; */
         text-align: start;
@@ -35,7 +35,7 @@
 
     .heading_area {
         text-align: right;
-        /* padding-top: 50px; */
+        padding-top: 50px;
         padding-bottom: 100px;
         padding-right: 50px;
 
@@ -116,7 +116,6 @@
                 line-height: 24px;
                 font-size: 16px;
                 padding-bottom: 20px;
-                /* margin-top:-100px;  */
             }
 
 
@@ -166,11 +165,11 @@
 
 <body>
 
-    <div class="invoice_body page" size="A4" style="background: url('assets/vector-invoice/vector1.png') no-repeat scroll;">
+    <div class="invoice_body page" size="A4" style="background: url('assets/vector-invoice/vector3.png') no-repeat scroll;">
         <section class="first_section">
             <div class="logo_area" style="margin-left:50px;">
                 <div class="c">
-                    <p style="font-size: 20px;"><b>Company Name </b></p>
+                    <p><b>Company Name </b></p>
                     <p>123 Rockfeller Street,</p>
                     <p>New York, NY 12210</p>
                 </div>
