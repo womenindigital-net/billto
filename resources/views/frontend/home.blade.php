@@ -72,7 +72,11 @@
         </div>
         <div class="row text-center">
             @foreach ($invoice_template as $invoice_temp )
-            <div class="col-md-4 mt-4"><a href="{{ url('home/invoice/page/'.$invoice_temp->id) }}"> <img src="{{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
+            <div class="col-md-4 mt-4">
+                <a href="{{ url('home/invoice/page/'.$invoice_temp->id) }}">
+                 <img src="{{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" height="360" srcset="" style="border: 1px solid #ccc;">
+                </a>
+            </div>
             @endforeach
          </div>
       </div>
@@ -275,27 +279,26 @@ h1,h2,h3,h4,h5,h6,p{
     visibility: hidden;
 }
 </style>
+@php
+$count1 = 1;
+$count2 = 1;
+@endphp
     <div class="package_area mb-5">
         <div class="container">
           <div class="row">
             <div class="col-12">
               <div class="plan text-center">
                 <h1>Our Pricing Plan</h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
               </div>
             </div>
           </div>
           <div class="row">
-           @php
-               $count1 = 1;
-               $count2 = 1;
-           @endphp
             @foreach ($subcription_package as $sub_package)
             @php
-                $day = $sub_package->packageDuration;
+              $day = $sub_package->packageDuration;
             @endphp
-            <div class="col-4 {{  $sub_package->price==0 ? 'dis_none' : '' }}">
-
+            <div class="col-md-12 col-lg-4 mb-4 {{  $sub_package->price==0 ? 'dis_none' : '' }}">
               <!-- single item -->
               <div class="Single_item ">
                 <h5>{{ $sub_package->packageName }}</h5>

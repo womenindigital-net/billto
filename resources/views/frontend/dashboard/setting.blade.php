@@ -82,32 +82,12 @@
                     <div class="col-4 ">
                         <div class="d-flex justify-content-center">
                             <div class="card border-0   my-5" style="width: 18rem;">
-                                {{-- @if ($item->picture__input)
-                                <img src="{{ asset('uploads/userImage/' . $item->picture__input) }}"
-                                class="card-img-top  rounded-circle px-5 mt-2" height="190px" alt="...">
-                                @else
-                                    <img src="{{ asset('uploads/defaultUserImage/defaultUserImage.png') }}"
-                                        class="card-img-top  rounded-circle px-5 mt-2" height="190px" alt="...">
-                                @endif --}}
-
                                 <div class="card-body" style="margin: 0 auto;">
-                                    {{-- @if ($item->picture__input)
-                                    <div class="propic">
-                                        <img style="height: 168px; width:168px" src="{{ asset('uploads/userImage/' . $item->picture__input) }}">
-                                    </div>
-                                    @else
-                                       <img style="height: 168px; width:168px" src="{{ asset('uploads/defaultUserImage/defaultUserImage.png') }}">
-                                    @endif --}}
                                     <label   for="picture__input" tabIndex="0">
                                         <img class="propic"  src="{{ asset('uploads/userImage/' . $item->picture__input) }}" alt="">
                                         <span class="picture__image text-success"></span>
                                     </label>
                                     <input type="file" name="picture__input" id="picture__input">
-                                    {{-- <input type="file" name="profileImage" class="form-control" > --}}
-
-                                    {{-- <div class="text-center my-3">
-                                                <button type="submit" class="btn btn-outline-success"><i class="bi bi-arrow-up-circle"></i></button>
-                                            </div> --}}
                                 </div>
 
                             </div>

@@ -10,7 +10,12 @@
 }
 
 .show {display: block;}
+.btncustom.btn-check:focus+.btn, .btncustom:focus {
+                  box-shadow: none !important;
+                }
 </style>
+
+
 <header class="header_sevtion">
     <nav class="navbar navbar-expand-lg navbar-light p-0" style="background-color: #F0F0F0;">
       <div class="container">
@@ -20,15 +25,13 @@
         <div class="navbar">
           <ul class="navbar-nav d-flex flex-row me-auto mb-2 mb-lg-0">
             @auth
-            
             <li class="nav-item d-flex align-items-center">
               <div class="user-menu-wrap">
-                <button class="dropbtn btn fs-3"   onclick="myFunction()">
-                 {{ auth()->user()->name }} <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-</svg>
-                </button>
-                
+                <div onclick="myFunction()">
+                    <button class="dropbtn btn btncustom fs-5"  >
+                        {{ auth()->user()->name }} <i class="bi bi-caret-down-fill fs-6 dropbtn"></i>
+                  </button>
+                </div>
                 <div id="myDropdown" class="dropdown-content">
                   <ul class="user-menu m-0 mt-2 p-0">
                     <div class="profile-highlight">
@@ -66,15 +69,19 @@
                 Sorry, your browser does not support inline SVG.
               </svg>
             </li>
-            <li class="nav-item d-flex align-items-center pe-4">
+            <li class="nav-item d-flex align-items-center">
               <div class="user_dashboard dropdown">
-                  <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      <svg width="20" height="20">
-                          <circle cx="10" cy="10" r="7" stroke="green" stroke-width="5" fill="red" />
-                      </svg>
-                  </a>
-                  <div class="dropdown-menu border-0 p-0 m-0">
+                  <a href="#" class="dropdown-toggle nav-link fs-5 align-items-center d-flex" data-bs-toggle="dropdown"aria-expanded="false">
+                           <div class=" border px-1 p-0 m-0">
+                            <svg width="20" height="20" >
+                                <circle cx="10" cy="10" r="7" stroke="green" stroke-width="5" fill="red" />
+                            </svg>
+                           </div>
+                           <div class="border px-1">
+                              <span > &#2547;</span>
+                         </div>
+                     </a>
+                  <div class="dropdown-menu border p-0 m-0">
                       <a class="dropdown-item " href="javascript:void(0);">BD</a>
                   </div>
               </div>
@@ -94,7 +101,7 @@
               <a class="nav-link p-1" aria-current="page" href="{{ route('create') }}">Create Bill</a>
             </li>
             @endguest
-            
+
           </ul>
         </div>
       </div>
@@ -102,7 +109,7 @@
   </header>
 
   <script>
-    /* When the user clicks on the button, 
+    /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
@@ -121,4 +128,5 @@ window.onclick = function(event) {
     }
   }
 }
+
   </script>
