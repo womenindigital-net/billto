@@ -207,13 +207,13 @@ h1,h2,h3,h4,h5,h6,p{
    color: #FFF;
    font-size: 14px;
 }
-.package_time_bg_color1 p {
+.package_time_bg_color2 p {
    background: linear-gradient(to top,#FB8700,#FCB21C);
 }
-.package_time_bg_color2 p {
+.package_time_bg_color3 p {
    background: linear-gradient(to top,#0370BF,#039DBF);
 }
-.package_time_bg_color3 p {
+.package_time_bg_color4 p {
    background: linear-gradient(to top,#F49AC1,#A950A0);
 }
 .package_time p span {
@@ -223,8 +223,12 @@ h1,h2,h3,h4,h5,h6,p{
    line-height: 40px;
 }
 .package_time {
-   width: 90px;
-   margin: auto;
+    width: 120px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
 }
 
 
@@ -266,6 +270,10 @@ h1,h2,h3,h4,h5,h6,p{
    border: 1px solid;
    border-radius: 20px;
 }
+.dis_none{
+    display: none;
+    visibility: hidden;
+}
 </style>
     <div class="package_area mb-5">
         <div class="container">
@@ -285,16 +293,15 @@ h1,h2,h3,h4,h5,h6,p{
             @foreach ($subcription_package as $sub_package)
             @php
                 $day = $sub_package->packageDuration;
-
             @endphp
-            <div class="col-4">
+            <div class="col-4 {{  $sub_package->price==0 ? 'dis_none' : '' }}">
 
               <!-- single item -->
               <div class="Single_item ">
                 <h5>{{ $sub_package->packageName }}</h5>
                 <div class="border_bottom border_bottom_color{{$count1++}}" ></div>
                 <div class="package_time package_time_bg_color{{$count2++}}">
-                  <p><strong>$</strong> <span> {{ $sub_package->price }}</span><br> month</p>
+                  <p><sup>$</sup> <span> {{ $sub_package->price }}</span><br> month</p>
                 </div>
                 <div class="table border">
                   <table id="customers">
@@ -309,7 +316,7 @@ h1,h2,h3,h4,h5,h6,p{
                        <tr>
                           <td> Package Duration: </td>
                           <td><strong> @php
-                            if($day<30){ echo "1 Month"; }elseif($day<60){ echo "2 Month";}elseif($day<=365){  echo "1 Year"; }
+                            if($day==30){ echo "One Month"; }elseif($day==90){ echo "Three Month";}elseif($day==180){  echo "Six Month"; }elseif($day==365){ echo "One Year";}
                             @endphp
                         </strong> </td>
                        </tr>

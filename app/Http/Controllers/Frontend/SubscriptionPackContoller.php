@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\SubscriptionPackage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\PaymentGetway;
+use App\Models\SubscriptionPackage;
+use App\Http\Controllers\Controller;
+use App\Models\ComplateInvoiceCount;
 
 class SubscriptionPackContoller extends Controller
 {
@@ -13,5 +16,36 @@ class SubscriptionPackContoller extends Controller
        $subscribe_package = SubscriptionPackage::where('id',$id)->get();
 
         return view('payment_gatewaye.index', compact('subscribe_package'));
+    }
+
+    public function payment_gateway_store(Request $request)
+    {
+
+    $request->validate([
+        'package_price'=>'required',
+        'new_package_price'=>'required',
+        'package_id'=>'required',
+        'auth_user_id'=>'required'
+    ]);
+   if($request->new_package_price == $request->package_price){
+
+     PaymentGetway::where('user_id',$request->auth_user_id)->update([
+       'amount'=>$request->package_price,
+       'subscription_package_id'=> $request->package_id,
+       'updated_at' => Carbon::now(),
+
+     ]);
+
+     ComplateInvoiceCount::where('user_id',$request->auth_user_id)->update([
+        'current_invoice_total'=>'0',
+        'updated_at'=>Carbon::now()
+    ]);
+
+        return response()->json(   $request->new_package_price);
+
+        }else{
+            return response()->json(['message' => 'error']);
+        }
+
     }
 }

@@ -10,6 +10,8 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Frontend\SubscriptionPackContoller;
+use App\Models\SubscriptionPackage;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +60,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
 
     //payment payment gateway
     Route::get('/payment-gateway/{package_id}', [SubscriptionPackContoller::class, 'payment_gateway']);
+    Route::post('/payment/store', [SubscriptionPackContoller::class, 'payment_gateway_store']);
 
 
 
@@ -78,6 +81,36 @@ Route::get('/notice/div/hidden', function() {
     return redirect()->back();
 });
 
+Route::get('/check',  function ()
+{
+    $join_table_value = DB::table('users')
+    ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+
+    ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+
+    ->selectRaw( 'users.*, payment_getways.*, subscription_packages.*, payment_getways.created_at as payment_name, subscription_packages.created_at as contacts_name')
+
+    ->where('users.id', 1)->get();
+
+
+
+    // $join_table_value = DB::table('payment_getways')
+    // // ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+    //  ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+    // // ->select('payment_getways.created_at', 'payment_getways.created_at as createdat')
+    // ->where('payment_getways.user_id', 1)
+    // ->get();
+dd($join_table_value);
+//   foreach ($join_table_value as $join_table){
+//  $package_id = $join_table->subscription_package_id;
+//     // echo $join_table->limitInvoiceGenerate;
+//   }
+//  $SubscriptionPackage =  SubscriptionPackage::where('id',$package_id)->get();
+//  foreach ($SubscriptionPackage as $Subscription){
+//     // $package_id = $join_table->subscription_package_id;
+//     echo $Subscription->limitInvoiceGenerate;
+//      }
+});
 
 
 

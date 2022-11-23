@@ -58,7 +58,8 @@
 <!-- Invoice Section Start -->
 <section class="invoice_section" >
   <div class="my-5">
-    <form method="post" id="invoiceForm" enctype="multipart/form-data">
+    {{-- <form method="post" id="invoiceForm" enctype="multipart/form-data"> --}}
+        <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
       @csrf
       <div class="container p-4 " style="background-color: #F0F0F0;">
         <div class="row md-2 invoice_header_right">

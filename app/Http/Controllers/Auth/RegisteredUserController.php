@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\PaymentGetway;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Registered;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\PaymentGetway;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
+use App\Models\ComplateInvoiceCount;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 
 class RegisteredUserController extends Controller
 {
@@ -56,6 +57,12 @@ class RegisteredUserController extends Controller
             'amount'=>'0',
             'subscription_package_id'=>'1',
             'organization_package_id'=>'0',
+            'created_at'=>Carbon::now()
+        ]);
+        ComplateInvoiceCount::create([
+            'user_id'=> $get_id,
+            'invoice_count_total'=>'0',
+            'current_invoice_total'=>'0',
             'created_at'=>Carbon::now()
         ]);
 

@@ -29,7 +29,7 @@ class InvoiceController extends Controller
     public function index()
     {
         $user = Auth::user()->id;
-        Invoice::where('user_id', $user)->where('invoice_status','incomlete')->delete();
+        Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
 
         $template_id = "";
         $template_id_check = InvoiceTemplate::get()->first();
@@ -47,14 +47,13 @@ class InvoiceController extends Controller
         $invoice_template = InvoiceTemplate::get();
 
         return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check'));
-
     }
 
     public function index_home($id)
     {
         $template_id = $id;
         $user = Auth::user()->id;
-        Invoice::where('user_id', $user)->where('invoice_status','incomlete')->delete();
+        Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
 
         $lastInvoice = Invoice::where('user_id', $user)
             ->orderBy('created_at', 'desc')
@@ -104,16 +103,23 @@ class InvoiceController extends Controller
         ]);
         $user_id = Auth::user()->id;
 
-     // Chack package limit
+        // Chack package limit
         $join_table_value = DB::table('users')
             ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
             ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
-            ->where('users.id', $user_id)
-            ->get();
-        foreach ($join_table_value as $join_table){ }
+            ->selectRaw('users.*, payment_getways.*, subscription_packages.*, payment_getways.created_at as payment_created_at')
+            ->where('users.id',  $user_id)->get();
+
+        foreach ($join_table_value as $join_table) {  }
+
         $check = ComplateInvoiceCount::where('user_id', $user_id)->first();
 
-        if($join_table->limitInvoiceGenerate >= $check->current_invoice_total){
+        $packageDuration = $join_table->packageDuration;
+        $create_date = $join_table->payment_created_at;
+        $date = new Carbon($create_date);
+        $today_date = $date->diffInDays(Carbon::now());
+
+        if ($join_table->limitInvoiceGenerate >= $check->current_invoice_total + 1 && $packageDuration >= $today_date) {
 
             if ($check) {
                 ComplateInvoiceCount::where('user_id', $user_id)->increment('invoice_count_total');
@@ -186,10 +192,10 @@ class InvoiceController extends Controller
                 return response()->json([$invoice->id]);
             }
             return response()->json(['message' => 'Please create product']);
-        }else{
-          return response()->json(['message' => '123']);
+        } else {
+            return response()->json(['message' => '123']);
         }
-      }
+    }
 
     /**
      * Display the specified resource.

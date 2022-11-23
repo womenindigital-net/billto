@@ -56,9 +56,16 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom02" class="form-label">Package Duration</label>
-                                                <input type="text" name="packageDuration" class="form-control" id="validationCustom02"
-                                                      required>
+                                                <label for="validationCustom02" class="form-label"> Package Duration</label>
+                                                <select class="form-select" name="packageDuration"
+                                                    id="validationCustom02" required>
+                                                    <option selected disabled value="">Select package</option>
+                                                    <option value="30">One Month</option>
+                                                    <option value="90">three Month</option>
+                                                    <option value="180">Six Month</option>
+                                                    <option value="365">One Year</option>
+                                                </select>
+
                                             </div>
                                         </div>
                                         <div class="col-4">

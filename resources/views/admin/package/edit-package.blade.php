@@ -59,9 +59,15 @@
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom02" class="form-label">Package Duration</label>
-                                                <input type="text" value="{{ $subscriptionPackage->packageDuration }}"
-                                                    name="packageDuration" class="form-control" id="validationCustom02"
-                                                    required>
+                                            <select class="form-select" name="packageDuration"
+                                                id="validationCustom02" required>
+                                                <option selected disabled value="">Select package</option>
+                                                <option value="30"{{ $subscriptionPackage->packageDuration== 30 ? 'selected' : '' }}>One Month</option>
+                                                <option value="90" {{ $subscriptionPackage->packageDuration== 90 ? 'selected' : '' }}>three Month</option>
+                                                <option value="180" {{ $subscriptionPackage->packageDuration== 180 ? 'selected' : '' }}>Six Month</option>
+                                                <option value="365" {{ $subscriptionPackage->packageDuration== 365 ? 'selected' : '' }}>One Year</option>
+                                            </select>
+
                                             </div>
                                         </div>
                                         <div class="col-4">

@@ -32,7 +32,7 @@ const Toast = Swal.mixin({
 })
 const okButton = Swal.mixin({
   toast: false,
-  position: 'cnter',
+  position: 'center',
   showConfirmButton: true,
   timerProgressBar: true,
 })
@@ -509,5 +509,67 @@ function currency1(){
         }
     });
   }
+// payemnt getway set up
+  $( "#new_package_price" ).bind( "keyup", function() {
+    var package_price = document.getElementById('package_price').value;
+    var new_package_price = document.getElementById('new_package_price').value;
+
+  if(package_price== new_package_price){
+
+    $('#new_package_price').addClass("is-valid");
+    $('#new_package_price').removeClass("is-invalid");
+    document.getElementById("submit_button").disabled = false;
+    document.getElementById("message").innerHTML = "";
+  }else{
+    $('#new_package_price').addClass("is-invalid");
+    document.getElementById("submit_button").disabled = true;
+    document.getElementById("message").innerHTML = "Please set Correct value";
+  }
+});
+
+// new getway payemnt setup
+
+$("#getway_setup").submit(function(e){
+    e.preventDefault();
+    const fd = new FormData(this);
+    var new_package_price = document.getElementById('new_package_price').value;
+    var package_price = document.getElementById('package_price').value;
+    var package_id = document.getElementById('package_id').value;
+    var auth_user_id = document.getElementById('auth_user_id').value;
+
+    $.ajax({
+        url: '/payment/store',
+        type: 'post',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {
+            new_package_price:new_package_price,
+            package_id:package_id,
+            auth_user_id:auth_user_id,
+            package_price:package_price
+        },
+        dataType: 'json',
+        success: function (responce) {
+
+           if(responce.message==='error'){
+            okButton.fire({
+                icon: 'error',
+                title: 'Please type Correct value',
+              })
+           }else{
+            button =
+            Toast.fire({
+              icon: 'success',
+              title: ' Package succesfuly purchase ',
+
+            })
+              $('#new_package_price').removeClass("is-valid");
+              document.getElementById("submit_button").disabled = true;
+              document.getElementById('new_package_price').value="";
+           }
+
+        },
+
+    });
 
 
+  });
