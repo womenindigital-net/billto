@@ -72,31 +72,16 @@
                 </div>
                 <div class="row text-center">
                     @foreach ($invoice_template as $invoice_temp)
-                        <div class="col-md-4 mt-4"><a href="{{ url('home/invoice/page/' . $invoice_temp->id) }}"> <img
-                                    src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}" alt=""
-                                    height="360" srcset="" style="border: 1px solid #ccc;"></a></div>
+                        <div class="col-md-4 mt-4">
+                            <a href="{{ url('home/invoice/page/' . $invoice_temp->id) }}">
+                                <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}" alt=""
+                                    height="360" srcset="" style="border: 1px solid #ccc;">
+                            </a>
+                        </div>
                     @endforeach
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Invoice Template End -->
-    <!-- Package subscription st
-        </section>
-        <!-- Invoice Template End -->
-    <!-- Package subscription start -->
-    <div class="row text-center">
-        @foreach ($invoice_template as $invoice_temp)
-            <div class="col-md-4 mt-4">
-                <a href="{{ url('home/invoice/page/' . $invoice_temp->id) }}">
-                    <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}" alt="" height="360"
-                        srcset="" style="border: 1px solid #ccc;">
-                </a>
-            </div>
-        @endforeach
-    </div>
-    </div>
-    </div>
     </section>
     <!-- Invoice Template End -->
     <!-- Package subscription start -->
@@ -197,8 +182,7 @@
 
         .Single_item {
             text-align: center;
-            /* margin: 10px; */
-            border: 1px solid #CCCCCC;
+            / margin: 10px;/ border: 1px solid #CCCCCC;
             padding: 10px;
             border-radius: 6px;
         }
@@ -212,17 +196,17 @@
 
         }
 
-        .border_bottom_color2 {
+        .border_bottom_color1 {
             border: 1px solid #FCB21C;
 
         }
 
-        .border_bottom_color3 {
+        .border_bottom_color2 {
             border: 1px solid #039DBF;
 
         }
 
-        .border_bottom_color4 {
+        .border_bottom_color3 {
             border: 1px solid #A950A0;
         }
 
@@ -321,6 +305,10 @@
             visibility: hidden;
         }
     </style>
+    @php
+        $count1 = 1;
+        $count2 = 1;
+    @endphp
     <div class="package_area mb-5">
         <div class="container">
             <div class="row">
@@ -329,21 +317,16 @@
                         <h1>Our Pricing Plan</h1>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
                             the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                            of type and scrambled it to make a type specimen book. </p>
+                            of type and scrambled it to make a type specimen book.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                @php
-                    $count1 = 1;
-                    $count2 = 1;
-                @endphp
                 @foreach ($subcription_package as $sub_package)
                     @php
                         $day = $sub_package->packageDuration;
                     @endphp
-                    <div class="col-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }}">
-
+                    <div class="col-md-12 col-lg-4 mb-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }}">
                         <!-- single item -->
                         <div class="Single_item ">
                             <h5>{{ $sub_package->packageName }}</h5>
@@ -380,80 +363,15 @@
                             </div>
                             <a href="{{ url('payment-gateway', $sub_package->id) }}">buttom</a>
                         </div>
-                        - single item -->
+                        <!-- single item -->
                     </div>
                 @endforeach
-                <style>
-                .Single_item a {
-                color: #FFF;
-                text-decoration: none;
-                background: rebeccapurple;
-                padding: 5px 20px;
-                border: 1px solid;
-                border-radius: 20px;
-                }
-                .dis_none{
-                display: none;
-                visibility: hidden;
-                }
-                </style>
-                @php
-                    $count1 = 1;
-                    $count2 = 1;
-                @endphp
-                <div class="package_area mb-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="plan text-center">
-                                    <h1>Our Pricing Plan</h1>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                        Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                        unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            @foreach ($subcription_package as $sub_package)
-                                @php
-                                    $day = $sub_package->packageDuration;
-                                @endphp
-                                <div class="col-md-12 col-lg-4 mb-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }}">
-                                    <!-- single item -->
-                                    <div class="Single_item ">
-                                        <h5>{{ $sub_package->packageName }}</h5>
-                                        <div class="border_bottom border_bottom_color{{ $count1++ }}"></div>
-                                        <div class="package_time package_time_bg_color{{ $count2++ }}">
-                                            <p><sup>$</sup> <span> {{ $sub_package->price }}</span><br> month</p>
-                                        </div>
-                                        <div class="table border">
-                                            <table id="customers">
-                                                <tr>
-                                                    <td style="width: 50%;">Invoice Template: </td>
-                                                    <td><strong>{{ $sub_package->templateQuantity }}</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> Total invoice Genarate:</td>
-                                                    <td> <strong>{{ $sub_package->limitInvoiceGenerate }}</strong> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> Package Duration: </td>
-                                                    <td><strong> @php
-                                                        if ($day == 30) {
-                                                            echo 'One Month';
-                                                        } elseif ($day == 90) {
-                                                            echo 'Three Month';
-                                                        } elseif ($day == 180) {
-                                                            echo 'Six Month';
-                                                        } elseif ($day == 365) {
-                                                            echo 'One Year';
-                                                        }
-                                                    @endphp
-                                                        </strong> </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <a href="{{ url('payment-gateway', $sub_package->id) }}">buttom</a>
-                                    </div>
-                                    <!-- single item -->
+            </div>
+        </div>
+    </div>
+
+
+    <!--  Package subscription  End -->
+@endsection
+@push('frontend_js')
+@endpush
