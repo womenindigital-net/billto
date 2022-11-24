@@ -2,18 +2,119 @@
 @section('title', 'Billto.io')
 @push('frontend_css')
 @endpush
+<style>
+    @media only screen and (max-width: 767px) {
+        .text span {
+            font-size: 15px;
+        }
+
+        .ctrate-text h2 {
+            font-size: 20px;
+        }
+
+        .plan h1 {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            color: #FFB317;
+            padding-bottom: 10px;
+        }
+
+        .plan p {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            color: #898989;
+            text-align: justify;
+
+        }
+
+        .plan {
+            padding-top: 32px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+    }
+
+    @media only screen and (max-width: 991px) and (min-width: 768px) {
+        .text span {
+            font-size: 15px;
+        }
+
+        .ctrate-text h2 {
+            font-size: 20px;
+        }
+
+        .ctrate-text h1 {
+            font-size: 20px;
+        }
+
+        .plan h1 {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            color: #FFB317;
+            padding-bottom: 10px;
+        }
+
+        .plan p {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            color: #898989;
+            text-align: justify;
+
+        }
+
+        .plan {
+            padding-top: 32px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+    }
+
+    @media only screen and (min-width: 992px) {
+        .plan h1 {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 30px;
+            color: #FFB317;
+            padding-bottom: 10px;
+        }
+
+        .plan p {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            color: #898989;
+            text-align: justify;
+
+        }
+
+        .plan {
+            padding-top: 32px;
+            padding-bottom: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+    }
+</style>
 @section('frontend_content')
     <!-- Banner Start -->
     <section class="banner_section">
         <div style="background: url({{ asset('assets/frontend/img/banner/banner-back.jpg') }}); opacity: .8;">
             <div class="container py-5">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <a href="{{ route('create') }}" class="btn billto_btn">Create Bill</a>
-                        <a href="{{ url('/clear-cache') }}" class="btn billto_btn">cache Clear</a>
+                    <div class="col-md-6 text">
+                        <a href="{{ route('create') }}" class="btn billto_btn "><span>Create Bill</span></a>
+                        <a href="{{ url('/clear-cache') }}" class="btn billto_btn"><span>cache Clear</span></a>
                     </div>
                     <div class="col-md-6 text-end">
-                        <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" alt="" srcset="">
+                        <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" width="100%" alt=""
+                            srcset="">
                     </div>
                 </div>
             </div>
@@ -24,30 +125,30 @@
     <!-- Create Start -->
     <section class="create_section">
         <div>
-            <div class="container py-5">
-                <div class="row">
-                    <div class="col-md-4">
+            <div class="container mt-4">
+                <div class="row ctrate-text">
+                    <div class="col-md-4  p-2 mb-3 ">
                         <div class="icon_style">
-                            <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="" srcset=""
+                                <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="" srcset=""
                                 width="60" style="width: 66px;">
                         </div>
-                        <h2 class="mt-4 h2_title">Create Bill</h2>
+                        <h2 class="mt-2 h2_title heading">Create Bill</h2>
                         <p>Choose from 20 templates</p>
                     </div>
-                    <div class="col-md-4">
-                        <div class="icon_style">
+                    <div class="col-md-4  p-2 mb-3">
+                        <div class="icon_style ">
                             <img src="{{ asset('assets/frontend/img/icon/pdf.png') }}" alt="" srcset=""
                                 width="60" style="width: 60px;position: relative;left: 3px;">
                         </div>
-                        <h2 class="mt-4 h2_title">Send PDF</h2>
+                        <h2 class="mt-2 h2_title">Send PDF</h2>
                         <p>Email or print your invoice</br>to send to your client</p>
                     </div>
-                    <div class="col-md-4">
-                        <div class="icon_style">
+                    <div class="col-md-4  p-2 mb-3">
+                        <div class="icon_style ">
                             <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt="" srcset=""
                                 width="60">
                         </div>
-                        <h2 class="mt-4 h2_title">Get Paid</h2>
+                        <h2 class="mt-2 h2_title">Get Paid</h2>
                         <p>Receive payment in</br>accounts by Card or Paypal</p>
                     </div>
                 </div>
@@ -66,13 +167,13 @@
   @endphp --}}
         <div>
             <div class="container my-3">
-                <div class="text-center pb-5">
+                <div class="text-center pb-5 ctrate-text">
                     <h2 class="h2_title">Choose Your Invoice Template</h2>
                     <p class="fs-sm fw-bolder">Start creating your professional bill</p>
                 </div>
                 <div class="row text-center">
                     @foreach ($invoice_template as $invoice_temp)
-                        <div class="col-md-4 mt-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12  mt-4">
                             <a href="{{ url('home/invoice/page/' . $invoice_temp->id) }}">
                                 <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}" alt=""
                                     height="360" srcset="" style="border: 1px solid #ccc;">
@@ -154,32 +255,6 @@
             padding: 0;
 
         }
-
-
-        .plan h1 {
-            font-style: normal;
-            font-weight: 400;
-            font-size: 36px;
-            color: #FFB317;
-            padding-bottom: 5px;
-
-        }
-
-        .plan p {
-            font-style: normal;
-            font-weight: 400;
-            font-size: 18px;
-            color: #898989;
-
-        }
-
-        .plan {
-            padding-top: 32px;
-            padding-bottom: 50px;
-            padding-left: 50px;
-            padding-right: 50px;
-        }
-
         .Single_item {
             text-align: center;
             / margin: 10px;/ border: 1px solid #CCCCCC;
@@ -313,7 +388,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="plan text-center">
+                    <div class="plan text-center ctrate-text">
                         <h1>Our Pricing Plan</h1>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
                             the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
