@@ -50,17 +50,17 @@
             </div>
 
             @php
-                use Carbon\Carbon;
-                echo $packageDuration = $subscribe->packageDuration;
-                $create_date = $subscribe->created_at;
-                $date = new Carbon($create_date);
-                $val = $date->diffInDays(Carbon::now());
-                echo $val;
-                if($packageDuration  >= $val){
-                    echo "date ache";
-                }else{
-                    echo "date nai";
-                }
+                // use Carbon\Carbon;
+                // echo $packageDuration = $subscribe->packageDuration;
+                // $create_date = $subscribe->created_at;
+                // $date = new Carbon($create_date);
+                // $val = $date->diffInDays(Carbon::now());
+                // echo $val;
+                // if($packageDuration  >= $val){
+                //     echo "date ache";
+                // }else{
+                //     echo "date nai";
+                // }
             @endphp
 
         </div>

@@ -90,7 +90,7 @@ body {
 }
 .dash_menu ul li ul li a {
     border-left: 4px solid transparent;
-    padding: 10px 20px;
+    padding: 3px 20px;
 }
 .menu ul li a {
     display: inline-block;

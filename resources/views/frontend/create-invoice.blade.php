@@ -512,6 +512,90 @@
 </section>
 <!-- Invoice Section End -->
 
+<style>
+    .custom-radio input {
+       display: none;
+     }
+
+     .radio-btn {
+       width: 100%;
+       border: 3px solid transparent;
+       display: inline-block;
+       border-radius: 2px;
+       position: relative;
+       text-align: center;
+       box-shadow: 0 0 20px #c3c3c367;
+       cursor: pointer;
+       height: 367px;
+     }
+
+     .radio-btn > i {
+       color: #ffffff;
+       background-color: #8373e6;
+       font-size: 20px;
+       position: absolute;
+       top: -15px;
+       left: 50%;
+       transform: translateX(-50%) scale(4);
+       border-radius: 50%;
+       padding: 0px 5px;
+       transition: 0.2s;
+       pointer-events: none;
+       opacity: 0;
+       z-index: 9999;
+     }
+
+     .radio-btn .hobbies-icon {
+       width: 100%;
+       height: auto;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+     }
+
+     .radio-btn .hobbies-icon i {
+       color: #8373e6;
+       line-height: 80px;
+       font-size: 60px;
+     }
+
+     .radio-btn .hobbies-icon h3 {
+       color: #8373e6;
+       font-family: "Raleway", sans-serif;
+       font-size: 16px;
+       font-weight: 400;
+       text-transform: uppercase;
+     }
+
+     .custom-radio input:checked + .radio-btn {
+       border: 3px solid #8373e6;
+     }
+
+     .custom-radio input:checked + .radio-btn > i {
+       opacity: 1;
+       transform: translateX(-50%) scale(1);
+     }
+     .radio-btn img{
+       width: 100%;
+     }
+        .paddin_invoice_40{
+            padding: 0 40px;
+        }
+        @media only screen and (max-width: 1024px) {
+            .paddin_invoice_40{
+            padding: 0 18px;
+        }
+        }
+        @media only screen and (max-width: 768px) {
+            .paddin_invoice_40{
+            padding: 0 20px;
+        }
+
+
+       </style>
+
+
 <!-- Invoice Template Start -->
 <section class="invoice_template">
   <div>
@@ -520,89 +604,15 @@
         <h2 class="h2_title">Choose Your Invoice Template</h2>
         <p class="fs-sm fw-bolder">Start creating your professional bill</p>
       </div>
- <style>
- .custom-radio input {
-    display: none;
-  }
-
-  .radio-btn {
-    width: 100%;
-    border: 3px solid transparent;
-    display: inline-block;
-    border-radius: 2px;
-    position: relative;
-    text-align: center;
-    box-shadow: 0 0 20px #c3c3c367;
-    cursor: pointer;
-    height: 336px;
-  }
-
-  .radio-btn > i {
-    color: #ffffff;
-    background-color: #8373e6;
-    font-size: 20px;
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%) scale(4);
-    border-radius: 50%;
-    padding: 0px 5px;
-    transition: 0.2s;
-    pointer-events: none;
-    opacity: 0;
-    z-index: 9999;
-  }
-
-  .radio-btn .hobbies-icon {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .radio-btn .hobbies-icon i {
-    color: #8373e6;
-    line-height: 80px;
-    font-size: 60px;
-  }
-
-  .radio-btn .hobbies-icon h3 {
-    color: #8373e6;
-    font-family: "Raleway", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    text-transform: uppercase;
-  }
-
-  .custom-radio input:checked + .radio-btn {
-    border: 3px solid #8373e6;
-  }
-
-  .custom-radio input:checked + .radio-btn > i {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-  }
-  .radio-btn img{
-    width: 100%;
-  }
-
-
-    </style>
-
-
-
-@if(!$template_id=="")
-
+        @if(!$template_id=="")
         <div class="row text-center">
             @foreach ($invoice_template as $invoice_temp )
-            <label class="custom-radio col-sm-3 mb-2">
+            <label class="custom-radio  col-sm-6 col-md-4 mt-4 paddin_invoice_40">
                 <input type="radio" name="template_name" value="{{ $invoice_temp->id }}" @if($template_id==$invoice_temp->id) checked @else  @endif  />
                 <span class="radio-btn"
                   > <i class="bi bi-check-lg"></i>
                   <div class="hobbies-icon">
-                    <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" style="border: 1px solid #ccc;">
+                    <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" height="360" style="border: 1px solid #ccc;">
                   </div>
                 </span>
               </label>
@@ -611,12 +621,12 @@
       @else
           <div class="row text-center">
             @foreach ($invoice_template as $invoice_temp )
-            <label class="custom-radio col-sm-3 mb-2">
+            <label class="custom-radio col-sm-6 col-md-4 mt-4 paddin_invoice_40">
                 <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"  @if($invoice_temp->id==$template_id_check->id) checked @else  @endif  />
                 <span class="radio-btn"
                   > <i class="bi bi-check-lg"></i>
                   <div class="hobbies-icon">
-                    <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" style="border: 1px solid #ccc;">
+                    <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}"   height="360"  alt="" style="border: 1px solid #ccc;">
                   </div>
                 </span>
               </label>

@@ -1,27 +1,18 @@
 @extends('layouts.frontend.app')
 @section('title', 'Home page')
 @push('frontend_css')
-    <!-- DataTables -->
-    {{-- <link href="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
-    <!-- Responsive datatable examples -->
-    {{-- <link href="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"> --}}
-    {{-- type="text/css" /> --}}
-    <!-- Multi Item Selection examples -->
-    {{-- <link href="{{ asset('assets/admin/plugins/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
-    {{-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
-
 
     {{-- dashborad link --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap"
         rel="stylesheet">
     <!--bootstrap css-->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <!--dashboard custom css-->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/datatable_css_custom.css') }}">
 
     <style>
         .dataTables_filter,
@@ -90,8 +81,8 @@
 @endpush
 @section('frontend_content')
     <!-- Sub Nav Start -->
-    <section class="sub_nav py-2 border-bottom">
-        <div class="">
+    {{-- <section class="sub_nav py-1 border-bottom">
+         <div class="">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="nav col">
@@ -105,7 +96,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Sub Nav Start -->
     <!-- Sign in form Start -->
     <section class="container-fluid bg-color ">
@@ -118,12 +109,11 @@
                     .border_right{
                         border-right: 1px solid rgb(202, 199, 199);
                     }
-
                 </style>
                 <section class="page-top ">
                     <div class="side-bar border_right">
                         <div class="logo text-center">
-                            <a href="index.html"><img src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}"
+                            <a href="{{ route('all.invoice') }}"><img src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}"
                                     alt="Logo"></a>
                             <h5 style="">Women In Digital</h5>
                             <p>womenindigital.net@gmail.com</p>
@@ -134,13 +124,11 @@
                             <a href="#" class="nav-icon"><span aria-hidden="true">×</span></a>
                             <nav class='dash_menu'>
                                 <ul>
-
                                     <li class="sub-menu    @yield('all_invoice')">
                                         <a href='#invoice'><img src="{{ asset('assets/frontend/img/icon/page.png') }}"
                                                 alt="">My Invoices
                                             <div class='fa fa-caret-down right'></div>
                                         </a>
-
                                         <ul class="@yield('d-block')">
                                             <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
                                                     Invoices</a></li>
@@ -166,12 +154,22 @@
 
                 </section>
 
-            </div>
+        </div>
+        <style>
+            .margin_left{
+                margin-left: 1%;
+                margin-top: 0.4%;
+            }
+        </style>
             <div class="col-9 m-0 p-0">
-
-
+                <div class="container-fluid ">
+                    <div class="row">
+                        <div class="col-12 text-end  margin_left">
+                            <a href="{{ route('create') }}" class="btn btn-warning ">Create Bill</a>
+                        </div>
+                    </div>
+                </div>
                 @yield('dashboard_content')
-
                 <div class="container-fluid  m-0 p-0 @yield('display-none')">
                     <div class="row mt-2 m-0 p-0">
                         <div class="col-md-3">
@@ -239,35 +237,23 @@
 
             </div>
         </div>
-
     </section>
-
     <script src="{{ asset('js/custom.js') }}"></script>
     <!-- Sign in form End -->
 @endsection
 @push('frontend_js')
-    <!-- Required datatable js -->
-    <script src="{{ asset('assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    <!-- Buttons examples -->
-    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatables/jszip.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatables/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatables/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatables/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatables/buttons.print.min.js') }}"></script>
-
-    <!-- Key Tables -->
-    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.keyTable.min.js') }}"></script>
-
-    <!-- Responsive examples -->
-    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
-
-    <!-- Selection table -->
-    <script src="{{ asset('assets/admin/plugins/datatables/dataTables.select.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('#example').DataTable( {
+            paging: true,
+        } );
+    } );
+    </script>
+
+
 
     <script>
         $(document).ready(function() {
@@ -301,4 +287,5 @@
                 .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
         });
     </script>
+
 @endpush
