@@ -16,13 +16,14 @@ class DashboardController extends Controller
 {
     public function allInvoice()
     {
-        $user = Auth::user()->id;
-        Invoice::where('user_id', $user)->where('invoice_status','incomlete')->delete();
+        $user_id = Auth::user()->id;
+        Invoice::where('user_id', $user_id)->where('invoice_status','incomlete')->delete();
 
         $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total']);
         $count = $invoicessData->count();
 
-        return view('frontend.all-invoice')->with(compact('invoicessData', 'count'));
+        $user = User::where('id',$user_id)->get();
+        return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user'));
     }
 
     public function edit($id)
