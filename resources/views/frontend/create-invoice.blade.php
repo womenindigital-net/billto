@@ -591,6 +591,20 @@
             .paddin_invoice_40{
             padding: 0 20px;
         }
+    }
+    .pakages_name{
+        background: rgb(9 25 30 / 78%);
+        padding: 1px 11px;
+        border-radius: 5px;
+        line-height: normal;
+        font-size: 16px;
+        position: relative;
+        top: 8%;
+        color: white;
+        left: 30%;
+        font-weight: 700;
+        z-index: 9999;
+        }
 
 
        </style>
@@ -608,6 +622,7 @@
         <div class="row text-center">
             @foreach ($invoice_template as $invoice_temp )
             <label class="custom-radio  col-sm-6 col-md-4 mt-4 paddin_invoice_40">
+                <span class="pakages_name">Basic</span>
                 <input type="radio" name="template_name" value="{{ $invoice_temp->id }}" @if($template_id==$invoice_temp->id) checked @else  @endif  />
                 <span class="radio-btn"
                   > <i class="bi bi-check-lg"></i>
@@ -622,6 +637,7 @@
           <div class="row text-center">
             @foreach ($invoice_template as $invoice_temp )
             <label class="custom-radio col-sm-6 col-md-4 mt-4 paddin_invoice_40">
+                <span class="pakages_name">Basic</span>
                 <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"  @if($invoice_temp->id==$template_id_check->id) checked @else  @endif  />
                 <span class="radio-btn"
                   > <i class="bi bi-check-lg"></i>

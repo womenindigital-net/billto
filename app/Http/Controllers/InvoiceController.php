@@ -53,8 +53,15 @@ class InvoiceController extends Controller
     {
         $template_id = $id;
         $user = Auth::user()->id;
-        Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
 
+        $join_table_value = DB::table('users')
+        ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+        ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+        ->join('subscription_package_templates', 'payment_getways.subscription_package_id', '=', 'subscription_package_templates.subscriptionPackageId')
+        ->where('users.id',  $user)->get();
+        // dd($join_table_value);
+
+        Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
         $lastInvoice = Invoice::where('user_id', $user)
             ->orderBy('created_at', 'desc')
             ->get([

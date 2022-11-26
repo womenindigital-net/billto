@@ -256,13 +256,13 @@
   table.dataTable tbody td.dt-body-nowrap {
 	white-space: nowrap;
   }
-  
+
   table.dataTable,
   table.dataTable th,
   table.dataTable td {
 	box-sizing: content-box;
   }
-  
+
   /*
    * Control feature layout
    */
@@ -425,7 +425,7 @@
 	clear: both;
 	height: 0;
   }
-  
+
   @media screen and (max-width: 767px) {
 	.dataTables_wrapper .dataTables_info,
 	.dataTables_wrapper .dataTables_paginate {

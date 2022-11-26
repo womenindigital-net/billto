@@ -8,9 +8,6 @@ jQuery(document).ready(function(){
 	});
 
 
-
-
-
 });
 
 $('.sub-menu ul').hide();
