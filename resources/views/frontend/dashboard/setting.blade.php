@@ -2,6 +2,9 @@
 @section('display-none')
     d-none
 @endsection
+@section('custom_dash_menu')
+custom_dash_menu
+@endsection
 @section('setting')
     left_manu
 @endsection
@@ -10,64 +13,10 @@
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endpush
-<style>
-    .side-bar_left {
-        min-height: 68vh;
-    }
 
-    #picture__input {
-        display: none;
-    }
-
-    .propic {
-        width: 168px;
-        height: 168px;
-        aspect-ratio: 16/9;
-        background: #ddd;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        margin: auto;
-        color: #aaa;
-        border: 2px dashed currentcolor;
-        cursor: pointer;
-        font-family: sans-serif;
-        transition: color 300ms ease-in-out, background 300ms ease-in-out;
-        outline: none;
-        overflow: hidden;
-        border-radius: 50%;
-    }
-
-    .picture:hover {
-        color: #777;
-        background: #ccc;
-    }
-
-    .picture:active {
-        border-color: turquoise;
-        color: turquoise;
-        background: #eee;
-    }
-
-    .picture:focus {
-        color: #777;
-        background: #ccc;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .picture__img {
-        max-width: 100%;
-        width: 168px;
-        height: 168px;
-        border-radius: 50%;
-    }
-    /* .hide{
-        display: none;
-    } */
-</style>
 @section('dashboard_content')
     @foreach ($user as $item)
-        <section class="container-fluid   bg-white side-bar_left ">
+        <section class="container-fluid  side-bar_left mt-1 ">
             <div>
                 @if (session()->has('message'))
                     <div class="alert alert-success">
@@ -78,10 +27,10 @@
             <form action="{{ url('/all/invoices/user-setting' . $item->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="row">
-                    <div class="col-4 ">
+                <div class="row   bg-white">
+                    <div class="col-sm-4 ">
                         <div class="d-flex justify-content-center">
-                            <div class="card border-0   my-5" style="width: 18rem;">
+                            <div class="card border-0   my-sm-5 my-2" style="width: 18rem;">
                                 <div class="card-body" style="margin: 0 auto;">
                                     <label   for="picture__input" tabIndex="0">
                                         <img class="propic"  src="{{ asset('uploads/userImage/' . $item->picture__input) }}" alt="">
@@ -93,8 +42,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8 ">
-                        <div class="row mt-5">
+                    <div class="col-sm-8 ">
+                        <div class="row mt-sm-5">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
@@ -116,7 +65,7 @@
                                         readonly>
                                 </div>
                             </div>
-                            <div>
+                            <div class="mb-2">
                                 <button type="submit" class="btn btn-outline-success">Update</button>
                             </div>
                         </div>
