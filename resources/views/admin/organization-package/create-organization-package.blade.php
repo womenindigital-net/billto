@@ -39,7 +39,7 @@
                                 <div class="card p-2 mt-1">
                                     <h3>Create organization package
                                         <a href="{{ url('admin/organization/package/list') }}"
-                                            class="btn btn-primary btn-sm text-white  float-end ">Organization List
+                                            class="btn btn-primary btn-sm text-white  float-end p-2"> <i class="bx bx-right-arrow-alt"></i> Organization Package List
                                         </a>
                                     </h3>
                                 </div>

@@ -41,8 +41,8 @@
                                     </div>
                                     <h3>Subscription List
                                         <a href="{{ url('admin/package/page') }}"
-                                            class="btn btn-primary btn-sm text-white  float-end ">Add
-                                            Package
+                                            class="btn btn-primary btn-sm text-white  float-end "> <i class="bx bx-left-arrow-alt "></i> Add
+                                           Suscription Package
                                         </a>
                                     </h3>
                                 </div>

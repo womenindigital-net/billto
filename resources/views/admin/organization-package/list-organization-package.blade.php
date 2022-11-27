@@ -41,7 +41,7 @@
                                 <div class="card-header">
                                     <h3>Organization List
                                         <a href="{{ url('admin/organization/package/page') }}"
-                                            class="btn btn-primary btn-sm text-white  float-end ">Add
+                                            class="btn btn-primary btn-sm text-white  float-end "> <i class="bx bx-left-arrow-alt"></i> Add
                                             Organigation Package
                                         </a>
                                     </h3>

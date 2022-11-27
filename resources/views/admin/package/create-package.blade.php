@@ -2,6 +2,8 @@
 @section('title', 'Home Page')
 
 @push('admin_style_css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 @endpush
 @section('page_content')
     <div class="main-content">
@@ -23,8 +25,8 @@
                     </div>
                 </div>
                 <!--************************************
-            ********** Main content Start ***********
-            ************************************-->
+                ********** Main content Start ***********
+                ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -36,29 +38,31 @@
                                         </div>
                                     @endif
                                 </div>
+
                                 <div class="card p-2 mt-1">
                                     <h3>Create subscription package
                                         <a href="{{ url('admin/package/list') }}"
-                                            class="btn btn-primary btn-sm text-white  float-end ">List
+                                            class="btn btn-primary btn-sm text-white  float-end p-2"> <i class="bx bx-right-arrow-alt "></i> Subscription package List
                                         </a>
                                     </h3>
                                 </div>
                                 <hr>
-                                <form action="{{ url('admin/package/store') }}" method="POST" class="needs-validation" novalidate>
+                                <form action="{{ url('admin/package/store') }}" method="POST" class="needs-validation"
+                                    novalidate>
                                     @csrf
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom01" class="form-label">Package name</label>
-                                                <input type="text" name="packageName" class="form-control" id="validationCustom01"
-                                                     required>
+                                                <input type="text" name="packageName" class="form-control"
+                                                    id="validationCustom01" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom02" class="form-label"> Package Duration</label>
-                                                <select class="form-select" name="packageDuration"
-                                                    id="validationCustom02" required>
+                                                <select class="form-select" name="packageDuration" id="validationCustom02"
+                                                    required>
                                                     <option selected disabled value="">Select package</option>
                                                     <option value="30">One Month</option>
                                                     <option value="90">three Month</option>
@@ -71,22 +75,23 @@
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom03" class="form-label">Package Price</label>
-                                                <input type="number" name="price"  class="form-control" id="validationCustom02"
-                                                      required>
+                                                <input type="number" name="price" class="form-control"
+                                                    id="validationCustom02" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom03" class="form-label">Tamplate Quantity</label>
-                                                <input type="number" name="templateQuantity" class="form-control" id="validationCustom02"
-                                                      required>
+                                                <input type="number" name="templateQuantity" class="form-control"
+                                                    id="validationCustom02" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Limit invoice generate</label>
-                                                <input type="number" name="limitInvoiceGenerate" class="form-control" id="validationCustom02"
-                                                      required>
+                                                <label for="validationCustom03" class="form-label">Limit invoice
+                                                    generate</label>
+                                                <input type="number" name="limitInvoiceGenerate" class="form-control"
+                                                    id="validationCustom02" required>
                                             </div>
                                         </div>
                                     </div>
@@ -96,9 +101,11 @@
                                             @foreach ($invoiceTemplates as $invoiceTemplate)
                                                 <div class="col-md-4 mb-2">
                                                     <div class=" d-flex">
-                                                        <input type="checkbox" name="template[]" value="{{ $invoiceTemplate->id }}"
+                                                        <input type="checkbox" name="template[]"
+                                                            value="{{ $invoiceTemplate->id }}"
                                                             style="height: 20px; width:20px">
-                                                        <label class="form-label ms-2">{{ $invoiceTemplate->templateName }}</label>
+                                                        <label
+                                                            class="form-label ms-2">{{ $invoiceTemplate->templateName }}</label>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -119,8 +126,8 @@
 
 
                 <!--************************************
-                 ********** Main content END ***********
-                 ************************************-->
+                     ********** Main content END ***********
+                     ************************************-->
 
             </div>
             <!-- container-fluid -->

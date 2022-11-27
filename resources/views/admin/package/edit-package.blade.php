@@ -39,7 +39,7 @@
                                 <div class="card p-2 mt-1">
                                     <h3>Edit package
                                         <a href="{{ url('admin/package/list') }}"
-                                            class="btn btn-danger btn-sm text-white  float-end ">Back
+                                            class="btn btn-danger btn-sm text-white  float-end "> <i class="bx bx-left-arrow-alt"></i> Back
                                         </a>
                                     </h3>
                                 </div>
