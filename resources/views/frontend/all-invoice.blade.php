@@ -8,7 +8,6 @@
     <!--dashboard custom css-->
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/datatable_css_custom.css') }}">
-
 @endpush
 @section('frontend_content')
     <!-- Sign in form Start -->
@@ -17,49 +16,67 @@
             <div class="col-md-3 m-0 p-0">
                 <section class="page-top">
                     <div class="side-bar border_right">
-                        <div class="logo design_logo text-center hide_mobile_view">
-                            <a href="{{ route('all.invoice') }}"><img
-                                    src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}" alt="Logo"></a>
-                            <h5 style="">Women In Digital</h5>
-                            <p>womenindigital.net@gmail.com</p>
-                            <span href="#" class="nav-icon"><i class="bi bi-list"></i></span>
-                        </div>
-
-                        <div class="mobile_menu canvas-menu">
-                            <div class="text-center d-md-none mobile_sidebar">
-                                <a href="{{ route('all.invoice') }}"><img
-                                        src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}" alt="Logo"></a>
+                        @foreach ($user as $item)
+                            <div class="logo design_logo text-center hide_mobile_view">
+                                @if ($item->picture__input)
+                                    <a href="{{ route('all.invoice') }}"><img
+                                            src="{{ asset('uploads/userImage/' . $item->picture__input) }}"
+                                            alt="Logo"></a>
+                                @else
+                                    <a href="{{ route('all.invoice') }}"><img
+                                            src="{{ asset('uploads/defaultUserImage/avater.jpg') }}" alt="Logo"></a>
+                                @endif
                                 <h5 style="">Women In Digital</h5>
-                                <p>womenindigital.net@gmail.com</p>
+                                <p>{{ $item->email }}</p>
+                                <span href="#" class="nav-icon"><i class="bi bi-list"></i></span>
                             </div>
-                            <nav class='dash_menu @yield('custom_dash_menu') '>
-                                <ul>
-                                    <li class="sub-menu    @yield('all_invoice')">
-                                        <a href='#invoice'><img src="{{ asset('assets/frontend/img/icon/page.png') }}"
-                                                alt="">My Invoices
-                                            <div class='fa fa-caret-down right'></div>
-                                        </a>
-                                        <ul class="@yield('d-block')">
-                                            <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
-                                                    Invoices</a></li>
-                                            <li><a href='#invoice' class="@yield('over-view') ">Over Due</a></li>
-                                            <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid</a></li>
-                                            <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid</a></li>
-                                            <li><a href='#invoice' class="@yield('SendbyEmail') ">Send by Email</a></li>
-                                            <li><a href='#invoice' class="@yield('Trush') ">Trush</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/contact.png') }}"
-                                                alt="">My Customers</a></li>
-                                    <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/group.png') }}"
-                                                alt="">My Reports</a></li>
-                                    <li><a href='{{ url('/all/invoices/user-setting') }}' class="@yield('setting')"><img
-                                                src="{{ asset('assets/frontend/img/icon/settings.png') }}"
-                                                alt="">Settings</a></li>
-                                </ul>
-                            </nav>
-                        </div>
+                        @endforeach
+                        @foreach ($user as $item)
+                            <div class="mobile_menu canvas-menu">
+                                <div class="text-center d-md-none mobile_sidebar">
+                                    @if ($item->picture__input)
+                                        <a href="{{ route('all.invoice') }}"><img
+                                                src="{{ asset('uploads/userImage/' . $item->picture__input) }}"
+                                                alt="Logo"></a>
+                                    @else
+                                        <a href="{{ route('all.invoice') }}"><img
+                                                src="{{ asset('uploads/defaultUserImage/avater.jpg') }}"
+                                                alt="Logo"></a>
+                                    @endif
 
+                                    <h5 style="">Women In Digital</h5>
+                                    <p>{{ $item->email }}</p>
+                                </div>
+                                <nav class='dash_menu @yield('custom_dash_menu') '>
+                                    <ul>
+                                        <li class="sub-menu    @yield('all_invoice')">
+                                            <a href='#invoice'><img src="{{ asset('assets/frontend/img/icon/page.png') }}"
+                                                    alt="">My Invoices
+                                                <div class='fa fa-caret-down right'></div>
+                                            </a>
+                                            <ul class="@yield('d-block')">
+                                                <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
+                                                        Invoices</a></li>
+                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due</a></li>
+                                                <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid</a></li>
+                                                <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid</a></li>
+                                                <li><a href='#invoice' class="@yield('SendbyEmail') ">Send by Email</a></li>
+                                                <li><a href='#invoice' class="@yield('Trush') ">Trush</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href='#'><img
+                                                    src="{{ asset('assets/frontend/img/icon/contact.png') }}"
+                                                    alt="">My Customers</a></li>
+                                        <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/group.png') }}"
+                                                    alt="">My Reports</a></li>
+                                        <li><a href='{{ url('/all/invoices/user-setting') }}'
+                                                class="@yield('setting')"><img
+                                                    src="{{ asset('assets/frontend/img/icon/settings.png') }}"
+                                                    alt="">Settings</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        @endforeach
                     </div>
 
                 </section>
@@ -161,6 +178,4 @@
             });
         });
     </script>
-
-
 @endpush

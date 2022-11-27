@@ -90,7 +90,7 @@
             font-weight: 400;
             font-size: 18px;
             color: #898989;
-            text-align: justify;
+            text-align: center;
 
         }
 
@@ -101,24 +101,24 @@
             padding-right: 50px;
         }
     }
-    .pakages_name{
-            background: rgb(9 25 30 / 78%);
-            padding: 1px 11px;
-            border-radius: 5px;
-            line-height: normal;
-            font-size: 16px;
-            position: relative;
-            top: 8%;
-            color: white;
-            display: flex;
-            font-weight: 700;
-            z-index: 9999;
-            text-decoration: none;
-            float: right;
-            margin-right: 13%;
 
-        }
+    .pakages_name {
+        background: rgb(9 25 30 / 78%);
+        padding: 1px 11px;
+        border-radius: 5px;
+        line-height: normal;
+        font-size: 16px;
+        position: relative;
+        top: 8%;
+        color: white;
+        display: flex;
+        font-weight: 700;
+        z-index: 9999;
+        text-decoration: none;
+        float: right;
+        margin-right: 13%;
 
+    }
 </style>
 
 @section('frontend_content')
@@ -148,7 +148,7 @@
                 <div class="row ctrate-text">
                     <div class="col-md-4  p-2 mb-3 ">
                         <div class="icon_style">
-                                <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="" srcset=""
+                            <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="" srcset=""
                                 width="60" style="width: 66px;">
                         </div>
                         <h2 class="mt-2 h2_title heading">Create Bill</h2>
@@ -177,51 +177,51 @@
     <!-- Create End -->
 
     <style>
-        .tamplate_show_home{
+        .tamplate_show_home {
             padding: 0 40px;
         }
-        .tamplate_show_home img{
+
+        .tamplate_show_home img {
             width: 100%;
 
         }
-        .tamplate_show_A a{
+
+        .tamplate_show_A a {
             text-decoration: none;
         }
-
-
     </style>
     <!-- Invoice Template Start -->
     <section class="invoice_template">
-            <div class="container my-3">
-                <div class="text-center pb-5 ctrate-text">
-                    <h2 class="h2_title">Choose Your Invoice Template</h2>
-                    <p class="fs-sm fw-bolder">Start creating your professional bill</p>
-                </div>
-                <div class="row">
-                    @foreach ($invoice_template as $invoice_temp)
+        <div class="container my-3">
+            <div class="text-center pb-5 ctrate-text">
+                <h2 class="h2_title">Choose Your Invoice Template</h2>
+                <p class="fs-sm fw-bolder">Start creating your professional bill</p>
+            </div>
+            <div class="row">
+                @foreach ($invoice_template as $invoice_temp)
                     @php
-                    $join_table_valu = DB::table('subscription_package_templates')
-                      ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
-                      ->where('subscription_package_templates.template', $invoice_temp->id)
-                      ->get();
-                      $join_table_value = $join_table_valu->unique('subscription_packages.id');
-                     @endphp
-                     @foreach ( $join_table_value as  $join_table_values )
+                        $join_table_valu = DB::table('subscription_package_templates')
+                            ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
+                            ->where('subscription_package_templates.template', $invoice_temp->id)
+                            ->get();
+                        $join_table_value = $join_table_valu->unique('subscription_packages.id');
+                    @endphp
+                    @foreach ($join_table_value as $join_table_values)
                         <div class="col-lg-4  tamplate_show_A">
                             <span class="pakages_name">
                                 {{ $join_table_values->packageName }}
                             </span>
-                            <a href="{{ url('home/invoice/page/' .$invoice_temp->id) }}">
+                            <a href="{{ url('home/invoice/page/' . $invoice_temp->id) }}">
                                 <div class="tamplate_show_home">
-                                    <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}" alt=""
-                                    style="border: 1px solid #ccc;">
+                                    <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
+                                        alt="" style="border: 1px solid #ccc;">
                                 </div>
                             </a>
                         </div>
                     @endforeach
-                    @endforeach
-                </div>
+                @endforeach
             </div>
+        </div>
     </section>
     <!-- Invoice Template End -->
     <!-- Package subscription start -->
@@ -294,6 +294,7 @@
             padding: 0;
 
         }
+
         .Single_item {
             text-align: center;
             / margin: 10px;/ border: 1px solid #CCCCCC;
@@ -435,7 +436,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 @foreach ($subcription_package as $sub_package)
                     @php
                         $day = $sub_package->packageDuration;
@@ -478,6 +479,99 @@
                             <a href="{{ url('payment-gateway', $sub_package->id) }}">buttom</a>
                         </div>
                         <!-- single item -->
+                    </div>
+                @endforeach
+            </div> --}}
+            <style>
+                .priceColor {
+                    color: #FFB317;
+                    font-size: 64px;
+                    font-weight: bold;
+                }
+
+                .heding {
+                    margin-top: 1.875rem;
+                    margin-bottom: 1.875rem;
+                    font-weight: bold;
+                }
+
+                .btnCss {
+                    background-color: #FFB317;
+                    color: #FFFFFF;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 24px;
+                    padding: 7px 55px 8px 46px;
+                }
+            </style>
+            <div class="row">
+                @foreach ($subcription_package as $sub_package)
+                    @php
+                        $day = $sub_package->packageDuration;
+                    @endphp
+                    <div class="col-md-4 col-sm-12 col-lg-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }} ">
+                        <div class="card text-center" style="width: 18.75rem">
+                            <div class="card-body">
+                                <h3 class="heding">{{ $sub_package->packageName }}</h3>
+                                <h1 class="priceColor">${{ $sub_package->price }}</h1>
+                                <p class="text-muted">
+                                    galley of type and scrambled it to make a type specimen book.
+                                </p>
+                                <hr />
+                                <div class="text-start">
+                                    <p class="text-muted mb-3">
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        Invoice
+                                        Template: <strong>{{ $sub_package->templateQuantity }}</strong>
+                                    </p>
+                                    <p class="text-muted mb-3">
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> Total
+                                        invoice Genarate: <strong>{{ $sub_package->limitInvoiceGenerate }}</strong>
+                                    </p>
+                                    <p class="text-muted mb-3">
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        Package
+                                        Duration: <strong> @php
+                                            if ($day == 30) {
+                                                echo 'One Month';
+                                            } elseif ($day == 90) {
+                                                echo 'Three Month';
+                                            } elseif ($day == 180) {
+                                                echo 'Six Month';
+                                            } elseif ($day == 365) {
+                                                echo 'One Year';
+                                            }
+                                        @endphp
+                                        </strong>
+                                    </p>
+                                    <p class="text-muted mb-3">
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
+                                        type
+                                        specimen book.
+                                    </p>
+                                    <p class="text-muted mb-3">
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> galley
+                                        of
+                                        type and
+                                        scrambled
+                                        it to
+                                    </p>
+                                    <p class="text-muted mb-2">
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
+                                        type
+                                        specimen book.
+                                    </p>
+                                    <p class="text-muted mb-3">
+                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" /> make
+                                        a
+                                        type
+                                        specimen book.
+                                    </p>
+                                </div>
+                                <a href="{{ url('payment-gateway', $sub_package->id) }}"><button class="btnCss">Buy
+                                        now</button></a>
+                            </div>
+                        </div>
                     </div>
                 @endforeach
             </div>
