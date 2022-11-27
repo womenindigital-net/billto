@@ -310,17 +310,17 @@
 
         }
 
-        .border_bottom_color1 {
+        .border_bottom_color2 {
             border: 1px solid #FCB21C;
 
         }
 
-        .border_bottom_color2 {
+        .border_bottom_color3 {
             border: 1px solid #039DBF;
 
         }
 
-        .border_bottom_color3 {
+        .border_bottom_color4 {
             border: 1px solid #A950A0;
         }
 

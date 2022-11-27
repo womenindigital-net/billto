@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\PaymentGetway;
+use Illuminate\Support\Facades\DB;
 use App\Models\SubscriptionPackage;
 use App\Http\Controllers\Controller;
 use App\Models\ComplateInvoiceCount;
@@ -15,7 +16,12 @@ class SubscriptionPackContoller extends Controller
     {
        $subscribe_package = SubscriptionPackage::where('id',$id)->get();
 
-        return view('payment_gatewaye.index', compact('subscribe_package'));
+       $package_tamplate = DB::table('subscription_packages')
+       ->join('subscription_package_templates', 'subscription_packages.id', '=', 'subscription_package_templates.subscriptionPackageId')
+       ->join('invoice_templates', 'subscription_package_templates.template', '=', 'invoice_templates.id')
+       ->where('subscription_packages.id', $id)->get();
+
+        return view('payment_gatewaye.index', compact('subscribe_package','package_tamplate'));
     }
 
     public function payment_gateway_store(Request $request)
