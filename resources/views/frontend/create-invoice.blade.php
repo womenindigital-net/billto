@@ -58,8 +58,8 @@
 <!-- Invoice Section Start -->
 <section class="invoice_section" >
   <div class="my-5">
-    {{-- <form method="post" id="invoiceForm" enctype="multipart/form-data"> --}}
-        <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
+    <form method="post" id="invoiceForm" enctype="multipart/form-data">
+        {{-- <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data"> --}}
       @csrf
       <div class="container p-4 " style="background-color: #F0F0F0;">
         <div class="row md-2 invoice_header_right">
@@ -340,6 +340,7 @@
             </div>
           </div>
         </div>
+
         <div class="table-responsive ">
           <table class="table">
             <thead style="background-color: #FFB317;">
@@ -358,7 +359,7 @@
 
           </table>
         </div>
-        <div class="product row">
+        <div class="product row m-0">
           <div class="p-0 pe-1 pb-2 col-md-6">
             <textarea type="text" name="product_name" id="product_name" class="form-control" placeholder="Description of service or product" rows="1" onchange="addData();"></textarea>
             <div id="name_error" class="invalid-feedback"></div>
@@ -385,7 +386,7 @@
           </div>
         </div>
 
-        <div class="mt-4 ms-2">
+        <div class="mt-4 ">
           <span id="product_clear" class="btn btn-danger" onclick="pclear()">
             Clear Input
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon" viewBox="0 0 16 16">
@@ -398,12 +399,12 @@
         <div class="row pt-4">
           <div class="col-md-6">
             <div>
-              <label for="invoice_notes" class="form-label p-2">Notes</label>
+              <label for="invoice_notes" class="form-label">Notes</label>
               <textarea name="invoice_notes" id="invoice_notes" rows="5" class="form-control" placeholder="Notes - any related information not already covered">@if (isset($invoiceData->invoice_notes)){{ $invoiceData->invoice_notes }}@endif</textarea>
               <div id="invoice_notes_error" class="invalid-feedback"></div>
             </div>
             <div class="">
-              <label for="invoice_terms" class="form-label p-2 d-flex align-items-center">Terms</label>
+              <label for="invoice_terms" class="form-label pt-2 d-flex align-items-center">Terms</label>
               <textarea name="invoice_terms" id="invoice_terms" rows="5" class="form-control" placeholder="Terms and conditions, late fees, payment methods, delivery schedule">@if (isset($invoiceData->invoice_terms)){{ $invoiceData->invoice_terms }}@endif</textarea>
               <div id="invoice_terms_error" class="invalid-feedback"></div>
             </div>
@@ -605,12 +606,7 @@
         font-weight: 700;
         z-index: 9999;
         }
-
-
-       </style>
-
-
-<!-- Invoice Template Start -->
+</style>
 <section class="invoice_template">
   <div>
     <div class="container my-3">
@@ -621,8 +617,18 @@
         @if(!$template_id=="")
         <div class="row text-center">
             @foreach ($invoice_template as $invoice_temp )
+           @php
+            $join_table_valu = DB::table('subscription_package_templates')
+              ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
+              ->where('subscription_package_templates.template', $invoice_temp->id)
+              ->get();
+              $join_table_value = $join_table_valu->unique('subscription_packages.id');
+             @endphp
+             @foreach ( $join_table_value as  $join_table_values )
             <label class="custom-radio  col-sm-6 col-md-4 mt-4 paddin_invoice_40">
-                <span class="pakages_name">Basic</span>
+                <span class="pakages_name">
+                    {{ $join_table_values->packageName }}
+                </span>
                 <input type="radio" name="template_name" value="{{ $invoice_temp->id }}" @if($template_id==$invoice_temp->id) checked @else  @endif  />
                 <span class="radio-btn"
                   > <i class="bi bi-check-lg"></i>
@@ -632,12 +638,23 @@
                 </span>
               </label>
               @endforeach
+              @endforeach
            </div>
       @else
           <div class="row text-center">
             @foreach ($invoice_template as $invoice_temp )
+            @php
+            $join_table_valu = DB::table('subscription_package_templates')
+              ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
+              ->where('subscription_package_templates.template', $invoice_temp->id)
+              ->get();
+              $join_table_value = $join_table_valu->unique('subscription_packages.id');
+             @endphp
+             @foreach ( $join_table_value as  $join_table_values )
             <label class="custom-radio col-sm-6 col-md-4 mt-4 paddin_invoice_40">
-                <span class="pakages_name">Basic</span>
+                <span class="pakages_name">
+                    {{ $join_table_values->packageName }}
+                </span>
                 <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"  @if($invoice_temp->id==$template_id_check->id) checked @else  @endif  />
                 <span class="radio-btn"
                   > <i class="bi bi-check-lg"></i>
@@ -646,6 +663,7 @@
                   </div>
                 </span>
               </label>
+              @endforeach
               @endforeach
            </div>
        </div>

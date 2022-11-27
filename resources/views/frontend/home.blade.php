@@ -101,7 +101,26 @@
             padding-right: 50px;
         }
     }
+    .pakages_name{
+            background: rgb(9 25 30 / 78%);
+            padding: 1px 11px;
+            border-radius: 5px;
+            line-height: normal;
+            font-size: 16px;
+            position: relative;
+            top: 8%;
+            color: white;
+            display: flex;
+            font-weight: 700;
+            z-index: 9999;
+            text-decoration: none;
+            float: right;
+            margin-right: 13%;
+
+        }
+
 </style>
+
 @section('frontend_content')
     <!-- Banner Start -->
     <section class="banner_section">
@@ -157,32 +176,52 @@
     </section>
     <!-- Create End -->
 
+    <style>
+        .tamplate_show_home{
+            padding: 0 40px;
+        }
+        .tamplate_show_home img{
+            width: 100%;
+
+        }
+        .tamplate_show_A a{
+            text-decoration: none;
+        }
+
+
+    </style>
     <!-- Invoice Template Start -->
     <section class="invoice_template">
-        {{-- @php
-    $pad = "4545.45%";
-    $precent = substr($pad,-1);
-    $paid = substr($pad,0,-1);
-    dd([$precent,$paid]);
-  @endphp --}}
-        <div>
             <div class="container my-3">
                 <div class="text-center pb-5 ctrate-text">
                     <h2 class="h2_title">Choose Your Invoice Template</h2>
                     <p class="fs-sm fw-bolder">Start creating your professional bill</p>
                 </div>
-                <div class="row text-center">
+                <div class="row">
                     @foreach ($invoice_template as $invoice_temp)
-                        <div class="col-lg-4 col-md-6 col-sm-12  mt-4">
-                            <a href="{{ url('home/invoice/page/' . $invoice_temp->id) }}">
-                                <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}" alt=""
-                                    height="360" srcset="" style="border: 1px solid #ccc;">
+                    @php
+                    $join_table_valu = DB::table('subscription_package_templates')
+                      ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
+                      ->where('subscription_package_templates.template', $invoice_temp->id)
+                      ->get();
+                      $join_table_value = $join_table_valu->unique('subscription_packages.id');
+                     @endphp
+                     @foreach ( $join_table_value as  $join_table_values )
+                        <div class="col-lg-4  tamplate_show_A">
+                            <span class="pakages_name">
+                                {{ $join_table_values->packageName }}
+                            </span>
+                            <a href="{{ url('home/invoice/page/' .$invoice_temp->id) }}">
+                                <div class="tamplate_show_home">
+                                    <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}" alt=""
+                                    style="border: 1px solid #ccc;">
+                                </div>
                             </a>
                         </div>
                     @endforeach
+                    @endforeach
                 </div>
             </div>
-        </div>
     </section>
     <!-- Invoice Template End -->
     <!-- Package subscription start -->

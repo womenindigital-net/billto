@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
+
 class InvoiceController extends Controller
 {
     /**
@@ -54,12 +55,13 @@ class InvoiceController extends Controller
         $template_id = $id;
         $user = Auth::user()->id;
 
-        $join_table_value = DB::table('users')
+        $join_table_template = DB::table('users')
         ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
         ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
         ->join('subscription_package_templates', 'payment_getways.subscription_package_id', '=', 'subscription_package_templates.subscriptionPackageId')
         ->where('users.id',  $user)->get();
-        // dd($join_table_value);
+        // dd( $join_table_template);
+
 
         Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
         $lastInvoice = Invoice::where('user_id', $user)
@@ -109,15 +111,24 @@ class InvoiceController extends Controller
             'invoice_terms' => 'max:1024',
         ]);
         $user_id = Auth::user()->id;
-
+       $template_id_check = $request->template_name;
         // Chack package limit
         $join_table_value = DB::table('users')
             ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
             ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
-            ->selectRaw('users.*, payment_getways.*, subscription_packages.*, payment_getways.created_at as payment_created_at')
+            ->join('subscription_package_templates', 'payment_getways.subscription_package_id', '=', 'subscription_package_templates.subscriptionPackageId')
+            ->selectRaw('users.*, payment_getways.*, subscription_packages.*,subscription_package_templates.*, payment_getways.created_at as payment_created_at')
             ->where('users.id',  $user_id)->get();
 
-        foreach ($join_table_value as $join_table) {  }
+            // dd($join_table_value);
+
+        $data="";
+        foreach ($join_table_value as $join_table) {
+             $truvalue = $join_table->template === $template_id_check;
+             if($truvalue==true){
+                 $data = 1;
+             }
+        }
 
         $check = ComplateInvoiceCount::where('user_id', $user_id)->first();
 
@@ -126,7 +137,7 @@ class InvoiceController extends Controller
         $date = new Carbon($create_date);
         $today_date = $date->diffInDays(Carbon::now());
 
-        if ($join_table->limitInvoiceGenerate >= $check->current_invoice_total + 1 && $packageDuration >= $today_date) {
+        if ($join_table->limitInvoiceGenerate >= $check->current_invoice_total + 1 && $packageDuration >= $today_date && $data==1) {
 
             if ($check) {
                 ComplateInvoiceCount::where('user_id', $user_id)->increment('invoice_count_total');
