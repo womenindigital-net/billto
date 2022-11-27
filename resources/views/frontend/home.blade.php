@@ -509,7 +509,7 @@
                     @php
                         $day = $sub_package->packageDuration;
                     @endphp
-                    <div class="col-md-4 col-sm-12 col-lg-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }} ">
+                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }} ">
                         <div class="card text-center" style="width: 18.75rem">
                             <div class="card-body">
                                 <h3 class="heding">{{ $sub_package->packageName }}</h3>
