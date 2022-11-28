@@ -520,19 +520,17 @@
 
      .radio-btn {
        width: 100%;
-       border: 3px solid transparent;
        display: inline-block;
        border-radius: 2px;
        position: relative;
        text-align: center;
-       box-shadow: 0 0 20px #c3c3c367;
        cursor: pointer;
-       height: 367px;
+       height: 400px;
      }
 
      .radio-btn > i {
        color: #ffffff;
-       background-color: #8373e6;
+       background-color: #FFB317;
        font-size: 20px;
        position: absolute;
        top: -15px;
@@ -556,21 +554,20 @@
      }
 
      .radio-btn .hobbies-icon i {
-       color: #8373e6;
+       color: #FFB317;
        line-height: 80px;
        font-size: 60px;
      }
 
      .radio-btn .hobbies-icon h3 {
-       color: #8373e6;
-       font-family: "Raleway", sans-serif;
+       color: #FFB317;
        font-size: 16px;
        font-weight: 400;
-       text-transform: uppercase;
+
      }
 
      .custom-radio input:checked + .radio-btn {
-       border: 3px solid #8373e6;
+       border: 3px solid #FFB317;
      }
 
      .custom-radio input:checked + .radio-btn > i {
@@ -580,31 +577,21 @@
      .radio-btn img{
        width: 100%;
      }
-        .paddin_invoice_40{
-            padding: 0 40px;
-        }
-        @media only screen and (max-width: 1024px) {
-            .paddin_invoice_40{
-            padding: 0 18px;
-        }
-        }
-        @media only screen and (max-width: 768px) {
-            .paddin_invoice_40{
-            padding: 0 20px;
-        }
-    }
+
     .pakages_name{
-        background: rgb(9 25 30 / 78%);
+
+        background: rgb(9 25 30 / 100%);
         padding: 1px 11px;
-        border-radius: 5px;
-        line-height: normal;
+        border-radius: 2px;
         font-size: 16px;
-        position: relative;
-        top: 8%;
-        color: white;
-        left: 30%;
+        position: absolute;
+        top:  0.4%;;
+        color: #FFB317;
         font-weight: 700;
         z-index: 1;
+        text-decoration: none;
+        right: 0%;
+        text-align: center;
         }
 </style>
 <section class="invoice_template">
@@ -625,17 +612,19 @@
               $join_table_value = $join_table_valu->unique('subscription_packages.id');
              @endphp
              @foreach ( $join_table_value as  $join_table_values )
-            <label class="custom-radio  col-sm-6 col-md-4 mt-4 paddin_invoice_40">
-                <span class="pakages_name">
-                    {{ $join_table_values->packageName }}
-                </span>
-                <input type="radio" name="template_name" value="{{ $invoice_temp->id }}" @if($template_id==$invoice_temp->id) checked @else  @endif  />
-                <span class="radio-btn"
-                  > <i class="bi bi-check-lg"></i>
-                  <div class="hobbies-icon">
-                    <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" height="360" style="border: 1px solid #ccc;">
-                  </div>
-                </span>
+            <label class="custom-radio  col-sm-6 col-md-4 mt-4 ">
+                <div class="card shadow border-0">
+                    <span class="pakages_name">
+                        {{ $join_table_values->packageName }}
+                    </span>
+                    <input type="radio" name="template_name" value="{{ $invoice_temp->id }}" @if($template_id==$invoice_temp->id) checked @else  @endif  />
+                    <span class="radio-btn"
+                      > <i class="bi bi-check-lg"></i>
+                      <div class="hobbies-icon">
+                        <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt=""  style="border: 1px solid #ccc; height:395.4px;">
+                      </div>
+                    </span>
+                </div>
               </label>
               @endforeach
               @endforeach
@@ -651,17 +640,19 @@
               $join_table_value = $join_table_valu->unique('subscription_packages.id');
              @endphp
              @foreach ( $join_table_value as  $join_table_values )
-            <label class="custom-radio col-sm-6 col-md-4 mt-4 paddin_invoice_40">
-                <span class="pakages_name">
-                    {{ $join_table_values->packageName }}
-                </span>
-                <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"  @if($invoice_temp->id==$template_id_check->id) checked @else  @endif  />
-                <span class="radio-btn"
-                  > <i class="bi bi-check-lg"></i>
-                  <div class="hobbies-icon">
-                    <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}"   height="360"  alt="" style="border: 1px solid #ccc;">
-                  </div>
-                </span>
+             <label class="custom-radio  col-sm-6 col-md-4 mt-4 ">
+                <div class=" card shadow border-0">
+                    <span class="pakages_name">
+                        {{ $join_table_values->packageName }}
+                    </span>
+                    <input type="radio" name="template_name" value="{{ $invoice_temp->id }}" @if($template_id==$invoice_temp->id) checked @else  @endif  />
+                    <span class="radio-btn"
+                      > <i class="bi bi-check-lg"></i>
+                      <div class="hobbies-icon">
+                        <img src=" {{ asset('uploads/template/'.$invoice_temp->templateImage) }}" alt="" style="border: 1px solid #ccc; height:395.4px;">
+                      </div>
+                    </span>
+                </div>
               </label>
               @endforeach
               @endforeach

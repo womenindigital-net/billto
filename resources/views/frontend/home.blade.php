@@ -32,8 +32,8 @@
         .plan {
             padding-top: 32px;
             padding-bottom: 50px;
-            padding-left: 50px;
-            padding-right: 50px;
+            /* padding-left: 50px;
+            padding-right: 50px; */
         }
 
     }
@@ -71,8 +71,8 @@
         .plan {
             padding-top: 32px;
             padding-bottom: 50px;
-            padding-left: 50px;
-            padding-right: 50px;
+            /* padding-left: 50px;
+            padding-right: 50px; */
         }
     }
 
@@ -97,28 +97,29 @@
         .plan {
             padding-top: 32px;
             padding-bottom: 50px;
-            padding-left: 50px;
-            padding-right: 50px;
         }
     }
 
     .pakages_name {
-        background: rgb(9 25 30 / 78%);
+        background: rgb(9 25 30 / 100%);
         padding: 1px 11px;
-        border-radius: 5px;
-        line-height: normal;
+        border-radius: 2px;
         font-size: 16px;
-        position: relative;
-        top: 8%;
-        color: white;
-        display: flex;
+        position: absolute;
+        top: 0%;
+        color: #FFB317;
         font-weight: 700;
         z-index: 1;
         text-decoration: none;
-        float: right;
-        margin-right: 13%;
-
+        right: 0%;
+        text-align: center;
     }
+    @media only screen and (max-width: 340px) {
+        .image_width img{
+            width: 100%;
+            }
+    }
+
 </style>
 
 @section('frontend_content')
@@ -131,9 +132,8 @@
                         <a href="{{ route('create') }}" class="btn billto_btn "><span>Create Bill</span></a>
                         <a href="{{ url('/clear-cache') }}" class="btn billto_btn"><span>cache Clear</span></a>
                     </div>
-                    <div class="col-md-6 text-end">
-                        <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" width="100%" alt=""
-                            srcset="">
+                    <div class="col-md-6 text-end image_width">
+                        <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" alt="" >
                     </div>
                 </div>
             </div>
@@ -178,7 +178,7 @@
 
     <style>
         .tamplate_show_home {
-            padding: 0 40px;
+            /* padding: 0 40px; */
         }
 
         .tamplate_show_home img {
@@ -189,6 +189,7 @@
         .tamplate_show_A a {
             text-decoration: none;
         }
+
     </style>
     <!-- Invoice Template Start -->
     <section class="invoice_template">
@@ -207,16 +208,18 @@
                         $join_table_value = $join_table_valu->unique('subscription_packages.id');
                     @endphp
                     @foreach ($join_table_value as $join_table_values)
-                        <div class="col-lg-4  tamplate_show_A">
-                            <span class="pakages_name">
-                                {{ $join_table_values->packageName }}
-                            </span>
-                            <a href="{{ url('home/invoice/page/' . $invoice_temp->id) }}">
-                                <div class="tamplate_show_home">
-                                    <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
-                                        alt="" style="border: 1px solid #ccc;">
-                                </div>
-                            </a>
+                        <div class="col-lg-4  tamplate_show_A  mb-4">
+                            <div class="card shadow">
+                                <span class="pakages_name">
+                                    {{ $join_table_values->packageName }}
+                                </span>
+                                <a href="{{ url('home/invoice/page/' . $invoice_temp->id) }}">
+                                    <div class="tamplate_show_home">
+                                        <img src="{{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
+                                            alt="" style="border: 1px solid #ccc;">
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     @endforeach
                 @endforeach
@@ -224,41 +227,6 @@
         </div>
     </section>
     <!-- Invoice Template End -->
-    <!-- Package subscription start -->
-    {{-- <section>
-       <div class="container mt-5">
-        <div class="text-center pb-5">
-            <h2 class="h2_title">Choose Your Package</h2>
-            <p class="fs-sm fw-bolder">Start creating your professional bill</p>
-          </div>
-        <div class="row mb-5">
-            @foreach ($subcription_package as $sub_package)
-            @php
-                $day = $sub_package->packageDuration;
-
-            @endphp
-            <div class="col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body text-center bg-success">
-                        <h5 class="card-title">{{ $sub_package->packageName }}</h5>
-                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"> Invoice Template: <strong>{{ $sub_package->templateQuantity }}</strong> </li>
-                        <li class="list-group-item">Total invoice Genarate: <strong>{{ $sub_package->limitInvoiceGenerate }}</strong></li>
-                        <li class="list-group-item">Package Duration: <strong> @php
-                              if($day<30){ echo "1 Month"; }elseif($day<60){ echo "2 Month";}elseif($day<=365){  echo "1 Year"; }
-                        @endphp</strong></li>
-                        <li class="list-group-item">Package Price: <strong>Tk. {{ $sub_package->price }}</strong></li>
-                    </ul>
-                    <div class="card-body text-center">
-                        <a href="{{ url('payment-gateway',$sub_package->id)}}" class="btn btn-primary">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-       </div>
-    </section> --}}
 
     <style>
         p a {
@@ -436,52 +404,7 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="row">
-                @foreach ($subcription_package as $sub_package)
-                    @php
-                        $day = $sub_package->packageDuration;
-                    @endphp
-                    <div class="col-md-12 col-lg-4 mb-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }}">
-                        <!-- single item -->
-                        <div class="Single_item ">
-                            <h5>{{ $sub_package->packageName }}</h5>
-                            <div class="border_bottom border_bottom_color{{ $count1++ }}"></div>
-                            <div class="package_time package_time_bg_color{{ $count2++ }}">
-                                <p><sup>$</sup> <span> {{ $sub_package->price }}</span><br> month</p>
-                            </div>
-                            <div class="table border">
-                                <table id="customers">
-                                    <tr>
-                                        <td style="width: 50%;">Invoice Template: </td>
-                                        <td><strong>{{ $sub_package->templateQuantity }}</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td> Total invoice Genarate:</td>
-                                        <td> <strong>{{ $sub_package->limitInvoiceGenerate }}</strong> </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Package Duration: </td>
-                                        <td><strong> @php
-                                            if ($day == 30) {
-                                                echo 'One Month';
-                                            } elseif ($day == 90) {
-                                                echo 'Three Month';
-                                            } elseif ($day == 180) {
-                                                echo 'Six Month';
-                                            } elseif ($day == 365) {
-                                                echo 'One Year';
-                                            }
-                                        @endphp
-                                            </strong> </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <a href="{{ url('payment-gateway', $sub_package->id) }}">buttom</a>
-                        </div>
-                        <!-- single item -->
-                    </div>
-                @endforeach
-            </div> --}}
+
             <style>
                 .priceColor {
                     color: #FFB317;
@@ -510,7 +433,7 @@
                         $day = $sub_package->packageDuration;
                     @endphp
                     <div class="col-md-6 col-sm-12 col-lg-4 mb-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }} ">
-                        <div class="card text-center" style="width: 18.75rem">
+                        <div class="card text-center">
                             <div class="card-body">
                                 <h3 class="heding">{{ $sub_package->packageName }}</h3>
                                 <h1 class="priceColor">${{ $sub_package->price }}</h1>

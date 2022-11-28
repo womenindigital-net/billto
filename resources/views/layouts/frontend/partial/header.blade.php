@@ -18,7 +18,7 @@
 <header class="header_sevtion sticky-top p-0 m-0">
 
 
-    <nav class="navbar   navbar-expand-lg navbar-light p-0 m-0 " style="background-color: #F0F0F0; z-index: 9999999;     height: 68px;">
+    <nav class="navbar   navbar-expand-lg navbar-light p-0 m-0 " style="background-color: #F0F0F0; z-index: 9999999;">
 
         <div class="container">
           <a class="navbar-brand" href="{{ route('home') }}">
