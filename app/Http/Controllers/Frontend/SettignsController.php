@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\User;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,6 +22,8 @@ class SettignsController extends Controller
     {
         $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total']);
         $count = $invoicessData->count();
-        return view('frontend.dashboard.home')->with(compact('invoicessData', 'count'));
+        $user_id = Auth::user()->id;
+        $user = User::where('id',$user_id)->get();
+        return view('frontend.dashboard.home')->with(compact('invoicessData', 'count','user'));
     }
 }

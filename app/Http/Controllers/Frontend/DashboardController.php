@@ -50,7 +50,6 @@ class DashboardController extends Controller
     public function userSettingEdit(){
         $user_id = auth()->user()->id;
         $user = User::where('id',$user_id)->get();
-
         return view('frontend.dashboard.setting',compact('user'));
     }
     public function userUpdate(UpdateUserRequest $request, $id){
