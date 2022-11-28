@@ -603,6 +603,7 @@
       </div>
         @if(!$template_id=="")
         <div class="row text-center">
+
             @foreach ($invoice_template as $invoice_temp )
            @php
             $join_table_valu = DB::table('subscription_package_templates')
@@ -630,6 +631,7 @@
               @endforeach
            </div>
       @else
+
           <div class="row text-center">
             @foreach ($invoice_template as $invoice_temp )
             @php
@@ -645,7 +647,7 @@
                     <span class="pakages_name">
                         {{ $join_table_values->packageName }}
                     </span>
-                    <input type="radio" name="template_name" value="{{ $invoice_temp->id }}" @if($template_id==$invoice_temp->id) checked @else  @endif  />
+                    <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"  @if($template_id_check->id == $invoice_temp->id) checked @else @endif  />
                     <span class="radio-btn"
                       > <i class="bi bi-check-lg"></i>
                       <div class="hobbies-icon">
