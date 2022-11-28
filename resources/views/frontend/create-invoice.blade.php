@@ -543,7 +543,7 @@
        transition: 0.2s;
        pointer-events: none;
        opacity: 0;
-       z-index: 9999;
+       z-index: 1;
      }
 
      .radio-btn .hobbies-icon {
@@ -604,7 +604,7 @@
         color: white;
         left: 30%;
         font-weight: 700;
-        z-index: 9999;
+        z-index: 1;
         }
 </style>
 <section class="invoice_template">

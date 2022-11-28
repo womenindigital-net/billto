@@ -113,7 +113,7 @@
         color: white;
         display: flex;
         font-weight: 700;
-        z-index: 9999;
+        z-index: 1;
         text-decoration: none;
         float: right;
         margin-right: 13%;
