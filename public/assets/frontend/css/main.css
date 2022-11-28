@@ -20,7 +20,11 @@ html {
   font-family: 'Montserrat', sans-serif;
 }
 *{
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
 }
 
 /*
@@ -41,12 +45,6 @@ html {
 ::selection {
   background: #b3d4fc;
   text-shadow: none;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 ul {
