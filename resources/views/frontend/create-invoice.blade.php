@@ -80,8 +80,8 @@
                                             <div class="avatar-preview">
                                                 <div id="imagePreview"
                                                     @if (isset($invoiceData->invoice_logo)) style="background-image: url({{ url('storage/invoice/logo/' . $invoiceData->invoice_logo) }});"
-                        @else
-                        style="background-image: url();" @endif>
+                                                      @else
+                                                          style="background-image: url();" @endif>
                                                 </div>
                                             </div>
                                         </div>
@@ -295,7 +295,7 @@
                                         placeholder="Who is this invoice to?(required)">
 @if (isset($invoiceData->invoice_to))
 {{ $invoiceData->invoice_to }}
-@elseif (isset($lastInvoice->invoice_to))
+@elseif(isset($lastInvoice->invoice_to))
 {{ $lastInvoice->invoice_to }}
 @else
 @endif
@@ -442,8 +442,7 @@
                                 <textarea name="invoice_notes" id="invoice_notes" rows="5" class="form-control"
                                     placeholder="Notes - any related information not already covered">
 @if (isset($invoiceData->invoice_notes))
-{{ $invoiceData->invoice_notes }}
-@endif
+{{ $invoiceData->invoice_notes }}@endif
 </textarea>
                                 <div id="invoice_notes_error" class="invalid-feedback"></div>
                             </div>
@@ -749,7 +748,7 @@
                                             {{ $join_table_values->packageName }}
                                         </span>
                                         <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"
-                                            @if ($template_id == $invoice_temp->id) checked @else @endif />
+                                            @if ($template_id_check->id == $invoice_temp->id) checked @else @endif />
                                         <span class="radio-btn"> <i class="bi bi-check-lg"></i>
                                             <div class="hobbies-icon tempResponsive">
                                                 <img src=" {{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
@@ -761,85 +760,11 @@
                             @endforeach
                         @endforeach
                     </div>
-                    <section class="invoice_template">
-                        <div>
-                            <div class="container my-3">
-                                <div class="text-center pb-5">
-                                    <h2 class="h2_title">Choose Your Invoice Template</h2>
-                                    <p class="fs-sm fw-bolder">Start creating your professional bill</p>
-                                </div>
-                                @if (!$template_id == '')
-                                    <div class="row text-center">
-
-                                        @foreach ($invoice_template as $invoice_temp)
-                                            @php
-                                                $join_table_valu = DB::table('subscription_package_templates')
-                                                    ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
-                                                    ->where('subscription_package_templates.template', $invoice_temp->id)
-                                                    ->get();
-                                                $join_table_value = $join_table_valu->unique('subscription_packages.id');
-                                            @endphp
-                                            @foreach ($join_table_value as $join_table_values)
-                                                <label class="custom-radio  col-sm-6 col-md-4 mt-4 ">
-                                                    <div class="card shadow border-0">
-                                                        <span class="pakages_name">
-                                                            {{ $join_table_values->packageName }}
-                                                        </span>
-                                                        <input type="radio" name="template_name"
-                                                            value="{{ $invoice_temp->id }}"
-                                                            @if ($template_id == $invoice_temp->id) checked @else @endif />
-                                                        <span class="radio-btn"> <i class="bi bi-check-lg"></i>
-                                                            <div class="hobbies-icon">
-                                                                <img src=" {{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
-                                                                    alt=""
-                                                                    style="border: 1px solid #ccc; height:395.4px;">
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                            @endforeach
-                                        @endforeach
-                                    </div>
-                                @else
-                                    <div class="row text-center">
-                                        @foreach ($invoice_template as $invoice_temp)
-                                            @php
-                                                $join_table_valu = DB::table('subscription_package_templates')
-                                                    ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
-                                                    ->where('subscription_package_templates.template', $invoice_temp->id)
-                                                    ->get();
-                                                $join_table_value = $join_table_valu->unique('subscription_packages.id');
-                                            @endphp
-                                            @foreach ($join_table_value as $join_table_values)
-                                                <label class="custom-radio  col-sm-6 col-md-4 mt-4 ">
-                                                    <div class=" card shadow border-0">
-                                                        <span class="pakages_name">
-                                                            {{ $join_table_values->packageName }}
-                                                        </span>
-                                                        <input type="radio" name="template_name"
-                                                            value="{{ $invoice_temp->id }}"
-                                                            @if ($template_id_check->id == $invoice_temp->id) checked @else @endif />
-                                                        <span class="radio-btn"> <i class="bi bi-check-lg"></i>
-                                                            <div class="hobbies-icon">
-                                                                <img src=" {{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
-                                                                    alt=""
-                                                                    style="border: 1px solid #ccc; height:395.4px;">
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                </label>
-                                            @endforeach
-                                        @endforeach
-                                    </div>
-                            </div>
-                @endif
             </div>
         </div>
     </section>
     </form>
     <!-- Invoice Template End -->
-
-
 
     @if (isset($invoiceData->id))
     @endif
@@ -878,7 +803,7 @@
                                 <textarea class="form-control" id="Textarea1" name="email_body" rows="2"> information </textarea>
                             </div>
 
-                          
+
                         </div>
                         @endif
                     </div>
