@@ -4,41 +4,38 @@
         margin: 0;
     }
 
+
     .first_section {
         width: 100%;
         display: flex;
-        margin-bottom: 75px;
-        justify-content: space-between;
-        margin-top:-100px;
-        /* position: relative; */
-        /* z-index: 2; */
-
     }
 
+    .textHeading {
+        color: #FFF;
+        line-height: 24px;
+        font-size: 16px;
+        margin-left: 65px;
+        margin-top: 27px;
+        margin-bottom: 39px
+    }
 
     .logo_area img {
         width: 100px;
-        padding-bottom:5px;
     }
 
     .logo_area {
         width: 30%;
         float: left;
-        /* margin-top: -50px; */
-        padding-bottom:100px;
-        /* text-align: left; */
         text-align: start;
     }
-    .logo_area  p{
+
+    .logo_area p {
         color: #FFF;
     }
 
     .heading_area {
         text-align: right;
-        /* padding-top: 50px; */
         padding-bottom: 100px;
-        padding-right: 50px;
-
     }
 
     .heading_area h1 {
@@ -58,10 +55,6 @@
     .heading_area .b {
         width: 50%;
         float: right;
-    }
-
-    .heading_area .i_title {
-        /* margin-top: 20px; */
     }
 
     .i_sub_title {
@@ -95,69 +88,63 @@
     }
 
     .third_section {
-                width: 100%;
-                display: flex;
+        width: 100%;
+        display: flex;
 
-            }
+    }
 
-            .left_Side_bar {
-                width: 30%;
-                background-color: #0370BF;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                float: left;
-            }
-
-
-
-            .c {
-                padding: 5px;
-                color: #FFF;
-                line-height: 24px;
-                font-size: 16px;
-                padding-bottom: 20px;
-                /* margin-top:-100px;  */
-            }
+    .left_Side_bar {
+        width: 30%;
+        background-color: #0370BF;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        float: left;
+    }
 
 
-            .d {
-                padding: 5px;
-                color: #FFF;
-                line-height: 24px;
-                font-size: 16px;
-                padding-bottom: 40px;
-            }
 
 
-            .f {
-                margin-left: 10%;
-            }
 
-            .empty_div {
-                width: 25%;
-                float: left;
-            }
 
-            .table_div {
-                width: 75%;
-                float: right;
-                text-align: right;
-                /* border-top: 2px solid #FCB21C; */
-                padding-right: 20px;
-            }
-                        .page{
-                background: var(--white);
-                display: block;
-                margin: 0 auto;
-                position: relative;
-                box-shadow: var(--pageShadow);
-            }
-            .page[size="A4"] {
-                width: 21cm;
-                min-height: 29.7cm;
-                overflow: hidden;
-            }
+    .d {
+        padding: 5px;
+        color: #FFF;
+        line-height: 24px;
+        font-size: 16px;
+        padding-bottom: 40px;
+    }
 
+
+    .f {
+        margin-left: 10%;
+    }
+
+    .empty_div {
+        width: 25%;
+        float: left;
+    }
+
+    .table_div {
+        width: 75%;
+        float: right;
+        text-align: right;
+        /* border-top: 2px solid #FCB21C; */
+        padding-right: 20px;
+    }
+
+    .page {
+        background: var(--white);
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        box-shadow: var(--pageShadow);
+    }
+
+    .page[size="A4"] {
+        width: 21cm;
+        min-height: 29.7cm;
+        overflow: hidden;
+    }
 </style>
 
 
@@ -165,59 +152,28 @@
 </head>
 
 <body>
-
-    <div class="invoice_body page" size="A4" style="background: url('assets/vector-invoice/vector1.png') no-repeat scroll;">
-        <section class="first_section">
-            <div class="logo_area" style="margin-left:50px;">
-                <div class="c">
-                    <p style="font-size: 20px;"><b>Company Name </b></p>
+    <div class="invoice_body page" size="A4"
+        style="background: url('assets/vector-invoice/vector3.png') no-repeat scroll;">
+        <section class="first_section" style="height: 140px; width:800px; background-color: #414141;">
+            <div class="logo_area">
+                <div class="textHeading">
+                    <p><b>Company Name </b></p>
                     <p>123 Rockfeller Street,</p>
                     <p>New York, NY 12210</p>
                 </div>
-
-                <div class="c">
-                    <h5>To</h5>
-                    <p><b>New York, NY 12210</b></p>
-                    <p>123 Rockfeller Street,</p>
-                    <p>New York, NY 12210</p>
-                </div>
-                <div class="d">
-                    <h5>Ship To</h5>
-                    <p><b>Neals BD.</b></p>
-                    <p>123 Rockfeller Street,</p>
-                    <p>New York, NY 12210</p>
-                </div>
-
             </div>
-
-
             <div class="heading_area" style="color: #686868;">
-                <div class="i_logo" style="text-align: center;">
-
-                </div>
-                <div class="i_title">
-                    <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img" style="width: 70px">
-                    <h1>INVOICE</h1>
-                </div>
-                <div class="i_sub_title">
-                    <div class="a">
-                        <p>Incoice #</p>
-                        <p>invoice date</p>
-                        <p>p.o.#</p>
-                        <p>due date</p>
-                    </div>
-                    <div class="b">
-                        <p>10201</p>
-                        <p>11/02/2022</p>
-                        <p>12/11/2022</p>
-                        <p>27/01/2022</p>
-                    </div>
+                <div>
+                    <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img" style="width: 90px; height:90px; margin-top:20px; margin-right: 74px;border-radius: 25px;">
                 </div>
             </div>
         </section>
 
+        <section class="heading_area">
+            <h1>INVOICE</h1>
+        </section>
         <style>
-            .border{
+            .border {
                 border-left: 1px solid #FFF;
                 border-right: 1px solid #FFF;
                 border-bottom: 1px solid rgb(255, 255, 255);
@@ -290,21 +246,24 @@
                         </tbody>
                     </table>
                     <style>
-                        .empty_div ul li{
-                            list-style-type:none;
+                        .empty_div ul li {
+                            list-style-type: none;
                             padding: 10px;
 
                         }
-                        .table_div ul li{
-                            list-style-type:none;
+
+                        .table_div ul li {
+                            list-style-type: none;
                             padding: 10px;
 
                         }
-                        .empty_div{
+
+                        .empty_div {
                             margin-left: 410px;
                             width: 135px;
                         }
-                        .table_div{
+
+                        .table_div {
                             width: 118px;
                         }
                     </style>
@@ -333,16 +292,19 @@
 
             <div class="right_Side_bar ">
 
-                    <div class="f">
-                        <div class="thanks" style="padding-top: 20%;">
-                            <h5 style="color: #686868; font-weight: 400; font-size: 30px; padding-bottom:20px; border-top:2px solid #0370BF; width: 80%">Thank You for your business</h5>
-                        </div>
-                        <div class="g" style="color: #686868;">
-                            <p style="font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">terms & conditions</p>
-                            <p>Payment is due within 15 days</p>
-                            <p>Please make checks payable to: Company Name</p>
-                        </div>
+                <div class="f">
+                    <div class="thanks" style="padding-top: 20%;">
+                        <h5
+                            style="color: #686868; font-weight: 400; font-size: 30px; padding-bottom:20px; border-top:2px solid #0370BF; width: 80%">
+                            Thank You for your business</h5>
                     </div>
+                    <div class="g" style="color: #686868;">
+                        <p style="font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">terms &
+                            conditions</p>
+                        <p>Payment is due within 15 days</p>
+                        <p>Please make checks payable to: Company Name</p>
+                    </div>
+                </div>
             </div>
 
     </div>
