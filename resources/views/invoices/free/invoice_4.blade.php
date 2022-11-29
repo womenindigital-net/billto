@@ -9,7 +9,7 @@
         display: flex;
         margin-bottom: 75px;
         justify-content: space-between;
-        margin-top:-100px;
+        /* margin-top:100px; */
         /* position: relative; */
         /* z-index: 2; */
 
@@ -60,8 +60,8 @@
         float: right;
     }
 
-    .heading_area .i_title {
-        /* margin-top: 20px; */
+    .heading_area .i_title img {
+        border-radius: 50%;
     }
 
     .i_sub_title {
@@ -166,9 +166,10 @@
 
 <body>
 
+
     <div class="invoice_body page" size="A4" style="background: url('assets/vector-invoice/vector1.png') no-repeat scroll;">
         <section class="first_section">
-            <div class="logo_area" style="margin-left:50px;">
+             <div class="logo_area" style="margin-left:50px;">
                 <div class="c">
                     <p style="font-size: 20px;"><b>Company Name </b></p>
                     <p>123 Rockfeller Street,</p>
@@ -177,7 +178,7 @@
 
                 <div class="c">
                     <h5>To</h5>
-                    <p><b>New York, NY 12210</b></p>
+                    <p><b>{{ $invoiceData->invoice_form }}</b></p>
                     <p>123 Rockfeller Street,</p>
                     <p>New York, NY 12210</p>
                 </div>
@@ -196,7 +197,7 @@
 
                 </div>
                 <div class="i_title">
-                    <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img" style="width: 70px">
+                    <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img" style="width: 80px; height:80px;">
                     <h1>INVOICE</h1>
                 </div>
                 <div class="i_sub_title">
