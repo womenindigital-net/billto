@@ -761,9 +761,79 @@
                             @endforeach
                         @endforeach
                     </div>
+                    <section class="invoice_template">
+                        <div>
+                            <div class="container my-3">
+                                <div class="text-center pb-5">
+                                    <h2 class="h2_title">Choose Your Invoice Template</h2>
+                                    <p class="fs-sm fw-bolder">Start creating your professional bill</p>
+                                </div>
+                                @if (!$template_id == '')
+                                    <div class="row text-center">
+
+                                        @foreach ($invoice_template as $invoice_temp)
+                                            @php
+                                                $join_table_valu = DB::table('subscription_package_templates')
+                                                    ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
+                                                    ->where('subscription_package_templates.template', $invoice_temp->id)
+                                                    ->get();
+                                                $join_table_value = $join_table_valu->unique('subscription_packages.id');
+                                            @endphp
+                                            @foreach ($join_table_value as $join_table_values)
+                                                <label class="custom-radio  col-sm-6 col-md-4 mt-4 ">
+                                                    <div class="card shadow border-0">
+                                                        <span class="pakages_name">
+                                                            {{ $join_table_values->packageName }}
+                                                        </span>
+                                                        <input type="radio" name="template_name"
+                                                            value="{{ $invoice_temp->id }}"
+                                                            @if ($template_id == $invoice_temp->id) checked @else @endif />
+                                                        <span class="radio-btn"> <i class="bi bi-check-lg"></i>
+                                                            <div class="hobbies-icon">
+                                                                <img src=" {{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
+                                                                    alt=""
+                                                                    style="border: 1px solid #ccc; height:395.4px;">
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </label>
+                                            @endforeach
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <div class="row text-center">
+                                        @foreach ($invoice_template as $invoice_temp)
+                                            @php
+                                                $join_table_valu = DB::table('subscription_package_templates')
+                                                    ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
+                                                    ->where('subscription_package_templates.template', $invoice_temp->id)
+                                                    ->get();
+                                                $join_table_value = $join_table_valu->unique('subscription_packages.id');
+                                            @endphp
+                                            @foreach ($join_table_value as $join_table_values)
+                                                <label class="custom-radio  col-sm-6 col-md-4 mt-4 ">
+                                                    <div class=" card shadow border-0">
+                                                        <span class="pakages_name">
+                                                            {{ $join_table_values->packageName }}
+                                                        </span>
+                                                        <input type="radio" name="template_name"
+                                                            value="{{ $invoice_temp->id }}"
+                                                            @if ($template_id_check->id == $invoice_temp->id) checked @else @endif />
+                                                        <span class="radio-btn"> <i class="bi bi-check-lg"></i>
+                                                            <div class="hobbies-icon">
+                                                                <img src=" {{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
+                                                                    alt=""
+                                                                    style="border: 1px solid #ccc; height:395.4px;">
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </label>
+                                            @endforeach
+                                        @endforeach
+                                    </div>
+                            </div>
+                @endif
             </div>
-            @endif
-        </div>
         </div>
     </section>
     </form>
@@ -808,28 +878,78 @@
                                 <textarea class="form-control" id="Textarea1" name="email_body" rows="2"> information </textarea>
                             </div>
 
+                          
                         </div>
+                        @endif
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
-                                class="bi bi-x-circle"></i> Close</button>
-                        <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i> Send
-                            Mail</button>
-                    </div>
-                </form>
             </div>
+            </section>
+            </form>
+            <!-- Invoice Template End -->
 
-        </div>
-    </div>
-    <!-- Send invoice Modal End -->
-@endsection
-@push('frontend_js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
-        // A $( document ).ready() block.
-        $(document).ready(function() {
-            allData();
-        });
-    </script>
-@endpush
+
+            @if (isset($invoiceData->id))
+            @endif
+            <!-- Send invoice Modal start -->
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <form action="{{ route('sendmail.invoice') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="row">
+
+                                    <div class="mb-3">
+                                        <input type="hidden" name="template_id" value="{{ $last_invoice_id }}">
+                                        <br>
+                                        <label for="Input1" class="form-label">To</label>
+                                        <input type="email" class="form-control" id="Input1" name="emai_to"
+                                            placeholder="example@gmail.com" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Input2" class="form-label">Subject</label>
+                                        <input type="text" class="form-control" name="email_subject" id="Input2"
+                                            value="Subject" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Textarea1" class="form-label">Body</label>
+                                        <textarea class="form-control" id="Textarea1" name="email_body" rows="2"> information </textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
+                                        class="bi bi-x-circle"></i> Close</button>
+                                <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                    Send
+                                    Mail</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Send invoice Modal End -->
+        @endsection
+        @push('frontend_js')
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script>
+                // A $( document ).ready() block.
+                $(document).ready(function() {
+                    allData();
+                });
+            </script>
+        @endpush

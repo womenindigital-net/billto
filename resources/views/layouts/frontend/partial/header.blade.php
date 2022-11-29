@@ -13,16 +13,25 @@
 .btncustom.btn-check:focus+.btn, .btncustom:focus {
                   box-shadow: none !important;
                 }
+.navbar-brand img{
+  width: 100%;
+  height: 50px;
+}
+@media only screen and (max-width: 769px){
+    .navbar-brand img{
+  width: 100%;
+  height: 40px;
+}
+}
 </style>
 
 <header class="header_sevtion sticky-top p-0 m-0">
-
 
     <nav class="navbar   navbar-expand-lg navbar-light p-0 m-0 " style="background-color: #F0F0F0; z-index: 9999999;">
 
         <div class="container">
           <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="{{ asset('assets/frontend/img/LOGO/billto-logo.png') }}" alt="LOGO" width="" height="60">
+            <img src="{{ asset('assets/frontend/img/LOGO/billto-logo.png') }}" alt="LOGO">
           </a>
           <div class="navbar">
             <ul class="navbar-nav d-flex flex-row me-auto mb-2 mb-lg-0">
