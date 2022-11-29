@@ -111,10 +111,10 @@
 @if(session()->has('delete'))
 <style>
     .colored-toast {
-    background-color: #f55c5c !important;
+    background-color: #ffffff !important;
   }
   .colored-toast  {
-    color: rgb(253, 253, 253);
+    color: rgb(250, 6, 6);
     font-size: 15px;
   }
   </style>

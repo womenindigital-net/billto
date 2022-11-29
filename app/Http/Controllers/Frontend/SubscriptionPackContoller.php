@@ -29,29 +29,31 @@ class SubscriptionPackContoller extends Controller
 
     $request->validate([
         'package_price'=>'required',
-        'new_package_price'=>'required',
         'package_id'=>'required',
         'auth_user_id'=>'required'
     ]);
-   if($request->new_package_price == $request->package_price){
 
-     PaymentGetway::where('user_id',$request->auth_user_id)->update([
-       'amount'=>$request->package_price,
-       'subscription_package_id'=> $request->package_id,
-       'updated_at' => Carbon::now(),
+  $subscriptn_package =  SubscriptionPackage::where('id', $request->package_id)->first();
 
-     ]);
+    if($subscriptn_package->price === $request->package_price){
 
-     ComplateInvoiceCount::where('user_id',$request->auth_user_id)->update([
-        'current_invoice_total'=>'0',
-        'updated_at'=>Carbon::now()
-    ]);
+            PaymentGetway::where('user_id',$request->auth_user_id)->update([
+            'amount'=>$request->package_price,
+            'subscription_package_id'=> $request->package_id,
+            'updated_at' => Carbon::now(),
+            ]);
 
-        return response()->json(   $request->new_package_price);
+            ComplateInvoiceCount::where('user_id',$request->auth_user_id)->update([
+            'current_invoice_total'=>'0',
+            'updated_at'=>Carbon::now()
+            ]);
 
-        }else{
-            return response()->json(['message' => 'error']);
-        }
+            return redirect()->back()->with('success',' Package succesfuly purchase. ');
+    }else{
+       return redirect()->back()->with('delete','Something went wrong. Please try again.');
+    }
+
+
 
     }
 }
