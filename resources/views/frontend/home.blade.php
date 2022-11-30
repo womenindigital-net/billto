@@ -12,7 +12,7 @@
             font-size: 20px;
         }
 
-        .plan h1 {
+        .plan span {
             font-style: normal;
             font-weight: 400;
             font-size: 24px;
@@ -30,12 +30,18 @@
         }
 
         .plan {
-            padding-top: 32px;
-            padding-bottom: 50px;
+            /* padding-top: 32px;
+            padding-bottom: 50px; */
             /* padding-left: 50px;
             padding-right: 50px; */
         }
 
+    }
+
+    @media only screen and (max-width: 575px) {
+        .mb_sm_3 {
+            margin-bottom: 25px;
+        }
     }
 
     @media only screen and (max-width: 991px) and (min-width: 768px) {
@@ -51,7 +57,7 @@
             font-size: 20px;
         }
 
-        .plan h1 {
+        .plan span {
             font-style: normal;
             font-weight: 400;
             font-size: 24px;
@@ -77,34 +83,33 @@
     }
 
     @media only screen and (min-width: 992px) {
-        .plan h1 {
+        .plan span {
             font-style: normal;
-            font-weight: 400;
-            font-size: 30px;
+            font-weight: 700;
+            font-size: 24px;
             color: #FFB317;
-            padding-bottom: 10px;
+            line-height: 48px;
+            text-align: center;
         }
 
         .plan p {
-            font-style: normal;
+            line-height: 16px;
             font-weight: 400;
-            font-size: 18px;
+            font-size: 12px;
             color: #898989;
             text-align: center;
-
         }
 
         .plan {
-            padding-top: 32px;
-            padding-bottom: 50px;
+            padding: 3px 10px 40px 10px;
         }
     }
 
     .pakages_name {
         background: rgb(9 25 30 / 100%);
-        padding: 1px 11px;
+        padding: 1px 5px;
         border-radius: 2px;
-        font-size: 16px;
+        font-size: 13px;
         position: absolute;
         top: 0%;
         color: #FFB317;
@@ -114,62 +119,70 @@
         right: 0%;
         text-align: center;
     }
-    @media only screen and (max-width: 340px) {
-        .image_width img{
-            width: 100%;
-            }
-    }
 
+    @media only screen and (max-width: 340px) {
+        .image_width img {
+            width: 100%;
+        }
+    }
 </style>
 
 @section('frontend_content')
     <!-- Banner Start -->
     <section class="banner_section">
-        <div style="background: url({{ asset('assets/frontend/img/banner/banner-back.jpg') }}); opacity: .8;">
-            <div class="container py-5">
+        <div
+            style="background: url({{ asset('assets/frontend/img/banner/banner-back.jpg') }}); opacity: .8; padding-bottom: 28px;">
+            <div class="container pt-5">
                 <div class="row align-items-center">
-                    <div class="col-md-6 text">
+                    <div class="col-sm-6 text">
                         <a href="{{ route('create') }}" class="btn billto_btn "><span>Create Bill</span></a>
                         <a href="{{ url('/clear-cache') }}" class="btn billto_btn"><span>cache Clear</span></a>
                     </div>
-                    <div class="col-md-6 text-end image_width">
-                        <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" alt="" >
+                    <div class="col-sm-6 text-end image_width">
+                        <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Banner End -->
+    <style>
+        .create_section {
+            margin-top: 55px;
+        }
+
+        .create_section .ctrate-text .icon_style img {
+            width: 39px;
+            height: 42px;
+            top: 3px;
+            left: 4.5px;
+        }
+    </style>
 
     <!-- Create Start -->
     <section class="create_section">
-        <div>
-            <div class="container mt-4">
-                <div class="row ctrate-text">
-                    <div class="col-md-4  p-2 mb-3 ">
-                        <div class="icon_style">
-                            <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="" srcset=""
-                                width="60" style="width: 66px;">
-                        </div>
-                        <h2 class="mt-2 h2_title heading">Create Bill</h2>
-                        <p>Choose from 20 templates</p>
+        <div class="container">
+            <div class="row ctrate-text">
+                <div class="col-sm-4 mb_sm_3">
+                    <div class="icon_style">
+                        <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="">
                     </div>
-                    <div class="col-md-4  p-2 mb-3">
-                        <div class="icon_style ">
-                            <img src="{{ asset('assets/frontend/img/icon/pdf.png') }}" alt="" srcset=""
-                                width="60" style="width: 60px;position: relative;left: 3px;">
-                        </div>
-                        <h2 class="mt-2 h2_title">Send PDF</h2>
-                        <p>Email or print your invoice</br>to send to your client</p>
+                    <h2 class="h2_title heading">Create Bill</h2>
+                    <p class="create_section_p">Choose from 20 templates</p>
+                </div>
+                <div class="col-sm-4 mb_sm_3">
+                    <div class="icon_style ">
+                        <img src="{{ asset('assets/frontend/img/icon/pdf.png') }}" alt="">
                     </div>
-                    <div class="col-md-4  p-2 mb-3">
-                        <div class="icon_style ">
-                            <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt="" srcset=""
-                                width="60">
-                        </div>
-                        <h2 class="mt-2 h2_title">Get Paid</h2>
-                        <p>Receive payment in</br>accounts by Card or Paypal</p>
+                    <h2 class=" h2_title">Send PDF</h2>
+                    <p class="create_section_p">Email or print your invoice<br>to send to your client</p>
+                </div>
+                <div class="col-sm-4 ">
+                    <div class="icon_style ">
+                        <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt="">
                     </div>
+                    <h2 class="h2_title">Get Paid</h2>
+                    <p class="create_section_p">Receive payment in<br>accounts by Card or Paypal</p>
                 </div>
             </div>
         </div>
@@ -186,19 +199,45 @@
 
         }
 
+        .tamplate_show_A {
+            margin-bottom: 19px;
+        }
+
         .tamplate_show_A a {
             text-decoration: none;
         }
 
+        .invoice_template {
+            margin-top: 75px;
+        }
+
+        .invoice_template .h2_title2 {
+            color: #FFB317;
+            text-align: center;
+            font-weight: 700;
+            line-height: 24px;
+            font-size: 24px;
+        }
+
+        .invoice_template .invoice_p {
+            text-align: center;
+            font-weight: 400;
+            line-height: 24px;
+            font-size: 12px;
+        }
+
+        .invoice_template .invoice_template_margin {
+            margin-top: 40px;
+        }
     </style>
     <!-- Invoice Template Start -->
-    <section class="invoice_template">
-        <div class="container my-3">
-            <div class="text-center pb-5 ctrate-text">
-                <h2 class="h2_title">Choose Your Invoice Template</h2>
-                <p class="fs-sm fw-bolder">Start creating your professional bill</p>
+    <section class="invoice_template ">
+        <div class="container ">
+            <div class="text-center ctrate-text">
+                <p class="h2_title2">Choose Your Invoice Template</p>
+                <p class="invoice_p">Start creating your professional bill</p>
             </div>
-            <div class="row">
+            <div class="row invoice_template_margin">
                 @foreach ($invoice_template as $invoice_temp)
                     @php
                         $join_table_valu = DB::table('subscription_package_templates')
@@ -208,7 +247,7 @@
                         $join_table_value = $join_table_valu->unique('subscription_packages.id');
                     @endphp
                     @foreach ($join_table_value as $join_table_values)
-                        <div class="col-lg-4  tamplate_show_A  mb-4">
+                        <div class="col-sm-4 col-lg-3  tamplate_show_A">
                             <div class="card shadow">
                                 <span class="pakages_name">
                                     {{ $join_table_values->packageName }}
@@ -387,17 +426,27 @@
             display: none;
             visibility: hidden;
         }
+
+        .package_area {
+            margin-top: 19px;
+        }
+
+        .package_area_border {
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            margin-bottom: 48px;
+        }
     </style>
     @php
         $count1 = 1;
         $count2 = 1;
     @endphp
-    <div class="package_area mb-5">
-        <div class="container">
+    <div class="package_area ">
+        <div class="container package_area_border">
             <div class="row">
                 <div class="col-12">
                     <div class="plan text-center ctrate-text">
-                        <h1>Our Pricing Plan</h1>
+                        <span>Our Pricing Plan</span>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
                             the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
                             of type and scrambled it to make a type specimen book.</p>
@@ -408,14 +457,18 @@
             <style>
                 .priceColor {
                     color: #FFB317;
-                    font-size: 64px;
-                    font-weight: bold;
+                    font-size: 40px;
+                    font-weight: 700;
+                    line-height: 48.76px;
+                    margin-top: 33px;
+                    text-align: center;
                 }
 
                 .heding {
-                    margin-top: 1.875rem;
-                    margin-bottom: 1.875rem;
-                    font-weight: bold;
+                    font-weight: 700;
+                    margin-top: 31px;
+                    font-size: 16px;
+                    text-align: center;
                 }
 
                 .btnCss {
@@ -423,8 +476,29 @@
                     color: #FFFFFF;
                     border: none;
                     border-radius: 5px;
-                    font-size: 24px;
-                    padding: 7px 55px 8px 46px;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 40px;
+                    text-align: center;
+                    padding: 8px 57px;
+                }
+                .text_muted {
+                color: #898989;
+                margin-top: 33px;
+                font-size: 12px;
+                line-height: 15px;
+                text-align: center;
+                padding: 0px 44px;
+                }
+                .emty_margin{
+                    margin: 11px 25px;
+                    border: 1px solid #D9D9D9;
+                }
+                .text_start{
+                    margin: 0px 33px 20px;
+                }
+                .pricing_btn_design{
+                    margin-bottom: 29px;
                 }
             </style>
             <div class="row">
@@ -434,14 +508,14 @@
                     @endphp
                     <div class="col-md-6 col-sm-12 col-lg-4 mb-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }} ">
                         <div class="card text-center">
-                            <div class="card-body">
+                            <div class="card-body p-0">
                                 <h3 class="heding">{{ $sub_package->packageName }}</h3>
                                 <h1 class="priceColor">${{ $sub_package->price }}</h1>
-                                <p class="text-muted">
+                                <p class="text_muted">
                                     galley of type and scrambled it to make a type specimen book.
                                 </p>
-                                <hr />
-                                <div class="text-start">
+                               <div class="emty_margin"></div>
+                                <div class="text-start text_start ">
                                     <p class="text-muted mb-3">
                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         Invoice
@@ -484,15 +558,17 @@
                                         type
                                         specimen book.
                                     </p>
-                                    <p class="text-muted mb-3">
+                                    <p class="text-muted">
                                         <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" /> make
                                         a
                                         type
                                         specimen book.
                                     </p>
                                 </div>
-                                <a href="{{ url('payment-gateway', $sub_package->id) }}"><button class="btnCss">Buy
+                                <div class="pricing_btn_design">
+                                    <a href="{{ url('payment-gateway', $sub_package->id) }}"><button class="btnCss">Buy
                                         now</button></a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -12,7 +12,14 @@
 .show {display: block;}
 .btncustom.btn-check:focus+.btn, .btncustom:focus {
                   box-shadow: none !important;
+                  font-size: 14px;
+                  line-height: 17px;
+                  font-weight: 400;
                 }
+        .user-menu-wrap .btn {
+        font-size: 14px !important;
+        font-weight: 400;
+        }
 .navbar-brand img{
   width: 100%;
   height: 50px;
@@ -39,8 +46,8 @@
               <li class="nav-item d-flex align-items-center">
                 <div class="user-menu-wrap">
                   <div onclick="myFunction()">
-                      <button class="dropbtn btn btncustom fs-5"  >
-                          {{ auth()->user()->name }} <i class="bi bi-caret-down-fill fs-6 dropbtn"></i>
+                      <button class="dropbtn btn btncustom "  >
+                          {{ auth()->user()->name }}
                     </button>
                   </div>
                   <div id="myDropdown" class="dropdown-content">
