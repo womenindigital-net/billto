@@ -15,7 +15,7 @@
         .plan span {
             font-style: normal;
             font-weight: 400;
-            font-size: 24px;
+            font-size: 20px;
             color: #FFB317;
             padding-bottom: 10px;
         }
@@ -23,10 +23,11 @@
         .plan p {
             font-style: normal;
             font-weight: 400;
-            font-size: 15px;
+            font-size: 12px;
             color: #898989;
             text-align: justify;
-
+            margin-bottom: 6px;
+            margin-top: 5px;
         }
 
         .plan {
@@ -36,6 +37,102 @@
             padding-right: 50px; */
         }
 
+        .text .billto_btn {
+            width: 124px;
+            height: 40px;
+            font-weight: 500;
+            /* text-align: center; */
+            line-height: 27px;
+        }
+
+        .text {
+            text-align: center;
+        }
+
+        .ctrate-text .icon_style {
+            border: 1px solid #cccccc;
+            background-color: #ebebeb;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        .ctrate-text .h2_title {
+            color: #FFB317;
+            text-align: center;
+            font-weight: 700;
+            margin-top: 15px;
+            line-height: 17px;
+            font-size: 18px;
+        }
+
+        .invoice_template .ctrate-text .h2_title2 {
+            color: #FFB317;
+            text-align: center;
+            font-weight: 700;
+            line-height: 24px;
+            font-size: 18px;
+        }
+
+        .text-center {
+            text-align: center !important;
+            margin-top: 5px;
+        }
+
+        .text_muted {
+            color: #898989;
+            margin-top: 14px;
+            font-size: 12px;
+            line-height: 15px;
+            text-align: center;
+            padding: 0px 44px;
+        }
+
+        .card-body .priceColor {
+            color: #FFB317;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 35.76px;
+            margin-top: 13px;
+            text-align: center;
+        }
+
+        .card-body .heding {
+            font-weight: 700;
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .card-body .text_start .margingPlanP {
+            margin-bottom: 0.5rem;
+            font-size: 12px
+        }
+
+        .pricing_btn_design .btnCss {
+            background-color: #FFB317;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22px;
+            text-align: center;
+            padding: 7px 38px;
+        }
+
+        .card-body .text_muted {
+            color: #898989;
+            margin-top: 12px;
+            font-size: 12px;
+            line-height: 15px;
+            text-align: center;
+            padding: 0px 44px;
+        }
     }
 
     @media only screen and (max-width: 575px) {
@@ -45,6 +142,11 @@
     }
 
     @media only screen and (max-width: 991px) and (min-width: 768px) {
+        .card-body .text_start .margingPlanP {
+            margin-bottom: 0.7rem;
+            font-size: 13px;
+        }
+
         .text span {
             font-size: 15px;
         }
@@ -83,6 +185,11 @@
     }
 
     @media only screen and (min-width: 992px) {
+        .card-body .text_start .margingPlanP {
+            margin-bottom: 1rem;
+            font-size: 13px;
+        }
+
         .plan span {
             font-style: normal;
             font-weight: 700;
@@ -134,7 +241,7 @@
             style="background: url({{ asset('assets/frontend/img/banner/banner-back.jpg') }}); opacity: .8; padding-bottom: 28px;">
             <div class="container pt-5">
                 <div class="row align-items-center">
-                    <div class="col-sm-6 text">
+                    <div class="col-sm-6 text ">
                         <a href="{{ route('create') }}" class="btn billto_btn "><span>Create Bill</span></a>
                         <a href="{{ url('/clear-cache') }}" class="btn billto_btn"><span>cache Clear</span></a>
                     </div>
@@ -482,22 +589,26 @@
                     text-align: center;
                     padding: 8px 57px;
                 }
+
                 .text_muted {
-                color: #898989;
-                margin-top: 33px;
-                font-size: 12px;
-                line-height: 15px;
-                text-align: center;
-                padding: 0px 44px;
+                    color: #898989;
+                    margin-top: 33px;
+                    font-size: 12px;
+                    line-height: 15px;
+                    text-align: center;
+                    padding: 0px 44px;
                 }
-                .emty_margin{
+
+                .emty_margin {
                     margin: 11px 25px;
                     border: 1px solid #D9D9D9;
                 }
-                .text_start{
+
+                .text_start {
                     margin: 0px 33px 20px;
                 }
-                .pricing_btn_design{
+
+                .pricing_btn_design {
                     margin-bottom: 29px;
                 }
             </style>
@@ -514,18 +625,18 @@
                                 <p class="text_muted">
                                     galley of type and scrambled it to make a type specimen book.
                                 </p>
-                               <div class="emty_margin"></div>
+                                <div class="emty_margin"></div>
                                 <div class="text-start text_start ">
-                                    <p class="text-muted mb-3">
+                                    <p class="text-muted margingPlanP">
                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         Invoice
                                         Template: <strong>{{ $sub_package->templateQuantity }}</strong>
                                     </p>
-                                    <p class="text-muted mb-3">
+                                    <p class="text-muted margingPlanP">
                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> Total
                                         invoice Genarate: <strong>{{ $sub_package->limitInvoiceGenerate }}</strong>
                                     </p>
-                                    <p class="text-muted mb-3">
+                                    <p class="text-muted margingPlanP">
                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         Package
                                         Duration: <strong> @php
@@ -541,19 +652,19 @@
                                         @endphp
                                         </strong>
                                     </p>
-                                    <p class="text-muted mb-3">
+                                    <p class="text-muted margingPlanP">
                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
                                         type
                                         specimen book.
                                     </p>
-                                    <p class="text-muted mb-3">
+                                    <p class="text-muted margingPlanP">
                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> galley
                                         of
                                         type and
                                         scrambled
                                         it to
                                     </p>
-                                    <p class="text-muted mb-2">
+                                    <p class="text-muted margingPlanP">
                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
                                         type
                                         specimen book.
@@ -567,7 +678,7 @@
                                 </div>
                                 <div class="pricing_btn_design">
                                     <a href="{{ url('payment-gateway', $sub_package->id) }}"><button class="btnCss">Buy
-                                        now</button></a>
+                                            now</button></a>
                                 </div>
                             </div>
                         </div>

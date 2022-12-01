@@ -35,7 +35,6 @@
 
     .heading_area {
         text-align: right;
-        padding-bottom: 100px;
     }
 
     .heading_area h1 {
@@ -152,8 +151,7 @@
 </head>
 
 <body>
-    <div class="invoice_body page" size="A4"
-        style="background: url('assets/vector-invoice/vector3.png') no-repeat scroll;">
+    <div class="invoice_body page" size="A4" style="">
         <section class="first_section" style="height: 140px; width:800px; background-color: #414141;">
             <div class="logo_area">
                 <div class="textHeading">
@@ -164,14 +162,14 @@
             </div>
             <div class="heading_area" style="color: #686868;">
                 <div>
-                    <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img" style="width: 90px; height:90px; margin-top:20px; margin-right: 74px;border-radius: 25px;">
+                    <img src="{{ public_path('storage/invoice/logo/' . $invoiceData->invoice_logo) }}" alt="img"
+                        style="width: 90px; height:90px; margin-top:20px; margin-right: 74px;border-radius: 25px;">
                 </div>
             </div>
         </section>
-
-        <section class="heading_area">
+        <div class="heading_area" style="border: 1px solid red; height: 10px">
             <h1>INVOICE</h1>
-        </section>
+        </div>
         <style>
             .border {
                 border-left: 1px solid #FFF;
@@ -289,9 +287,7 @@
             </div>
         </section>
         <section class="third_section">
-
             <div class="right_Side_bar ">
-
                 <div class="f">
                     <div class="thanks" style="padding-top: 20%;">
                         <h5
@@ -306,9 +302,6 @@
                     </div>
                 </div>
             </div>
-
+        </section>
     </div>
-    </section>
-    </div>
-
-    </div>
+</body>
