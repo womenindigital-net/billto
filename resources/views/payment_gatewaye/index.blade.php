@@ -142,64 +142,23 @@
             </p>
         </div>
 
-   
+
         <form action="{{ route('payment.store') }}"  method="post">
             @csrf
         <div class="card-body">
             <input type="hidden" name="package_id"  value="{{ $subscribe->id }}">
-            <input type="hidden"  name="auth_user_id" value="{{ auth()->user()->id }}">
+            {{-- <input type="hidden"  name="auth_user_id" value="{{ auth()->user()->id }}"> --}}
             <input type="hidden"  name="package_price" value="{{ $subscribe->price }}" >
             <div class="mt-2">
                 <button class="btnCss" >Submit</button>
             </div>
         </div>
     </form>
-        {{-- <a href=""><button class="btnCss">Buy now</button></a> --}}
+
     </div>
 </div>
 
 
-
-            {{-- <div class="card pricing_card ">
-                <div class="card-header">
-                    <div class="package_title text-center">
-                        <span>
-                            Package Details
-                        </span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <tr>
-                            <th class="">Package name </th>
-                            <td class=""> {{ $subscribe->packageName }} </td>
-                        </tr>
-                        <tr>
-                            <th>Package price</th>
-                            <td  class="me-0"> $ {{ $subscribe->price }}</td>
-                        </tr>
-                        <tr>
-                            <th>Package duration</th>
-                            <td>
-                                 @php
-                                   if($day==30){ echo "One Month"; }elseif($day==90){ echo "Three Month";}elseif($day==180){  echo "Six Month"; }elseif($day==365){ echo "One Year";}
-                                @endphp
-                           </td>
-                        </tr>
-                        <tr>
-                            <th>Total invoice</th>
-                            <td> {{ $subscribe->templateQuantity }}</td>
-                        </tr>
-                        <tr>
-                            <th> Maximum invoice generate</th>
-                            <td> {{ $subscribe->templateQuantity }}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="palce_order_btn d-flex justify-content-center pb-3">
-                    <button class=" btn  btn-success"> Place Order</button>
-                </div>
-            </div> --}}
             @endforeach
         </div>
     </div>

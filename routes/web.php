@@ -30,6 +30,10 @@ Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy'])->name('
 Route::post('/create/bill', [PagesController::class, 'createbill'])->name('create.boll');
 
 
+    //payment payment gateway
+    Route::get('/payment-gateway/{package_id}', [SubscriptionPackContoller::class, 'payment_gateway']);
+
+
 require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';
 require __DIR__.'/socialite.php';
@@ -59,7 +63,6 @@ Route::group(['middleware' => ['auth','verified']], function () {
 
 
     //payment payment gateway
-    Route::get('/payment-gateway/{package_id}', [SubscriptionPackContoller::class, 'payment_gateway']);
     Route::post('/payment/store', [SubscriptionPackContoller::class, 'payment_gateway_store'])->name('payment.store');
 
 

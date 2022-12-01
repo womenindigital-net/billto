@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Models\Invoice;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUserRequest;
-use App\Models\Product;
 use App\Models\User;
+use App\Models\Invoice;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use App\Models\InvoiceTemplate;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\UpdateUserRequest;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
 class DashboardController extends Controller
@@ -28,11 +29,14 @@ class DashboardController extends Controller
 
     public function edit($id)
     {
+        $template_id = "";
+        $invoice_template = InvoiceTemplate::get();
+        $template_id_check = InvoiceTemplate::get()->first();
         $invoiceData = Invoice::where('id', $id)->get(['id', 'invoice_logo', 'invoice_form', 'invoice_to', 'invoice_id', 'invoice_date', 'invoice_payment_term', 'invoice_dou_date', 'invoice_po_number', 'invoice_notes', 'invoice_terms', 'invoice_tax_percent', 'requesting_advance_amount_percent', 'receive_advance_amount', 'total', 'currency'])->first();
         $invoiceCount = Invoice::where('user_id', Auth::user()->id)->count();
         $requesting_advance_amount = ($invoiceData->total*$invoiceData->requesting_advance_amount_percent)/100;
         // foreach ($productData as $key => $value) { echo $value; };
-        return view('frontend.create-invoice')->with(compact('invoiceData', 'invoiceCount', 'requesting_advance_amount'));
+        return view('frontend.create-invoice')->with(compact('invoiceData', 'invoiceCount', 'requesting_advance_amount','template_id','invoice_template','template_id_check'));
     }
 
     public function destroy($id)

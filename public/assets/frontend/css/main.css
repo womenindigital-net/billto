@@ -380,29 +380,43 @@ textarea {
   display: none;
 }
 .header_sevtion > nav ul > li > a{
-  font-size: 18px;
-  font-weight: 500;
-  color: #000 !important;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000 !important;
+    line-height: 17px;
 }
 .header_sevtion > nav{}
 .header_sevtion > nav{}
 
 /* Header Css End */
 /* Button Start  */
-.billto_btn{
-  background-color: #FFB317;
-  font-size: 30px;
-  font-weight: 500;
-  color: #fff;
-  padding: 5px 30px;
+.billto_btn {
+    background-color: #FFB317;
+    font-size: 18px;
+    font-weight: 700;
+    width: 210px;
+    color: #ffffff;
+    align-items: center;
+    line-height: 40px;
+    height: 55px;
+    text-align: center;
 }
 /* Button End  */
 /* Title Start */
 .h2_title{
-  color: #FFB317;
-  font-size: 36px;
-  font-weight: normal;
-  font-family: 'Montserrat', sans-serif;
+    color: #FFB317;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 19px;
+    line-height: 24px;
+    font-size: 24px;
+}
+
+.create_section_p{
+    font-size: 12px;
+    padding-top: 8px;
+    line-height: 16px;
+    text-align: center;
 }
 p{
   margin: 0;
@@ -609,14 +623,13 @@ p{
 .icon_style {
     border: 1px solid #cccccc;
     background-color: #ebebeb;
-    border-radius: 55px;
-    width: 90px;
-    height: 90px;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
-    left: 36%;
 }
 .hover:hover{
     color:#ffb317;

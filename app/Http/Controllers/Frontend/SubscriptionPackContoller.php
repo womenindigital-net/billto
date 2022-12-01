@@ -14,6 +14,7 @@ class SubscriptionPackContoller extends Controller
 {
     public function payment_gateway($id)
     {
+
        $subscribe_package = SubscriptionPackage::where('id',$id)->get();
 
        $package_tamplate = DB::table('subscription_packages')
@@ -30,20 +31,20 @@ class SubscriptionPackContoller extends Controller
     $request->validate([
         'package_price'=>'required',
         'package_id'=>'required',
-        'auth_user_id'=>'required'
+        // 'auth_user_id'=>'required'
     ]);
 
   $subscriptn_package =  SubscriptionPackage::where('id', $request->package_id)->first();
 
     if($subscriptn_package->price === $request->package_price){
 
-            PaymentGetway::where('user_id',$request->auth_user_id)->update([
+            PaymentGetway::where('user_id',auth()->user()->id )->update([
             'amount'=>$request->package_price,
             'subscription_package_id'=> $request->package_id,
             'updated_at' => Carbon::now(),
             ]);
 
-            ComplateInvoiceCount::where('user_id',$request->auth_user_id)->update([
+            ComplateInvoiceCount::where('user_id',auth()->user()->id )->update([
             'current_invoice_total'=>'0',
             'updated_at'=>Carbon::now()
             ]);
