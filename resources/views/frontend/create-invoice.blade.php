@@ -836,57 +836,6 @@
                                 <textarea class="form-control" id="Textarea1" name="email_body" rows="2"> information </textarea>
                             </div>
 
-
-                        </div>
-                        @endif
-                    </div>
-            </div>
-            </section>
-            </form>
-            <!-- Invoice Template End -->
-
-
-
-            @if (isset($invoiceData->id))
-            @endif
-            <!-- Send invoice Modal start -->
-            <!-- Button trigger modal -->
-            <!-- Modal -->
-
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <form action="{{ route('sendmail.invoice') }}" method="POST">
-                            @csrf
-                            <div class="modal-body">
-                                <div class="row">
-
-                                    <div class="mb-3">
-                                        <input type="hidden" name="template_id" value="{{ $last_invoice_id }}">
-                                        <br>
-                                        <label for="Input1" class="form-label">To</label>
-                                        <input type="email" class="form-control" id="Input1" name="emai_to"
-                                            placeholder="example@gmail.com" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="Input2" class="form-label">Subject</label>
-                                        <input type="text" class="form-control" name="email_subject" id="Input2"
-                                            value="Subject" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="Textarea1" class="form-label">Body</label>
-                                        <textarea class="form-control" id="Textarea1" name="email_body" rows="2"> information </textarea>
-                                    </div>
-
-                                </div>
-                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
                                         class="bi bi-x-circle"></i> Close</button>
@@ -894,12 +843,18 @@
                                     Send
                                     Mail</button>
                             </div>
-                        </form>
+                        </div>
+                        @endif
                     </div>
-
-                </div>
             </div>
-            <!-- Send invoice Modal End -->
+        </div>
+    </div>
+            </form>
+            <!-- Invoice Template End -->
+
+            @if (isset($invoiceData->id))
+
+            @endif
         @endsection
         @push('frontend_js')
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
