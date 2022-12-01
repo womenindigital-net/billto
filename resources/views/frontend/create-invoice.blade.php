@@ -555,6 +555,17 @@
 
                     </div>
                 </div>
+                <style>
+                @media screen and (max-width: 767px) {
+
+                    .create_page .bnt_responsive{
+                    font-size: 13px;
+                    padding: 5px 11px !important;
+                    margin: 5px 3px 0px 0px!important;
+                    }
+                }
+
+                </style>
                 @php
                     if (isset($lastInvoice)) {
                         $last_invoice_id = $lastInvoice->id;
@@ -562,8 +573,8 @@
                         $last_invoice_id = 0;
                     }
                 @endphp
-                <div class="container p-0 pt-3">
-                    <button type="submit" id="completeInvoice" class="btn send-invoice py-2 px-4"
+                <div class="container p-0 create_page">
+                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice py-2 px-4 my-2"
                         @if (isset($invoiceData)) @else disabled @endif>
                         @if (isset($invoiceData))
                             {{ 'Update Invoice' }} @else{{ 'Complete Invoice' }}
@@ -571,12 +582,12 @@
                     </button>
                     {{-- <button href="#" class="btn send-invoice py-2 px-4 " role="button" aria-disabled="true" onclick="completeInvoice()">Send Invoice</button> --}}
                     <button type="button"
-                        class="btn send-invoice py-2 px-4 @if ($last_invoice_id == 0) disabled @else @endif"
+                        class="btn send-invoice bnt_responsive py-2 px-4 my-2  @if ($last_invoice_id == 0) disabled @else @endif"
                         data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Send Invoice
                     </button>
                     <a href="{{ route('invoice.download', $last_invoice_id) }}" id="downlodeInvoice" target="_blank"
-                        class="btn send-downlod py-2 px-4 @if ($last_invoice_id == 0) disabled @else @endif">Download
+                        class="btn send-downlod bnt_responsive py-2 px-4  @if ($last_invoice_id == 0) disabled @else @endif">Download
                         Invoice</a>
                 </div>
 
@@ -596,7 +607,7 @@
             position: relative;
             text-align: center;
             cursor: pointer;
-            height: 400px;
+            height: 342px;
         }
 
         .radio-btn>i {
@@ -655,7 +666,7 @@
             background: rgb(9 25 30 / 100%);
             padding: 1px 11px;
             border-radius: 2px;
-            font-size: 16px;
+            font-size: 13px;
             position: absolute;
             top: 0.4%;
             ;
@@ -690,9 +701,31 @@
         @media only screen and (min-width: 992px) {
 
             .tempResponsive img {
-                height: 395.4px
+                height: 335px;
             }
         }
+        @media only screen and (max-width: 575px) {
+            .tempResponsive {
+                /* border: 1px solid red; */
+            }
+
+            .tempResponsive img {
+                height: 480px
+            }
+
+            .radio-btn {
+                width: 100%;
+                display: inline-block;
+                border-radius: 2px;
+                position: relative;
+                text-align: center;
+                cursor: pointer;
+                height: 485px;
+            }
+        }
+
+
+
     </style>
 
     <section class="invoice_template">
@@ -713,7 +746,7 @@
                                 $join_table_value = $join_table_valu->unique('subscription_packages.id');
                             @endphp
                             @foreach ($join_table_value as $join_table_values)
-                                <label class="custom-radio  col-sm-6 col-md-4 mt-4 ">
+                                <label class="custom-radio col-sm-6 col-md-4 col-lg-3 mt-4 ">
                                     <div class="card shadow border-0">
                                         <span class="pakages_name">
                                             {{ $join_table_values->packageName }}
@@ -742,7 +775,7 @@
                                 $join_table_value = $join_table_valu->unique('subscription_packages.id');
                             @endphp
                             @foreach ($join_table_value as $join_table_values)
-                                <label class="custom-radio  col-sm-6 col-md-4 mt-4 ">
+                                <label class="custom-radio  col-sm-6 col-md-4 col-lg-3 mt-4 ">
                                     <div class=" card shadow border-0">
                                         <span class="pakages_name">
                                             {{ $join_table_values->packageName }}
