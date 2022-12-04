@@ -1,171 +1,171 @@
 @extends('layouts.frontend.app')
 @section('title', 'Billto.io')
 @push('frontend_css')
-
 @endpush
 @section('frontend_content')
 
-<section class="container">
-    <style>
-        .package_title {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .table {
-            font-size: 16px;
-            border: none;
-        }
-
-        .table th,
-        td {
-            border: none;
-        }
-
-
-        .pricing_card  {
-            border: none;
-            box-shadow: 2px 9px 18px 2px #cfcfcf;
-            position: fixed;
-            top: 80px;
-        }
-        @media only screen and (max-width: 600px) {
-            .pricing_card  {
-            position: none;
-
-        }
+    <section class="container">
+        <style>
+            .package_title {
+                font-size: 1.5rem;
+                font-weight: 700;
             }
 
-        .pricing_card .card-header {
-            background: rgb(255, 255, 255) !important;
-        }
-    </style>
-                <style>
-                    .priceColor {
-                        color: #FFB317;
-                        font-size: 64px;
-                        font-weight: bold;
-                    }
+            .table {
+                font-size: 16px;
+                border: none;
+            }
 
-                    .heding {
-                        margin-top: 1.875rem;
-                        margin-bottom: 1.875rem;
-                        font-weight: bold;
-                    }
+            .table th,
+            td {
+                border: none;
+            }
 
-                    .btnCss {
-                        background-color: #FFB317;
-                        color: #FFFFFF;
-                        border: none;
-                        border-radius: 5px;
-                        font-size: 24px;
-                        padding: 7px 55px 8px 46px;
-                    }
-                </style>
 
-    <div class="row my-2  ">
-        <div class="col-sm-7">
-            <div class="row">
-              @foreach ($package_tamplate as  $package_tamp)
-                <div class="col-sm-6 mb-4">
-                    <div class="tamplate_show_home">
-                        <img src="{{ asset('uploads/template/' . $package_tamp->templateImage) }}" class="w-100" alt=""
-                        style="border: 1px solid #ccc;">
+            .pricing_card {
+                border: none;
+                box-shadow: 2px 9px 18px 2px #cfcfcf;
+                position: fixed;
+                top: 80px;
+            }
+
+            @media only screen and (max-width: 600px) {
+                .pricing_card {
+                    position: none;
+
+                }
+            }
+
+            .pricing_card .card-header {
+                background: rgb(255, 255, 255) !important;
+            }
+        </style>
+        <style>
+            .priceColor {
+                color: #FFB317;
+                font-size: 64px;
+                font-weight: bold;
+            }
+
+            .heding {
+                margin-top: 1.875rem;
+                margin-bottom: 1.875rem;
+                font-weight: bold;
+            }
+
+            .btnCss {
+                background-color: #FFB317;
+                color: #FFFFFF;
+                border: none;
+                border-radius: 5px;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 40px;
+                text-align: center;
+                padding: 8px 57px;
+            }
+        </style>
+
+        <div class="row my-2  ">
+            <div class="col-sm-7">
+                <div class="row">
+                    @foreach ($package_tamplate as $package_tamp)
+                        <div class="col-sm-6 mb-4">
+                            <div class="tamplate_show_home">
+                                <img src="{{ asset('uploads/template/' . $package_tamp->templateImage) }}" class="w-100"
+                                    alt="" style="border: 1px solid #ccc;">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-sm-5">
+                @foreach ($subscribe_package as $subscribe)
+                    @php
+                        $day = $subscribe->packageDuration;
+                    @endphp
+
+                    <div class="card text-center ">
+                        <div class="card-body">
+                            <h3 class="heding">{{ $subscribe->packageName }}</h3>
+                            <h1 class="priceColor">${{ $subscribe->price }}</h1>
+                            <p class="text-muted">
+                                galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <hr />
+                            <div class="text-start">
+                                <p class="text-muted mb-3">
+                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                    Invoice
+                                    Template: <strong> {{ $subscribe->templateQuantity }}</strong>
+                                </p>
+                                <p class="text-muted mb-3">
+                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> Total
+                                    invoice Genarate: <strong>{{ $subscribe->limitInvoiceGenerate }}</strong>
+                                </p>
+                                <p class="text-muted mb-3">
+                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                    Package
+                                    Duration: <strong> @php
+                                        if ($day == 30) {
+                                            echo 'One Month';
+                                        } elseif ($day == 90) {
+                                            echo 'Three Month';
+                                        } elseif ($day == 180) {
+                                            echo 'Six Month';
+                                        } elseif ($day == 365) {
+                                            echo 'One Year';
+                                        }
+                                    @endphp
+                                    </strong>
+                                </p>
+                                <p class="text-muted mb-3">
+                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
+                                    type
+                                    specimen book.
+                                </p>
+                                <p class="text-muted mb-3">
+                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> galley
+                                    of
+                                    type and
+                                    scrambled
+                                    it to
+                                </p>
+                                <p class="text-muted mb-2">
+                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
+                                    type
+                                    specimen book.
+                                </p>
+                                <p class="text-muted mb-3">
+                                    <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" /> make
+                                    a
+                                    type
+                                    specimen book.
+                                </p>
+                            </div>
+
+
+                            <form action="{{ route('payment.store') }}" method="post">
+                                @csrf
+                                <div class="card-body">
+                                    <input type="hidden" name="package_id" value="{{ $subscribe->id }}">
+                                    {{-- <input type="hidden"  name="auth_user_id" value="{{ auth()->user()->id }}"> --}}
+                                    <input type="hidden" name="package_price" value="{{ $subscribe->price }}">
+                                    <div class="mt-2">
+                                        <button class="btnCss">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
-                  </div>
-
-              @endforeach
+                @endforeach
             </div>
         </div>
-        <div class="col-sm-5">
-            @foreach ($subscribe_package as $subscribe )
-            @php
-            $day = $subscribe->packageDuration;
-           @endphp
-
-<div class="card text-center ">
-    <div class="card-body">
-        <h3 class="heding">{{ $subscribe->packageName }}</h3>
-        <h1 class="priceColor">${{ $subscribe->price }}</h1>
-        <p class="text-muted">
-            galley of type and scrambled it to make a type specimen book.
-        </p>
-        <hr />
-        <div class="text-start">
-            <p class="text-muted mb-3">
-                <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
-                Invoice
-                Template: <strong> {{ $subscribe->templateQuantity }}</strong>
-            </p>
-            <p class="text-muted mb-3">
-                <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> Total
-                invoice Genarate: <strong>{{ $subscribe->limitInvoiceGenerate }}</strong>
-            </p>
-            <p class="text-muted mb-3">
-                <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
-                Package
-                Duration: <strong> @php
-                    if ($day == 30) {
-                        echo 'One Month';
-                    } elseif ($day == 90) {
-                        echo 'Three Month';
-                    } elseif ($day == 180) {
-                        echo 'Six Month';
-                    } elseif ($day == 365) {
-                        echo 'One Year';
-                    }
-                @endphp
-                </strong>
-            </p>
-            <p class="text-muted mb-3">
-                <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
-                type
-                specimen book.
-            </p>
-            <p class="text-muted mb-3">
-                <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> galley
-                of
-                type and
-                scrambled
-                it to
-            </p>
-            <p class="text-muted mb-2">
-                <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
-                type
-                specimen book.
-            </p>
-            <p class="text-muted mb-3">
-                <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" /> make
-                a
-                type
-                specimen book.
-            </p>
-        </div>
-
-
-        <form action="{{ route('payment.store') }}"  method="post">
-            @csrf
-        <div class="card-body">
-            <input type="hidden" name="package_id"  value="{{ $subscribe->id }}">
-            {{-- <input type="hidden"  name="auth_user_id" value="{{ auth()->user()->id }}"> --}}
-            <input type="hidden"  name="package_price" value="{{ $subscribe->price }}" >
-            <div class="mt-2">
-                <button class="btnCss" >Submit</button>
-            </div>
-        </div>
-    </form>
-
-    </div>
-</div>
-
-
-            @endforeach
-        </div>
-    </div>
-    {{------------------- javascript kora ache--------  --}}
-    {{-- <div class="row my-2">
+        {{-- ----------------- javascript kora ache--------  --}}
+        {{-- <div class="row my-2">
         <div class="col-sm-7 ">
-            @foreach ($subscribe_package as $subscribe )
+            @foreach ($subscribe_package as $subscribe)
             @php
             $day = $subscribe->packageDuration;
            @endphp
@@ -208,35 +208,31 @@
     </div> --}}
 
 
-</section>
+    </section>
 
-<script>
+    <script>
+        // $( "#new_package_price" ).bind( "keyup", function() {
+        //     var package_price = document.getElementById('package_price').value;
+        //     var new_package_price = document.getElementById('new_package_price').value;
 
-// $( "#new_package_price" ).bind( "keyup", function() {
-//     var package_price = document.getElementById('package_price').value;
-//     var new_package_price = document.getElementById('new_package_price').value;
+        //   if(package_price== new_package_price){
 
-//   if(package_price== new_package_price){
-
-//     $('#new_package_price').addClass("is-valid");
-//     $('#new_package_price').removeClass("is-invalid");
-//     document.getElementById("submit_button").disabled = false;
-//     document.getElementById("message").innerHTML = "";
-//   }else{
-//     $('#new_package_price').addClass("is-invalid");
-//     document.getElementById("submit_button").disabled = true;
-//     document.getElementById("message").innerHTML = "Please set Correct value";
-//   }
-// });
-
-</script>
+        //     $('#new_package_price').addClass("is-valid");
+        //     $('#new_package_price').removeClass("is-invalid");
+        //     document.getElementById("submit_button").disabled = false;
+        //     document.getElementById("message").innerHTML = "";
+        //   }else{
+        //     $('#new_package_price').addClass("is-invalid");
+        //     document.getElementById("submit_button").disabled = true;
+        //     document.getElementById("message").innerHTML = "Please set Correct value";
+        //   }
+        // });
+    </script>
 
 
 
 
 @endsection
 @push('frontend_js')
-
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endpush

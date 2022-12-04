@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/datatable_css_custom.css') }}">
 @endpush
+<style>
+    .circle {
+        width: 20px;
+        height: 20px;
+        line-height: 21px;
+        border-radius: 50%;
+        font-size: 12px;
+        color: #fff;
+        text-align: center;
+        float: right;
+    }
+</style>
 @section('frontend_content')
     <!-- Sign in form Start -->
     <section class="container-fluid bg-color ">
@@ -56,12 +68,12 @@
                                             </a>
                                             <ul class="@yield('d-block')">
                                                 <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
-                                                        Invoices</a></li>
-                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due</a></li>
-                                                <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid</a></li>
-                                                <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid</a></li>
-                                                <li><a href='#invoice' class="@yield('SendbyEmail') ">Send by Email</a></li>
-                                                <li><a href='#invoice' class="@yield('Trush') ">Trush</a></li>
+                                                        Invoices <span class="circle bg-primary">0</span></a></li>
+                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due <span class="circle bg-primary">0</span></a></li>
+                                                <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid <span class="circle bg-dark">0</span></a></li>
+                                                <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span class="circle bg-danger">0</span></a></li>
+                                                <li><a href='#invoice' class="@yield('SendbyEmail') ">Send by Email <span class="circle bg-success">10</span></a></li>
+                                                <li><a href='#invoice' class="@yield('Trush') ">Trush <span class="circle bg-warning">0</span> </a></li>
                                             </ul>
                                         </li>
                                         <li><a href='#'><img

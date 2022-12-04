@@ -185,8 +185,8 @@ body {
     background: #FFF;
     color: #686868;
     border-radius: 10px;
-    margin-left: 15px;
-    margin-right: 15px;
+    /* margin-left: 15px;
+    margin-right: 15px; */
 }
 .design_logo img{
     width: 90px;
@@ -241,8 +241,8 @@ body {
     background: #FFF;
     color: #686868;
     border-radius: 10px;
-    margin-left:15px;
-    margin-right:15px;
+    /* margin-left:15px;
+    margin-right:15px; */
 }
 .dash_menu ul li ul li{
     padding-left: 20px;
