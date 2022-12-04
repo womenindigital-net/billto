@@ -258,12 +258,12 @@
             margin-top: 55px;
         }
 
-        .create_section .ctrate-text .icon_style img {
+        /* .create_section .ctrate-text .icon_style {
             width: 39px;
             height: 42px;
             top: 3px;
             left: 4.5px;
-        }
+        } */
     </style>
 
     <!-- Create Start -->
@@ -271,22 +271,22 @@
         <div class="container">
             <div class="row ctrate-text">
                 <div class="col-sm-4 mb_sm_3">
-                    <div class="icon_style">
-                        <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="">
+                    <div class="icon_style imgHeightwidth">
+                        <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="" style="width: 39px; height: 42px; top:3px; left:4.5px;">
                     </div>
                     <h2 class="h2_title heading">Create Bill</h2>
                     <p class="create_section_p">Choose from 20 templates</p>
                 </div>
                 <div class="col-sm-4 mb_sm_3">
-                    <div class="icon_style ">
-                        <img src="{{ asset('assets/frontend/img/icon/pdf.png') }}" alt="">
+                    <div class="icon_style imgHeightwidth">
+                        <img src="{{ asset('assets/frontend/img/icon/pdf.png') }}" alt="" style="width: 39px; height: 42px; top:3px; left:4.5px;">
                     </div>
                     <h2 class=" h2_title">Send PDF</h2>
                     <p class="create_section_p">Email or print your invoice<br>to send to your client</p>
                 </div>
                 <div class="col-sm-4 ">
-                    <div class="icon_style ">
-                        <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt="">
+                    <div class="icon_style imgHeightwidth">
+                        <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt="" style="width: 38px; height: 42px; top:3px; left:4.5px;">
                     </div>
                     <h2 class="h2_title">Get Paid</h2>
                     <p class="create_section_p">Receive payment in<br>accounts by Card or Paypal</p>
