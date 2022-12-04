@@ -31,7 +31,7 @@ class InvoiceController extends Controller
     {
         $user = Auth::user()->id;
         Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
-
+        $data =[];
         $template_id = "";
         $template_id_check = InvoiceTemplate::get()->first();
 
@@ -47,7 +47,7 @@ class InvoiceController extends Controller
         $invoiceCountNew += 1;
         $invoice_template = InvoiceTemplate::get();
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check'));
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
     }
 
     public function index_home($id)
@@ -206,7 +206,6 @@ class InvoiceController extends Controller
                     'template_name' => $request->template_name,
                 );
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
-                // invoice Data End
                 return response()->json([$invoice->id]);
             }
             return response()->json(['message' => 'Please create product']);
@@ -300,6 +299,7 @@ class InvoiceController extends Controller
 
     public function invoice_download($id)
     {
+
         $invoiceData = Invoice::where('id', $id)->get([
             'invoice_logo',
             'invoice_form',

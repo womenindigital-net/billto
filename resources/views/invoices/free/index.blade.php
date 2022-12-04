@@ -60,7 +60,7 @@
         display: flex;
         justify-content: space-between;
         padding-top: 5px;
-        
+
     }
 
     .a {
@@ -91,7 +91,7 @@
     .third_section {
                 width: 100%;
                 display: flex;
-                
+
             }
 
             .left_Side_bar {
@@ -183,20 +183,17 @@
             }
 
 </style>
-
-
-
+<title>Billto.io</title>
 </head>
-
 <body>
 
     <div class="invoice_body page" size="A4">
         <section class="first_section">
             <div class="logo_area">
                 <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img">
-                <p><b>Company Name </b></p>
-                <p>123 Rockfeller Street,</p>
-                <p>New York, NY 12210</p>
+                <p><b>{{ $invoiceData->invoice_form }} </b></p>
+                {{-- <p>123 Rockfeller Street,</p>
+                <p>New York, NY 12210</p> --}}
 
             </div>
 
@@ -212,10 +209,10 @@
                         <p>due date</p>
                     </div>
                     <div class="b">
-                        <p>10201</p>
-                        <p>11/02/2022</p>
-                        <p>12/11/2022</p>
-                        <p>27/01/2022</p>
+                        <p>{{ $invoiceData->invoice_id }}</p>
+                        <p>{{  $invoiceData->invoice_date }}</p>
+                        <p>{{ $invoiceData->invoice_po_number }}</p>
+                        <p>{{  $invoiceData->invoice_dou_date }}</p>
                     </div>
                 </div>
             </div>
@@ -243,7 +240,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($productsDatas as $product_detail)
                             <tr>
+                                <td
+                                    style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
+                                    {{ $product_detail->product_quantity }}</td>
+                                <td
+                                    style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
+                                    {{ $product_detail->product_name }}</td>
+                                <td
+                                    style="  width:20%;border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
+                                    {{ number_format($product_detail->product_rate,2) }}</td>
+                                <td
+                                    style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
+                                    {{number_format( $product_detail->product_amount,2)}}</td>
+                            </tr>
+                            @endforeach
+                            {{-- <tr>
                                 <td
                                     style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
                                     01</td>
@@ -270,39 +283,25 @@
                                 <td
                                     style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
                                     1,00.00</td>
-                            </tr>
-                            <tr>
-                                <td
-                                    style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
-                                    01</td>
-                                <td
-                                    style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
-                                    Front and rear brake cable</td>
-                                <td
-                                    style="  width:20%;border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
-                                <td
-                                    style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
-                   
+
                     <div style="margin-top: 100px; width:100%; display:flex;">
                         <div class="empty_div"> </div>
                         <div class="table_div">
                             <table style="width: 100%;">
                                 <tr style="text-align: right">
                                     <td>Subtotal</td>
-                                    <td>300.00 </td>
+                                    <td>{{ number_format($subtotal = $invoiceData->total,2) }} </td>
                                 </tr>
                                 <tr style="text-align: right">
-                                    <td>Sales Tax 6.25%</td>
-                                    <td>20.00</td>
+                                    <td>Sales Tax {{$tax = $invoiceData->invoice_tax_percent }}%</td>
+                                    <td>{{number_format( $tax_value =  $subtotal*$tax /100,2) }}</td>
                                 </tr>
                                 <tr style="text-align: right">
                                     <td style="font-size: 18px;">Total</td>
-                                    <td style="font-size: 18px;">320.00</td>
+                                    <td style="font-size: 18px;">{{  number_format($subtotal + $tax_value,2)  }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -316,7 +315,7 @@
                 border-bottom: 2px solid #FFF;
                 margin: 0px 30px;
                 margin-bottom:10px;
-                
+
             }
         </style>
         <section class="third_section">
@@ -324,9 +323,9 @@
                 <div class="c">
                     <h5>To</h5>
                     <div class="border"></div>
-                    <p><b>New York, NY 12210</b></p>
-                    <p>123 Rockfeller Street,</p>
-                    <p>New York, NY 12210</p>
+                    <p><b>{{   $invoiceData->invoice_to }}</b></p>
+                    {{-- <p>123 Rockfeller Street,</p>
+                    <p>New York, NY 12210</p> --}}
                 </div>
                 <div class="d">
                     <h5>Ship To</h5>
@@ -341,14 +340,14 @@
                     <div class="e">
                         <h1>Thank You for your business</h1>
                         <p style="font-weight: 700;font-size: 14px;color: #FCB21C;">terms & conditions</p>
-                        <p>Payment is due within 15 days</p>
-                        <p>Please make checks payable to: Company Name</p>
+                        <p>{{  $invoiceData->invoice_terms }}</p>
+                        {{-- <p>Please make checks payable to: Company Name</p> --}}
                     </div>
                     <div class="f">
                         <div class="g">
-                            <p style="font-weight: 700;font-size: 14px;color: #FCB21C;">terms & conditions</p>
-                            <p>Payment is due within 15 days</p>
-                            <p>Please make checks payable to: Company Name</p>
+                            <p style="font-weight: 700;font-size: 14px;color: #FCB21C;">Notes</p>
+                            <p>{{  $invoiceData->invoice_notes}}</p>
+                            {{-- <p>Please make checks payable to: Company Name</p> --}}
                         </div>
                         <div class="h">
                             <!-- <img src="sig.png" alt="img"> -->

@@ -1,7 +1,10 @@
 <?php
 
 use Carbon\Carbon;
+use App\Models\Invoice;
 use App\Models\PaymentGetway;
+use Illuminate\Support\Facades\DB;
+use App\Models\SubscriptionPackage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -10,8 +13,6 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Frontend\SubscriptionPackContoller;
-use App\Models\SubscriptionPackage;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,14 +94,19 @@ Route::get('/check',  function ()
     // ->selectRaw( 'users.*, payment_getways.*, subscription_packages.*, payment_getways.created_at as payment_name, subscription_packages.created_at as contacts_name')
     // ->where('users.id', 1)->get();
 
-     $join_table_value = DB::table('subscription_package_templates')
-    ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
-    ->where('subscription_package_templates.template', 3)->get();
+    //  $join_table_value = DB::table('subscription_package_templates')
+    // ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
+    // ->where('subscription_package_templates.template', 3)->get();
     // dd($join_table_value);
-    foreach($join_table_value as $join_table_valued){
-       echo $join_table_valued->packageName;
-    }
+    // foreach($join_table_value as $join_table_valued){
+    //    echo $join_table_valued->packageName;
+    // }
+    $data = Invoice::get();
 
+       foreach($data as $datas ){
+       echo $datas->invoice_to;
+
+       }
 
 });
 

@@ -574,20 +574,22 @@
                     }
                 @endphp
                 <div class="container p-0 create_page">
-                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice py-2 px-4 my-2"
-                        @if (isset($invoiceData)) @else disabled @endif>
+                    {{-- id="completeInvoice" --}}
+                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice py-2 px-4 my-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"
+
+                     @if (isset($invoiceData)) @else disabled @endif>
+
+                      {{-- @if (isset($invoiceData)) @else  @endif> --}}
                         @if (isset($invoiceData))
-                            {{ 'Update Invoice' }} @else{{ 'Complete Invoice' }}
+                            {{ 'Update Invoice' }} @else{{ 'Preview' }}
                         @endif
                     </button>
-                    {{-- <button href="#" class="btn send-invoice py-2 px-4 " role="button" aria-disabled="true" onclick="completeInvoice()">Send Invoice</button> --}}
-                    <button type="button"
-                        class="btn send-invoice bnt_responsive py-2 px-4 my-2  @if ($last_invoice_id == 0) disabled @else @endif"
-                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                     <button type="button" id="send_email_id"
+                        class="btn send-invoice bnt_responsive py-2 px-4 my-2 disabled " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Send Invoice
                     </button>
                     <a href="{{ route('invoice.download', $last_invoice_id) }}" id="downlodeInvoice" target="_blank"
-                        class="btn send-downlod bnt_responsive py-2 px-4  @if ($last_invoice_id == 0) disabled @else @endif">Download
+                        class="btn bnt_responsive send-invoice py-2 px-4 disabled">Download
                         Invoice</a>
                 </div>
 
@@ -808,7 +810,6 @@
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
@@ -849,7 +850,37 @@
             </div>
         </div>
     </div>
-            </form>
+ </form>
+{{-- preview image alert  --}}
+ <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+ aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal-dialog  modal-xl">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="staticBackdropLabel">Preview Invoice</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+
+             <div class="modal-body">
+                 <div class="row">
+                    <div class="preview_invoice_show">
+                        @include('invoices.premium.test')
+                    </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
+                                 class="bi bi-x-circle"></i> Close</button>
+                         <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                              Download Image </button>
+                     </div>
+                 </div>
+             </div>
+     </div>
+ </div>
+</div>
+
+
+
+
             <!-- Invoice Template End -->
 
             @if (isset($invoiceData->id))

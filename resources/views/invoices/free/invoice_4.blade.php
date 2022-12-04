@@ -159,7 +159,7 @@
             }
 
 </style>
-
+<title>Billto.io</title>
 
 
 </head>
@@ -171,16 +171,16 @@
         <section class="first_section">
              <div class="logo_area" style="margin-left:50px;">
                 <div class="c">
-                    <p style="font-size: 20px;"><b>Company Name </b></p>
-                    <p>123 Rockfeller Street,</p>
-                    <p>New York, NY 12210</p>
+                    <p style="font-size: 20px;"><b>{{ $invoiceData->invoice_form }} </b></p>
+                    {{-- <p>123 Rockfeller Street,</p>
+                    <p>New York, NY 12210</p> --}}
                 </div>
 
                 <div class="c">
                     <h5>To</h5>
-                    <p><b>{{ $invoiceData->invoice_form }}</b></p>
-                    <p>123 Rockfeller Street,</p>
-                    <p>New York, NY 12210</p>
+                    <p><b>{{   $invoiceData->invoice_to }}</b></p>
+                    {{-- <p>123 Rockfeller Street,</p>
+                    <p>New York, NY 12210</p> --}}
                 </div>
                 <div class="d">
                     <h5>Ship To</h5>
@@ -208,10 +208,10 @@
                         <p>due date</p>
                     </div>
                     <div class="b">
-                        <p>10201</p>
-                        <p>11/02/2022</p>
-                        <p>12/11/2022</p>
-                        <p>27/01/2022</p>
+                        <p>{{ $invoiceData->invoice_id }}</p>
+                        <p>{{  $invoiceData->invoice_date }}</p>
+                        <p>{{ $invoiceData->invoice_po_number }}</p>
+                        <p>{{  $invoiceData->invoice_dou_date }}</p>
                     </div>
                 </div>
             </div>
@@ -246,21 +246,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                         @foreach ($productsDatas as $product_detail)
                             <tr>
                                 <td class="border"
                                     style="border-left:none; border-top:none; border-right:none; padding:10px 0px; padding-left:5px; text-align:left; width:20%;  font-weight: 400; font-size: 16px; color: #686868; ">
-                                    01</td>
+                                    {{ $product_detail->product_quantity }}</td>
                                 <td class="border"
                                     style=" border-top:none; border-right:none; padding-left:10px; text-align:left; width:40%;font-weight: 400; font-size: 16px; color: #686868; ">
-                                    Front and rear brake cable</td>
+                                    {{ $product_detail->product_name }}</td>
                                 <td class="border"
                                     style="border-top:none; border-right:none; padding-right:20px;  width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
+                                    {{ number_format($product_detail->product_rate,2) }}</td>
                                 <td class="border"
                                     style="border-top:none; border-right:none; padding-right:20px; width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
+                                    {{number_format( $product_detail->product_amount,2)}}</td>
                             </tr>
-                            <tr>
+                            @endforeach
+                            {{-- <tr>
                                 <td class="border"
                                     style="border-left:none; border-top:none; border-right:none; padding-left:5px; padding-top:10px; padding-bottom:10px; text-align:left; width:20%;  font-weight: 400; font-size: 16px; color: #686868; ">
                                     01</td>
@@ -287,7 +289,7 @@
                                 <td class="border"
                                     style="border-top:none; border-right:none; padding-right:20px;padding-top:10px; padding-bottom:10px; width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
                                     1,00.00</td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                     <style>
@@ -313,15 +315,15 @@
                         <div class="empty_div">
                             <ul style="background: #039DBF; ">
                                 <li>Subtotal</li>
-                                <li>Sales Tax 6.25%</li>
+                                <li>Sales Tax {{$tax = $invoiceData->invoice_tax_percent }}% </li>
                                 <li>Total</li>
                             </ul>
                         </div>
                         <div class="table_div" style="background: #F2F2F2;">
                             <ul>
-                                <li>300.00 </li>
-                                <li>20.00</li>
-                                <li>320.00</li>
+                                <li>{{ number_format($subtotal = $invoiceData->total,2) }} </li>
+                                <li> {{number_format( $tax_value =  $subtotal*$tax /100,2) }}</li>
+                                <li>{{  number_format($subtotal + $tax_value,2)  }}</li>
                             </ul>
                         </div>
                     </div>
@@ -340,8 +342,8 @@
                         </div>
                         <div class="g" style="color: #686868;">
                             <p style="font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">terms & conditions</p>
-                            <p>Payment is due within 15 days</p>
-                            <p>Please make checks payable to: Company Name</p>
+                            <p>{{  $invoiceData->invoice_terms }}</p>
+                            <p>{{  $invoiceData->invoice_notes}}</p>
                         </div>
                     </div>
             </div>

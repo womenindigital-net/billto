@@ -141,22 +141,28 @@ function currency1(){
                 })
 
             }else{
-              $("#downlodeInvoice").attr("href", "/invoice/download/"+response);
+             $("#downlodeInvoice").attr("href", "/invoice/download/"+response);
               button =
               Toast.fire({
                 icon: 'success',
                 title: ' Successfuly Invoice Created ',
 
               })
-              location.reload()
+              location.replace("https://www.w3schools.com");
+            //  window.location = '/';
+            // $('.preview_invoice_show').html(response);
             }
+
+
             $('#downlodeInvoice').removeClass("disabled");
+            $('#send_email_id').removeClass("disabled");
           },
           error: function(error) {
             okButton.fire({
                 icon: 'error',
                 title: 'Fill UP Invoice Form Properly',
               })
+
             // Invoice Validation
             if (error.responseJSON.errors.invoice_form != null)
               {
