@@ -286,7 +286,7 @@
                 </div>
                 <div class="col-sm-4 ">
                     <div class="icon_style imgHeightwidth">
-                        <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt="" style="width: 38px; height: 42px; top:3px; left:4.5px;">
+                        <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt="" style="width: 38px; height: 34px; top:3px; left:4.5px;">
                     </div>
                     <h2 class="h2_title">Get Paid</h2>
                     <p class="create_section_p">Receive payment in<br>accounts by Card or Paypal</p>
