@@ -58,8 +58,8 @@
     <!-- Invoice Section Start -->
     <section class="invoice_section">
         <div class="my-5">
-            {{-- <form method="post" id="invoiceForm" enctype="multipart/form-data"> --}}
-            <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
+            <form method="post" id="invoiceForm" enctype="multipart/form-data">
+            {{-- <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data"> --}}
                 @csrf
                 <div class="container p-4 " style="background-color: #F0F0F0;">
                     <div class="row md-2 invoice_header_right">
@@ -600,9 +600,9 @@
                         class="btn bnt_responsive send-invoice py-2 px-4 disabled">Download
                         Invoice</a>
 
-                    <a id="previw_id" class="btn send-invoice bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal"
+                    {{-- <a id="previw_id" class="btn send-invoice bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop_previw">Preview </a>
-                    <input type="hidden" id="invoice_last_id" value="{{ $last_invoice_id }}">
+                    <input type="hidden" id="invoice_last_id" value="{{ $last_invoice_id }}"> --}}
 
                 </div>
 

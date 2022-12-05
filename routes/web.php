@@ -31,13 +31,13 @@ Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy'])->name('
 Route::post('/create/bill', [PagesController::class, 'createbill'])->name('create.boll');
 
 
-    //payment payment gateway
-    Route::get('/payment-gateway/{package_id}', [SubscriptionPackContoller::class, 'payment_gateway']);
+//payment payment gateway
+Route::get('/payment-gateway/{package_id}', [SubscriptionPackContoller::class, 'payment_gateway']);
 
 
-require __DIR__.'/auth.php';
-require __DIR__.'/dashboard.php';
-require __DIR__.'/socialite.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/dashboard.php';
+require __DIR__ . '/socialite.php';
 
 // product add route With Ajax
 
@@ -45,7 +45,7 @@ require __DIR__.'/socialite.php';
 // Invoice Route
 
 
-Route::group(['middleware' => ['auth','verified']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::post('/products/create', [ProductController::class, 'index']);
     Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 
     // send invoice mail with PDF
-    Route::post('invoice/send',[InvoiceController::class,'send_invoice'])->name('sendmail.invoice');
+    Route::post('invoice/send', [InvoiceController::class, 'send_invoice'])->name('sendmail.invoice');
 
 
     //payment payment gateway
@@ -69,11 +69,10 @@ Route::group(['middleware' => ['auth','verified']], function () {
 
     // just chek route
     Route::get('/preview/image/{id}', [InvoiceController::class, 'previewImage']);
-
 });
 
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
     Artisan::call('config:clear');
@@ -81,14 +80,12 @@ Route::get('/clear-cache', function() {
     Artisan::call('optimize');
     return redirect()->back();
 });
-Route::get('/notice/div/hidden', function() {
+Route::get('/notice/div/hidden', function () {
     Session::put('hidden_session', 'd-none');
-
     return redirect()->back();
 });
 
-Route::get('/check',  function ()
-{
+Route::get('/check',  function () {
     // only for  check
     // $join_table_value = DB::table('users')
     // ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
@@ -105,13 +102,7 @@ Route::get('/check',  function ()
     // }
     $data = Invoice::get();
 
-       foreach($data as $datas ){
-       echo $datas->invoice_to;
-
-       }
-
+    foreach ($data as $datas) {
+        echo $datas->invoice_to;
+    }
 });
-
-
-
-

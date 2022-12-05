@@ -18,19 +18,19 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::get('/auth/{provider}/redirect', function ($provider) {
- 
+
     return Socialite::driver($provider)->redirect();
 });
- 
+
 Route::get('/auth/{provider}/callback', function ($provider) {
-   
+
     try {
         $socialiteUser = Socialite::driver($provider)->user();
     } catch (\Throwable $th) {
         return redirect()->route('login');
     }
 
- 
+
     $user = User::where([
         'provider' => $provider,
         'provider_id' => $socialiteUser->getId()
@@ -56,7 +56,7 @@ Route::get('/auth/{provider}/callback', function ($provider) {
             'provider_id' => $socialiteUser->getId(),
         ]);
 
-        
+
         $user = User::updateOrCreate(
             [
                 'provider_id' => $socialiteUser->getId(),
@@ -69,8 +69,7 @@ Route::get('/auth/{provider}/callback', function ($provider) {
         ]);
 
     }
- 
-
+  
 
     Auth::login($user);
 
