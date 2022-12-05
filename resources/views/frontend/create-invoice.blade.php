@@ -59,7 +59,7 @@
     <section class="invoice_section">
         <div class="my-5">
             {{-- <form method="post" id="invoiceForm" enctype="multipart/form-data"> --}}
-                <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="container p-4 " style="background-color: #F0F0F0;">
                     <div class="row md-2 invoice_header_right">
@@ -442,7 +442,8 @@
                                 <textarea name="invoice_notes" id="invoice_notes" rows="5" class="form-control"
                                     placeholder="Notes - any related information not already covered">
 @if (isset($invoiceData->invoice_notes))
-{{ $invoiceData->invoice_notes }}@endif
+{{ $invoiceData->invoice_notes }}
+@endif
 </textarea>
                                 <div id="invoice_notes_error" class="invalid-feedback"></div>
                             </div>
@@ -556,15 +557,14 @@
                     </div>
                 </div>
                 <style>
-                @media screen and (max-width: 767px) {
+                    @media screen and (max-width: 767px) {
 
-                    .create_page .bnt_responsive{
-                    font-size: 13px;
-                    padding: 5px 11px !important;
-                    margin: 5px 3px 0px 0px!important;
+                        .create_page .bnt_responsive {
+                            font-size: 13px;
+                            padding: 5px 11px !important;
+                            margin: 5px 3px 0px 0px !important;
+                        }
                     }
-                }
-
                 </style>
                 @php
                     if (isset($lastInvoice)) {
@@ -573,27 +573,34 @@
                         $last_invoice_id = 0;
                     }
                 @endphp
+                <style>
+                    .modal-header .priviewModel{
+                        border-bottom: none !important
+                    }
+                </style>
                 <div class="container p-0 create_page">
                     {{-- id="completeInvoice" --}}
-                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice py-2 px-4 my-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"
+                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice py-2 px-4 my-2"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"
+                        @if (isset($invoiceData)) @else disabled @endif>
 
-                     @if (isset($invoiceData)) @else disabled @endif>
-
-                      {{-- @if (isset($invoiceData)) @else  @endif> --}}
+                        {{-- @if (isset($invoiceData)) @else  @endif> --}}
                         @if (isset($invoiceData))
                             {{ 'Update Invoice' }} @else{{ 'Preview' }}
                         @endif
                     </button>
-                     <button type="button" id="send_email_id"
-                        class="btn send-invoice bnt_responsive py-2 px-4 my-2 disabled " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button type="button" id="send_email_id"
+                        class="btn send-invoice bnt_responsive py-2 px-4 my-2 disabled " data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
                         Send Invoice
                     </button>
                     <a href="{{ route('invoice.download', $last_invoice_id) }}" id="downlodeInvoice" target="_blank"
                         class="btn bnt_responsive send-invoice py-2 px-4 disabled">Download
                         Invoice</a>
 
-                        <a  id="previw_id"  class="btn send-invoice bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw" >Preview </a>
-                        <input type="hidden" id="invoice_last_id"  value="{{ $last_invoice_id }}">
+                    <a id="previw_id" class="btn send-invoice bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop_previw">Preview </a>
+                    <input type="hidden" id="invoice_last_id" value="{{ $last_invoice_id }}">
 
                 </div>
 
@@ -710,6 +717,7 @@
                 height: 335px;
             }
         }
+
         @media only screen and (max-width: 575px) {
             .tempResponsive {
                 /* border: 1px solid red; */
@@ -729,9 +737,6 @@
                 height: 485px;
             }
         }
-
-
-
     </style>
 
     <section class="invoice_template">
@@ -854,55 +859,52 @@
             </div>
         </div>
     </div>
- </form>
+    </form>
 
 
-{{-- preview image alert  --}}
- <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
- aria-labelledby="staticBackdropLabel" aria-hidden="true">
- <div class="modal-dialog  modal-xl">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title" id="staticBackdropLabel">Preview Invoice</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-             <div class="modal-body">
-                 <div class="row">
-                    <div class="preview_invoice_show">
+    {{-- preview image alert  --}}
+    <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-xl">
+            <div class="modal-content">
+                <div class="modal-header priviewModel">
+                    <h5 class="modal-title" id="staticBackdropLabel">Preview Invoice</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="preview_invoice_show">
 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
+                                    class="bi bi-x-circle"></i> Close</button>
+                            <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                Download Image </button>
+                        </div>
                     </div>
-                     <div class="modal-footer">
-                         <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
-                                 class="bi bi-x-circle"></i> Close</button>
-                         <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                              Download Image </button>
-                     </div>
-                 </div>
-             </div>
-     </div>
- </div>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
 
-            <!-- Invoice Template End -->
+    <!-- Invoice Template End -->
 
-            @if (isset($invoiceData->id))
+    @if (isset($invoiceData->id))
+    @endif
+@endsection
+@push('frontend_js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-            @endif
-        @endsection
-        @push('frontend_js')
-            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // A $( document ).ready() block.
+        $(document).ready(function() {
+            allData();
+        });
+    </script>
 
-            <script>
-                // A $( document ).ready() block.
-                $(document).ready(function() {
-                    allData();
-                });
-            </script>
-
-            <script>
-
-            </script>
-        @endpush
+    <script></script>
+@endpush
