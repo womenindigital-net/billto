@@ -58,8 +58,8 @@
     <!-- Invoice Section Start -->
     <section class="invoice_section">
         <div class="my-5">
-            <form method="post" id="invoiceForm" enctype="multipart/form-data">
-                {{-- <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data"> --}}
+            {{-- <form method="post" id="invoiceForm" enctype="multipart/form-data"> --}}
+                <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="container p-4 " style="background-color: #F0F0F0;">
                     <div class="row md-2 invoice_header_right">
@@ -591,6 +591,10 @@
                     <a href="{{ route('invoice.download', $last_invoice_id) }}" id="downlodeInvoice" target="_blank"
                         class="btn bnt_responsive send-invoice py-2 px-4 disabled">Download
                         Invoice</a>
+
+                        <a  id="previw_id"  class="btn send-invoice bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw" >Preview </a>
+                        <input type="hidden" id="invoice_last_id"  value="{{ $last_invoice_id }}">
+
                 </div>
 
         </div>
@@ -851,6 +855,8 @@
         </div>
     </div>
  </form>
+
+
 {{-- preview image alert  --}}
  <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
  aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -860,11 +866,10 @@
              <h5 class="modal-title" id="staticBackdropLabel">Preview Invoice</h5>
              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
-
              <div class="modal-body">
                  <div class="row">
                     <div class="preview_invoice_show">
-                        @include('invoices.premium.test')
+
                     </div>
                      <div class="modal-footer">
                          <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
@@ -895,5 +900,9 @@
                 $(document).ready(function() {
                     allData();
                 });
+            </script>
+
+            <script>
+
             </script>
         @endpush

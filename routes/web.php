@@ -67,6 +67,8 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::post('/payment/store', [SubscriptionPackContoller::class, 'payment_gateway_store'])->name('payment.store');
 
 
+    // just chek route
+    Route::get('/preview/image/{id}', [InvoiceController::class, 'previewImage']);
 
 });
 

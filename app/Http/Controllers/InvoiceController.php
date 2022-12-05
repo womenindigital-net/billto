@@ -29,9 +29,12 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+
+        $data  = Invoice::where('id',1)->get()->first();
+
         $user = Auth::user()->id;
         Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
-        $data =[];
+
         $template_id = "";
         $template_id_check = InvoiceTemplate::get()->first();
 
@@ -207,6 +210,8 @@ class InvoiceController extends Controller
                 );
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
                 return response()->json([$invoice->id]);
+                // $arif = "123456";
+                // return view('invoices.premium.test',compact('arif'))->render();
             }
             return response()->json(['message' => 'Please create product']);
         } else {
@@ -367,5 +372,13 @@ class InvoiceController extends Controller
             $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
         });
         return redirect()->back()->with('success', "Mail Successfully Send");
+    }
+
+    public function previewImage($id)
+    {
+        $data  = Invoice::where('id', $id)->get();
+
+        return view('invoices.premium.test',compact('data'))->render();
+
     }
 }

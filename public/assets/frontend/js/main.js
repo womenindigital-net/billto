@@ -148,7 +148,7 @@ function currency1(){
                 title: ' Successfuly Invoice Created ',
 
               })
-              location.replace("https://www.w3schools.com");
+            //  location.replace("https://www.w3schools.com");
             //  window.location = '/';
             // $('.preview_invoice_show').html(response);
             }
@@ -564,4 +564,18 @@ $("#getway_setup").submit(function(e){
     // });
 
 
+
   });
+ $( "#previw_id" ).on( "click", function() {
+    var invoice_last_id = document.getElementById('invoice_last_id').value;
+    // var invoice_id = 250;
+
+    $.ajax({
+        url: '/preview/image/'+invoice_last_id,
+        method: 'get',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        success: function(data) {
+          $('.preview_invoice_show').html(data);
+        }
+    })
+ });

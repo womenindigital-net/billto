@@ -117,21 +117,21 @@
         padding-top: 42px;
     }
 </style>
-{{-- 
-@php
-    $data = App\Invoice::get();
-@endphp --}}
+
+
+
 
 <div class="invoice_page" size="A4">
     <div class="page">
-       {{-- @foreach ($data as $datas )
-{{ $datas->invoice_to }}
-{{ $datas->invoice_form }}
 
-       @endforeach --}}
         <div class="top_section d-flex">
             <div class="left_content col-8">
-                <h1 class="m-0">Lorem ipsum dolor sit amet.</h1>
+                <h1 class="m-0">
+                    @foreach ($data as  $dat)
+                    {{ $dat->invoice_to }}
+                    @endforeach
+           
+                </h1>
                 <br>
                 <pre></pre>
             </div>
