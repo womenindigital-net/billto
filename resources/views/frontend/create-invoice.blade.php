@@ -575,7 +575,7 @@
                 @endphp
                 <div class="container p-0 create_page">
                     {{-- id="completeInvoice" --}}
-                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice py-2 px-4 my-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"
+                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice py-2 px-4 my-2"
 
                      @if (isset($invoiceData)) @else disabled @endif>
 
