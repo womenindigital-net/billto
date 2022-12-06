@@ -72,7 +72,7 @@
                                                 <li><a href='#invoice' class="@yield('over-view') ">Over Due <span class="circle bg-warning">0</span></a></li>
                                                 <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid <span class="circle bg-dark">0</span></a></li>
                                                 <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span class="circle bg-danger">0</span></a></li>
-                                                <li><a href='#invoice' class="@yield('SendbyEmail') ">Send by Email <span class="circle bg-success">10</span></a></li>
+                                                <li><a href='{{ url('/all/invoices/send-by-Mail') }}' class="@yield('SendbyEmail') ">Send by Email <span class="circle bg-success">10</span></a></li>
                                                 <li><a href='#invoice' class="@yield('Trush') ">Trash <span class="circle bg-warning">{{ $trash }}</span> </a></li>
                                             </ul>
                                         </li>

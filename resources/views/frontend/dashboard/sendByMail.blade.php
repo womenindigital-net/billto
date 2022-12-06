@@ -31,7 +31,6 @@
 </style>
 @section('dashboard_content')
     <div class="container-fluid">
-
         <div class="row">
             <div class="card p-4 mt-2 table-responsive">
                 <table id="example" class="table table-striped table-hover border table-bordered mt-1 ">
@@ -46,15 +45,13 @@
                             <th class="text-center">ACTION</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {{-- <tbody>
                         @forelse ($invoicessData as $key => $invoiceData)
                             <tr class="m-0 p-0 ">
                                 <td class="m-0  text-center ">{{ ++$key }}</td>
                                 <td class="m-0  ">{{ $invoiceData->invoice_to }}</td>
                                 <td class="m-0   ">
-                                    {{-- <a href="{{ route('invoice.download', $invoiceData->id) }}" target="_black"
-                                        class="text-dark ">
-                                        {{ $invoiceData->invoice_id }}</a> --}}
+
                                     {{ $invoiceData->invoice_id }}
                                 </td>
                                 <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
@@ -72,7 +69,7 @@
                             </tr>
                         @empty
                         @endforelse
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </div>
         </div>
