@@ -371,7 +371,9 @@ class InvoiceController extends Controller
         Mail::send('invoices.sendMail.mail', $data,  function ($message) use ($data, $pdf) {
             $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
         });
-        return redirect()->back()->with('success', "Mail Successfully Send");
+        return response()->json(['message' => '1']);
+        // return response()->json($template_id = $request->template_id);
+        // return redirect()->back()->with('success', "Mail Successfully Send");
     }
 
     public function previewImage($id)

@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/invoice/download/{id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 
     // send invoice mail with PDF
-    Route::post('invoice/send', [InvoiceController::class, 'send_invoice'])->name('sendmail.invoice');
+    Route::post('/create/invoice/send', [InvoiceController::class, 'send_invoice']);
 
 
     //payment payment gateway

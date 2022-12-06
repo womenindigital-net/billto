@@ -576,3 +576,64 @@ $("#getway_setup").submit(function(e){
         }
     })
  });
+
+
+ $( "#send_mail_data" ).on( "click", function() {
+    var template_id = document.getElementById('template_id').value;
+    var emai_to = document.getElementById('emai_to').value;
+    var email_subject = document.getElementById('email_subject').value;
+    var email_body = document.getElementById('email_body').value;
+
+    if(emai_to==""){
+        $('#emai_to').addClass("is-invalid");
+    }else{
+        $('#emai_to').removeClass("is-invalid");
+    }
+    if(email_subject==""){
+        $('#email_subject').addClass("is-invalid");
+    }else{
+        $('#email_subject').removeClass("is-invalid");
+    }
+    if(email_subject=="" || emai_to==""){
+
+    }else{
+        $('#emai_to').removeClass("is-invalid");
+        $('#email_subject').removeClass("is-invalid");
+    $.ajax({
+        url: '/create/invoice/send',
+        method: 'post',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {
+            template_id:template_id,
+            emai_to:emai_to,
+            email_subject:email_subject,
+            email_body:email_body
+         },
+        success: function(data) {
+            if (data['message'] != null) {
+
+                button =
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Mail Successfully Send ',
+
+                })
+
+                document.getElementById('emai_to').value="";
+                document.getElementById('email_subject').value="";
+                document.getElementById('email_body').value="";
+
+            }else{
+             button =
+                Toast.fire({
+                  icon: 'warning',
+                  title: ' Mail Not Send',
+
+                })
+            }
+
+
+        }
+    })
+}
+ });
