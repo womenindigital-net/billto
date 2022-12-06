@@ -352,7 +352,7 @@
                                 <label for="invoice_dou_date" class="col-sm-4 col-form-label">Due Date</label>
                                 @php
                                     $date = new DateTime(now());
-                                    $date->modify('+4 day');
+                                    $date->modify('+0 day');
                                 @endphp
                                 <div class="col-sm-8">
                                     <input type="date" name="invoice_dou_date" class="form-control"
@@ -592,7 +592,7 @@
                         @endif
                     </button>
                     <button type="button" id="send_email_id"
-                        class="btn send-invoice bnt_responsive py-2 px-4 my-2 disabled " data-bs-toggle="modal"
+                        class="btn send-invoice bnt_responsive py-2 px-4 my-2  " data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop">
                         Send Invoice
                     </button>
@@ -822,38 +822,36 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" >
                     <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('sendmail.invoice') }}" method="POST">
-                    @csrf
+
                     <div class="modal-body">
                         <div class="row">
 
                             <div class="mb-3">
-                                <input type="hidden" name="template_id" value="{{ $last_invoice_id }}">
+                                <input type="hidden" name="template_id" id="template_id" value="{{ $last_invoice_id }}">
                                 <br>
-                                <label for="Input1" class="form-label">To</label>
-                                <input type="email" class="form-control" id="Input1" name="emai_to"
+                                <label for="emai_to" class="form-label">To</label>
+                                <input type="email" class="form-control" id="emai_to" name="emai_to"
                                     placeholder="example@gmail.com" required>
                             </div>
                             <div class="mb-3">
-                                <label for="Input2" class="form-label">Subject</label>
-                                <input type="text" class="form-control" name="email_subject" id="Input2"
-                                    value="Subject" required>
+                                <label for="email_subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="email_subject" name="email_subject" id="Input2"
+                                    placeholder="Subject" required>
                             </div>
                             <div class="mb-3">
-                                <label for="Textarea1" class="form-label">Body</label>
-                                <textarea class="form-control" id="Textarea1" name="email_body" rows="2"> information </textarea>
+                                <label for="email_body" class="form-label">Body</label>
+                                <textarea class="form-control" id="email_body" name="email_body" placeholder="Describe here..." rows="2"> </textarea>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
                                         class="bi bi-x-circle"></i> Close</button>
-                                <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                    Send
-                                    Mail</button>
+                                <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                    Send Mail</button>
                             </div>
                         </div>
                         @endif
@@ -861,7 +859,7 @@
             </div>
         </div>
     </div>
-    </form>
+
 
 
     {{-- preview image alert  --}}
