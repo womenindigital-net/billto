@@ -86,8 +86,12 @@
                                                             <td colspan="7">No Template Invoice Available</td>
                                                         </tr>
                                                     @endforelse
+
                                                 </tbody>
                                             </table>
+                                            <div class="">
+                                                {{ $invoiceTemplates->links() }}
+                                            </div>
                                         </div>
                                         <div class="col-4 ">
                                             <div class="mb-3">

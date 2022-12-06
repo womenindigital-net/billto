@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <!--************************************
-                    ********** Main content Start ***********
-                    ************************************-->
+                        ********** Main content Start ***********
+                        ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -41,7 +41,8 @@
                                         class="btn btn-danger btn-sm text-white  float-end ">back
                                     </a>
                                 </h3>
-                                <form action="{{ url('admin/manage/template/' . $invoiceTemplateForEdit->id) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ url('admin/manage/template/' . $invoiceTemplateForEdit->id) }}"
+                                    method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
@@ -60,21 +61,25 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Template Image</label>
-                                                <div>
-                                                    <input type="file" name="templateImage" class="form-control"
-                                                        id="validationCustom01" required>
-                                                    <img  class="mt-5" src="{{ asset('/uploads/template/'.$invoiceTemplateForEdit->templateImage) }}"
-                                                        width="400px" height="400px" alt="">
+                                                <div class="d-flex ">
+                                                    <div class="">
+                                                        <label class="form-label">Template Image</label>
+                                                        <input type="file" name="templateImage" class="form-control"
+                                                            id="validationCustom01" required>
+                                                    </div>
+                                                    <div class=" ms-5">
+                                                        <img class=""
+                                                            src="{{ asset('/uploads/template/' . $invoiceTemplateForEdit->templateImage) }}"
+                                                            width="120px" height="120px" alt="">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <div>
-                                                    <button class="btn btn-primary mt-2" type="submit">Update</button>
+                                                <div class="mt-2">
+                                                    <div>
+                                                        <button class="btn btn-primary mt-2" type="submit">Update</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
                                 </form>
                             </div>
@@ -86,8 +91,8 @@
 
 
                 <!--************************************
-                         ********** Main content END ***********
-                         ************************************-->
+                             ********** Main content END ***********
+                             ************************************-->
 
             </div>
             <!-- container-fluid -->
