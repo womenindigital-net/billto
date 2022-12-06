@@ -11,6 +11,24 @@
 @section('all_invoice')
     left_manu
 @endsection
+<style>
+    .custom_btn_sm {
+        background-color: #f8f9fa;
+        font-size: 18px;
+        padding: 4px;
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+
+    }
+
+    .iconTable{
+        color: black !important;
+        width: 9px !important;
+        height: 11.25px !important;
+        padding:5px;
+    }
+</style>
 @section('dashboard_content')
     <div class="container-fluid">
 
@@ -19,31 +37,37 @@
                 <table id="example" class="table table-striped table-hover border table-bordered mt-1 ">
                     <thead>
                         <tr>
-                            <th>SL</th>
+                            <th class="text-center">SL</th>
                             <th>CUSTOMER</th>
                             <th>NUMBER</th>
                             <th>DATE</th>
                             <th>PAID</th>
                             <th>TOTAL</th>
-                            <th>ACTION</th>
+                            <th class="text-center">ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($invoicessData as $key => $invoiceData)
                             <tr class="m-0 p-0 ">
-                                <td class="m-0 p-0 ps-2 ">{{ ++$key }}</td>
-                                <td class="m-0 p-0  ps-2">{{ $invoiceData->invoice_to }}</td>
-                                <td class="m-0 p-0  ps-2">
-                                    <a href="{{ route('invoice.download', $invoiceData->id) }}" target="_black"
+                                <td class="m-0 p-1 text-center ">{{ ++$key }}</td>
+                                <td class="m-0 p-1 ">{{ $invoiceData->invoice_to }}</td>
+                                <td class="m-0 p-1  ">
+                                    {{-- <a href="{{ route('invoice.download', $invoiceData->id) }}" target="_black"
                                         class="text-dark ">
-                                        {{ $invoiceData->invoice_id }}</a>
+                                        {{ $invoiceData->invoice_id }}</a> --}}
+                                    {{ $invoiceData->invoice_id }}
                                 </td>
-                                <td class="m-0 p-0  ps-2">{{ $invoiceData->invoice_date }}</td>
-                                <td class="m-0 p-0  ps-2">৳ {{ $invoiceData->invoice_amu_paid }}</td>
-                                <td class="m-0 p-0  ps-2">৳ {{ $invoiceData->total }}</td>
-                                <td class="text-center m-0 p-0"><a class="btn btn-primary btn-sm custom_btn_sm "
-                                        href="{{ route('edit.invoice', $invoiceData->id) }}"><i
-                                            class="bi bi-pencil-square"></i></a>
+                                <td class="m-0 p-1 ">{{ $invoiceData->invoice_date }}</td>
+                                <td class="m-0 p-1 ">৳ {{ $invoiceData->invoice_amu_paid }}</td>
+                                <td class="m-0 p-1 ">৳ {{ $invoiceData->total }}</td>
+                                <td class=" m-0 p-2 text-center">
+                                    @if ($invoiceData->invoice_status == 'complete')
+                                        <a class="custom_btn_sm" href="{{ route('edit.invoice', $invoiceData->id) }}"><i
+                                                class="bi bi-eye iconTable"></i></a>
+                                    @else
+                                        <a class="custom_btn_sm " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
+                                                class="bi bi-pencil-square iconTable"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

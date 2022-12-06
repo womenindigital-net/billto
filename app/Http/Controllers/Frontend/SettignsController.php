@@ -20,7 +20,7 @@ class SettignsController extends Controller
     }
     public function Myallinvoice()
     {
-        $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total']);
+        $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status']);
         $count = $invoicessData->count();
         $user_id = Auth::user()->id;
         $user = User::where('id',$user_id)->get();

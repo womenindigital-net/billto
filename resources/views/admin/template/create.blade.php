@@ -47,6 +47,7 @@
                                                     <tr>
                                                         <th>Id</th>
                                                         <th>Package Name</th>
+                                                        <th>Template Image</th>
                                                         <th>Template Design Html</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -59,6 +60,11 @@
                                                         <tr>
                                                             <td>{{ $count++; }}</td>
                                                             <td>{{ $invoiceTemplate->templateName }}</td>
+                                                            <td>
+                                                                <div class="text-center">
+                                                                    <img width="80px" height="80px" src="{{ asset('/uploads/template/'.$invoiceTemplate->templateImage) }}" alt="">
+                                                                </div>
+                                                            </td>
                                                             <td>{{ $invoiceTemplate->templateDesignHtml }}</td>
                                                             {{-- <td>{{ $package->status == '1' ? 'Hidden' : 'Visible' }}</td> --}}
                                                             <td>
