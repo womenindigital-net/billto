@@ -148,9 +148,6 @@ function currency1(){
                 title: ' Successfuly Invoice Created ',
 
               })
-            //  location.replace("https://www.w3schools.com");
-            //  window.location = '/';
-            // $('.preview_invoice_show').html(response);
             }
 
 

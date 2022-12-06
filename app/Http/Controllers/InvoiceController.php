@@ -209,9 +209,9 @@ class InvoiceController extends Controller
                     'template_name' => $request->template_name,
                 );
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
+
                 return response()->json([$invoice->id]);
-                // $arif = "123456";
-                // return view('invoices.premium.test',compact('arif'))->render();
+
             }
             return response()->json(['message' => 'Please create product']);
         } else {
