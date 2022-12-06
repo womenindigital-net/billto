@@ -24,7 +24,9 @@ class DashboardController extends Controller
         $count = $invoicessData->count();
 
         $user = User::where('id',$user_id)->get();
-        return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user'));
+        $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
+        $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
+        return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user','all_Invoice_Count','trash'));
     }
 
     public function edit($id)
@@ -54,7 +56,9 @@ class DashboardController extends Controller
     public function userSettingEdit(){
         $user_id = auth()->user()->id;
         $user = User::where('id',$user_id)->get();
-        return view('frontend.dashboard.setting',compact('user'));
+        $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
+        $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
+        return view('frontend.dashboard.setting',compact('user','all_Invoice_Count','trash'));
     }
     public function userUpdate(UpdateUserRequest $request, $id){
         $get_id = $id;

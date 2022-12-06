@@ -68,12 +68,12 @@
                                             </a>
                                             <ul class="@yield('d-block')">
                                                 <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
-                                                        Invoices <span class="circle bg-primary">0</span></a></li>
-                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due <span class="circle bg-primary">0</span></a></li>
+                                                        Invoices <span class="circle bg-primary">{{ $all_Invoice_Count }}</span></a></li>
+                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due <span class="circle bg-warning">0</span></a></li>
                                                 <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid <span class="circle bg-dark">0</span></a></li>
                                                 <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span class="circle bg-danger">0</span></a></li>
                                                 <li><a href='#invoice' class="@yield('SendbyEmail') ">Send by Email <span class="circle bg-success">10</span></a></li>
-                                                <li><a href='#invoice' class="@yield('Trush') ">Trush <span class="circle bg-warning">0</span> </a></li>
+                                                <li><a href='#invoice' class="@yield('Trush') ">Trash <span class="circle bg-warning">{{ $trash }}</span> </a></li>
                                             </ul>
                                         </li>
                                         <li><a href='#'><img
@@ -90,9 +90,7 @@
                             </div>
                         @endforeach
                     </div>
-
                 </section>
-
             </div>
 
             <div class="col-md-9 m-0 p-0">

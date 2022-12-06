@@ -24,6 +24,8 @@ class SettignsController extends Controller
         $count = $invoicessData->count();
         $user_id = Auth::user()->id;
         $user = User::where('id',$user_id)->get();
-        return view('frontend.dashboard.home')->with(compact('invoicessData', 'count','user'));
+        $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
+        $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
+        return view('frontend.dashboard.home')->with(compact('invoicessData', 'count','user' ,'all_Invoice_Count','trash'));
     }
 }
