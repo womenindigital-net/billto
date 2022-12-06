@@ -119,8 +119,8 @@ div.dataTables_wrapper div.dataTables_paginate,
 
 .picture__img {
     max-width: 100%;
-    width: 168px;
-    height: 168px;
+    width: 135px;
+    height: 135px;
     border-radius: 50%;
 }
 
@@ -190,7 +190,7 @@ body {
 }
 .design_logo img{
     width: 90px;
-    height: auto;
+    height: 90px;
     border-radius: 50%;
 }
 .design_logo p{
