@@ -13,7 +13,7 @@ class InvoiceTemplateController extends Controller
     public function create()
     {
         $data = [
-            'invoiceTemplates' => InvoiceTemplate::get(),
+            'invoiceTemplates' => InvoiceTemplate::paginate(5),
         ];
         return view('admin.template.create', $data);
     }
@@ -66,7 +66,7 @@ class InvoiceTemplateController extends Controller
             $invoiceTemplate->templateImage = $filename;
         }
         $invoiceTemplate->update();
-        return redirect()->back()->with('message', 'Successfully Update Invoice Template.');
+        return redirect()->to('/admin/manage/template/page')->with('message', 'Successfully Update Invoice Template.');
     }
 
     public function destroy($id)

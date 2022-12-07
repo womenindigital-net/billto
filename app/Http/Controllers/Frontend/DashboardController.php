@@ -82,4 +82,13 @@ class DashboardController extends Controller
         $user->update();
         return redirect()->back()->with('message', 'Successfully Update User profile.');
     }
+
+    /////dashboard send by mail
+    public function SendByMail(){
+        $user_id = auth()->user()->id;
+        $user = User::where('id',$user_id)->get();
+        $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
+        $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
+        return view('frontend.dashboard.sendByMail',compact('user','all_Invoice_Count','trash'));
+    }
 }
