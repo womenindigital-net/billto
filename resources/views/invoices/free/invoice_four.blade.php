@@ -197,7 +197,9 @@
 
                 </div>
                 <div class="i_title">
+                    @if($invoiceData->invoice_logo!="")
                     <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img" style="width: 80px; height:80px;">
+                  @endif
                     <h1>INVOICE</h1>
                 </div>
                 <div class="i_sub_title">

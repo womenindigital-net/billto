@@ -145,7 +145,7 @@
         overflow: hidden;
     }
 </style>
-
+<title>Billto.io</title>
 
 
 </head>
@@ -162,8 +162,10 @@
             </div>
             <div class="heading_area" style="color: #686868;">
                 <div>
+                    @if($invoiceData->invoice_logo!="")
                     <img src="{{ public_path('storage/invoice/logo/' . $invoiceData->invoice_logo) }}" alt="img"
                         style="width: 90px; height:90px; margin-top:20px; margin-right: 74px;border-radius: 25px;">
+                     @endif
                 </div>
             </div>
         </section>

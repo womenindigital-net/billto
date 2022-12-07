@@ -126,11 +126,13 @@
 
         <div class="top_section d-flex">
             <div class="left_content col-8">
+
                 <h1 class="m-0">
                     @foreach ($data as  $dat)
                     {{ $dat->invoice_to }}
+                    {{ $dat->invoice_form }}
                     @endforeach
-           
+
                 </h1>
                 <br>
                 <pre></pre>

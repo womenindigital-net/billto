@@ -190,7 +190,9 @@
     <div class="invoice_body page" size="A4">
         <section class="first_section">
             <div class="logo_area">
+                @if($invoiceData->invoice_logo!="")
                 <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img">
+            @endif
                 <p><b>{{ $invoiceData->invoice_form }} </b></p>
                 {{-- <p>123 Rockfeller Street,</p>
                 <p>New York, NY 12210</p> --}}

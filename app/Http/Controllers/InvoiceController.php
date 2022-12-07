@@ -33,7 +33,7 @@ class InvoiceController extends Controller
         $data  = Invoice::where('id',1)->get()->first();
 
         $user = Auth::user()->id;
-        Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
+        // Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
 
         $template_id = "";
         $template_id_check = InvoiceTemplate::get()->first();
@@ -66,7 +66,7 @@ class InvoiceController extends Controller
         // dd( $join_table_template);
 
 
-        Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
+        // Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
         $lastInvoice = Invoice::where('user_id', $user)
             ->orderBy('created_at', 'desc')
             ->get([
@@ -205,7 +205,7 @@ class InvoiceController extends Controller
                     'invoice_tax_percent' => $request->invoice_tax,
                     'requesting_advance_amount_percent' => $request->requesting_advance_amount,
                     'total' => $total,
-                    'invoice_status' => 'complete',
+                    'invoice_status' => 'incomlete',
                     'template_name' => $request->template_name,
                 );
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
@@ -324,6 +324,9 @@ class InvoiceController extends Controller
             'total',
             'template_name',
         ])->first();
+        Invoice::where('id',$id)->update([
+            'invoice_status'=>'complete',
+        ]);
         $productsDatas = Invoice::find($id)->products->skip(0)->take(6);
         $due = $invoiceData->total;
         if (Auth::user()->plan == 'free') {
@@ -358,6 +361,9 @@ class InvoiceController extends Controller
             'total',
             'template_name',
         ])->first();
+        Invoice::where('id', $template_id)->update([
+            'invoice_status'=>'complete',
+        ]);
 
         $data['productsDatas'] = Invoice::find($template_id)->products->skip(0)->take(6);
         $data['due'] = $data['invoiceData']->total;
@@ -378,9 +384,9 @@ class InvoiceController extends Controller
 
     public function previewImage($id)
     {
-        $data  = Invoice::where('id', $id)->get();
+        $data  = Invoice::find($id);
 
-        return view('invoices.premium.test',compact('data'))->render();
+        return view('invoices.preview_invoice.all_pre_invoice',compact('data'))->render();
 
     }
 }
