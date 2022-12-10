@@ -1,3 +1,4 @@
+
 <style>
     * {
         padding: 0;
@@ -92,7 +93,7 @@
     .second_section {
         background: #F2F2F2;
         padding-top: 20px;
-        padding-bottom: 80px;
+        padding-bottom: 100px;
     }
 
     .third_section {
@@ -296,31 +297,8 @@
                             </tr> --}}
                         </tbody>
                     </table>
-                        <style>
-                        .empty_div{
-                            margin-left: 410px;
-                            width: 135px;
-                        }
-                        .table_div{
-                            width: 118px;
-                        }
-                    </style>
-                    <div style="margin-top: 0; width:100%; display:flex;">
-                        <div class="empty_div">
-                            <ul style="background: #039DBF; ">
-                                <li>Subtotal</li>
-                                <li>Sales Tax 6.25%</li>
-                                <li>Total</li>
-                            </ul>
-                        </div>
-                        <div class="table_div" style="background: #F2F2F2;">
-                            <ul>
-                                <li>300.00 </li>
-                                <li>20.00</li>
-                                <li>320.00</li>
-                            </ul>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         </section>

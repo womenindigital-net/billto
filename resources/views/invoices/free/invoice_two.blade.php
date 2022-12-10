@@ -172,87 +172,6 @@
                     {{-- <p>New York, NY 12210</p> --}}
                 </div>
 
-
-        <section class="second_section">
-            <div class="table">
-                <div style="margin-left: 70px; margin-right:60px; padding-top:80px; padding-bottom:80px;">
-                    <table class="table1" style="width:100%;  border-collapse: collapse;" class="">
-                        <thead>
-                            <tr>
-                                <th
-                                    style=" text-align:left; width:15%; font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;  padding-right: 0px;">
-                                    qty</th>
-                                <th
-                                    style=" text-align:left; width:45%;font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;  padding-right: 0px;">
-                                    description</th>
-                                <th
-                                    style=" text-align:right; width:20%; font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;  padding-right: 0px;">
-                                    unit price</th>
-                                <th
-                                    style=" text-align:right; width:20%;font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;  padding-right: 0px;">
-                                    amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td
-                                    style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
-                                    01</td>
-                                <td
-                                    style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
-                                    Front and rear brake cable</td>
-                                <td
-                                    style="  width:20%;border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
-                                <td
-                                    style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
-                            </tr>
-                            <tr>
-                                <td
-                                    style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
-                                    01</td>
-                                <td
-                                    style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
-                                    Front and rear brake cable</td>
-                                <td
-                                    style="  width:20%;border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
-                                <td
-                                    style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
-                            </tr>
-                            <tr>
-                                <td
-                                    style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
-                                    01</td>
-                                <td
-                                    style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
-                                    Front and rear brake cable</td>
-                                <td
-                                    style="  width:20%;border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
-                                <td
-                                    style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                    1,00.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-                </div>
-            </div>
-        </section>
-        <style>
-            .border{
-                border-bottom: 2px solid #FFF;
-                margin: 0px 30px;
-                margin-bottom:10px;
-
-            }
-        </style>
-        <section class="third_section">
-            <div class="left_Side_bar" style="padding-top: 30px;">
                 <div class="c">
                     <h5>To</h5>
                     <p><b>{{   $invoiceData->invoice_to }}</b></p>
@@ -432,3 +351,4 @@
     </div>
 
     </div>
+
