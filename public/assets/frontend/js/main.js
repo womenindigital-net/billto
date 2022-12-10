@@ -136,13 +136,26 @@ $("#invoiceForm").submit(function (e) {
 
             } else {
                 $("#downlodeInvoice").attr("href", "/invoice/download/" + response);
-                button =
-                    Toast.fire({
-                        icon: 'success',
-                        title: ' Successfuly Invoice Created ',
+                // button =
+                //     Toast.fire({
+                //         icon: 'success',
+                //         title: ' Successfuly Invoice Created ',
 
-                    })
-            }
+                //     });
+
+                    // Priview invoice show in this code
+                    var invoice_last_id = document.getElementById('invoice_last_id').value;
+                    $.ajax({
+                        url: '/preview/image/' + invoice_last_id,
+                        method: 'get',
+                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                        success: function (data) {
+                            $('.preview_invoice_show').html(data);
+                        }
+                    });
+
+                    // Priview invoice show in this code
+                  }
 
 
             $('#downlodeInvoice').removeClass("disabled");
@@ -212,6 +225,7 @@ $("#invoiceForm").submit(function (e) {
             }
         }
     });
+
 });
 
 function allData() {
@@ -544,19 +558,6 @@ $("#getway_setup").submit(function (e) {
 
 
 });
-$("#previw_id").on("click", function () {
-    var invoice_last_id = document.getElementById('invoice_last_id').value;
-    // var invoice_id = 250;
-
-    $.ajax({
-        url: '/preview/image/' + invoice_last_id,
-        method: 'get',
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        success: function (data) {
-            $('.preview_invoice_show').html(data);
-        }
-    })
-});
 
 
 $("#send_mail_data").on("click", function () {
@@ -564,7 +565,7 @@ $("#send_mail_data").on("click", function () {
     var emai_to = document.getElementById('emai_to').value;
     var email_subject = document.getElementById('email_subject').value;
     var email_body = document.getElementById('email_body').value;
-
+    // alert(template_id);
     if (emai_to == "") {
         $('#emai_to').addClass("is-invalid");
     } else {

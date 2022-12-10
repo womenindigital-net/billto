@@ -352,7 +352,7 @@
                                 <label for="invoice_dou_date" class="col-sm-4 col-form-label">Due Date</label>
                                 @php
                                     $date = new DateTime(now());
-                                    $date->modify('+0 day');
+                                    $date->modify('0 day');
                                 @endphp
                                 <div class="col-sm-8">
                                     <input type="date" name="invoice_dou_date" class="form-control"
@@ -392,7 +392,7 @@
                         </table>
                     </div>
                     <div class="product row m-0">
-                        <div class="p-0 pe-1 pb-2 col-md-6">
+                        <div class="p-0 pe-1 pb-2 col-md-5">
                             <textarea type="text" name="product_name" id="product_name" class="form-control"
                                 placeholder="Description of service or product" rows="1" onchange="addData();"></textarea>
                             <div id="name_error" class="invalid-feedback"></div>
@@ -412,13 +412,18 @@
                                 <div class="input-group-text" id="currency">USD</div>
                                 <div id="product_rate_error" class="invalid-feedback"></div>
                             </div>
+
                         </div>
-                        <div class=" col-md-2 p-0 pe-1 pb-2">
+                        <div class=" col-md-3 p-0 pe-1 pb-2">
                             <div
                                 class="ps-2 input-group text-center border rounded justify-content-between align-items-center ">
                                 <span id="product_amount" class="fw-bolder"></span>
-                                <div class="input-group-text" id="currency">USD</div>
+                                <div class="input-group-text" id="currency">USD  &nbsp;<img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt="" style="width: 25px;height:25px; padding:0px; "></div>
+
                             </div>
+                             {{-- <div class="text-right d-flex justify-content-end">
+
+                             </div> --}}
                         </div>
                     </div>
 
@@ -568,9 +573,9 @@
                 </style>
                 @php
                     if (isset($lastInvoice)) {
-                        $last_invoice_id = $lastInvoice->id;
+                        $last_invoice_id = $lastInvoice->id +1;
                     } else {
-                        $last_invoice_id = 0;
+                        $last_invoice_id = 0+1;
                     }
                 @endphp
                 <style>
@@ -580,8 +585,9 @@
                 </style>
                 <div class="container p-0 create_page">
                     {{-- id="completeInvoice" --}}
-                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice py-2 px-4 my-2"
-
+                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice preview_image py-2 px-4 my-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop_previw"
 
                         @if (isset($invoiceData)) @else disabled @endif>
 
@@ -591,8 +597,9 @@
                             {{ 'Update Invoice' }} @else{{ 'Save' }}
                         @endif
                     </button>
+                    <input type="hidden" id="invoice_last_id" value="{{ $last_invoice_id }}">
                     <button type="button" id="send_email_id"
-                        class="btn send-invoice bnt_responsive py-2 px-4 my-2  " data-bs-toggle="modal"
+                        class="btn send-invoice bnt_responsive py-2 px-4 my-2 disabled " data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop">
                         Send Invoice
                     </button>
@@ -600,9 +607,9 @@
                         class="btn bnt_responsive send-invoice py-2 px-4 disabled">Download
                         Invoice</a>
 
-                    {{-- <a id="previw_id" class="btn send-invoice bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop_previw">Preview </a>
-                    <input type="hidden" id="invoice_last_id" value="{{ $last_invoice_id }}"> --}}
+                    {{-- <a id="previw_id" class="btn send-invoice preview_image bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop_previw">Preview </a> --}}
+
 
                 </div>
 
@@ -740,6 +747,37 @@
             }
         }
     </style>
+    <style>
+        .spinner {
+            width: 80px;
+            height: 80px;
+
+            border: 2px solid #f3f3f3;
+            border-top: 3px solid #f25a41;
+            border-radius: 100%;
+
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+
+
 
     <section class="invoice_template">
         <div>
@@ -860,7 +898,23 @@
         </div>
     </div>
 
-
+<style>
+    .priviewModel{
+            padding: 0.2rem 0.5rem !important;
+            border-bottom: 1px solid #ededed !important;
+    }
+    .modal-header .stop_btn {
+    padding: 0.5rem 0.5rem !important;
+    margin: -0.5rem -0.5rem -0.5rem auto;
+    font-size: 12px !important;
+    border: 1px solid !important;
+    margin-right: 0px !important;
+}
+.modal_footer{
+    padding:0px;
+    margin-top: 9px;
+}
+</style>
 
     {{-- preview image alert  --}}
     <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -869,18 +923,21 @@
             <div class="modal-content">
                 <div class="modal-header priviewModel">
                     <h5 class="modal-title" id="staticBackdropLabel">Preview Invoice</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="stop_btn" class="btn-close stop_btn" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding: 0.5rem 1rem 0rem 1rem;">
                     <div class="row">
                         <div class="preview_invoice_show">
+                            <div id="overlay">
+                                <div class="spinner"></div>
+                            </div>
 
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer modal_footer">
                             <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
                                     class="bi bi-x-circle"></i> Close</button>
-                            <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                Download Image </button>
+                            {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                Download Image </button> --}}
                         </div>
                     </div>
                 </div>

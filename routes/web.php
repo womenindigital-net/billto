@@ -5,6 +5,7 @@ use App\Models\Invoice;
 use App\Models\PaymentGetway;
 use Illuminate\Support\Facades\DB;
 use App\Models\SubscriptionPackage;
+use App\Models\ComplateInvoiceCount;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -13,6 +14,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Frontend\SubscriptionPackContoller;
+use App\Models\SendMail_info;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,9 +102,15 @@ Route::get('/check',  function () {
     // foreach($join_table_value as $join_table_valued){
     //    echo $join_table_valued->packageName;
     // }
-    $data = Invoice::get();
 
-    foreach ($data as $datas) {
-        echo $datas->invoice_to;
-    }
+    SendMail_info::create([
+        'user_id'=> 1,
+        'send_mail_to'=> 1,
+        'mail_subject'=> 2,
+        'mail_body'=>3,
+        'invoice_tamplate_id'=>4,
+        'created_at'=>Carbon::now()
+    ]);
+
+   dd("success");
 });
