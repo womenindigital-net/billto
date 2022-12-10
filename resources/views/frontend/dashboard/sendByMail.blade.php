@@ -37,11 +37,8 @@
                     <thead>
                         <tr>
                             <th class="text-center">SL</th>
-                            <th>CUSTOMER</th>
-                            <th>NUMBER</th>
-                            <th>DATE</th>
-                            <th>PAID</th>
-                            <th>TOTAL</th>
+                            <th>From Email</th>
+                            <th>Subject</th>
                             <th class="text-center">ACTION</th>
                         </tr>
                     </thead>

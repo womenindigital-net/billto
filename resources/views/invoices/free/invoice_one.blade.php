@@ -68,7 +68,7 @@
         display: flex;
         justify-content: space-between;
         padding-top: 5px;
-        
+
     }
 
     .a {
@@ -91,13 +91,13 @@
     .second_section {
         padding-top: 20px;
         padding-bottom: 80px;
-       
+
     }
 
     .third_section {
                 width: 100%;
                 display: flex;
-                
+
             }
 
             .left_Side_bar {
@@ -173,7 +173,7 @@
                     <p>123 Rockfeller Street,</p>
                     <p>New York, NY 12210</p>
                 </div>
-                
+
                 <div class="c">
                     <h5>To</h5>
                     <p><b>New York, NY 12210</b></p>
@@ -186,13 +186,13 @@
                     <p>123 Rockfeller Street,</p>
                     <p>New York, NY 12210</p>
                 </div>
-                
+
             </div>
-            
+
 
             <div class="heading_area" style="color: #686868;">
                 <div class="i_logo" style="text-align: center;">
-                    
+
                 </div>
                 <div class="i_title">
                     <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img" style="width: 70px">
@@ -231,7 +231,7 @@
                             <tr style="padding-left:200px !important;">
                                 <th class="border"
                                     style="border-left:none; border-top:none; border-right:none; padding-left:5px; text-align:left; width:20%; font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;">
-                                    qty</th>    
+                                    qty</th>
                                 <th class="border"
                                     style="border-top:none; border-right:none; padding-left:10px; text-align:left; width:40%;font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;">
                                     description</th>
@@ -323,15 +323,15 @@
                             </ul>
                         </div>
                     </div>
-                   
-                    
+
+
                 </div>
             </div>
         </section>
         <section class="third_section">
-            
+
             <div class="right_Side_bar ">
-                    
+
                     <div class="f">
                         <div class="thanks" style="padding-top: 20%;">
                             <h5 style="color: #686868; font-weight: 400; font-size: 30px; padding-bottom:20px; border-top:2px solid #0370BF; width: 80%">Thank You for your business</h5>

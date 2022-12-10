@@ -67,7 +67,7 @@
         display: flex;
         justify-content: space-between;
         padding-top: 5px;
-        
+
     }
 
     .a {
@@ -98,7 +98,7 @@
     .third_section {
                 width: 100%;
                 display: flex;
-                
+
             }
 
             .left_Side_bar {
@@ -295,8 +295,8 @@
                             </tr>
                         </tbody>
                     </table>
-                   
-                    
+
+
                 </div>
             </div>
         </section>
@@ -305,7 +305,7 @@
                 border-bottom: 2px solid #FFF;
                 margin: 0px 30px;
                 margin-bottom:10px;
-                
+
             }
         </style>
         <section class="third_section">
