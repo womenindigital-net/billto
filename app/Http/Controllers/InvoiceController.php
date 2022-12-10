@@ -13,6 +13,7 @@ use App\Models\InvoiceTemplate;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\ComplateInvoiceCount;
+use App\Models\SendMail_info;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
@@ -134,7 +135,11 @@ class InvoiceController extends Controller
         }
 
         $check = ComplateInvoiceCount::where('user_id', $user_id)->first();
+       $invoice_last_id = $check->count_invoice_id;
 
+        ComplateInvoiceCount::where('user_id', $user_id)->update([
+            'count_invoice_id'=>$request->id
+             ]);
         $packageDuration = $join_table->packageDuration;
         $create_date = $join_table->payment_created_at;
         $date = new Carbon($create_date);
@@ -143,11 +148,16 @@ class InvoiceController extends Controller
         if ($join_table->limitInvoiceGenerate >= $check->current_invoice_total + 1 && $packageDuration >= $today_date && $data==1) {
 
             if ($check) {
-                ComplateInvoiceCount::where('user_id', $user_id)->increment('invoice_count_total');
-                ComplateInvoiceCount::where('user_id', $user_id)->increment('current_invoice_total');
-            } else {
+
+            if($invoice_last_id != $request->id){
+                ComplateInvoiceCount::where('user_id', $user_id)->where('count_invoice_id', $request->id)->increment('invoice_count_total');
+                ComplateInvoiceCount::where('user_id', $user_id)->where('count_invoice_id', $request->id)->increment('current_invoice_total');
+            }
+
+             } else {
                 ComplateInvoiceCount::insert([
                     'user_id' =>  $user_id,
+                    'count_invoice_id' =>  $request->id,
                     'invoice_count_total' => 1,
                     'current_invoice_total' => 1,
                     'created_at' => Carbon::now()
@@ -343,6 +353,8 @@ class InvoiceController extends Controller
 
         $template_id = $request->template_id;
 
+
+
         $data['invoiceData']  = Invoice::where('id', $template_id)->get([
             'invoice_logo',
             'invoice_form',
@@ -365,18 +377,30 @@ class InvoiceController extends Controller
             'invoice_status'=>'complete',
         ]);
 
+
+
         $data['productsDatas'] = Invoice::find($template_id)->products->skip(0)->take(6);
         $data['due'] = $data['invoiceData']->total;
         $data['email'] = "$request->emai_to";
         $data['subject'] = "$request->email_subject";
         $data['body'] = "$request->email_body";
-
         $data['template_id'] = "$template_id";
-        $pdf = Pdf::loadView('invoices.sendMail.mail_pdf', $data);
 
+
+        $pdf = Pdf::loadView('invoices.sendMail.mail_pdf', $data);
         Mail::send('invoices.sendMail.mail', $data,  function ($message) use ($data, $pdf) {
             $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
         });
+        SendMail_info::create([
+            'user_id'=> Auth::user()->id,
+            'send_mail_to'=> $data['email'],
+            'mail_subject'=> $data['subject'],
+            'mail_body'=>$data['body'],
+            'invoice_tamplate_id'=>$data['template_id'],
+            'created_at'=>Carbon::now()
+        ]);
+
+
         return response()->json(['message' => '1']);
         // return response()->json($template_id = $request->template_id);
         // return redirect()->back()->with('success', "Mail Successfully Send");
@@ -385,8 +409,8 @@ class InvoiceController extends Controller
     public function previewImage($id)
     {
         $data  = Invoice::find($id);
-
-        return view('invoices.preview_invoice.all_pre_invoice',compact('data'))->render();
+        $productsDatas = Product::where('invoice_id',$id)->get();
+        return view('invoices.preview_invoice.all_pre_invoice',compact('data','productsDatas'))->render();
 
     }
 }

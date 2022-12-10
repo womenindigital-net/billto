@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComplateInvoiceCountsTable extends Migration
+class CreateSendMailInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateComplateInvoiceCountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('complate_invoice_counts', function (Blueprint $table) {
+        Schema::create('send_mail_infos', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('count_invoice_id')->nullable();
-            $table->integer('invoice_count_total');
-            $table->integer('current_invoice_total');
+            $table->string('send_mail_to');
+            $table->string('mail_subject');
+            $table->text('mail_body');
+            $table->integer('invoice_tamplate_id');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateComplateInvoiceCountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('complate_invoice_counts');
+        Schema::dropIfExists('send_mail_infos');
     }
 }

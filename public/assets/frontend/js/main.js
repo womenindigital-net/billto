@@ -136,12 +136,12 @@ $("#invoiceForm").submit(function (e) {
 
             } else {
                 $("#downlodeInvoice").attr("href", "/invoice/download/" + response);
-                button =
-                    Toast.fire({
-                        icon: 'success',
-                        title: ' Successfuly Invoice Created ',
+                // button =
+                //     Toast.fire({
+                //         icon: 'success',
+                //         title: ' Successfuly Invoice Created ',
 
-                    });
+                //     });
 
                     // Priview invoice show in this code
                     var invoice_last_id = document.getElementById('invoice_last_id').value;
@@ -565,7 +565,7 @@ $("#send_mail_data").on("click", function () {
     var emai_to = document.getElementById('emai_to').value;
     var email_subject = document.getElementById('email_subject').value;
     var email_body = document.getElementById('email_body').value;
-    alert(template_id);
+    // alert(template_id);
     if (emai_to == "") {
         $('#emai_to').addClass("is-invalid");
     } else {
