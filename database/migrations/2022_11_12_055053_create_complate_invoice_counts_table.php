@@ -16,7 +16,7 @@ class CreateComplateInvoiceCountsTable extends Migration
         Schema::create('complate_invoice_counts', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('count_invoice_id')->nullable();
+            $table->integer('count_invoice_id')->default(1);
             $table->integer('invoice_count_total');
             $table->integer('current_invoice_total');
             $table->timestamps();

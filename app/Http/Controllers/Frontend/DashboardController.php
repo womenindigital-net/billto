@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\SendMail_info;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
 class DashboardController extends Controller
@@ -20,13 +21,15 @@ class DashboardController extends Controller
         $user_id = Auth::user()->id;
         // Invoice::where('user_id', $user_id)->where('invoice_status','incomlete')->delete();
 
-        $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total']);
+        $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','template_name']);
         $count = $invoicessData->count();
 
         $user = User::where('id',$user_id)->get();
         $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
         $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
-        return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user','all_Invoice_Count','trash'));
+        $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
+        $Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('total');
+        return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut'));
     }
 
     public function edit($id)
@@ -36,9 +39,11 @@ class DashboardController extends Controller
         $template_id_check = InvoiceTemplate::get()->first();
         $invoiceData = Invoice::where('id', $id)->get(['id', 'invoice_logo', 'invoice_form', 'invoice_to', 'invoice_id', 'invoice_date', 'invoice_payment_term', 'invoice_dou_date', 'invoice_po_number', 'invoice_notes', 'invoice_terms', 'invoice_tax_percent', 'requesting_advance_amount_percent', 'receive_advance_amount', 'total', 'currency'])->first();
         $invoiceCount = Invoice::where('user_id', Auth::user()->id)->count();
+        $sendByMail_count = SendMail_info::where('user_id', $id)->count();
+        $Total_Amount_conut = Invoice::where('user_id',$id)->where('invoice_status','complete')->sum('total');
         $requesting_advance_amount = ($invoiceData->total*$invoiceData->requesting_advance_amount_percent)/100;
         // foreach ($productData as $key => $value) { echo $value; };
-        return view('frontend.create-invoice')->with(compact('invoiceData', 'invoiceCount', 'requesting_advance_amount','template_id','invoice_template','template_id_check'));
+        return view('frontend.create-invoice')->with(compact('invoiceData', 'invoiceCount', 'requesting_advance_amount','template_id','invoice_template','template_id_check','sendByMail_count','Total_Amount_conut'));
     }
 
     public function destroy($id)
@@ -58,7 +63,9 @@ class DashboardController extends Controller
         $user = User::where('id',$user_id)->get();
         $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
         $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
-        return view('frontend.dashboard.setting',compact('user','all_Invoice_Count','trash'));
+        $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
+        $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
+        return view('frontend.dashboard.setting',compact('user','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut'));
     }
     public function userUpdate(UpdateUserRequest $request, $id){
         $get_id = $id;
@@ -89,6 +96,19 @@ class DashboardController extends Controller
         $user = User::where('id',$user_id)->get();
         $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
         $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
-        return view('frontend.dashboard.sendByMail',compact('user','all_Invoice_Count','trash'));
+        $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
+        $sendByMails = SendMail_info::where('user_id', $user_id)->latest()->get();
+        $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
+        return view('frontend.dashboard.sendByMail',compact('user','all_Invoice_Count','trash','sendByMail_count','sendByMails','Total_Amount_conut'));
     }
+
+public function user_view_tamplate($id)
+{
+    $data  = Invoice::find($id);
+    $productsDatas = Product::where('invoice_id',$id)->get();
+     return view('invoices.preview_invoice.all_pre_invoice',compact('data','productsDatas'))->render();
+
+}
+
+
 }

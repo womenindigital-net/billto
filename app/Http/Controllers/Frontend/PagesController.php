@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Carbon\Carbon;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Models\PaymentGetway;
 use App\Models\InvoiceTemplate;
@@ -40,7 +41,7 @@ class PagesController extends Controller
        $subcription_package = SubscriptionPackage::get();
        $invoice_template = InvoiceTemplate::get();
 
-        return view('frontend.home',compact('subcription_package','invoice_template'));
+        return view('frontend.home',compact('subcription_package','invoice_template',));
     }
 
     public function privacyPolicy()

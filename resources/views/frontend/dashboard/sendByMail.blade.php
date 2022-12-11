@@ -5,7 +5,7 @@
 @section('d-block')
     d-block
 @endsection
-@section('all-invoice')
+@section('SendbyEmail')
     active
 @endsection
 @section('all_invoice')
@@ -32,44 +32,38 @@
 @section('dashboard_content')
     <div class="container-fluid">
         <div class="row">
-            <div class="card p-4 mt-2 table-responsive">
-                <table id="example" class="table table-striped table-hover border table-bordered mt-1 ">
+            <div class="card p-4 mt-2 table-responsive ">
+                <table id="example" class="table table-striped table-hover border table-bordered mt-1" >
                     <thead>
                         <tr>
                             <th class="text-center">SL</th>
-                            <th>From Email</th>
+                            <th> Mail To</th>
                             <th>Subject</th>
+                            <th>Body</th>
                             <th class="text-center">ACTION</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @forelse ($invoicessData as $key => $invoiceData)
-                            <tr class="m-0 p-0 ">
+                    <tbody >
+                        @foreach ($sendByMails as $key => $sendByMail)
+                            <tr class="m-0 p-0  data_table_id">
                                 <td class="m-0  text-center ">{{ ++$key }}</td>
-                                <td class="m-0  ">{{ $invoiceData->invoice_to }}</td>
-                                <td class="m-0   ">
+                                <td class="m-0  ">{{ $sendByMail->send_mail_to }}</td>
+                                <td class="m-0  "> {{ $sendByMail->mail_subject }}</td>
+                                <td class="m-0  ">{{ $sendByMail->mail_body }}</td>
 
-                                    {{ $invoiceData->invoice_id }}
-                                </td>
-                                <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
-                                <td class="m-0  ">৳ {{ $invoiceData->invoice_amu_paid }}</td>
-                                <td class="m-0  ">৳ {{ $invoiceData->total }}</td>
-                                <td class=" m-0  text-center">
-                                    @if ($invoiceData->invoice_status == 'complete')
-                                        <a class="custom_btn_sm" href="{{ route('edit.invoice', $invoiceData->id) }}"><i
-                                                class="bi bi-eye iconTable"></i></a>
-                                    @else
-                                        <a class="custom_btn_sm " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
-                                                class="bi bi-pencil-square iconTable"></i></a>
-                                    @endif
-                                </td>
+                                <td class="m-0 text-center "> <a href="" class="preview_image_user text-center"    data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop_previw" ><i class="bi bi-eye iconTable"></i></a></td>
+                                 <input type="hidden" id="invoice_id_user" value="{{ $sendByMail->invoice_tamplate_id }}">
+
                             </tr>
-                        @empty
-                        @endforelse
-                    </tbody> --}}
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
     </div>
+
+
+
 @endsection

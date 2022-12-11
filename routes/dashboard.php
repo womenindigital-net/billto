@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
     Route::GET('/settigns', [SettignsController::class, 'Settign'])->name('settigns');
     Route::GET('/default-setting', [SettignsController::class, 'DefaultSetting'])->name('default.setting');
     Route::GET('/my-all-invoice', [SettignsController::class, 'Myallinvoice']);
+    Route::GET('/my-trash-invoice', [SettignsController::class, 'MyTrashinvoice']);
 
 
     //dashboard user setting start
@@ -19,4 +20,6 @@ use Illuminate\Support\Facades\Route;
 
     //dashboard user setting start
     Route::get('/all/invoices/send-by-Mail', [DashboardController::class, 'SendByMail']);
+
+    Route::get('/create/invoice/view/{id}', [DashboardController::class,'user_view_tamplate']);
 });

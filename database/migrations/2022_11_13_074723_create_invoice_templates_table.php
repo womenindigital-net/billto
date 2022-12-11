@@ -15,7 +15,7 @@ class CreateInvoiceTemplatesTable extends Migration
     {
         Schema::create('invoice_templates', function (Blueprint $table) {
             $table->id();
-            $table->string('templateName')->nullable();
+            $table->string('templateName')->default('1');
             $table->string('templateDesignHtml')->nullable();
             $table->string('templateImage')->nullable();
             $table->timestamps();

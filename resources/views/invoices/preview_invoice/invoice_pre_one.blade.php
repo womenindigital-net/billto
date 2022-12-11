@@ -1,374 +1,217 @@
-
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        .first_section {
-            width: 100%;
-            display: flex;
-            /* margin-bottom: 75px; */
-            justify-content: space-between;
-            /* position: relative; */
-            /* z-index: 2; */
-
-        }
-
-
-        .logo_area img {
-            width: 100px;
-            padding-bottom:5px;
-        }
-
-        .logo_area {
-            width: 30%;
-            float: left;
-            background: #0370BF;
-            padding-top: 28px;
-            padding-bottom:44px;
-            text-align: center;
-            line-height: 26px;
-        }
-        .logo_area  p{
-            color: #FFF;
-        }
-
-        .heading_area {
-            text-align: right;
-            padding-top: 84px;
-            padding-right: 75px;
-
-        }
-
-        .heading_area h1 {
-            color:#0370BF;
-            font-weight: 700;
-            font-size: 59.9879px;
-            line-height: 73px;
-            margin-bottom: 22px;
-        }
-
-        .heading_area .a {
-            width: 50%;
-            float: left;
-            text-align: left;
-            size: 18px;
-            width: 700;
-            line-height: 26px;
-            /* margin-left: 30%; */
-        }
-
-        .heading_area .b {
-            width: 50%;
-            float: right;
-        }
-
-        .heading_area .i_title {
-            /* margin-top: 20px; */
-        }
-
-        .i_sub_title {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .a {
-            text-align: left;
-        }
-
-        .a p {
-            font-weight: 700;
-            font-size: 17px;
-        }
-
-        .b p {
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 25.99px;
-            width: 400;
-            padding-top: 2px;
-        }
-
-        .table1 tbody tr {
-            border-top: 1px solid #C4C4C4;
-        }
-
-        .second_section {
-            background: #F2F2F2;
-            padding-top: 20px;
-            /* padding-bottom: 100px; */
-        }
-
-        .third_section {
-                    width: 100%;
-                    display: flex;
-
-                }
-
-                .left_Side_bar {
-                    width: 30%;
-                    background-color: #0370BF;
-                    padding-top: 10px;
-                    padding-bottom: 14px;
-                    float: left;
-                    margin-top: -16px;
-                    color: white !important;
-                }
-
-                .right_Side_bar {
-                    width: 68%;
-                    float: right;
-                }
-
-                .c {
-                    /* padding: 5px; */
-                    /* margin: 0px 50px; */
-                    /* border-bottom: 1px solid #FFFFFF; */
-                    color: #FFF;
-                    text-align: center;
-                    line-height: 24px;
-                    font-size: 18px;
-                    padding-bottom: 36px;
-                }
-
-                .c h5 {
-                    font-size: 18px;
-                    text-align: center;
-                    /* border-bottom: 2px solid white; */
-                    padding-top: 34px;
-                    font-weight: 700;
-                    line-height: 30px;
-
-                }
-
-                .d {
-                    padding: 5px;
-                    /* margin: 0px 50px; */
-                    /* border-bottom: 1px solid #FFFFFF; */
-                    color: #FFF;
-                    text-align: center;
-                    line-height: 24px;
-                    font-size: 18px;
-                    padding-bottom: 36px;
-                }
-
-                .d h5 {
-                    font-size: 18px;
-                    text-align: center;
-                    /* border-bottom: 2px solid white; */
-                    /* padding: 8px 0; */
-                }
-
-                .e {
-                    margin-left: 10%;
-                }
-
-                .f {
-                    margin-left: 10%;
-                    padding: 76px 0px;
-                }
-
-                .e h1 {
-                    font-size: 30px;
-                    padding: 40px 0px;
-                }
-                .empty_div {
-                    width: 25%;
-                    float: left;
-                }
-
-                .table_div {
-                    width: 75%;
-                    float: right;
-                    text-align: right;
-                    /* border-top: 2px solid #FCB21C; */
-                    padding-right: 57px;
-                }
-                            .page{
-                    background: var(--white);
-                    display: block;
-                    margin: 0 auto;
-                    position: relative;
-                    box-shadow: var(--pageShadow);
-                }
-                .page[size="A4"] {
-                    width: 21cm;
-                    /* min-height: 29.7cm;
-                    overflow: hidden; */
-                }
-
-    </style>
-        <div class="invoice_body page" size="A4">
-            <section class="first_section">
-                <div class="logo_area">
-                    @if($data->invoice_logo!="")
-                    <img src="{{ asset('storage/invoice/logo/'.$data->invoice_logo) }}" alt="img"width="122px" height="110px" style="border-radius: 50%;">
-                   @endif
-                    <div class="" style="margin-top:29px; ">
-                        <p><b>Company Name </b></p>
-                        <p>{{ $data->invoice_form }}</p>
-                        {{-- <p>New York, NY 12210</p> --}}
-                    </div>
-
-                </div>
-
-                <div class="heading_area" style="color: #686868;">
-                    <div class="i_title">
-                        <h1>INVOICE</h1>
-                    </div>
-                    <div class="i_sub_title">
-                        <div class="a">
-                            <p>Incoice #</p>
-                            <p>invoice date</p>
-                            <p>p.o.#</p>
-                            <p>due date</p>
-                        </div>
-                        <div class="b">
-                            <p>{{ $data->invoice_id }}</p>
-                            <p>{{  $data->invoice_date }}</p>
-                            <p>{{ $data->invoice_po_number }}</p>
-                            <p>{{  $data->invoice_dou_date }}</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <section class="second_section">
-                <div class="table">
-                    <div style="margin-left: 70px; margin-right:75px;  padding-bottom:80px;">
-                        <table class="table1" style="width:100%;  border-collapse: collapse;" class="">
-                            <thead>
-                                <tr>
-                                    <th
-                                        style=" text-align:left; width:15%; font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;  padding-right: 0px;">
-                                        qty</th>
-                                    <th
-                                        style=" text-align:left; width:45%;font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;  padding-right: 0px;">
-                                        description</th>
-                                    <th
-                                        style=" text-align:right; width:20%; font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;  padding-right: 0px;">
-                                        unit price</th>
-                                    <th
-                                        style=" text-align:right; width:20%;font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;  padding-right: 0px;">
-                                        amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($productsDatas as $product_detail)
-                                <tr>
-                                    <td
-                                        style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
-                                        {{ $product_detail->product_quantity }}</td>
-                                    <td
-                                        style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
-                                        {{ $product_detail->product_name }}</td>
-                                    <td
-                                        style="  width:20%;border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                        {{ number_format($product_detail->product_rate,2) }}</td>
-                                    <td
-                                        style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                        {{number_format( $product_detail->product_amount,2)}}</td>
-                                </tr>
-                                @endforeach
-                                {{-- <tr>
-                                    <td
-                                        style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
-                                        01</td>
-                                    <td
-                                        style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
-                                        Front and rear brake cable</td>
-                                    <td
-                                        style="  width:20%;border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                        1,00.00</td>
-                                    <td
-                                        style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                        1,00.00</td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
-                                        01</td>
-                                    <td
-                                        style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
-                                        Front and rear brake cable</td>
-                                    <td
-                                        style="  width:20%;border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                        1,00.00</td>
-                                    <td
-                                        style="  width:20%; border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
-                                        1,00.00</td>
-                                </tr> --}}
-                            </tbody>
-                        </table>
-
-
-                    </div>
-                </div>
-            </section>
-            <style>
-                .border{
-                    border-bottom: 2px solid #FFF;
-                    margin: 0px 30px;
-                    margin-bottom:10px;
-
-                }
-            </style>
-            <section class="third_section">
-                <div class="left_Side_bar" >
-                    <div class="c">
-                        <h5>To</h5>
-                        <div class="border"></div>
-                        <p><b class="text-light">{{   $data->invoice_to }}</b></p>
-                    </div>
-                    {{-- <div class="d">
-                        <h5>Ship To</h5>
-                        <div class="border"></div>
-                        <p><b class="text-light">Neals BD.</b></p>
-                        <p>123 Rockfeller Street,</p>
-                        <p>New York, NY 12210</p>
-                    </div> --}}
-                </div>
-                <div class="right_Side_bar ">
-                    <div class="i_footerright_area">
-                        <div style="margin-top: 0; width:100%; display:flex;">
-                            <div class="empty_div"> </div>
-                            <div class="table_div">
-                                <table style="width: 100%;">
-                                    <tr style="text-align: right;">
-                                        <td style="color: #686868;">Subtotal</td>
-                                        <td style="color: #686868;">{{ number_format($subtotal = $data->total,2) }}</td>
-                                    </tr>
-                                    <tr style="text-align: right">
-                                        <td style="color: #686868;">Sales Tax{{$tax = $data->invoice_tax_percent }}%</td>
-                                        <td style="color: #686868;">{{number_format( $tax_value =  $subtotal*$tax /100,2) }}</td>
-                                    </tr>
-                                    <tr style="text-align: right">
-                                        <td style="font-size: 18px; color: #686868;">Total</td>
-                                        <td style="font-size: 18px; color: #686868;">{{  number_format($subtotal + $tax_value,2)  }}</td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                        </div>
-                        <div class="f">
-                            <div class="thanks" style="padding-top: 8%;">
-                                <h5 style="color: #686868; font-weight: 400; font-size: 30px; padding-bottom:20px; border-top:2px solid #0370BF; width: 90%">Thank You for your business</h5>
-                            </div>
-                            <div class="g" style="color: #686868;">
-                                <p style="font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">terms & conditions</p>
-                                <p>{{  $data->invoice_terms }}</p>
-                                <p>{{  $data->invoice_notes}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<style>
+    .page {
+      width: 21cm;
+      min-height: 29.7cm;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .bgColorYellow {
+      background-color: #0370BF;
+      min-height: 335px;
+    }
+    .imgMarginPadding {
+      margin-top: 40px;
+      margin-bottom: 49px;
+    }
+    .headerTextOne {
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      line-height: 27px;
+      font-weight: 700;
+    }
+    .headerTextTwo {
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 16px;
+      line-height: 27px;
+      font-weight: 300;
+    }
+    .hadingMarginPadding {
+      margin-right: 20px;
+      margin-left: 26px;
+      margin-bottom: 44px;
+    }
+    .invoiceText {
+      color: #0370BF;
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 73px;
+      margin: 70px 0px 22px 75px;
+      text-transform: uppercase;
+    }
+    .invoiceTextOne {
+      font-size: 18px;
+      line-height: 26px;
+    }
+    .invoiceTextOne p{
+        color: #686868;
+        font-weight: 700;
+    }
+    .invoiceTextTwo {
+      color: #686868;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+      text-align: right;
+    }
+    .invoiceMarginPadding {
+      margin: 22px 0px 22px 80px;
+    }
+    .tableSection {
+      color: #686868 !important;
+    }
+    .tableSectionBgColor {
+      background-color: #f2f2f2;
+    }
+    .tableSection_border .table > :not(:last-child) > :last-child > * {
+      border-bottom-color: #d9d5cda1 !important;
+    }
+    .bordertop{
+        border: 1px solid #0370BF;
+        margin-top: 80px;
+    }
+    .footerHader{
+        margin: 34px 70px 6px 70px;
+        text-align: center;
+        font-size: 18px;
+        color:#FFFFFF;
+        border-bottom: 2px solid #FFFFFF;
+    }
+    .footertext{
+        font-weight: 400;
+        font-size: 16;
+        line-height: 21.1px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+    .footerThank{
+        font-size: 30px;
+        color: #686868;
+        margin-top: 55px;
+        margin-bottom:48px ;
+    }
+    .tramsAndCondition{
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 22.8px;
+        color:#0370BF ;
+    }
+    .payment{
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 19.8px;
+        color:#686868;
+    }
+  </style>
+  <div class="page">
+    <section>
+      <div class="row">
+        <div class="col-4 bgColorYellow">
+          <div class="d-flex justify-content-center imgMarginPadding">
+            @if($data->invoice_logo!="")
+            <img class="rounded-circle" src="{{ asset('storage/invoice/logo/'.$data->invoice_logo) }}" alt="" height="122px"   width="122px"/>
+            @endif
+          </div>
+          <div class="hadingMarginPadding">
+            <h1 class="headerTextOne">Company Name</h1>
+            <h6 class="headerTextTwo">
+                {{ $data->invoice_form }}
+            </h6>
+          </div>
         </div>
-        </section>
+        <div class="col-2"></div>
+        <div class="col-6">
+          <h1 class="invoiceText">Invoice</h1>
+          <div class="d-flex invoiceMarginPadding">
+            <div class="invoiceTextOne me-1">
+              <p>Incoice #</p>
+              <p>Invoice date</p>
+              <p>P.O.#</p>
+              <p>Due date</p>
+            </div>
+            <div class="invoiceTextTwo ms-5">
+                <p>{{ $data->invoice_id }}</p>
+                <p>{{  $data->invoice_date }}</p>
+                <p>{{ $data->invoice_po_number }}</p>
+                <p>{{  $data->invoice_dou_date }}</p>
+            </div>
+          </div>
         </div>
-
+      </div>
+    </section>
+    <section class="">
+      <!-- this is table section  -->
+      <div class="row tableSection_border tableSectionBgColor">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <!-- second section -->
+          <table class="table tableSection">
+            <thead>
+              <tr>
+                <th scope="col">QTY</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col" class="text-end">UNIT PRICE</th>
+                <th scope="col" class="text-end">AMOUNT</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach ($productsDatas as $product_detail)
+              <tr>
+                <th>{{ $product_detail->product_quantity }}</th>
+                <td>{{ $product_detail->product_name }}</td>
+                <td class="text-end">{{ number_format($product_detail->product_rate,2) }}</td>
+                <td class="text-end">{{number_format( $product_detail->product_amount,2)}}</td>
+              </tr>
+          @endforeach
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-4"></div>
+            <div class="col-8">
+                  <div class="bordertop"></div>
+                  <table class="table table-borderless tableSection ">
+                    <tbody>
+                      <tr>
+                        <td class="text-end">Sub total</td>
+                        <td class="text-end">{{ number_format($subtotal = $data->total,2) }}</td>
+                      </tr>
+                      <tr>
+                        <td class="text-end">Sales Tax {{$tax = $data->invoice_tax_percent }}%</td>
+                        <td class="text-end">{{number_format( $tax_value =  $subtotal*$tax /100,2) }}</td>
+                      </tr>
+                      <tr>
+                        <td class="text-end fw-bold">Total</td>
+                        <td class="text-end fw-bold">{{  number_format($subtotal + $tax_value,2)  }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
         </div>
+        <div class="col-1"></div>
+      </div>
+    </section>
 
-</body>
-</html>
+    <section>
+        <div class="row">
+          <div class="col-4 bgColorYellow">
+            <h4 class="footerHader">To</h4>
+            <p  class="footertext">{{   $data->invoice_to }}</p>
+            {{-- <h4 class="footerHader mt-5">SHIF To</h4>
+            <p  class="footertext">Neals BD. 123 Rockfeller Street,New York, NY 12210</p> --}}
+          </div>
+          <div class="col-8">
+            <h1 class="footerThank ">Thank You for your business </h1>
+            <div class="">
+                <h5 class="tramsAndCondition">Terms & conditions </h5>
+                <p class="payment">{{  $data->invoice_terms }} <br> {{  $data->invoice_notes}}</p>
+            </div>
+            {{-- <div class="mt-4">
+                <h5 class="tramsAndCondition">terms & conditions </h5>
+                <p class="payment">Payment is due within 15 days <br>
+                    Please make checks payable to: Company Name</p>
+            </div> --}}
+          </div>
+        </div>
+      </section>
+  </div>

@@ -103,14 +103,7 @@ Route::get('/check',  function () {
     //    echo $join_table_valued->packageName;
     // }
 
-    SendMail_info::create([
-        'user_id'=> 1,
-        'send_mail_to'=> 1,
-        'mail_subject'=> 2,
-        'mail_body'=>3,
-        'invoice_tamplate_id'=>4,
-        'created_at'=>Carbon::now()
-    ]);
 
-   dd("success");
+
+    // dd($Total_Amount_conut);
 });

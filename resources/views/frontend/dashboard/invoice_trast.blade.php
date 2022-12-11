@@ -48,7 +48,7 @@
                     </thead>
                     <tbody>
                         @forelse ($invoicessData as $key => $invoiceData)
-                            <tr class="m-0 p-0 data_table_id">
+                            <tr class="m-0 p-0 ">
                                 <td class="m-0  text-center ">{{ ++$key }}</td>
                                 <td class="m-0  ">{{ $invoiceData->invoice_to }}</td>
                                 <td class="m-0   ">
@@ -62,19 +62,15 @@
                                 <td class="m-0  ">৳ {{ $invoiceData->total }}</td>
                                 <td class=" m-0  text-center">
                                     @if ($invoiceData->invoice_status == 'complete')
-                                        <a class="custom_btn_sm  preview_image_user" href="#"  data-bs-toggle="modal"
-                                        data-bs-target="#staticBackdrop_previw" ><i
+                                        <a class="custom_btn_sm" href="{{ route('edit.invoice', $invoiceData->id) }}"><i
                                                 class="bi bi-eye iconTable"></i></a>
                                     @else
-                                        <a class="custom_btn_sm  " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
+                                        <a class="custom_btn_sm " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
                                                 class="bi bi-pencil-square iconTable"></i></a>
                                     @endif
                                 </td>
-                                <input type="hidden" id="invoice_id_user" value="{{ $invoiceData->id }}">
-
                             </tr>
                         @empty
-
                         @endforelse
                     </tbody>
                 </table>

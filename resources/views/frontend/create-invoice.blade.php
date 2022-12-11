@@ -290,6 +290,7 @@
                             </div>
                             <div class="row pt-1 pb-3">
                                 <div class="col-md-8">
+
                                     <label for="invoice_to" class="form-label">Bill to *</label>
                                     <textarea name="invoice_to" id="invoice_to" rows="2" type="text" class="form-control"
                                         placeholder="Who is this invoice to?(required)">
@@ -405,6 +406,7 @@
                                 <div id="quantity_error" class="invalid-feedback"></div>
                             </div>
                         </div>
+
                         <div class="text-start p-0 pe-1 pb-2 col-md-2">
                             <div class="input-group">
                                 <input type="number" name="product_rate" id="product_rate" class="form-control"
@@ -421,6 +423,7 @@
                                 <div class="input-group-text" id="currency">USD  &nbsp;<img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt="" style="width: 25px;height:25px; padding:0px; "></div>
 
                             </div>
+
                              {{-- <div class="text-right d-flex justify-content-end">
 
                              </div> --}}
@@ -573,9 +576,9 @@
                 </style>
                 @php
                     if (isset($lastInvoice)) {
-                        $last_invoice_id = $lastInvoice->id +1;
+                        $last_invoice_id = $lastInvoice->id;
                     } else {
-                        $last_invoice_id = 0+1;
+                        $last_invoice_id = 0;
                     }
                 @endphp
                 <style>
@@ -594,23 +597,20 @@
 
                         {{-- @if (isset($invoiceData)) @else  @endif> --}}
                         @if (isset($invoiceData))
-                            {{ 'Update Invoice' }} @else{{ 'Save' }}
+                            {{ 'Update Invoice' }} @else{{ 'Preview' }}
                         @endif
                     </button>
-                    <input type="hidden" id="invoice_last_id" value="{{ $last_invoice_id }}">
+
                     <button type="button" id="send_email_id"
                         class="btn send-invoice bnt_responsive py-2 px-4 my-2 disabled " data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop">
                         Send Invoice
                     </button>
-                    <a href="{{ route('invoice.download', $last_invoice_id) }}" id="downlodeInvoice" target="_blank"
+                    <a href="" id="downlodeInvoice" target="_blank"
                         class="btn bnt_responsive send-invoice py-2 px-4 disabled">Download
                         Invoice</a>
-
                     {{-- <a id="previw_id" class="btn send-invoice preview_image bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop_previw">Preview </a> --}}
-
-
                 </div>
 
         </div>
@@ -748,7 +748,7 @@
         }
     </style>
     <style>
-        .spinner {
+        /* .spinner {
             width: 80px;
             height: 80px;
 
@@ -773,7 +773,7 @@
             to {
                 transform: rotate(360deg);
             }
-        }
+        } */
     </style>
 
 
@@ -867,9 +867,11 @@
 
                     <div class="modal-body">
                         <div class="row">
+                            <form action="{{ url('/create/invoice/send') }}" method="post">
+                                @csrf
 
                             <div class="mb-3">
-                                <input type="hidden" name="template_id" id="template_id" value="{{ $last_invoice_id }}">
+                                <input type="text" name="template_id" value="209" >
                                 <br>
                                 <label for="emai_to" class="form-label">To</label>
                                 <input type="email" class="form-control" id="emai_to" name="emai_to"
@@ -888,10 +890,13 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
                                         class="bi bi-x-circle"></i> Close</button>
-                                <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                    Send Mail</button>
+                                {{-- <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                    Send Mail</button> --}}
+                                    <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                        Send Mail</button>
                             </div>
                         </div>
+                    </form>
                         @endif
                     </div>
             </div>
@@ -917,7 +922,7 @@
 </style>
 
     {{-- preview image alert  --}}
-    <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false"
+    {{-- <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog  modal-xl">
             <div class="modal-content">
@@ -936,14 +941,13 @@
                         <div class="modal-footer modal_footer">
                             <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
                                     class="bi bi-x-circle"></i> Close</button>
-                            {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                Download Image </button> --}}
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 

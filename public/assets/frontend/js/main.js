@@ -144,7 +144,8 @@ $("#invoiceForm").submit(function (e) {
                 //     });
 
                     // Priview invoice show in this code
-                    var invoice_last_id = document.getElementById('invoice_last_id').value;
+                    var invoice_last_id = document.getElementById('id').value;
+                    alert(invoice_last_id);
                     $.ajax({
                         url: '/preview/image/' + invoice_last_id,
                         method: 'get',
@@ -231,6 +232,7 @@ $("#invoiceForm").submit(function (e) {
 function allData() {
     var id = $('#id').val();
     // console.log(id);
+    var value ="";
 
     $.ajax({
         type: "POST",
@@ -256,6 +258,7 @@ function allData() {
             })
             $('#tableBody').html(data);
             total(totalamount);
+
 
         }
     })
@@ -561,11 +564,11 @@ $("#getway_setup").submit(function (e) {
 
 
 $("#send_mail_data").on("click", function () {
-    var template_id = document.getElementById('template_id').value;
+    var template_id = document.getElementById('id').value;
     var emai_to = document.getElementById('emai_to').value;
     var email_subject = document.getElementById('email_subject').value;
     var email_body = document.getElementById('email_body').value;
-    // alert(template_id);
+     alert(template_id);
     if (emai_to == "") {
         $('#emai_to').addClass("is-invalid");
     } else {
@@ -592,6 +595,7 @@ $("#send_mail_data").on("click", function () {
                 email_body: email_body
             },
             success: function (data) {
+                console.log(data);
                 if (data['message'] != null) {
 
                     button =
@@ -618,4 +622,19 @@ $("#send_mail_data").on("click", function () {
             }
         })
     }
+});
+$(document).on("click", ".preview_image_user", function(e) {
+    e.preventDefault();
+    var template_id =  $(this).closest(".data_table_id").find("#invoice_id_user").val();
+
+   alert(template_id);
+        $.ajax({
+            url: '/create/invoice/view/' + template_id ,
+            method: 'get',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            success: function (data) {
+                $('.preview_invoice_show').html(data);
+            }
+        })
+
 });

@@ -8,6 +8,7 @@
   }
   .bgColorYellow {
     background-color: #fcb21c;
+    min-height: 335px;
   }
   .imgMarginPadding {
     margin-top: 40px;
@@ -107,8 +108,10 @@
     <div class="row">
       <div class="col-4 bgColorYellow">
         <div class="d-flex justify-content-center imgMarginPadding">
-          <img src="{{ asset('storage/invoice/logo/'.$data->invoice_logo) }}" class="rounded-circle" src="/logo.png" alt=""  height="122px" width="122px"
-          />
+
+         @if($data->invoice_logo!="")
+          <img src="{{ asset('storage/invoice/logo/'.$data->invoice_logo) }}" class="rounded-circle" src="/logo.png" alt=""  height="122px" width="122px"/>
+          @endif
         </div>
         <div class="hadingMarginPadding">
           <h1 class="headerTextOne">Company Name</h1>
@@ -123,9 +126,9 @@
         <div class="d-flex invoiceMarginPadding">
           <div class="invoiceTextOne me-1">
             <p>Incoice #</p>
-            <p>invoice date</p>
+            <p>Invoice date</p>
             <p>P.O.#</p>
-            <p>due date</p>
+            <p>Due date</p>
           </div>
           <div class="invoiceTextTwo ms-5">
             <p>{{ $data->invoice_id }}</p>
@@ -212,7 +215,7 @@
         <div class="col-8">
           <h1 class="footerThank">Thank You for your business </h1>
           <div class="">
-              <h5 class="tramsAndCondition">terms & conditions </h5>
+              <h5 class="tramsAndCondition">Terms & conditions </h5>
               <p class="payment">{{  $data->invoice_terms }} <br> {{  $data->invoice_notes}}</p>
           </div>
           <div class="mt-4">

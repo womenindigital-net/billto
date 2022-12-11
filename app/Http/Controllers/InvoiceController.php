@@ -147,22 +147,12 @@ class InvoiceController extends Controller
 
         if ($join_table->limitInvoiceGenerate >= $check->current_invoice_total + 1 && $packageDuration >= $today_date && $data==1) {
 
-            if ($check) {
-
             if($invoice_last_id != $request->id){
                 ComplateInvoiceCount::where('user_id', $user_id)->where('count_invoice_id', $request->id)->increment('invoice_count_total');
                 ComplateInvoiceCount::where('user_id', $user_id)->where('count_invoice_id', $request->id)->increment('current_invoice_total');
             }
 
-             } else {
-                ComplateInvoiceCount::insert([
-                    'user_id' =>  $user_id,
-                    'count_invoice_id' =>  $request->id,
-                    'invoice_count_total' => 1,
-                    'current_invoice_total' => 1,
-                    'created_at' => Carbon::now()
-                ]);
-            }
+
 
             if ($request->id != null) {
                 // Tax Calculation Formula Start
@@ -373,9 +363,9 @@ class InvoiceController extends Controller
             'total',
             'template_name',
         ])->first();
-        Invoice::where('id', $template_id)->update([
-            'invoice_status'=>'complete',
-        ]);
+        // Invoice::where('id', $template_id)->update([
+        //     'invoice_status'=>'complete',
+        // ]);
 
 
 
@@ -391,19 +381,19 @@ class InvoiceController extends Controller
         Mail::send('invoices.sendMail.mail', $data,  function ($message) use ($data, $pdf) {
             $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
         });
-        SendMail_info::create([
-            'user_id'=> Auth::user()->id,
-            'send_mail_to'=> $data['email'],
-            'mail_subject'=> $data['subject'],
-            'mail_body'=>$data['body'],
-            'invoice_tamplate_id'=>$data['template_id'],
-            'created_at'=>Carbon::now()
-        ]);
+        // SendMail_info::create([
+        //     'user_id'=> Auth::user()->id,
+        //     'send_mail_to'=> $data['email'],
+        //     'mail_subject'=> $data['subject'],
+        //     'mail_body'=>$data['body'],
+        //     'invoice_tamplate_id'=>$data['template_id'],
+        //     'created_at'=>Carbon::now()
+        // ]);
 
 
-        return response()->json(['message' => '1']);
+        // return response()->json(['message' => '1']);
         // return response()->json($template_id = $request->template_id);
-        // return redirect()->back()->with('success', "Mail Successfully Send");
+       return redirect()->back()->with('success', "Mail Successfully Send");
     }
 
     public function previewImage($id)

@@ -69,18 +69,20 @@
                                             <ul class="@yield('d-block')">
                                                 <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
                                                         Invoices <span class="circle bg-primary">{{ $all_Invoice_Count }}</span></a></li>
-                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due <span class="circle bg-warning">0</span></a></li>
+                                                {{-- <li><a href='#invoice' class="@yield('over-view') ">Over Due <span class="circle bg-warning">0</span></a></li>
                                                 <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid <span class="circle bg-dark">0</span></a></li>
-                                                <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span class="circle bg-danger">0</span></a></li>
-                                                <li><a href='{{ url('/all/invoices/send-by-Mail') }}' class="@yield('SendbyEmail') ">Send by Email <span class="circle bg-success">10</span></a></li>
-                                                <li><a href='#invoice' class="@yield('Trush') ">Trash <span class="circle bg-warning">{{ $trash }}</span> </a></li>
+                                                <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span class="circle bg-danger">0</span></a></li> --}}
+                                                <li><a href='{{ url('/all/invoices/send-by-Mail') }}' class="@yield('SendbyEmail') ">Send by Email <span class="circle bg-success">{{ $sendByMail_count }}</span></a></li>
+                                                <li><a href='{{ url("/my-trash-invoice") }}' class="@yield('Trush') ">Trash <span class="circle bg-warning">{{ $trash }}</span> </a></li>
                                             </ul>
                                         </li>
-                                        <li><a href='#'><img
+                                        {{-- <li>
+                                            <a href='#'><img
                                                     src="{{ asset('assets/frontend/img/icon/contact.png') }}"
-                                                    alt="">My Customers</a></li>
-                                        <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/group.png') }}"
-                                                    alt="">My Reports</a></li>
+                                                    alt="">My Customers</a>
+                                        </li> --}}
+                                        {{-- <li><a href='#'><img src="{{ asset('assets/frontend/img/icon/group.png') }}"
+                                                    alt="">My Reports</a></li> --}}
                                         <li><a href='{{ url('/all/invoices/user-setting') }}'
                                                 class="@yield('setting')"><img
                                                     src="{{ asset('assets/frontend/img/icon/settings.png') }}"
@@ -96,7 +98,7 @@
             <div class="col-md-9 m-0 p-0">
                 <div class="container-fluid ">
                     <div class="row">
-                        <div class="col-12 text-end  margin_left">
+                        <div class="col-12   margin_left">
                             <a href="{{ route('create') }}" class="btn btn-warning ">Create Bill</a>
                         </div>
                     </div>
@@ -110,7 +112,7 @@
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
                                             <p class="text-muted fw-medium">Total Invoice</p>
-                                            <h4 class="mb-0">1,235</h4>
+                                            <h4 class="mb-0">{{ $all_Invoice_Count }}</h4>
                                         </div>
                                         <div
                                             class="d-flex justify-content-end align-item-center  cir-pink-bg text-white px-4 rounded-circle">
@@ -125,8 +127,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1 text-white">
-                                            <p class="text-white fw-medium ">Total Invoice</p>
-                                            <h4 class="mb-0 ">1,235</h4>
+                                            <p class="text-white fw-medium ">Trash Invoice</p>
+                                            <h4 class="mb-0 ">{{ $trash }}</h4>
                                         </div>
                                         <div
                                             class="d-flex justify-content-end align-item-center text-white cir-pink-bg  px-4 rounded-circle">
@@ -141,8 +143,10 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1 text-white">
-                                            <p class="text-white fw-medium ">Total Invoice</p>
-                                            <h4 class="mb-0 ">1,235</h4>
+                                            <p class="text-white fw-medium ">Send Invoice</p>
+                                            <h4 class="mb-0 ">
+                                                {{ $sendByMail_count }}
+                                            </h4>
                                         </div>
                                         <div
                                             class="d-flex justify-content-end align-item-center text-white cir-pink-bg   px-4 rounded-circle">
@@ -157,8 +161,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1 text-white">
-                                            <p class="text-white fw-medium ">Total Invoice</p>
-                                            <h4 class="mb-0 ">1,235</h4>
+                                            <p class="text-white fw-medium ">Total Amount</p>
+                                            <h4 class="mb-0 ">{{ $Total_Amount_conut }}</h4>
                                         </div>
                                         <div
                                             class="d-flex justify-content-end align-item-center text-white  cir-pink-bg px-4 rounded-circle">
