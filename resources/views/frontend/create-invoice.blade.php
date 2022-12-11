@@ -867,11 +867,10 @@
 
                     <div class="modal-body">
                         <div class="row">
-                            <form action="{{ url('/create/invoice/send') }}" method="post">
-                                @csrf
+
 
                             <div class="mb-3">
-                                <input type="text" name="template_id" value="209" >
+                                <input type="hidden" name="template_id" id="id" >
                                 <br>
                                 <label for="emai_to" class="form-label">To</label>
                                 <input type="email" class="form-control" id="emai_to" name="emai_to"
@@ -890,13 +889,13 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
                                         class="bi bi-x-circle"></i> Close</button>
-                                {{-- <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                    Send Mail</button> --}}
-                                    <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                        Send Mail</button>
+                                <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                    Send Mail</button>
+                                    {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                        Send Mail</button> --}}
                             </div>
                         </div>
-                    </form>
+
                         @endif
                     </div>
             </div>

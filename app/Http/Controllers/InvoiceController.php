@@ -205,7 +205,7 @@ class InvoiceController extends Controller
                     'invoice_tax_percent' => $request->invoice_tax,
                     'requesting_advance_amount_percent' => $request->requesting_advance_amount,
                     'total' => $total,
-                    'invoice_status' => 'incomlete',
+                    'invoice_status' => 'complete',
                     'template_name' => $request->template_name,
                 );
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
@@ -363,9 +363,9 @@ class InvoiceController extends Controller
             'total',
             'template_name',
         ])->first();
-        // Invoice::where('id', $template_id)->update([
-        //     'invoice_status'=>'complete',
-        // ]);
+        Invoice::where('id', $template_id)->update([
+            'invoice_status'=>'complete',
+        ]);
 
 
 
@@ -381,19 +381,19 @@ class InvoiceController extends Controller
         Mail::send('invoices.sendMail.mail', $data,  function ($message) use ($data, $pdf) {
             $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
         });
-        // SendMail_info::create([
-        //     'user_id'=> Auth::user()->id,
-        //     'send_mail_to'=> $data['email'],
-        //     'mail_subject'=> $data['subject'],
-        //     'mail_body'=>$data['body'],
-        //     'invoice_tamplate_id'=>$data['template_id'],
-        //     'created_at'=>Carbon::now()
-        // ]);
+        SendMail_info::create([
+            'user_id'=> Auth::user()->id,
+            'send_mail_to'=> $data['email'],
+            'mail_subject'=> $data['subject'],
+            'mail_body'=>$data['body'],
+            'invoice_tamplate_id'=>$data['template_id'],
+            'created_at'=>Carbon::now()
+        ]);
 
 
-        // return response()->json(['message' => '1']);
+        return response()->json(['message' => '1']);
         // return response()->json($template_id = $request->template_id);
-       return redirect()->back()->with('success', "Mail Successfully Send");
+    //    return redirect()->back()->with('success', "Mail Successfully Send");
     }
 
     public function previewImage($id)
