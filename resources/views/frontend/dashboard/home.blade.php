@@ -76,6 +76,16 @@
                         @empty
 
                         @endforelse
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
                     </tbody>
                 </table>
             </div>
