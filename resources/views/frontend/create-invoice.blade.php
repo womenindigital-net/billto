@@ -23,12 +23,16 @@
             </div>
         </div>
     </div>
-
+    {{-- invoice --}}
+    {{-- <div class="col-md-12 text-center">
+        <h1 class="invoice">Create New Invoice</h1>
+        <p>Start creating your professional bill</p>
+    </div> --}}
     <!-- banner section Start -->
-    <section class="bill_banner_section @php echo Session::get('hidden_session'); @endphp">
+    <section class="bill_banner_section d-none @php echo Session::get('hidden_session'); @endphp">
         <div style="background-color: #FFB317;">
             <div class="container py-5">
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-8">
                         <h2 class="h2_title h3_title">Free Invoice Template</h2>
                         <p class="pt-2">Make beautiful invoices with one click!</p>
@@ -54,17 +58,27 @@
         </div>
     </section>
     <!-- banner section End -->
-
+    <style>
+        .invoice {
+            color: #FFB317;
+            text-align: center;
+            font-weight: 700;
+            line-height: 24px;
+            font-size: 24px;
+            margin-top: 12px;
+        }
+    </style>
     <!-- Invoice Section Start -->
     <section class="invoice_section">
         <div class="my-5">
             <form method="post" id="invoiceForm" enctype="multipart/form-data">
-            {{-- <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data"> --}}
+                {{-- <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data"> --}}
                 @csrf
                 <div class="container p-4 " style="background-color: #F0F0F0;">
                     <div class="row md-2 invoice_header_right">
                         <div class="col-md-12 text-center">
-                            <h1>INVOICE</h1>
+                            <h1 class="invoice">Create New Invoice</h1>
+                            <p style="margin-bottom: 30px">Start creating your professional bill</p>
                         </div>
                     </div>
                     <div class="row">
@@ -269,7 +283,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <label class="form-label">Using Default Template</label>
+                                        {{-- <label class="form-label">Using Default Template</label> --}}
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +291,7 @@
                                 <div class="col-md-8">
                                     <label for="invoice_form" class="form-label">From *</label>
                                     <textarea name="invoice_form" id="invoice_form" rows="2" type="text" class="form-control"
-                                        placeholder="Who is this invoice from? (required)">
+                                        placeholder="Who is this invoice from?">
 @if (isset($invoiceData->invoice_form))
 {{ $invoiceData->invoice_form }}
 @elseif (isset($lastInvoice->invoice_form))
@@ -293,7 +307,7 @@
 
                                     <label for="invoice_to" class="form-label">Bill to *</label>
                                     <textarea name="invoice_to" id="invoice_to" rows="2" type="text" class="form-control"
-                                        placeholder="Who is this invoice to?(required)">
+                                        placeholder="Who is this invoice to?">
 @if (isset($invoiceData->invoice_to))
 {{ $invoiceData->invoice_to }}
 @elseif(isset($lastInvoice->invoice_to))
@@ -332,7 +346,7 @@
                                 </div>
                             </div>
                             <div class="row mb-2">
-                                <label for="invoice_date" class="col-sm-4 col-form-label">Date</label>
+                                <label for="invoice_date" class="col-sm-4 col-form-label">Date *</label>
                                 <div class="col-sm-8">
                                     <input type="date" name="invoice_date" class="form-control"
                                         value="@if (isset($invoiceData->invoice_date)) {{ $invoiceData->invoice_date }}@else{{ date('Y-m-d') }} @endif"
@@ -350,7 +364,7 @@
                                 </div>
                             </div>
                             <div class="row mb-2">
-                                <label for="invoice_dou_date" class="col-sm-4 col-form-label">Due Date</label>
+                                <label for="invoice_dou_date" class="col-sm-4 col-form-label">Due Date *</label>
                                 @php
                                     $date = new DateTime(now());
                                     $date->modify('0 day');
@@ -420,11 +434,13 @@
                             <div
                                 class="ps-2 input-group text-center border rounded justify-content-between align-items-center ">
                                 <span id="product_amount" class="fw-bolder"></span>
-                                <div class="input-group-text" id="currency">USD  &nbsp;<img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt="" style="width: 25px;height:25px; padding:0px; "></div>
+                                <div class="input-group-text" id="currency">USD &nbsp;<img
+                                        src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt=""
+                                        style="width: 25px;height:25px; padding:0px; "></div>
 
                             </div>
 
-                             {{-- <div class="text-right d-flex justify-content-end">
+                            {{-- <div class="text-right d-flex justify-content-end">
 
                              </div> --}}
                         </div>
@@ -582,17 +598,15 @@
                     }
                 @endphp
                 <style>
-                    .modal-header .priviewModel{
+                    .modal-header .priviewModel {
                         border-bottom: none !important
                     }
                 </style>
                 <div class="container p-0 create_page">
                     {{-- id="completeInvoice" --}}
-                    <button type="submit" id="completeInvoice" class="btn bnt_responsive send-invoice preview_image py-2 px-4 my-2"
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop_previw"
-
-                        @if (isset($invoiceData)) @else disabled @endif>
+                    <button type="submit" id="completeInvoice"
+                        class="btn bnt_responsive send-invoice preview_image py-2 px-4 my-2" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop_previw" @if (isset($invoiceData)) @else disabled @endif>
 
 
                         {{-- @if (isset($invoiceData)) @else  @endif> --}}
@@ -749,31 +763,31 @@
     </style>
     <style>
         /* .spinner {
-            width: 80px;
-            height: 80px;
+                width: 80px;
+                height: 80px;
 
-            border: 2px solid #f3f3f3;
-            border-top: 3px solid #f25a41;
-            border-radius: 100%;
+                border: 2px solid #f3f3f3;
+                border-top: 3px solid #f25a41;
+                border-radius: 100%;
 
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
 
-            animation: spin 1s infinite linear;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
+                animation: spin 1s infinite linear;
             }
 
-            to {
-                transform: rotate(360deg);
-            }
-        } */
+            @keyframes spin {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            } */
     </style>
 
 
@@ -860,65 +874,68 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header" >
+                <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                    <div class="modal-body">
-                        <div class="row">
+                <div class="modal-body">
+                    <div class="row">
 
 
-                            <div class="mb-3">
-                                <input type="hidden" name="template_id" id="id" >
-                                <br>
-                                <label for="emai_to" class="form-label">To</label>
-                                <input type="email" class="form-control" id="emai_to" name="emai_to"
-                                    placeholder="example@gmail.com" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email_subject" class="form-label">Subject</label>
-                                <input type="text" class="form-control" id="email_subject" name="email_subject" id="Input2"
-                                    placeholder="Subject" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email_body" class="form-label">Body</label>
-                                <textarea class="form-control" id="email_body" name="email_body" placeholder="Describe here..." rows="2"> </textarea>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
-                                        class="bi bi-x-circle"></i> Close</button>
-                                <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                    Send Mail</button>
-                                    {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                        Send Mail</button> --}}
-                            </div>
+                        <div class="mb-3">
+                            <input type="hidden" name="template_id" id="id">
+                            <br>
+                            <label for="emai_to" class="form-label">To</label>
+                            <input type="email" class="form-control" id="emai_to" name="emai_to"
+                                placeholder="example@gmail.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email_subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="email_subject" name="email_subject"
+                                id="Input2" placeholder="Subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email_body" class="form-label">Body</label>
+                            <textarea class="form-control" id="email_body" name="email_body" placeholder="Describe here..." rows="2"> </textarea>
                         </div>
 
-                        @endif
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
+                                    class="bi bi-x-circle"></i> Close</button>
+                            <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i
+                                    class="bi bi-send"></i>
+                                Send Mail</button>
+                            {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                        Send Mail</button> --}}
+                        </div>
                     </div>
+
+                    @endif
+                </div>
             </div>
         </div>
     </div>
 
-<style>
-    .priviewModel{
+    <style>
+        .priviewModel {
             padding: 0.2rem 0.5rem !important;
             border-bottom: 1px solid #ededed !important;
-    }
-    .modal-header .stop_btn {
-    padding: 0.5rem 0.5rem !important;
-    margin: -0.5rem -0.5rem -0.5rem auto;
-    font-size: 12px !important;
-    border: 1px solid !important;
-    margin-right: 0px !important;
-}
-.modal_footer{
-    padding:0px;
-    margin-top: 9px;
-}
-</style>
+        }
+
+        .modal-header .stop_btn {
+            padding: 0.5rem 0.5rem !important;
+            margin: -0.5rem -0.5rem -0.5rem auto;
+            font-size: 12px !important;
+            border: 1px solid !important;
+            margin-right: 0px !important;
+        }
+
+        .modal_footer {
+            padding: 0px;
+            margin-top: 9px;
+        }
+    </style>
 
     {{-- preview image alert  --}}
     {{-- <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false"
