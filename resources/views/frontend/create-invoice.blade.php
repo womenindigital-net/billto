@@ -393,11 +393,11 @@
                             <thead style="background-color: #FFB317;">
                                 <tr>
                                     <th scope="col" style="width: 3%">#</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col" style="width: 14%">Quantity</th>
-                                    <th scope="col" style="width: 14%">Rate</th>
-                                    <th scope="col" style="width: 10%">Amount</th>
-                                    <th scope="col" style="width: 5%">Action</th>
+                                    <th scope="col" style="width: 30%">Description</th>
+                                    <th scope="col" style="width: 17%">Quantity</th>
+                                    <th scope="col" style="width: 17%">Rate</th>
+                                    <th scope="col" style="width: 28%">Amount</th>
+                                    <th scope="col" style="width: 15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="tableBody">
@@ -407,7 +407,7 @@
                         </table>
                     </div>
                     <div class="product row m-0">
-                        <div class="p-0 pe-1 pb-2 col-md-5">
+                        <div class="p-0 pe-1 pb-2 col-md-4">
                             <textarea type="text" name="product_name" id="product_name" class="form-control"
                                 placeholder="Description of service or product" rows="1" onchange="addData();"></textarea>
                             <div id="name_error" class="invalid-feedback"></div>
@@ -430,19 +430,43 @@
                             </div>
 
                         </div>
-                        <div class=" col-md-3 p-0 pe-1 pb-2">
+                        <div class=" col-md-3 p-0  pb-2">
                             <div
-                                class="ps-2 input-group text-center border rounded justify-content-between align-items-center ">
+                                class="ps-2 input-group text-center border rounded justify-content-between align-items-center d-flex ">
                                 <span id="product_amount" class="fw-bolder"></span>
-                                <div class="input-group-text" id="currency">USD &nbsp;<img
-                                        src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt=""
-                                        style="width: 25px;height:25px; padding:0px; "></div>
-
+                                <div class="input-group-text" id="currency">USD</div>
                             </div>
+                        </div>
+                        <style>
+                            .svg_size_plus{
+                                width: 33px;
+                                cursor: pointer;
+                                margin-left: 3px;
+                            }
+                        </style>
+                        <div class=" col-md-1  text-center" >
+                            <div class=" ms-4">
+                                <div class="svg_size_plus">
+                                    <?xml version="1.0" encoding="utf-8"?>
+                                    <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+                                    <style type="text/css">
+                                        .st0{fill:#FCB21C;}
+                                        .st1{fill:#FFFFFF;}
+                                    </style>
+                                    <path class="st0" d="M29.5,32h-27C1.1,32,0,30.9,0,29.5v-27C0,1.1,1.1,0,2.5,0h27C30.9,0,32,1.1,32,2.5v27C32,30.9,30.9,32,29.5,32z
+                                        "/>
+                                    <rect x="14" y="8" class="st1" width="4" height="16"/>
+                                    <rect x="14" y="8" transform="matrix(6.123234e-17 -1 1 6.123234e-17 4.529710e-13 32)" class="st1" width="4" height="16"/>
+                                    </svg>
 
-                            {{-- <div class="text-right d-flex justify-content-end">
+                                </div>
 
-                             </div> --}}
+
+                                {{-- <img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt=""
+                                    style="width: 33px;height:33px; margin-top:2px;"> --}}
+                                </div>
                         </div>
                     </div>
 
@@ -763,31 +787,31 @@
     </style>
     <style>
         /* .spinner {
-                width: 80px;
-                height: 80px;
+                    width: 80px;
+                    height: 80px;
 
-                border: 2px solid #f3f3f3;
-                border-top: 3px solid #f25a41;
-                border-radius: 100%;
+                    border: 2px solid #f3f3f3;
+                    border-top: 3px solid #f25a41;
+                    border-radius: 100%;
 
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                margin: auto;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
 
-                animation: spin 1s infinite linear;
-            }
-
-            @keyframes spin {
-                from {
-                    transform: rotate(0deg);
+                    animation: spin 1s infinite linear;
                 }
 
-                to {
-                    transform: rotate(360deg);
-                }
-            } */
+                @keyframes spin {
+                    from {
+                        transform: rotate(0deg);
+                    }
+
+                    to {
+                        transform: rotate(360deg);
+                    }
+                } */
     </style>
 
 
