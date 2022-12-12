@@ -145,7 +145,7 @@ $("#invoiceForm").submit(function (e) {
 
                     // Priview invoice show in this code
                     var invoice_last_id = document.getElementById('id').value;
-                    alert(invoice_last_id);
+                    // alert(invoice_last_id);
                     $.ajax({
                         url: '/preview/image/' + invoice_last_id,
                         method: 'get',
@@ -522,7 +522,7 @@ $("#getway_setup").submit(function (e) {
     var package_price = document.getElementById('package_price').value;
     var package_id = document.getElementById('package_id').value;
     // var auth_user_id = document.getElementById('auth_user_id').value;
-    alert(package_id)
+    // alert(package_id)
 
     // $.ajax({
     //     url: '/payment/store',
@@ -568,7 +568,7 @@ $("#send_mail_data").on("click", function () {
     var emai_to = document.getElementById('emai_to').value;
     var email_subject = document.getElementById('email_subject').value;
     var email_body = document.getElementById('email_body').value;
-     alert(template_id);
+    //  alert(template_id);
     if (emai_to == "") {
         $('#emai_to').addClass("is-invalid");
     } else {
@@ -627,7 +627,7 @@ $(document).on("click", ".preview_image_user", function(e) {
     e.preventDefault();
     var template_id =  $(this).closest(".data_table_id").find("#invoice_id_user").val();
 
-   alert(template_id);
+//    alert(template_id);
         $.ajax({
             url: '/create/invoice/view/' + template_id ,
             method: 'get',
