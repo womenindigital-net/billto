@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Document</title>
+  <title>Billto.io</title>
 </head>
 <body>
-<h3>{{ $subject }}</h3>
-<h3>{{ $body }}</h3>
+  <p>{{ $body }} </p>
+  <br>
+  Thank you.
 </body>
 </html>

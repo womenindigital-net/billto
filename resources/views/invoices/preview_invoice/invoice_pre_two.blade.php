@@ -189,16 +189,16 @@
                 <table class="table table-borderless tableSection ">
                   <tbody>
                     <tr>
-                      <td class="text-end">Sub total</td>
-                      <td class="text-end">{{ number_format($subtotal = $data->total,2) }}</td>
+                      <td class="text-end">Sub total </td>
+                      <td class="text-end">{{ number_format($no_vat = $data->subtotal_no_vat,2) }}</td>
                     </tr>
                     <tr>
-                      <td class="text-end">Sales Tax {{$tax = $data->invoice_tax_percent }}%</td>
-                      <td class="text-end">{{number_format( $tax_value =  $subtotal*$tax /100,2) }}</td>
+                      <td class="text-end">Sales Tax {{ number_format($percent = $data->invoice_tax_percent) }} %</td>
+                      <td class="text-end">{{ number_format($no_vat*$percent/100,2) }}</td>
                     </tr>
                     <tr>
                       <td class="text-end fw-bold">Total</td>
-                      <td class="text-end fw-bold">{{  number_format($subtotal + $tax_value,2)  }}</td>
+                      <td class="text-end fw-bold">{{ number_format($data->total,2) }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -211,10 +211,10 @@
   <section>
       <div class="row">
         <div class="col-4 bgColorYellow2">
-          <h4 class="footerHader">To</h4>
-          <p  class="footertext">{{   $data->invoice_to }}</p>
-          {{-- <h4 class="footerHader mt-5">SHIF To</h4>
-          <p  class="footertext">Neals BD. 123 Rockfeller Street,New York, NY 12210</p> --}}
+          <div class="">
+            <h4 class="footerHader text-white">To</h4>
+            <p  class="footertext  text-white">{{   $data->invoice_to }}</p>
+          </div>
         </div>
         <div class="col-8">
           <h1 class="footerThank">Thank You for your business </h1>

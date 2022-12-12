@@ -7,7 +7,7 @@
     .first_section {
         width: 100%;
         display: flex;
-        margin-bottom: 75px;
+        /* margin-bottom: 75px; */
         justify-content: space-between;
     }
 
@@ -84,13 +84,13 @@
 
     .second_section {
         background: #F2F2F2;
-        padding-top: 20px;
+        /* padding-top: 20px; */
         padding-bottom: 100px;
     }
 
     .third_section {
                 width: 100%;
-                display: flex;
+                display: flex !important;
 
             }
 
@@ -100,6 +100,7 @@
                 padding-top: 20px;
                 padding-bottom: 20px;
                 float: left;
+                height: 300px;
             }
 
             .right_Side_bar {
@@ -117,7 +118,7 @@
                 line-height: 24px;
                 font-size: 18px;
                 padding-bottom: 36px;
-                min-height: 410px;
+                /* min-height: 410px; */
             }
 
             .c h5 {
@@ -148,6 +149,7 @@
 
             .e {
                 margin-left: 10%;
+
             }
 
             .f {
@@ -182,11 +184,12 @@
                 min-height: 29.7cm;
                 overflow: hidden;
             }
-.height{
+/* .height{
     min-height: 325px;
-}
+} */
 </style>
 <title>Billto.io</title>
+
 </head>
 <body>
 
@@ -298,20 +301,21 @@
                             <table style="width: 100%;">
                                 <tr style="text-align: right">
                                     @php
-                                    //    $subtotal_p = $invoiceData->total * $invoiceData->invoice_tax_percent /100 ;
-                                        // $tax = $invoiceData->invoice_tax_percent;
-                                        // $tax_value =  $subtotal*$tax /100 ;
-                                    @endphp
+                                    $subtotal = $invoiceData->total;
+                                    $tax = $invoiceData->invoice_tax_percent;
+                                    $total_value = ceil($subtotal-(($subtotal*$tax)/100));
+                                   @endphp
+
                                     <td>Subtotal</td>
-                                    <td>{{ number_format($subtotal = $invoiceData->total,2) }} </td>
+                                    <td>{{ number_format($total_value ,2) }} </td>
                                 </tr>
                                 <tr style="text-align: right">
-                                    <td>Sales Tax {{$tax = $invoiceData->invoice_tax_percent }}%</td>
-                                    <td>{{number_format( $tax_value =  $subtotal*$tax /100,2) }}</td>
+                                    <td>Sales Tax  {{$tax = $invoiceData->invoice_tax_percent }}%</td>
+                                    <td>{{number_format( $tax_value = $total_value*$tax /100,2) }}</td>
                                 </tr>
                                 <tr style="text-align: right">
                                     <td style="font-size: 18px;">Total</td>
-                                    <td style="font-size: 18px;">{{  number_format($subtotal + $tax_value,2)  }}</td>
+                                    <td style="font-size: 18px;">{{  number_format($subtotal,2)  }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -328,36 +332,28 @@
 
             }
         </style>
-        <section class="third_section">
+        <section class="third_section " style="height: 200px;">
             <div class="left_Side_bar" style="padding-top: 30px;">
                 <div class="c">
-                    <h5>To</h5>
+                    <h5>To fdgfd</h5>
                     <div class="border"></div>
                     <p><b>{{   $invoiceData->invoice_to }}</b></p>
-                    {{-- <p>123 Rockfeller Street,</p>
-                    <p>New York, NY 12210</p> --}}
+
                 </div>
-                {{-- <div class="d">
-                    <h5>Ship To</h5>
-                    <div class="border"></div>
-                    <p><b>Neals BD.</b></p>
-                    <p>123 Rockfeller Street,</p>
-                    <p>New York, NY 12210</p>
-                </div> --}}
+
             </div>
             <div class="right_Side_bar ">
                 <div class="i_footerright_area">
                     <div class="e">
                         <h1>Thank You for your business</h1>
-                        <p style="font-weight: 700;font-size: 14px;color: #FCB21C;">terms & conditions</p>
+                        <p style="font-weight: 700; font-size: 14px;color: #FCB21C;">terms & conditions</p>
                         <p>{{  $invoiceData->invoice_terms }}</p>
-                        {{-- <p>Please make checks payable to: Company Name</p> --}}
                     </div>
                     <div class="f">
                         <div class="g">
                             <p style="font-weight: 700;font-size: 14px;color: #FCB21C;">Notes</p>
                             <p>{{  $invoiceData->invoice_notes}}</p>
-                            {{-- <p>Please make checks payable to: Company Name</p> --}}
+
                         </div>
                         <div class="h">
                             <!-- <img src="sig.png" alt="img"> -->
@@ -366,7 +362,7 @@
                 </div>
             </div>
 
-    </div>
+            </div>
     </section>
     </div>
 

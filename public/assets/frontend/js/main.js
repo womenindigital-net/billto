@@ -330,7 +330,10 @@ function total(itemAmount) {
 function total(itemAmount) {
     $('#subtotal').text(itemAmount);
     var itemAmount = $('#subtotal').text() * 1;
+
     var tax = $('#invoice_tax').val() * 1;
+
+    $('#subtotal_no_vat').val(itemAmount);
 
     var persent = (itemAmount * tax) / 100
 

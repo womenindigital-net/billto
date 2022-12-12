@@ -512,7 +512,10 @@
                                 <div class="col-7 d-flex align-items-center fw-bolder text-primary">Sub total</div>
                                 <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
                                     <span class="p-2 fw-bolder text-primary" id="subtotal">0.00</span>
+
+
                                     <div class="input-group-text" id="currency">USD</div>
+                                    <input type="hidden" id="subtotal_no_vat" name="subtotal_no_vat">
                                 </div>
                             </div>
                             <div class="row pt-2 ">
@@ -918,11 +921,13 @@
                         <div class="mb-3">
                             <label for="email_subject" class="form-label">Subject</label>
                             <input type="text" class="form-control" id="email_subject" name="email_subject"
-                                id="Input2" placeholder="Subject" required>
+                                id="Input2"  value="A Invoice by Billto.io"  required>
                         </div>
                         <div class="mb-3">
                             <label for="email_body" class="form-label">Body</label>
-                            <textarea class="form-control" id="email_body" name="email_body" placeholder="Describe here..." rows="2"> </textarea>
+                            <textarea class="form-control" id="email_body" name="email_body" rows="2">
+                                A invoice has been sent to you by BillTo.io. You can find it in the attachment below.
+                            </textarea>
                         </div>
 
                         <div class="modal-footer">
