@@ -259,11 +259,11 @@
         }
 
         /* .create_section .ctrate-text .icon_style {
-            width: 39px;
-            height: 42px;
-            top: 3px;
-            left: 4.5px;
-        } */
+                        width: 39px;
+                        height: 42px;
+                        top: 3px;
+                        left: 4.5px;
+                    } */
     </style>
 
     <!-- Create Start -->
@@ -272,21 +272,24 @@
             <div class="row ctrate-text">
                 <div class="col-sm-4 mb_sm_3">
                     <div class="icon_style imgHeightwidth">
-                        <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt="" style="width: 39px; height: 42px; top:3px; left:4.5px;">
+                        <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt=""
+                            style="width: 39px; height: 42px; top:3px; left:4.5px;">
                     </div>
                     <h2 class="h2_title heading">Create Bill</h2>
                     <p class="create_section_p">Choose from 20 templates</p>
                 </div>
                 <div class="col-sm-4 mb_sm_3">
                     <div class="icon_style imgHeightwidth">
-                        <img src="{{ asset('assets/frontend/img/icon/pdf.png') }}" alt="" style="width: 39px; height: 42px; top:3px; left:4.5px;">
+                        <img src="{{ asset('assets/frontend/img/icon/pdf.png') }}" alt=""
+                            style="width: 39px; height: 42px; top:3px; left:4.5px;">
                     </div>
                     <h2 class=" h2_title">Send PDF</h2>
                     <p class="create_section_p">Email or print your invoice<br>to send to your client</p>
                 </div>
                 <div class="col-sm-4 ">
                     <div class="icon_style imgHeightwidth">
-                        <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt="" style="width: 38px; height: 34px; top:3px; left:4.5px;">
+                        <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt=""
+                            style="width: 38px; height: 34px; top:3px; left:4.5px;">
                     </div>
                     <h2 class="h2_title">Get Paid</h2>
                     <p class="create_section_p">Receive payment in<br>accounts by Card or Paypal</p>
@@ -554,7 +557,8 @@
                 <div class="col-12">
                     <div class="plan text-center ctrate-text">
                         <span>There’s a BillTO for every business</span>
-                        <p>It takes just a few seconds to create and send a professional-looking invoice. Automated reminders and customized templates make paying even easier.</p>
+                        <p>It takes just a few seconds to create and send a professional-looking invoice. Automated
+                            reminders and customized templates make paying even easier.</p>
                     </div>
                 </div>
             </div>
@@ -565,7 +569,7 @@
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 48.76px;
-                    margin-top: 33px;
+                    margin-top: 11px;
                     text-align: center;
                 }
 
@@ -577,13 +581,25 @@
                 }
 
                 .btnCss {
+                    /* background-color: #FFB317;
+                        color: #FFFFFF;
+                        border: none;
+                        border-radius: 5px;
+                        font-size: 18px;
+                        font-weight: 700;
+                        line-height: 40px;
+                        text-align: center;
+                        padding: 8px 57px; */
+
+                    width: 240px;
+                    height: 50px;
                     background-color: #FFB317;
                     color: #FFFFFF;
                     border: none;
                     border-radius: 5px;
                     font-size: 18px;
                     font-weight: 700;
-                    line-height: 40px;
+                    line-height: 32px;
                     text-align: center;
                     padding: 8px 57px;
                 }
@@ -608,6 +624,12 @@
 
                 .pricing_btn_design {
                     margin-bottom: 29px;
+
+                }
+
+                .month {
+                    color: #FFB317 !important;
+                    font-size: 13px !important;
                 }
             </style>
             <div class="row">
@@ -619,10 +641,10 @@
                         <div class="card text-center">
                             <div class="card-body p-0">
                                 <h3 class="heding">{{ $sub_package->packageName }}</h3>
-                                <h1 class="priceColor">${{ $sub_package->price }}</h1>
-                                <p class="text_muted">
+                                <h1 class="priceColor">${{ $sub_package->price }}<span class="month">/month</span></h1>
+                                {{-- <p class="text_muted">
                                     galley of type and scrambled it to make a type specimen book.
-                                </p>
+                                </p> --}}
                                 <div class="emty_margin"></div>
                                 <div class="text-start text_start ">
                                     <p class="text-muted margingPlanP">
@@ -675,8 +697,13 @@
                                     </p>
                                 </div>
                                 <div class="pricing_btn_design">
-                                    <a href="{{ url('payment-gateway', $sub_package->id) }}"><button class="btnCss">Buy
-                                            now</button></a>
+                                    @if ($sub_package->packageName == 'FREE')
+                                        <a href="{{ url('payment-gateway', $sub_package->id) }}"><button
+                                                class="btnCss">Free</button></a>
+                                    @else
+                                        <a href="{{ url('payment-gateway', $sub_package->id) }}"><button class="btnCss"
+                                                disabled>Coming Soon</button></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
