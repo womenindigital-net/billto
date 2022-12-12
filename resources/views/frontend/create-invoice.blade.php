@@ -442,6 +442,7 @@
                                 width: 33px;
                                 cursor: pointer;
                                 margin-left: 3px;
+                                margin-top: 1px;
                             }
                         </style>
                         <div class=" col-md-1  text-center" >
