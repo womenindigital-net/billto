@@ -185,12 +185,16 @@
               <div class="col-6">
                 <table class="table table-borderless tableTextColor">
                   <tbody class="tableRowBgColor">
+
+                   <td>
                     @php
-                    $subtotal = $data->total;
+                   echo $subtotal = $data->total;
                     $tax = $data->invoice_tax_percent;
-                    $total_value = ceil($subtotal-(($subtotal*$tax)/100));
+                  echo  $total_value = ceil($subtotal-(($subtotal*$tax)/100));
                    @endphp
+                    </td>
                     <tr>
+
                       <td class="bgColorSubTable">Sub total</td>
                       <td class="text-end">{{ number_format($total_value ,2) }}</td>
                     </tr>

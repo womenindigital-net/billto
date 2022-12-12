@@ -37,6 +37,8 @@ class CreateInvoicesTable extends Migration
             $table->string('total')->nullable();
             $table->string('currency', 30)->nullable();
             $table->string('template_name', 30)->nullable();
+            $table->string('subtotal_no_vat', 30)->nullable();
+
             $table->enum('invoice_status', ['complete','incomlete'])->default('incomlete');
             $table->timestamps();
         });

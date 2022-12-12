@@ -206,6 +206,7 @@ class InvoiceController extends Controller
                     'requesting_advance_amount_percent' => $request->requesting_advance_amount,
                     'total' => $total,
                     'invoice_status' => 'complete',
+                    'subtotal_no_vat'=> $request->subtotal_no_vat,
                     'template_name' => $request->template_name,
                 );
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
@@ -327,7 +328,7 @@ class InvoiceController extends Controller
         Invoice::where('id',$id)->update([
             'invoice_status'=>'complete',
         ]);
-        $productsDatas = Invoice::find($id)->products->skip(0)->take(6);
+        $productsDatas = Invoice::find($id)->products->skip(0)->take(10);
         $due = $invoiceData->total;
         if (Auth::user()->plan == 'free') {
             $pdf = Pdf::loadView('invoices.free.all_invoice', compact('invoiceData', 'productsDatas', 'due'));
@@ -369,7 +370,7 @@ class InvoiceController extends Controller
 
 
 
-        $data['productsDatas'] = Invoice::find($template_id)->products->skip(0)->take(6);
+        $data['productsDatas'] = Invoice::find($template_id)->products->skip(0)->take(10);
         $data['due'] = $data['invoiceData']->total;
         $data['email'] = "$request->emai_to";
         $data['subject'] = "$request->email_subject";
