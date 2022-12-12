@@ -259,11 +259,11 @@
         }
 
         /* .create_section .ctrate-text .icon_style {
-                        width: 39px;
-                        height: 42px;
-                        top: 3px;
-                        left: 4.5px;
-                    } */
+                            width: 39px;
+                            height: 42px;
+                            top: 3px;
+                            left: 4.5px;
+                        } */
     </style>
 
     <!-- Create Start -->
@@ -582,14 +582,14 @@
 
                 .btnCss {
                     /* background-color: #FFB317;
-                        color: #FFFFFF;
-                        border: none;
-                        border-radius: 5px;
-                        font-size: 18px;
-                        font-weight: 700;
-                        line-height: 40px;
-                        text-align: center;
-                        padding: 8px 57px; */
+                            color: #FFFFFF;
+                            border: none;
+                            border-radius: 5px;
+                            font-size: 18px;
+                            font-weight: 700;
+                            line-height: 40px;
+                            text-align: center;
+                            padding: 8px 57px; */
 
                     width: 240px;
                     height: 50px;
@@ -673,28 +673,67 @@
                                         </strong>
                                     </p>
                                     <p class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
-                                        type
-                                        specimen book.
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />Send
+                                        custom invoices & quotes.
                                     </p>
                                     <p class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> galley
-                                        of
-                                        type and
-                                        scrambled
-                                        it to
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        Multi-currency
                                     </p>
                                     <p class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
-                                        type
-                                        specimen book.
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        Include your company logo.
+                                    </p>
+                                    <p class="text-muted margingPlanP">
+                                        @if($sub_package->packageName == 'FREE')
+                                         <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                         @elseif ($sub_package->packageName == 'Standard')
+                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                         @elseif ($sub_package->packageName == 'Premium')
+                                         <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @endif
+                                             100+ Symbols for logo.
+                                    </p>
+                                    <p class="text-muted margingPlanP">
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        Quick Customer Support.
+                                    </p>
+                                    <p class="text-muted margingPlanP">
+                                        @if($sub_package->packageName == 'FREE')
+                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        @else
+                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                       @endif
+                                        Insights & reports.
+                                    </p>
+                                    <p class="text-muted margingPlanP">
+                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        Manage employees.
+                                    </p>
+
+                                    <p class="text-muted margingPlanP">
+                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        Recurring transactions.
+                                    </p>
+
+                                    <p class="text-muted margingPlanP">
+                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        Track inventory.
                                     </p>
                                     <p class="text-muted">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" /> make
-                                        a
-                                        type
-                                        specimen book.
+                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        Manage budgets.
                                     </p>
+                                    <p class="text-muted">
+                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        Unlimited Invoices.
+                                    </p>
+                                    <p class="text-muted ">
+                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        Track projects & locations.
+                                    </p>
+
+
                                 </div>
                                 <div class="pricing_btn_design">
                                     @if ($sub_package->packageName == 'FREE')
