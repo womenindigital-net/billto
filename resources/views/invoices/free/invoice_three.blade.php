@@ -300,22 +300,18 @@
                         <div class="table_div">
                             <table style="width: 100%;">
                                 <tr style="text-align: right">
-                                    @php
-                                    $subtotal = $invoiceData->total;
-                                    $tax = $invoiceData->invoice_tax_percent;
-                                    $total_value = ceil($subtotal-(($subtotal*$tax)/100));
-                                   @endphp
+
 
                                     <td>Subtotal</td>
-                                    <td>{{ number_format($total_value ,2) }} </td>
+                                    <td>{{ number_format($total_val =  $invoiceData->subtotal_no_vat )}}</td>
                                 </tr>
                                 <tr style="text-align: right">
                                     <td>Sales Tax  {{$tax = $invoiceData->invoice_tax_percent }}%</td>
-                                    <td>{{number_format( $tax_value = $total_value*$tax /100,2) }}</td>
+                                    <td>{{number_format( $text_val =$total_val*$tax/100,2) }}</td>
                                 </tr>
                                 <tr style="text-align: right">
                                     <td style="font-size: 18px;">Total</td>
-                                    <td style="font-size: 18px;">{{  number_format($subtotal,2)  }}</td>
+                                    <td style="font-size: 18px;">{{  number_format($total_val + $text_val,2)  }}</td>
                                 </tr>
                             </table>
                         </div>
