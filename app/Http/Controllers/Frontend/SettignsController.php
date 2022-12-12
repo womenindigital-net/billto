@@ -21,7 +21,7 @@ class SettignsController extends Controller
     }
     public function Myallinvoice()
     {
-        $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name']);
+        $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency']);
         $count = $invoicessData->count();
         $user_id = Auth::user()->id;
         $user = User::where('id',$user_id)->get();
@@ -34,7 +34,7 @@ class SettignsController extends Controller
 
     public function MyTrashinvoice()
     {
-        $invoicessData = Invoice::where('user_id', Auth::user()->id)->where('invoice_status','incomlete')->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name']);
+        $invoicessData = Invoice::where('user_id', Auth::user()->id)->where('invoice_status','incomlete')->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency','currency']);
         $count = $invoicessData->count();
         $user_id = Auth::user()->id;
         $user = User::where('id',$user_id)->get();

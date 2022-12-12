@@ -117,6 +117,7 @@
                 line-height: 24px;
                 font-size: 18px;
                 padding-bottom: 36px;
+                min-height: 410px;
             }
 
             .c h5 {
@@ -181,7 +182,9 @@
                 min-height: 29.7cm;
                 overflow: hidden;
             }
-
+.height{
+    min-height: 325px;
+}
 </style>
 <title>Billto.io</title>
 </head>
@@ -189,7 +192,7 @@
 
     <div class="invoice_body page" size="A4">
         <section class="first_section">
-            <div class="logo_area">
+            <div class="logo_area height">
                 @if($invoiceData->invoice_logo!="")
                 <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img">
             @endif
@@ -294,6 +297,11 @@
                         <div class="table_div">
                             <table style="width: 100%;">
                                 <tr style="text-align: right">
+                                    @php
+                                    //    $subtotal_p = $invoiceData->total * $invoiceData->invoice_tax_percent /100 ;
+                                        // $tax = $invoiceData->invoice_tax_percent;
+                                        // $tax_value =  $subtotal*$tax /100 ;
+                                    @endphp
                                     <td>Subtotal</td>
                                     <td>{{ number_format($subtotal = $invoiceData->total,2) }} </td>
                                 </tr>
@@ -329,13 +337,13 @@
                     {{-- <p>123 Rockfeller Street,</p>
                     <p>New York, NY 12210</p> --}}
                 </div>
-                <div class="d">
+                {{-- <div class="d">
                     <h5>Ship To</h5>
                     <div class="border"></div>
                     <p><b>Neals BD.</b></p>
                     <p>123 Rockfeller Street,</p>
                     <p>New York, NY 12210</p>
-                </div>
+                </div> --}}
             </div>
             <div class="right_Side_bar ">
                 <div class="i_footerright_area">
