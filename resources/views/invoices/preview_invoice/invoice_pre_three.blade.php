@@ -5,6 +5,7 @@
       min-height: 29.7cm;
       overflow: hidden;
       margin: 0 auto;
+      border: 0.1px solid #ece9e9;
     }
     /* .bgImg {
       background-image: url("/img/image_2022_12_10T04_44_18_427Z.png");
@@ -97,9 +98,9 @@
       <div class="row">
         <div class="col-6 companyName pt-4 sectionPadding pb-5">
           <div class="">
-            <h4 class="HeaderText">Company Name</h4>
+            <h4 class="HeaderText">  {{ $data->invoice_form }}</h4>
             <p class="HeaderTextP">
-                {{ $data->invoice_form }}
+                {{-- {{ $data->invoice_form }} --}}
             </p>
           </div>
           <div class="mt-5">
@@ -184,17 +185,22 @@
               <div class="col-6">
                 <table class="table table-borderless tableTextColor">
                   <tbody class="tableRowBgColor">
+                    @php
+                    $subtotal = $data->total;
+                    $tax = $data->invoice_tax_percent;
+                    $total_value = ceil($subtotal-(($subtotal*$tax)/100));
+                   @endphp
                     <tr>
                       <td class="bgColorSubTable">Sub total</td>
-                      <td class="text-end">{{ number_format($subtotal = $data->total,2) }}</td>
+                      <td class="text-end">{{ number_format($total_value ,2) }}</td>
                     </tr>
                     <tr>
                       <td class="bgColorSubTable">Sales Tax{{$tax = $data->invoice_tax_percent }}%</td>
-                      <td class="text-end">{{number_format( $tax_value =  $subtotal*$tax /100,2) }}</td>
+                      <td class="text-end">{{number_format( $tax_value = $total_value*$tax /100,2) }}</td>
                     </tr>
                     <tr>
                       <td class="bgColorSubTable fw-bold">Total</td>
-                      <td class="text-end fw-bold">{{  number_format($subtotal + $tax_value,2)  }}</td>
+                      <td class="text-end fw-bold">{{  number_format($subtotal,2)  }}</td>
                     </tr>
                   </tbody>
                 </table>

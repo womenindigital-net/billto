@@ -21,7 +21,7 @@ class DashboardController extends Controller
         $user_id = Auth::user()->id;
         // Invoice::where('user_id', $user_id)->where('invoice_status','incomlete')->delete();
 
-        $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','template_name']);
+        $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','template_name','currency']);
         $count = $invoicessData->count();
 
         $user = User::where('id',$user_id)->get();

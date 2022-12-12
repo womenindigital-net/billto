@@ -8,6 +8,7 @@
     .bgColorYellow {
       background-color: #0370BF;
       min-height: 335px;
+      align-content: center;
     }
     .imgMarginPadding {
       margin-top: 40px;
@@ -114,9 +115,9 @@
             @endif
           </div>
           <div class="hadingMarginPadding">
-            <h1 class="headerTextOne">Company Name</h1>
+            <h1 class="headerTextOne">{{ $data->invoice_form }}</h1>
             <h6 class="headerTextTwo">
-                {{ $data->invoice_form }}
+                {{-- {{ $data->invoice_form }} --}}
             </h6>
           </div>
         </div>
@@ -173,16 +174,21 @@
                   <table class="table table-borderless tableSection ">
                     <tbody>
                       <tr>
+                        @php
+                         $subtotal = $data->total;
+                         $tax = $data->invoice_tax_percent;
+                         $total_value = ceil($subtotal-(($subtotal*$tax)/100));
+                        @endphp
                         <td class="text-end">Sub total</td>
-                        <td class="text-end">{{ number_format($subtotal = $data->total,2) }}</td>
+                        <td class="text-end">{{ number_format($total_value ,2) }}</td>
                       </tr>
                       <tr>
                         <td class="text-end">Sales Tax {{$tax = $data->invoice_tax_percent }}%</td>
-                        <td class="text-end">{{number_format( $tax_value =  $subtotal*$tax /100,2) }}</td>
+                        <td class="text-end">{{number_format( $tax_value = $total_value*$tax /100,2) }}</td>
                       </tr>
                       <tr>
                         <td class="text-end fw-bold">Total</td>
-                        <td class="text-end fw-bold">{{  number_format($subtotal + $tax_value,2)  }}</td>
+                        <td class="text-end fw-bold">{{  number_format($subtotal,2)  }}</td>
                       </tr>
                     </tbody>
                   </table>

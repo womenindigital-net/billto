@@ -10,6 +10,10 @@
     background-color: #fcb21c;
     min-height: 335px;
   }
+  .bgColorYellow2{
+    background-color: #fcb21c;
+    min-height: 420px;
+  }
   .imgMarginPadding {
     margin-top: 40px;
     margin-bottom: 49px;
@@ -114,9 +118,9 @@
           @endif
         </div>
         <div class="hadingMarginPadding">
-          <h1 class="headerTextOne">Company Name</h1>
+          <h1 class="headerTextOne">  {{ $data->invoice_form }} </h1>
           <h6 class="headerTextTwo">
-            {{ $data->invoice_form }}
+
           </h6>
         </div>
       </div>
@@ -206,7 +210,7 @@
 
   <section>
       <div class="row">
-        <div class="col-4 bgColorYellow">
+        <div class="col-4 bgColorYellow2">
           <h4 class="footerHader">To</h4>
           <p  class="footertext">{{   $data->invoice_to }}</p>
           {{-- <h4 class="footerHader mt-5">SHIF To</h4>

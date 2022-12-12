@@ -28,13 +28,20 @@
         height: 11.25px !important;
         padding:5px;
     }
+    /* .border_top{
+        border-top: 1px solid rgb(175, 175, 175) !important;
+    } */
+
+    table.dataTable tfoot tr, table.dataTable tfoot td {
+    border-top: 1px solid #dbdbdb !important ;
+}
 </style>
 @section('dashboard_content')
     <div class="container-fluid">
 
         <div class="row">
             <div class="card p-4 mt-2 table-responsive">
-                <table id="example" class="table table-striped table-hover border table-bordered mt-1 ">
+                <table id="example" class="table  table-hover border table-bordered mt-1 ">
                     <thead>
                         <tr>
                             <th class="text-center">SL</th>
@@ -58,8 +65,8 @@
                                     {{ $invoiceData->invoice_id }}
                                 </td>
                                 <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
-                                <td class="m-0  ">৳ {{ $invoiceData->invoice_amu_paid }}</td>
-                                <td class="m-0  ">৳ {{ $invoiceData->total }}</td>
+                                <td class="m-0  ">@if($invoiceData->invoice_amu_paid !="") {{ $invoiceData->currency }} {{  number_format( $invoiceData->invoice_amu_paid,2) }} @endif</td>
+                                <td class="m-0  ">{{ $invoiceData->currency }} {{ number_format( $invoiceData->total,2) }}</td>
                                 <td class=" m-0  text-center">
                                     @if ($invoiceData->invoice_status == 'complete')
                                         <a class="custom_btn_sm  preview_image_user" href="#"  data-bs-toggle="modal"
@@ -74,19 +81,30 @@
 
                             </tr>
                         @empty
-
                         @endforelse
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
                     </tbody>
+
+                   <tfoot>
+                    <tr class=" border-0" >
+                        <td colspan="7" class=" border-0 text-white">.</td>
+                    </tr>
+                    <tr class="border-0">
+                        <th colspan="6" class="border-0">Total</th>
+                        <th  class=" border-0"> {{ number_format($Total_Amount_conut,2) }}</th>
+                    </tr>
+                    {{-- <tr class="border-0">
+                        <th colspan="6" class="border-0">Paid Amount </th>
+                        <th  class=" border-0"> 0</th>
+                    </tr>
+                    <tr class="border-0">
+                        <th colspan="6" class="border-0">Due Amount </th>
+                        <th  class=" border-0"> 124578</th>
+                    </tr> --}}
+                    <tr class="border-0">
+                        <th colspan="6" class="border-0"> </th>
+                        <th  class=" border-0 text-white"> .</th>
+                    </tr>
+                   </tfoot>
                 </table>
             </div>
         </div>
