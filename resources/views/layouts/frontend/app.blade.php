@@ -43,7 +43,7 @@
 
 </head>
 
-<body style="min-height: 100vh;">
+<body style="min-height: 100vh;" id="body_alert">
   <!-- Header Start -->
   @include('layouts.frontend.partial.header')
   <!-- Header End -->

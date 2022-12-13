@@ -168,6 +168,13 @@ $("#invoiceForm").submit(function (e) {
                 title: 'Fill UP Invoice Form Properly',
             })
 
+            // Alert disable
+                $('#staticBackdrop_previw').addClass("d-none");
+                $('.modal-backdrop').css("display","none");
+                $('#body_alert').removeClass("modal-open");
+                $('#staticBackdrop_previw').removeClass("show");
+            // Alert disable
+
             // Invoice Validation
             if (error.responseJSON.errors.invoice_form != null) {
                 $('#invoice_form').addClass("is-invalid");
@@ -507,6 +514,7 @@ function saveData(id) {
             data = data + "</td>"
             data = data + "</tr>"
             $("#editInput-" + id).replaceWith(data);
+            allData();
         },
         error: function (error) {
 
@@ -611,6 +619,13 @@ $("#send_mail_data").on("click", function () {
                     document.getElementById('emai_to').value = "";
                     document.getElementById('email_subject').value = "";
                     document.getElementById('email_body').value = "";
+
+             // Alert disable
+                // $('#staticBackdrop').addClass("d-none");
+                // $('.modal-backdrop').css("display","none");
+                // $('#body_alert').removeClass("modal-open");
+                // $('#staticBackdrop').removeClass("show");
+            // Alert disable
 
                 } else {
                     button =
