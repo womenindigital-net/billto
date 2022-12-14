@@ -648,16 +648,16 @@
                                 <div class="emty_margin"></div>
                                 <div class="text-start text_start ">
                                     <div class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         Invoice
                                         Template: <strong>{{ $sub_package->templateQuantity }}</strong>
                                     </div>
                                     <div class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> Total
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> Total
                                         invoice Genarate: <strong>{{ $sub_package->limitInvoiceGenerate }}</strong>
                                     </div>
                                     <div class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         Package
                                         Duration: <strong> @php
                                             if ($day == 30) {
@@ -673,94 +673,108 @@
                                         </strong>
                                     </div>
                                     <div class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />Send
+                                        <img  class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />Send
                                         custom invoices & quotes.
                                     </div>
                                     <div class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
-                                        Multi-currency
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        Multi-currency.
                                     </div>
                                     <div class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         Include your company logo.
                                     </div>
                                     {{-- <p class="text-muted margingPlanP">
                                         @if ($sub_package->packageName == 'FREE')
                                          <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
                                          100+ Symbols for logo.
-                                         @elseif ($sub_package->packageName == 'Standard')
+
                                          <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                          100+ Symbols for logo.
-                                         @elseif ($sub_package->packageName == 'Premium')
+
                                          <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                          100+ Symbols for logo.
                                         @endif
                                     </p> --}}
-
-                                    <div class="text-muted margingPlanP" style="margin-top: -10px; margin-bottom: -3px">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                    <style>
+                                        .none_image{
+                                            width: 25px;
+                                        }
+                                        .tik_image{
+                                            width: 30px;
+                                        }
+                                    </style>
+                                    <div class="text-muted margingPlanP" >
+                                        @if ($sub_package->packageName == 'FREE')
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Standard')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Premium')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @endif
                                         Quick Customer Support.
                                     </div>
-                                    <div class="text-muted margingPlanP" style="margin-top: -5px; margin-bottom: -3px">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Manage employees.
-                                    </div>
-                                    <div class="text-muted margingPlanP" style="margin-top: -5px; margin-bottom: -3px">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Recurring transactions.
-                                    </div>
-                                    <div class="text-muted margingPlanP" style="margin-top: -5px; margin-bottom: -3px">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Track inventory.
-                                    </div>
-                                    <div class="text-muted margingPlanP" style="margin-top: -5px; margin-bottom: -3px">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Manage budgets.
-                                    </div>
-                                    <div class="text-muted margingPlanP" style="margin-top: -5px; margin-bottom: -3px">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Unlimited Invoices.
-                                    </div>
-                                    <div class="text-muted margingPlanP" style="margin-top: -5px; margin-bottom: -3px">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Track projects & locations.
-                                    </div>
 
-                                    {{-- <p class="text-muted margingPlanP">
+                                    <div class="text-muted margingPlanP" >
                                         @if ($sub_package->packageName == 'FREE')
-                                            <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        @else
-                                            <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Standard')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Premium')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         @endif
-                                        Insights & reports.
-                                    </p> --}}
-                                    {{-- <p class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
                                         Manage employees.
-                                    </p>
-
-                                    <p class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Recurring transactions.
-                                    </p>
-
-                                    <p class="text-muted margingPlanP">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Track inventory.
-                                    </p>
-                                    <p class="text-muted">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Manage budgets.
-                                    </p>
-                                    <p class="text-muted">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
-                                        Unlimited Invoices.
-                                    </p>
-                                    <p class="text-muted ">
-                                        <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                    </div>
+                                    <div class="text-muted margingPlanP" >
+                                        @if ($sub_package->packageName == 'FREE')
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Standard')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Premium')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @endif
+                                       Recurring transactions.
+                                    </div>
+                                    <div class="text-muted margingPlanP" >
+                                        @if ($sub_package->packageName == 'FREE')
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Standard')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Premium')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @endif
+                                         Track inventory.
+                                    </div>
+                                    <div class="text-muted margingPlanP" >
+                                        @if ($sub_package->packageName == 'FREE')
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Standard')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Premium')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @endif
+                                         Manage budgets.
+                                    </div>
+                                    <div class="text-muted margingPlanP" >
+                                        @if ($sub_package->packageName == 'FREE')
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Standard')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Premium')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @endif
+                                         Unlimited Invoices.
+                                    </div>
+                                    <div class="text-muted margingPlanP" >
+                                        @if ($sub_package->packageName == 'FREE')
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Standard')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @elseif ($sub_package->packageName == 'Premium')
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        @endif
                                         Track projects & locations.
-                                    </p> --}}
-
+                                    </div>
 
                                 </div>
                                 <div class="pricing_btn_design">

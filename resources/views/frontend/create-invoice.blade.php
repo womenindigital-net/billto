@@ -925,9 +925,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="email_body" class="form-label">Body</label>
-                            <textarea class="form-control" id="email_body" name="email_body" rows="2">
-                                A invoice has been sent to you by BillTo.io. You can find it in the attachment below.
-                            </textarea>
+                            <textarea class="form-control" id="email_body" name="email_body" rows="2">A invoice has been sent to you by BillTo.io. You can find it in the attachment below.</textarea>
                         </div>
 
                         <div class="modal-footer">

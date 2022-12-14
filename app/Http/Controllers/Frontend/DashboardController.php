@@ -42,7 +42,8 @@ class DashboardController extends Controller
         $sendByMail_count = SendMail_info::where('user_id', $id)->count();
         $Total_Amount_conut = Invoice::where('user_id',$id)->where('invoice_status','complete')->sum('total');
         $requesting_advance_amount = ($invoiceData->total*$invoiceData->requesting_advance_amount_percent)/100;
-        // foreach ($productData as $key => $value) { echo $value; };
+       
+
         return view('frontend.create-invoice')->with(compact('invoiceData', 'invoiceCount', 'requesting_advance_amount','template_id','invoice_template','template_id_check','sendByMail_count','Total_Amount_conut'));
     }
 

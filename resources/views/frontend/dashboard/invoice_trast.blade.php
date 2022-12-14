@@ -5,10 +5,10 @@
 @section('d-block')
     d-block
 @endsection
-@section('all-invoice')
+@section('Trush')
     active
 @endsection
-@section('all_invoice')
+@section('Trush')
     left_manu
 @endsection
 <style>
@@ -52,9 +52,6 @@
                                 <td class="m-0  text-center ">{{ ++$key }}</td>
                                 <td class="m-0  ">{{ $invoiceData->invoice_to }}</td>
                                 <td class="m-0   ">
-                                    {{-- <a href="{{ route('invoice.download', $invoiceData->id) }}" target="_black"
-                                        class="text-dark ">
-                                        {{ $invoiceData->invoice_id }}</a> --}}
                                     {{ $invoiceData->invoice_id }}
                                 </td>
                                 <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
@@ -65,7 +62,7 @@
                                         <a class="custom_btn_sm" href="{{ route('edit.invoice', $invoiceData->id) }}"><i
                                                 class="bi bi-eye iconTable"></i></a>
                                     @else
-                                        <a class="custom_btn_sm " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
+                                        <a class="custom_btn_sm " href="{{ route('create', $invoiceData->id) }}"><i
                                                 class="bi bi-pencil-square iconTable"></i></a>
                                     @endif
                                 </td>
@@ -73,6 +70,7 @@
                         @empty
                         @endforelse
                     </tbody>
+
                 </table>
             </div>
         </div>

@@ -73,7 +73,7 @@
                                         data-bs-target="#staticBackdrop_previw" ><i
                                                 class="bi bi-eye iconTable"></i></a>
                                     @else
-                                        <a class="custom_btn_sm  " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
+                                        <a class="custom_btn_sm  " href="{{ route('create', $invoiceData->id) }}"><i
                                                 class="bi bi-pencil-square iconTable"></i></a>
                                     @endif
                                 </td>
@@ -92,14 +92,7 @@
                         <th colspan="6" class="border-0">Total</th>
                         <th  class=" border-0"> {{ number_format($Total_Amount_conut,2) }}</th>
                     </tr>
-                    {{-- <tr class="border-0">
-                        <th colspan="6" class="border-0">Paid Amount </th>
-                        <th  class=" border-0"> 0</th>
-                    </tr>
-                    <tr class="border-0">
-                        <th colspan="6" class="border-0">Due Amount </th>
-                        <th  class=" border-0"> 124578</th>
-                    </tr> --}}
+
                     <tr class="border-0">
                         <th colspan="6" class="border-0"> </th>
                         <th  class=" border-0 text-white"> .</th>

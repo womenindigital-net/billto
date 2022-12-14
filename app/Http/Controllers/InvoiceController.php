@@ -324,6 +324,7 @@ class InvoiceController extends Controller
             // 'invoice_amu_paid',
             'total',
             'template_name',
+            'subtotal_no_vat'
         ])->first();
         Invoice::where('id',$id)->update([
             'invoice_status'=>'complete',
@@ -363,6 +364,7 @@ class InvoiceController extends Controller
 
             'total',
             'template_name',
+            'subtotal_no_vat'
         ])->first();
         Invoice::where('id', $template_id)->update([
             'invoice_status'=>'complete',
