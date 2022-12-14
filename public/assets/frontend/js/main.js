@@ -194,7 +194,7 @@ $("#invoiceForm").submit(function (e) {
 
             if (error.responseJSON.errors.invoice_id != null) {
                 $('#invoice_id').addClass("is-invalid");
-                $('#invoice_id_error').text(error.responseJSON.errors.invoice_id);
+                $('#invoice_id_error').text();
             } else {
                 $('#invoice_id').removeClass("is-invalid");
                 $('#invoice_id').addClass("is-valid");
@@ -210,7 +210,7 @@ $("#invoiceForm").submit(function (e) {
 
             if (error.responseJSON.errors.invoice_dou_date != null) {
                 $('#invoice_dou_date').addClass("is-invalid");
-                $('#invoice_dou_date_error').text(error.responseJSON.errors.invoice_dou_date);
+                $('#invoice_dou_date_error').text('The invoice due date is not a valid date,The invoice due date must be a date after invoice date.');
             } else {
                 $('#invoice_dou_date').removeClass("is-invalid");
                 $('#invoice_dou_date').addClass("is-valid");
