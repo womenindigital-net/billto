@@ -819,8 +819,6 @@
     </style>
 
 
-
-
     <section class="invoice_template">
         <div>
             <div class="container my-3">
