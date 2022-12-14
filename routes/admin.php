@@ -31,6 +31,8 @@ Route::group([  'prefix' => 'admin',
                 Route::put('/package/{id}', [SubscriptionPackageController::class, 'update']);
                 Route::get('/package/{id}/delete', [SubscriptionPackageController::class, 'destroy']);
                 Route::get('/package/list', [SubscriptionPackageController::class, 'index']);
+                Route::post('/package/updates', [SubscriptionPackageController::class, 'packageUpdate']);
+
                 //organization package route
                 Route::get('/organization/package/page', [OrganizationPackageController::class, 'create']);
                 Route::post('/organization/package/store', [OrganizationPackageController::class, 'store']);

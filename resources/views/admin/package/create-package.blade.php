@@ -25,8 +25,8 @@
                     </div>
                 </div>
                 <!--************************************
-                ********** Main content Start ***********
-                ************************************-->
+                                ********** Main content Start ***********
+                                ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -42,23 +42,24 @@
                                 <div class="card p-2 mt-1">
                                     <h3>Create subscription package
                                         <a href="{{ url('admin/package/list') }}"
-                                            class="btn btn-primary btn-sm text-white  float-end p-2"> <i class="bx bx-right-arrow-alt "></i> Subscription package List
+                                            class="btn btn-primary btn-sm text-white  float-end p-2"> <i
+                                                class="bx bx-right-arrow-alt "></i> Subscription package List
                                         </a>
                                     </h3>
                                 </div>
                                 <hr>
                                 <form action="{{ url('admin/package/store') }}" method="POST" class="needs-validation"
-                                    novalidate>
+                                    novalidate enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom01" class="form-label">Package name</label>
                                                 <input type="text" name="packageName" class="form-control"
                                                     id="validationCustom01" required>
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom02" class="form-label"> Package Duration</label>
                                                 <select class="form-select" name="packageDuration" id="validationCustom02"
@@ -72,21 +73,21 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom03" class="form-label">Package Price</label>
                                                 <input type="number" name="price" class="form-control"
                                                     id="validationCustom02" required>
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom03" class="form-label">Tamplate Quantity</label>
                                                 <input type="number" name="templateQuantity" class="form-control"
                                                     id="validationCustom02" required>
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom03" class="form-label">Limit invoice
                                                     generate</label>
@@ -95,6 +96,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {{-- choose template --}}
                                     <div class="row mt-3">
                                         <h3 class="mb-3">Choose tamplate</h3>
                                         <div class="row">
@@ -111,11 +113,52 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="d-flex justify-content-start">
-                                            <button class="btn btn-primary mt-3" type="submit">Submit</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    {{-- pricing description --}}
+                                    <h3 class="mt-3">Pricing Description</h3>
+                                            <div class="main-form">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group mb-2">
+                                                            <label for="">Icon/Logo</label>
+                                                            <input type="file" name="logo[]" class="form-control" required >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group mb-2">
+                                                            <label for="">Pricing Description</label>
+                                                            <textarea  name="description[]" class="form-control" required  rows="1"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <div class="paste-new-forms"></div>
+
+                                        <div class="float-end me-4 mt-2">
+                                            <a href="javascript:void(0)" class="add-more-form  btn btn-success"><i class="bx bx-plus-medical"></i></a>
                                         </div>
-                                    </div>
+
+                                        <div class="row mt-2">
+                                            <div class="d-flex justify-content-start">
+                                                <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                                            </div>
+                                        </div>
                                 </form>
                             </div>
                         </div>
@@ -124,10 +167,47 @@
 
                 </div>
 
+                <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+                <script>
+                    $(document).ready(function() {
+
+                        $(document).on('click', '.remove-btn', function() {
+                            $(this).closest('.main-form').remove();
+                        });
+
+                        $(document).on('click', '.add-more-form', function() {
+                            $('.paste-new-forms').append('<div class="main-form ">\
+                                            <div class="row">\
+                                                <div class="col-sm-4">\
+                                                    <div class="form-group ">\
+                                                        <label for="">Icon/Logo</label>\
+                                                        <input type="file" name="logo[]" class="form-control"  required>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="col-sm-7">\
+                                                    <div class="form-group mb-2">\
+                                                        <label for="">Pricing Description</label>\
+                                                            <textarea  name="description[]" class="form-control" required  rows="1"></textarea>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="col-sm-1">\
+                                                    <div class="form-group mb-2 mt-2">\
+                                                        <br>\
+                                                        <button type="button" class="remove-btn btn-sm btn btn-danger"> <i class="bx bx-trash-alt fs-4"></i></button>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                    </div>');
+                        });
+
+                    });
+                </script>
+
 
                 <!--************************************
-                     ********** Main content END ***********
-                     ************************************-->
+                    ********** Main content END ***********
+                    ************************************-->
 
             </div>
             <!-- container-fluid -->

@@ -647,6 +647,7 @@ class ComposerStaticInit954efb0a80de338c9d5c968e8bdaed9a
         'App\\Models\\OrganizationPackage' => __DIR__ . '/../..' . '/app/Models/OrganizationPackage.php',
         'App\\Models\\OrganizationPackageTemplate' => __DIR__ . '/../..' . '/app/Models/OrganizationPackageTemplate.php',
         'App\\Models\\PaymentGetway' => __DIR__ . '/../..' . '/app/Models/PaymentGetway.php',
+        'App\\Models\\Pricing' => __DIR__ . '/../..' . '/app/Models/Pricing.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\SendMail_info' => __DIR__ . '/../..' . '/app/Models/SendMail_info.php',
         'App\\Models\\SubscriptionPackage' => __DIR__ . '/../..' . '/app/Models/SubscriptionPackage.php',

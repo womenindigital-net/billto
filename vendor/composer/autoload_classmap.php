@@ -50,6 +50,7 @@ return array(
     'App\\Models\\OrganizationPackage' => $baseDir . '/app/Models/OrganizationPackage.php',
     'App\\Models\\OrganizationPackageTemplate' => $baseDir . '/app/Models/OrganizationPackageTemplate.php',
     'App\\Models\\PaymentGetway' => $baseDir . '/app/Models/PaymentGetway.php',
+    'App\\Models\\Pricing' => $baseDir . '/app/Models/Pricing.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\SendMail_info' => $baseDir . '/app/Models/SendMail_info.php',
     'App\\Models\\SubscriptionPackage' => $baseDir . '/app/Models/SubscriptionPackage.php',
