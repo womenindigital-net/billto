@@ -55,8 +55,8 @@
                                     {{ $invoiceData->invoice_id }}
                                 </td>
                                 <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
-                                <td class="m-0  ">৳ {{ $invoiceData->invoice_amu_paid }}</td>
-                                <td class="m-0  ">৳ {{ $invoiceData->total }}</td>
+                                <td class="m-0  ">{{ $invoiceData->currency }} {{ $invoiceData->invoice_amu_paid }}</td>
+                                <td class="m-0  ">{{ $invoiceData->currency }} {{ $invoiceData->total }}</td>
                                 <td class=" m-0  text-center">
                                     @if ($invoiceData->invoice_status == 'complete')
                                         <a class="custom_btn_sm" href="{{ route('edit.invoice', $invoiceData->id) }}"><i

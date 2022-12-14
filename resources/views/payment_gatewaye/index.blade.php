@@ -152,7 +152,7 @@
                                     {{-- <input type="hidden"  name="auth_user_id" value="{{ auth()->user()->id }}"> --}}
                                     <input type="hidden" name="package_price" value="{{ $subscribe->price }}">
                                     <div class="mt-2">
-                                        <button class="btnCss">Submit</button>
+                                        <button class="btnCss" disabled>Submit</button>
                                     </div>
                                 </div>
                             </form>

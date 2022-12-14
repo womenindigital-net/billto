@@ -73,7 +73,7 @@
                                                 <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid <span class="circle bg-dark">0</span></a></li>
                                                 <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span class="circle bg-danger">0</span></a></li> --}}
                                                 <li><a href='{{ url('/all/invoices/send-by-Mail') }}' class="@yield('SendbyEmail') ">Send by Email <span class="circle bg-success">{{ $sendByMail_count }}</span></a></li>
-                                                <li><a href='{{ url("/my-trash-invoice") }}' class="@yield('Trush') ">Trash <span class="circle bg-warning">{{ $trash }}</span> </a></li>
+                                                <li><a href='{{ url("/my-trash-invoice") }}' class="@yield('Trush') "> Drafts <span class="circle bg-warning">{{ $trash }}</span> </a></li>
                                             </ul>
                                         </li>
                                         {{-- <li>
@@ -127,7 +127,7 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1 text-white">
-                                            <p class="text-white fw-medium ">Trash Invoice</p>
+                                            <p class="text-white fw-medium ">Drafts Invoice</p>
                                             <h4 class="mb-0 ">{{ $trash }}</h4>
                                         </div>
                                         <div

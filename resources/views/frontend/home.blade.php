@@ -243,7 +243,6 @@
                 <div class="row align-items-center">
                     <div class="col-sm-6 text ">
                         <a href="{{ route('create') }}" class="btn billto_btn "><span>Create Bill</span></a>
-                        <a href="{{ url('/clear-cache') }}" class="btn billto_btn"><span>cache Clear</span></a>
                     </div>
                     <div class="col-sm-6 text-end image_width">
                         <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" alt="">
@@ -637,7 +636,7 @@
                     @php
                         $day = $sub_package->packageDuration;
                     @endphp
-                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 {{ $sub_package->price == 0 ? 'dis_none' : '' }} ">
+                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 {{ $sub_package->price == 9 ? 'dis_none' : '' }} ">
                         <div class="card text-center">
                             <div class="card-body p-0">
                                 <h3 class="heding">{{ $sub_package->packageName }}</h3>
@@ -654,7 +653,7 @@
                                     </div>
                                     <div class="text-muted margingPlanP">
                                         <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> Total
-                                        invoice Genarate: <strong>{{ $sub_package->limitInvoiceGenerate }}</strong>
+                                        invoice Genarate: <strong> {{ $sub_package->limitInvoiceGenerate >=1000 ? 'Unlimited' : $sub_package->limitInvoiceGenerate }} </strong>
                                     </div>
                                     <div class="text-muted margingPlanP">
                                         <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
@@ -697,12 +696,12 @@
                                         @endif
                                     </p> --}}
                                     <style>
-                                        .none_image{
+                                        /* .none_image{
                                             width: 25px;
                                         }
                                         .tik_image{
                                             width: 30px;
-                                        }
+                                        } */
                                     </style>
                                     <div class="text-muted margingPlanP" >
                                         @if ($sub_package->packageName == 'FREE')
@@ -749,7 +748,7 @@
                                         @if ($sub_package->packageName == 'FREE')
                                         <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
                                         @elseif ($sub_package->packageName == 'Standard')
-                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
                                         @elseif ($sub_package->packageName == 'Premium')
                                         <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         @endif
@@ -759,7 +758,7 @@
                                         @if ($sub_package->packageName == 'FREE')
                                         <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
                                         @elseif ($sub_package->packageName == 'Standard')
-                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
                                         @elseif ($sub_package->packageName == 'Premium')
                                         <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         @endif
@@ -769,7 +768,7 @@
                                         @if ($sub_package->packageName == 'FREE')
                                         <img class="none_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
                                         @elseif ($sub_package->packageName == 'Standard')
-                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
+                                        <img class="tik_image" src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" />
                                         @elseif ($sub_package->packageName == 'Premium')
                                         <img class="tik_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
                                         @endif
@@ -783,7 +782,7 @@
                                                 class="btnCss">Free</button></a>
                                     @else
                                         <a href="{{ url('payment-gateway', $sub_package->id) }}"><button class="btnCss"
-                                                disabled>Coming Soon</button></a>
+                                                >Coming Soon</button></a>
                                     @endif
                                 </div>
                             </div>
