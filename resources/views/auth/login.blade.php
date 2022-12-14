@@ -130,7 +130,7 @@
 @endpush
 @section('frontend_content')
     <!-- Sub Nav Start -->
-    <section class="sub_nav py-4 border-bottom">
+    {{-- <section class="sub_nav py-4 border-bottom">
         <div class="">
             <div class="container">
                 <div class="nav">
@@ -139,16 +139,16 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Sub Nav Start -->
 
     <!-- Sign in form Start -->
     <section class="form_sign_in">
         <div>
-            <div class="container my-5">
+            <div class="container ">
                 <div class="text-center">
-                    <h2 class="h2_title mb-4">Welcome back to Billto</h2>
-                    <p class="form_title pb-4">Sign in</p>
+                    <h2 class="h2_title ">Welcome back to Billto</h2>
+                    <p class="form_title pb-3">Sign in</p>
                 </div>
                 <div class="row">
                     <div class="col-md-6 my-0 mx-auto">
@@ -205,15 +205,15 @@
                                             or
                                         </span>
                                     </div> --}}
-                                    <div class="my-3 already_billto">
+                                    <div class="mt-3 already_billto">
                                         <p class="fw-bold">Do not have an account? <a class="color" href="{{ route('register') }}">Sign up
                                                 here</a></p>
                                     </div>
-                                    <div class="mb-4 mt-3"
+                                    <div class="mb-4 "
                                         style="width: 100%; height: 20px; border-bottom: 0.5px solid #CCCCCC; text-align: center">
-                                        <span style="font-size: 25px; background-color: #F3F5F6; padding: 0 10px;">
+                                        {{-- <span style="font-size: 25px; background-color: #F3F5F6; padding: 0 10px;">
                                             or
-                                        </span>
+                                        </span> --}}
                                     </div>
                                     <div class="block-wrap">
 

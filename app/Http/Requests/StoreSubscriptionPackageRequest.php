@@ -30,6 +30,8 @@ class StoreSubscriptionPackageRequest extends FormRequest
             'templateQuantity' => 'nullable',
             'limitInvoiceGenerate' => 'nullable',
             'template'=>'nullable',
+            // 'logo'=>'required ',
+            // 'description'=>'required'
         ];
     }
 }

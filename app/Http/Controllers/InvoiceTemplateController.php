@@ -31,7 +31,6 @@ class InvoiceTemplateController extends Controller
             // dd( $filename);
             $file->move('uploads/template/', $filename);
             $invoiceTemplate->templateImage = $filename;
-
         }
         $invoiceTemplate->save();
         return redirect()->back()->with('message', 'Successfully create Invoice');
