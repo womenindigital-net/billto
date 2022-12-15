@@ -327,7 +327,7 @@
                                 <div class="col-sm-8 mb-2">
                                     <div class="input-group">
                                         <div class="input-group-text">&#9839;</div>
-                                        <input type="text" name="invoice_id" class="form-control"
+                                        <input readonly type="text" name="invoice_id" class="form-control"
                                             value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @else {{ 'INVID' . $invoiceCountNew }} @endif"
                                             id="invoice_id" placeholder="INVOICE ID">
                                         <input type="hidden" id="id" name="id"
@@ -448,26 +448,11 @@
                         <div class=" col-md-1  text-center" >
                             <div class=" ms-4">
                                 <div class="svg_size_plus">
-                                    <?xml version="1.0" encoding="utf-8"?>
-                                    <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                         viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
-                                    <style type="text/css">
-                                        .st0{fill:#FCB21C;}
-                                        .st1{fill:#FFFFFF;}
-                                    </style>
-                                    <path class="st0" d="M29.5,32h-27C1.1,32,0,30.9,0,29.5v-27C0,1.1,1.1,0,2.5,0h27C30.9,0,32,1.1,32,2.5v27C32,30.9,30.9,32,29.5,32z
-                                        "/>
-                                    <rect x="14" y="8" class="st1" width="4" height="16"/>
-                                    <rect x="14" y="8" transform="matrix(6.123234e-17 -1 1 6.123234e-17 4.529710e-13 32)" class="st1" width="4" height="16"/>
-                                    </svg>
+                                    <img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt=""
+                                    style="width: 33px;height:33px; margin-top:2px;">
 
                                 </div>
-
-
-                                {{-- <img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt=""
-                                    style="width: 33px;height:33px; margin-top:2px;"> --}}
-                                </div>
+                             </div>
                         </div>
                     </div>
 
@@ -633,15 +618,15 @@
                 <div class="container p-0 create_page">
                     {{-- id="completeInvoice" --}}
                     <button type="submit" id="completeInvoice"
-                        class="btn bnt_responsive send-invoice preview_image py-2 px-4 my-2" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop_previw" @if (isset($invoiceData)) @else disabled @endif>
-
-
+                        class="btn bnt_responsive send-invoice preview_image py-2 px-4 my-2 "  @if (isset($invoiceData)) @else disabled @endif>
                         {{-- @if (isset($invoiceData)) @else  @endif> --}}
                         @if (isset($invoiceData))
-                            {{ 'Update Invoice' }} @else{{ 'Preview' }}
+                            {{ 'Update Invoice' }} @else{{ 'Save' }}
                         @endif
                     </button>
+
+                    <a id="previw_id" class="btn send-invoice preview_image bnt_responsive d-none bordered   py-2 px-4 my-2" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop_previw">Preview</a>
 
                     <button type="button" id="send_email_id"
                         class="btn send-invoice bnt_responsive py-2 px-4 my-2 disabled " data-bs-toggle="modal"
@@ -651,8 +636,7 @@
                     <a href="" id="downlodeInvoice" target="_blank"
                         class="btn bnt_responsive send-invoice py-2 px-4 disabled">Download
                         Invoice</a>
-                    {{-- <a id="previw_id" class="btn send-invoice preview_image bnt_responsive  py-2 px-4 my-2" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop_previw">Preview </a> --}}
+
                 </div>
 
         </div>

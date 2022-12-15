@@ -58,13 +58,32 @@ function addData() {
     var product_name = $('#product_name').val();
     var product_quantity = $('#product_quantity').val();
     var product_rate = $('#product_rate').val();
-    console.log(id);
+
+    var invoice_to =  $('#invoice_to').val();
+    var invoice_form =  $('#invoice_form').val();
+    var invoice_id =  $('#invoice_id').val();
+    var invoice_dou_date =  $('#invoice_dou_date').val();
+    var invoice_date =  $('#invoice_date').val();
+
+    $('#completeInvoice').removeClass("d-none");
+    $('#previw_id').addClass("d-none");
+
     if ((product_name != '') && (product_quantity != '') && (product_rate != '')) {
         $.ajax({
             url: '/product/store',
             method: 'post',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            data: { product_name: product_name, product_quantity: product_quantity, product_rate: product_rate, id: id },
+            data: {
+                    product_name: product_name,
+                    product_quantity: product_quantity,
+                    product_rate: product_rate,
+                    id: id,
+                    invoice_to: invoice_to,
+                    invoice_form: invoice_form,
+                    invoice_id: invoice_id,
+                    invoice_dou_date: invoice_dou_date,
+                    invoice_date: invoice_date
+                 },
             dataType: 'json',
             success: function (response) {
                 $('#id').val(response[1]);
@@ -100,6 +119,7 @@ function addData() {
 
             }
         });
+
     }
 }
 
@@ -136,24 +156,36 @@ $("#invoiceForm").submit(function (e) {
 
             } else {
                 $("#downlodeInvoice").attr("href", "/invoice/download/" + response);
-                // button =
-                //     Toast.fire({
-                //         icon: 'success',
-                //         title: ' Successfuly Invoice Created ',
+                button =
+                    Toast.fire({
+                        icon: 'success',
+                        title: ' Successfuly Invoice Created ',
 
-                //     });
+                    });
+                    $('#previw_id').removeClass("d-none");
+                    $('#completeInvoice').addClass("d-none");
+
+                // Alert disable
+                // $('#staticBackdrop_previw').addClass("block");
+                // $('.modal-backdrop').css("display","block");
+                // $('#body_alert').addClass("modal-open");
+                // $('#body_alert').css("overflow","hidden");
+                // $('#body_alert').css("padding-right","17px");
+                // $('#staticBackdrop_previw').addClass("show");
+                // Alert disable
+
 
                     // Priview invoice show in this code
-                    var invoice_last_id = document.getElementById('id').value;
-                    // alert(invoice_last_id);
-                    $.ajax({
-                        url: '/preview/image/' + invoice_last_id,
-                        method: 'get',
-                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                        success: function (data) {
-                            $('.preview_invoice_show').html(data);
-                        }
-                    });
+                    // var invoice_last_id = document.getElementById('id').value;
+                    // // alert(invoice_last_id);
+                    // $.ajax({
+                    //     url: '/preview/image/' + invoice_last_id,
+                    //     method: 'get',
+                    //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    //     success: function (data) {
+                    //         $('.preview_invoice_show').html(data);
+                    //     }
+                    // });
 
                     // Priview invoice show in this code
                   }
@@ -167,13 +199,6 @@ $("#invoiceForm").submit(function (e) {
                 icon: 'error',
                 title: 'Fill UP Invoice Form Properly',
             })
-
-            // Alert disable
-                // $('#staticBackdrop_previw').addClass("d-none");
-                // $('.modal-backdrop').css("display","none");
-                // $('#body_alert').removeClass("modal-open");
-                // $('#staticBackdrop_previw').removeClass("show");
-            // Alert disable
 
             // Invoice Validation
             if (error.responseJSON.errors.invoice_form != null) {
@@ -624,7 +649,11 @@ $("#send_mail_data").on("click", function () {
                 // $('#staticBackdrop').addClass("d-none");
                 // $('.modal-backdrop').css("display","none");
                 // $('#body_alert').removeClass("modal-open");
+                // $('#body_alert').css("overflow","auto");
+                // $('#body_alert').css("padding-right","0");
                 // $('#staticBackdrop').removeClass("show");
+
+
             // Alert disable
 
                 } else {
@@ -654,5 +683,34 @@ $(document).on("click", ".preview_image_user", function(e) {
                 $('.preview_invoice_show').html(data);
             }
         })
+
+});
+
+
+$("#previw_id").on("click", function () {
+    var invoice_last_id = document.getElementById('id').value;
+    $.ajax({
+        url: '/preview/image/' + invoice_last_id,
+        method: 'get',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function (data) {
+            $('.preview_invoice_show').html(data);
+        }
+    });
+
+});
+
+$(".save_btn_anable").on("click", function () {
+    $('#completeInvoice').removeClass("d-none");
+    $('#previw_id').addClass("d-none");
+});
+
+
+
+$(document).on("change", "#invoice_to,#invoice_form,#invoice_id,#invoice_dou_date,#invoice_date, #invoice_tax, #invoice_terms, #invoice_notes,  #invoice_po_number,#invoice_payment_term,  #currencyList, #imageUpload ", function(e) {
+    e.preventDefault();
+    $('#completeInvoice').removeClass("d-none");
+    $('#previw_id').addClass("d-none");
+
 
 });
