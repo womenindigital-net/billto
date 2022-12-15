@@ -324,10 +324,10 @@
                                 <div class="col-sm-4 d-flex">
                                     <h6 class="mt-2">INVOICE ID</h6>
                                 </div>
-                                <div class="col-sm-8 mb-2">
+                                <div class="col-sm-8 mb-2" >
                                     <div class="input-group">
                                         <div class="input-group-text">&#9839;</div>
-                                        <input type="text" name="invoice_id" class="form-control"
+                                        <input type="text" disabled name="invoice_id" class="form-control"
                                             value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @else {{ 'INVID' . $invoiceCountNew }} @endif"
                                             id="invoice_id" placeholder="INVOICE ID">
                                         <input type="hidden" id="id" name="id"

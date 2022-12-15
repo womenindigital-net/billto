@@ -23,26 +23,26 @@
                     </div>
                 </div>
                 <!--************************************
-                        ********** Main content Start ***********
-                        ************************************-->
+                            ********** Main content Start ***********
+                            ************************************-->
 
                 <div class="row">
-
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-header">
                                     <div>
                                         @if (session()->has('message'))
-                                            <div class="alert alert-danger">
+                                            <div class="alert alert-success">
                                                 {{ session('message') }}
                                             </div>
                                         @endif
                                     </div>
                                     <h3>Subscription List
                                         <a href="{{ url('admin/package/page') }}"
-                                            class="btn btn-primary btn-sm text-white  float-end "> <i class="bx bx-left-arrow-alt "></i> Add
-                                           Suscription Package
+                                            class="btn btn-primary btn-sm text-white  float-end "> <i
+                                                class="bx bx-left-arrow-alt "></i> Add
+                                            Suscription Package
                                         </a>
                                     </h3>
                                 </div>
@@ -74,10 +74,16 @@
                                                     <a href="{{ url('admin/package/' . $package->id . '/delete') }}"
                                                         onclick="return confirm('Are you sure, you want to delete ')"
                                                         class="btn btn-sm btn-danger">delete</a> --}}
+                                                    <a href="{{ url('admin/package/' . $package->id . '/addRow') }}"
+                                                        type="button"
+                                                        class="btn btn-sm btn-primary btn-rounded waves-effect waves-light mb-2 me-1"
+                                                        class="btn btn-sm btn-primary"> Add Row</a>
+
                                                     <a href="{{ url('admin/package/' . $package->id . '/edit') }}"
                                                         type="button"
                                                         class="btn btn-sm btn-success btn-rounded waves-effect waves-light mb-2 me-1"
                                                         class="btn btn-sm btn-success"> <i class="mdi mdi-pencil"></i></a>
+
                                                     <a type="button"
                                                         href="{{ url('admin/package/' . $package->id . '/delete') }}"
                                                         onclick="return confirm('Are you sure, you want to delete ')"
@@ -98,8 +104,8 @@
                     </div> <!-- end col -->
                 </div>
                 <!--************************************
-                             ********** Main content END ***********
-                             ************************************-->
+                                 ********** Main content END ***********
+                                 ************************************-->
 
             </div>
             <!-- container-fluid -->

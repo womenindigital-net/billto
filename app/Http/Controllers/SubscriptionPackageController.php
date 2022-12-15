@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pricing;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\InvoiceTemplate;
 use App\Models\SubscriptionPackage;
+// use Illuminate\Http\Client\Request;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\File;
@@ -14,6 +14,7 @@ use App\Models\SubscriptionPackageTemplate;
 use CreateSubscriptionPackageTemplatesTable;
 use App\Http\Requests\StoreSubscriptionPackageRequest;
 use App\Http\Requests\UpdateSubscriptionPackageRequest;
+use Illuminate\Http\Request;
 
 class SubscriptionPackageController extends Controller
 {
@@ -70,18 +71,16 @@ class SubscriptionPackageController extends Controller
                 'template' => $tamp_name,
             ]);
         }
-        $logos = $request->file('logo');
-        $description = $request->description;
 
-        foreach ($logos as $key => $logo) {
-            $file = $logo;
-            $ext = $file->getClientOriginalExtension();
-            $filename = rand(00000, 99999) . time() .  '.' . $ext;
-            $file->move('uploads/PricingLogo/', $filename);
+
+        $description = $request->description;
+        $logos = $request->logo;
+
+        foreach ($logos as $index => $logo) {
             Pricing::create([
                 'subscription_package_id' => $get_id,
-                'logo' => $filename,
-                'description' => $description[$key],
+                'logo' => $logo,
+                'description' => $description[$index],
 
             ]);
         }
@@ -164,25 +163,39 @@ class SubscriptionPackageController extends Controller
     {
         // dd($request->description, $request->logo, $request->id);
         $description = $request->description;
+        $logo = $request->logo;
         $oldLogo = $request->logo_old;
         $id = $request->id;
-        if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-            $ext = $file->getClientOriginalExtension();
-            $filename = rand(00000, 99999) . time() .  '.' . $ext;
-            $file->move('uploads/PricingLogo/', $filename);
-
-            Pricing::where('id', $id )->update([
-                'logo' =>  $filename,
-                'description' =>  $description,
-            ]);
-        }
-        else{
-            Pricing::where('id', $id )->update([
-                'description' =>  $description,
-            ]);
-        }
+        Pricing::where('id', $id)->update([
+            'logo' =>  $logo,
+            'description' =>  $description,
+        ]);
         return redirect()->back()->with('message', 'Successfully Update Package.');
+    }
+
+
+    public function addRow($id){
+          $id = $id;
+         return view('admin.package.add-row', compact('id'));
+    }
+
+    public function addRowStore(Request $request){
+
+
+        $description = $request->description;
+        $logos = $request->logo;
+
+        foreach ($logos as $index => $logo) {
+            Pricing::create([
+                'subscription_package_id' => $request->subcription_id,
+                'logo' => $logo,
+                'description' => $description[$index],
+
+            ]);
+        }
+
+        return redirect()->to('/admin/package/list')->with('message','Pricing description updated');
+
     }
     /**
      * Remove the specified resource from storage.

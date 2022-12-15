@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <!--************************************
-                                            ********** Main content Start ***********
-                                            ************************************-->
+                                                    ********** Main content Start ***********
+                                                    ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -138,21 +138,20 @@
                                         @csrf
                                         <div class="main-form  ">
                                             <div class="row">
-                                                <div class="col-sm-3">
-                                                    <div class="form-group mb-2">
-                                                        <label for="">Icon/Logo</label>
-                                                        <input type="file" name="logo" id="form_id_logo"
-                                                            class="form-control">
-                                                        <input type="hidden" name="logo_old" class="form-control"
-                                                            value="{{ $priceing->logo }}">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group mb-2 " id="form_id_des">
+                                                        <label for="">Select Icon/Logo</label>
+                                                        <select class="form-control" name="logo" id="form_id_logo" required>
+                                                            <option selected disabled value="">Select Icon</option>
+                                                            <option value="Success"
+                                                                {{ $priceing->logo == 'Success' ? 'selected' : '' }}>
+                                                                Success</option>
+                                                            <option value="Cross"
+                                                                {{ $priceing->logo == 'Cross' ? 'selected' : '' }}>Cross
+                                                            </option>
+                                                        </select>
                                                         <input type="hidden" name="id" id="invoice_id_user"
                                                             class="form-control" value="{{ $priceing->id }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-1 mt-4 text-center">
-                                                    <div class="mt-1">
-                                                        <img src="{{ asset('uploads/PricingLogo/' . $priceing->logo) }}"
-                                                            height="28px" width="28px" alt="">
                                                     </div>
                                                 </div>
 
@@ -171,14 +170,6 @@
                                     </form>
                                 @endforeach
 
-
-
-                                <div class="paste-new-forms"></div>
-
-                                <div class="float-end me-4 mt-2">
-                                    <a href="javascript:void(0)" class="add-more-form  btn btn-success"><i
-                                            class="bx bx-plus-medical"></i></a>
-                                </div>
                             </div>
                         </div>
                         <!-- end card -->
@@ -189,49 +180,21 @@
                 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
                 <script>
-                    $(document).on("change", "#form_id_logo,#form_id_des", function(e) {
+                    $(document).on("change", "#form_id_logo", function(e) {
                         e.preventDefault();
                         var template_id = $(this).closest(".data_foreach").find("#invoice_id_user").val();
                         $('#button_id' + template_id).removeClass('d-none');
                     });
 
-
-                    $(document).ready(function() {
-
-                        $(document).on('click', '.remove-btn', function() {
-                            $(this).closest('.main-form').remove();
-                        });
-
-                        $(document).on('click', '.add-more-form', function() {
-                            $('.paste-new-forms').append('<div class="main-form ">\
-                                                <div class="row">\
-                                                    <div class="col-sm-4">\
-                                                        <div class="form-group ">\
-                                                            <label for="">Icon/Logo</label>\
-                                                            <input type="file" name="logo[]" class="form-control"  >\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="col-sm-7">\
-                                                        <div class="form-group mb-2">\
-                                                            <label for="">Pricing Description</label>\
-                                                                <textarea  name="description[]" class="form-control"   rows="1"></textarea>\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="col-sm-1">\
-                                                        <div class="form-group mb-2 mt-2">\
-                                                            <br>\
-                                                            <button type="button" class="remove-btn btn-sm btn btn-danger"> <i class="bx bx-trash-alt fs-4"></i></button>\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                        </div>');
-                        });
-
+                    $(document).on("keyup", "#form_id_des", function(e) {
+                        e.preventDefault();
+                        var template_id = $(this).closest(".data_foreach").find("#invoice_id_user").val();
+                        $('#button_id' + template_id).removeClass('d-none');
                     });
                 </script>
                 <!--************************************
-                                                 ********** Main content END ***********
-                                                 ************************************-->
+                ********** Main content END ***********
+                ************************************-->
 
             </div>
             <!-- container-fluid -->

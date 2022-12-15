@@ -8,7 +8,7 @@
                         <img src="{{ asset('assets/admin') }}/assets/images/logo.svg" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/admin/assets/images/logo-dark.png')}}" alt="" height="17">
+                        <img src="{{ asset('assets/frontend/img/LOGO/billto-logo-main.png')}}" alt="" height="17">
                     </span>
                 </a>
 
@@ -17,7 +17,7 @@
                         <img src="{{ asset('assets/admin') }}/assets/images/logo-light.svg" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/admin') }}/assets/images/logo-light.png" alt="" height="19">
+                        <img src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}" alt="" height="25">
                     </span>
                 </a>
             </div>
@@ -372,7 +372,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{ asset('assets/admin') }}/assets/images/users/avatar-1.jpg"
+                    <img class="rounded-circle header-profile-user" src="{{ asset('assets/frontend/img/LOGO/circle_logo.png') }}"
                         alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ Auth::user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>

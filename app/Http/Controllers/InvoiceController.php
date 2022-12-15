@@ -115,6 +115,7 @@ class InvoiceController extends Controller
             'invoice_terms' => 'max:1024',
         ]);
         $user_id = Auth::user()->id;
+        // dd($request->invoice_date);
        $template_id_check = $request->template_name;
         // Chack package limit
         $join_table_value = DB::table('users')
