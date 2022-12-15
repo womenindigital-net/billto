@@ -169,10 +169,10 @@ $("#invoiceForm").submit(function (e) {
             })
 
             // Alert disable
-                $('#staticBackdrop_previw').addClass("d-none");
-                $('.modal-backdrop').css("display","none");
-                $('#body_alert').removeClass("modal-open");
-                $('#staticBackdrop_previw').removeClass("show");
+                // $('#staticBackdrop_previw').addClass("d-none");
+                // $('.modal-backdrop').css("display","none");
+                // $('#body_alert').removeClass("modal-open");
+                // $('#staticBackdrop_previw').removeClass("show");
             // Alert disable
 
             // Invoice Validation
