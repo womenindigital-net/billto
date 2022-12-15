@@ -58,7 +58,15 @@ class ProductController extends Controller
 
         );
 
-        $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
+        $invoice =  Invoice::updateOrCreate([
+            'id' => $id,
+            'invoice_form'=>$request->invoice_form,
+             'invoice_to'=>$request->invoice_to,
+             'invoice_id'=>$request->invoice_id,
+             'invoice_dou_date'=>$request->invoice_dou_date,
+             'invoice_date'=>$request->invoice_date,
+
+        ], $data);
 
         $invoice_id = $invoice->id;
 

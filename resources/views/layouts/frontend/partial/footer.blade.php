@@ -34,7 +34,7 @@
             <div class="modal-content">
                 <div class="modal-header priviewModel">
                     <h5 class="modal-title" id="staticBackdropLabel">Preview Invoice</h5>
-                    <button type="button" id="stop_btn" class="btn-close stop_btn" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="stop_btn" class="btn-close stop_btn save_btn_anable" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="padding: 0.5rem 1rem 0rem 1rem;">
                     <div class="row">
@@ -45,7 +45,7 @@
 
                         </div>
                         <div class="modal-footer modal_footer">
-                            <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
+                            <button type="button" class="btn btn-outline-danger btn-sm save_btn_anable" data-bs-dismiss="modal"> <i
                                     class="bi bi-x-circle"></i> Close</button>
                             {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
                                 Download Image </button> --}}

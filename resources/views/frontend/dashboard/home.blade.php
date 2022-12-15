@@ -73,7 +73,7 @@
                                         data-bs-target="#staticBackdrop_previw" ><i
                                                 class="bi bi-eye iconTable"></i></a>
                                     @else
-                                        <a class="custom_btn_sm  " href="{{ route('create', $invoiceData->id) }}"><i
+                                        <a class="custom_btn_sm  " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
                                                 class="bi bi-pencil-square iconTable"></i></a>
                                     @endif
                                 </td>
