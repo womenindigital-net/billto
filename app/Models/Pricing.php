@@ -14,4 +14,6 @@ class Pricing extends Model
         'description',
         'subscription_package_id',
     ];
+
+   
 }

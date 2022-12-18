@@ -38,7 +38,8 @@ class PagesController extends Controller
            }
         }
  // Only for google, facebook & Github check request END
-       $subcription_package = SubscriptionPackage::get();
+
+     $subcription_package = SubscriptionPackage::get();
        $invoice_template = InvoiceTemplate::get();
 
         return view('frontend.home',compact('subcription_package','invoice_template',));

@@ -636,6 +636,10 @@
                     @php
                         $day = $sub_package->packageDuration;
                     @endphp
+
+{{ $sub_package->pricing->description }}
+
+
                     <div class="col-md-6 col-sm-12 col-lg-4 mb-4 {{ $sub_package->price == 9 ? 'dis_none' : '' }} ">
                         <div class="card text-center">
                             <div class="card-body p-0">

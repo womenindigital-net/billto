@@ -15,4 +15,9 @@ class SubscriptionPackage extends Model
         'templateQuantity',
         'limitInvoiceGenerate'
     ];
+
+    public function pricing()
+    {
+        return $this->belongsTo(Pricing::class,'id','subscription_package_id');
+    }
 }
