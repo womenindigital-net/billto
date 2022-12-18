@@ -6,12 +6,13 @@ use App\Models\User;
 use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\SendMail_info;
 use App\Models\InvoiceTemplate;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\SendMail_info;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
 class DashboardController extends Controller
@@ -89,9 +90,28 @@ class DashboardController extends Controller
             $user->picture__input = $filename;
         }
         $user->update();
-        return redirect()->back()->with('message', 'Successfully Update User profile.');
+        return redirect()->back()->with('success', 'Successfully updated.');
     }
 
+    public function changePassword(Request $request){
+
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed|min:8',
+        ]);
+
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+
+        // #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        Auth::logout();
+        return back()->with("success", "Password changed successfully!");
+    }
     /////dashboard send by mail
     public function SendByMail(){
         $user_id = auth()->user()->id;

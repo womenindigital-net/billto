@@ -162,7 +162,7 @@
                                     <div class="d-flex">
                                         <div class="flex-grow-1 text-white">
                                             <p class="text-white fw-medium ">Total Amount</p>
-                                            <h4 class="mb-0 ">{{ $Total_Amount_conut }}</h4>
+                                            <h4 class="mb-0 ">{{ number_format($Total_Amount_conut,2) }}</h4>
                                         </div>
                                         <div
                                             class="d-flex justify-content-end align-item-center text-white  cir-pink-bg px-4 rounded-circle">
