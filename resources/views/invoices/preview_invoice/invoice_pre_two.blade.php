@@ -70,10 +70,17 @@
   .tableSection_border .table > :not(:last-child) > :last-child > * {
     border-bottom-color: #d9d5cda1 !important;
   }
+   .solide_border_top{
+    border: 1px solid #fcb21c;
+    margin-top: 80px;
+   }
   .bordertop{
-      border: 1px solid #fcb21c;
-      margin-top: 80px;
+
   }
+  .bordertop_left{
+    margin-top: 50px;
+}
+
   .footerHader{
       margin: 34px 70px 6px 70px;
       text-align: center;
@@ -183,8 +190,14 @@
           </tbody>
         </table>
         <div class="row">
-          <div class="col-4"></div>
-          <div class="col-8">
+              <div class="col-4"></div>
+              <div class="col-8">
+                <div class="solide_border_top"> </div>
+              </div>
+          <div class="col-4">
+
+          </div>
+          <div class="col-7">
                 <div class="bordertop"></div>
                 <table class="table table-borderless tableSection ">
                   <tbody>
@@ -193,9 +206,13 @@
                       <td class="text-end">{{ number_format($no_vat = $data->subtotal_no_vat,2) }}</td>
                     </tr>
                     <tr>
-                      <td class="text-end">Sales Tax {{ number_format($percent = $data->invoice_tax_percent) }} %</td>
+                      <td class="text-end"> Sales Tax {{ number_format($percent = $data->invoice_tax_percent) }} %</td>
                       <td class="text-end">{{ number_format($no_vat*$percent/100,2) }}</td>
                     </tr>
+                    <tr>
+                        <td class="text-end">  Requesting Advance Amount ({{ $data->requesting_advance_amount_percent }}%)</td>
+                        <td class="text-end">{{ number_format($data->total*$data->requesting_advance_amount_percent/100,2) }}</td>
+                      </tr>
                     <tr>
                       <td class="text-end fw-bold">Total</td>
                       <td class="text-end fw-bold">{{ number_format($data->total,2) }}</td>

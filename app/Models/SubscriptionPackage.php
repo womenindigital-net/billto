@@ -16,8 +16,5 @@ class SubscriptionPackage extends Model
         'limitInvoiceGenerate'
     ];
 
-    public function pricing()
-    {
-        return $this->belongsTo(Pricing::class,'id','subscription_package_id');
-    }
+  
 }

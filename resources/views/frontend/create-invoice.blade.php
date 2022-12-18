@@ -85,11 +85,12 @@
                         <div class="col-md-7">
                             <div class="row">
                                 <div class="col-md-4 text-center">
-                                    <div class="input-group">
+                                    <label  for="imageUpload">
+                                    <div class="input-group ">
                                         <div class="avatar-upload">
                                             <div class="avatar-edit">
                                                 <input type='file' name="invoice_logo" id="imageUpload" />
-                                                <label for="imageUpload"><i class="bi bi-plus"></i></label>
+                                                <label  for="imageUpload" ><i class="bi bi-plus"></i></label>
                                             </div>
                                             <div class="avatar-preview">
                                                 <div id="imagePreview"
@@ -100,6 +101,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                 
+                                </label>
                                 </div>
 
                                 <div class="col-md-8">

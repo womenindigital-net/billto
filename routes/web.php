@@ -104,6 +104,9 @@ Route::get('/check',  function () {
     // }
 
 
-
-    // dd($Total_Amount_conut);
+    $join_table_valu = DB::table('subscription_packages')
+    ->join('pricings', 'subscription_packages.id', '=', 'pricings.subscription_package_id')
+    ->where('pricings.subscription_package_id', 1)
+    ->get();
+    dd( $join_table_valu);
 });

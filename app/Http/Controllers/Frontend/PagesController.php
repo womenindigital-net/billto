@@ -39,10 +39,13 @@ class PagesController extends Controller
         }
  // Only for google, facebook & Github check request END
 
-     $subcription_package = SubscriptionPackage::get();
-       $invoice_template = InvoiceTemplate::get();
+     $subcription_package_free = SubscriptionPackage::Where('packageName','FREE')->orWhere('packageName','Free')->get();
+     $subcription_package_stand= SubscriptionPackage::Where('packageName','Standard')->orWhere('packageName','STANDARD')->get();
+     $subcription_package_premium = SubscriptionPackage::Where('packageName','Premium')->orWhere('packageName','PREMIUM')->get();
 
-        return view('frontend.home',compact('subcription_package','invoice_template',));
+     $invoice_template = InvoiceTemplate::get();
+
+        return view('frontend.home',compact('subcription_package_free','subcription_package_premium','subcription_package_stand','invoice_template',));
     }
 
     public function privacyPolicy()

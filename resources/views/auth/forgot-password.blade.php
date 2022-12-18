@@ -17,8 +17,8 @@
 @section('frontend_content')
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/" class="d-flex justify-content-center mb-4">
-                <x-application-logo width=80 alt="LOGO" />
+            <a href="/" class="d-flex justify-content-center mb-4 mt-2">
+                <x-application-logo style="width: 120px;"  alt="LOGO" />
             </a>
         </x-slot>
 
@@ -51,5 +51,5 @@
     </x-auth-card>
 @endsection
 @push('frontend_js')
-    
+
 @endpush
