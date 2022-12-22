@@ -25,6 +25,9 @@
   <!-- Bootstrap icons v1.7.2 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
+  {{-- datepicker css --}}
+    <link rel="stylesheet" href="{{ asset('css/date-ui-css/datepicker-ui.css') }}">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
     *{
@@ -60,9 +63,6 @@
 
   <!-- Bootstrap v5.1.3 -->
   <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
-
-
-
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>

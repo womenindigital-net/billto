@@ -45,15 +45,20 @@ require __DIR__ . '/socialite.php';
 
 
 // Invoice Route
+Route::post('/products/create', [ProductController::class, 'index']);
+Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
+Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+Route::PUT('/products/update', [ProductController::class, 'update']);
+Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
 
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::post('/products/create', [ProductController::class, 'index']);
-    Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
-    Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
-    Route::PUT('/products/update', [ProductController::class, 'update']);
-    Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
+    // Route::post('/products/create', [ProductController::class, 'index']);
+    // Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
+    // Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+    // Route::PUT('/products/update', [ProductController::class, 'update']);
+    // Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
     Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('store.');
     Route::get('home/invoice/page/{id}', [InvoiceController::class, 'index_home']);
 
@@ -104,9 +109,12 @@ Route::get('/check',  function () {
     // }
 
 
-    $join_table_valu = DB::table('subscription_packages')
-    ->join('pricings', 'subscription_packages.id', '=', 'pricings.subscription_package_id')
-    ->where('pricings.subscription_package_id', 1)
-    ->get();
-    dd( $join_table_valu);
+    // $join_table_valu = DB::table('subscription_packages')
+    // ->join('pricings', 'subscription_packages.id', '=', 'pricings.subscription_package_id')
+    // ->where('pricings.subscription_package_id', 1)
+    // ->get();
+
+    session_start();
+    $sessionId = session_id();
+    dd($sessionId );
 });

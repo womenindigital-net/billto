@@ -8,10 +8,15 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
+    public function __construct(){
+        session_start();
+      }
     /**
      * Display a listing of the resource.
      *
@@ -53,32 +58,68 @@ class ProductController extends Controller
 
         $id = $request->id;
 
-        $data = array(
-             'user_id' => Auth::user()->id
+        if(Auth::check()){
+            // If the user has login Start
+            $data = array(
+                'user_id' => Auth::user()->id
 
-        );
+           );
 
-        $invoice =  Invoice::updateOrCreate([
-            'id' => $id,
-            'invoice_form'=>$request->invoice_form,
-             'invoice_to'=>$request->invoice_to,
-             'invoice_id'=>$request->invoice_id,
-             'invoice_dou_date'=>$request->invoice_dou_date,
-             'invoice_date'=>$request->invoice_date,
+           $invoice =  Invoice::updateOrCreate([
+               'id' => $id,
+               'invoice_form'=>$request->invoice_form,
+                'invoice_to'=>$request->invoice_to,
+                'invoice_id'=>$request->invoice_id,
+                'invoice_dou_date'=>$request->invoice_dou_date,
+                'invoice_date'=>$request->invoice_date,
 
-        ], $data);
+           ], $data);
 
-        $invoice_id = $invoice->id;
+           $invoice_id = $invoice->id;
 
-        $productset = Product::create([
-            'invoice_id' => $invoice_id,
-            'product_name' => $request->product_name,
-            'product_quantity' => $request->product_quantity,
-            'product_rate' => $request->product_rate,
-            'product_amount' => $productAmount,
-        ]);
+           $productset = Product::create([
+               'invoice_id' => $invoice_id,
+               'product_name' => $request->product_name,
+               'product_quantity' => $request->product_quantity,
+               'product_rate' => $request->product_rate,
+               'product_amount' => $productAmount,
+           ]);
 
-        return response()->json([$productset, $invoice_id]);
+           return response()->json([$productset, $invoice_id]);
+
+        }else{
+
+           // If the user is not logined in Start.
+            $data = array(
+                'session_id' => session_id(),
+
+           );
+
+           $invoice =  Invoice::updateOrCreate([
+               'id' => $id,
+               'invoice_form'=>$request->invoice_form,
+                'invoice_to'=>$request->invoice_to,
+                'invoice_id'=>$request->invoice_id,
+                'invoice_dou_date'=>$request->invoice_dou_date,
+                'invoice_date'=>$request->invoice_date,
+
+           ], $data);
+
+           $invoice_id = $invoice->id;
+
+           $productset = Product::create([
+               'invoice_id' => $invoice_id,
+               'product_name' => $request->product_name,
+               'product_quantity' => $request->product_quantity,
+               'product_rate' => $request->product_rate,
+               'product_amount' => $productAmount,
+           ]);
+
+           Session::put('session_invoice_id',$invoice_id);
+           return response()->json([$productset, $invoice_id]);
+
+        }
+
     }
 
     /**
