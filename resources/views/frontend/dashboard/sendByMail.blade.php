@@ -8,6 +8,9 @@
 @section('SendbyEmail')
     active
 @endsection
+@section('SendbyEmail_bg')
+active_left
+@endsection
 @section('all_invoice')
     left_manu
 @endsection

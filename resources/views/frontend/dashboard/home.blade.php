@@ -8,6 +8,9 @@
 @section('all-invoice')
     active
 @endsection
+@section('all_invoice_left')
+active_left
+@endsection
 @section('all_invoice')
     left_manu
 @endsection
