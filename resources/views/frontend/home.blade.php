@@ -254,15 +254,8 @@
     <!-- Banner End -->
     <style>
         .create_section {
-            margin-top: 55px;
+            margin-top: 60px;
         }
-
-        /* .create_section .ctrate-text .icon_style {
-                                        width: 39px;
-                                        height: 42px;
-                                        top: 3px;
-                                        left: 4.5px;
-                                    } */
     </style>
 
     <!-- Create Start -->
@@ -317,7 +310,7 @@
         }
 
         .invoice_template {
-            margin-top: 75px;
+            margin-top: 50px;
         }
 
         .invoice_template .h2_title2 {
@@ -336,7 +329,7 @@
         }
 
         .invoice_template .invoice_template_margin {
-            margin-top: 40px;
+            margin-top: 35px;
         }
     </style>
     <!-- Invoice Template Start -->
@@ -537,12 +530,12 @@
         }
 
         .package_area {
-            margin-top: 19px;
+            margin-top: 30px;
         }
 
         .package_area_border {
-            border-radius: 10px;
-            border: 1px solid #cccccc;
+            /* border-radius: 10px; */
+            /* border: 1px solid #cccccc; */
             margin-bottom: 48px;
         }
     </style>
@@ -580,16 +573,6 @@
                 }
 
                 .btnCss {
-                    /* background-color: #FFB317;
-                                        color: #FFFFFF;
-                                        border: none;
-                                        border-radius: 5px;
-                                        font-size: 18px;
-                                        font-weight: 700;
-                                        line-height: 40px;
-                                        text-align: center;
-                                        padding: 8px 57px; */
-
                     width: 240px;
                     height: 50px;
                     background-color: #FFB317;
@@ -630,6 +613,16 @@
                     color: #FFB317 !important;
                     font-size: 13px !important;
                 }
+
+                .shadowcard {
+                    background: #FFFFFF;
+                    border: 1px solid #CCCCCC;
+                    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+                    border-radius: 10px;
+                }
+                .borderNoneCard .card{
+                    border: none;
+                }
             </style>
             <div class="row">
                 @foreach ($subcription_package_free as $sub_package_free)
@@ -637,9 +630,9 @@
                         $day = $sub_package_free->packageDuration;
                     @endphp
 
-                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 ">
-                        <div class="card text-center">
-                            <div class="card-body p-0">
+                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 borderNoneCard">
+                        <div class="card text-center ">
+                            <div class="card-body shadowcard p-0">
                                 <h3 class="heding"> {{ $sub_package_free->packageName }}</h3>
                                 <h1 class="priceColor">${{ $sub_package_free->price }}<span class="month">/month</span>
                                 </h1>
@@ -713,9 +706,9 @@
                         $day = $sub_package_stnd->packageDuration;
                     @endphp
 
-                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 ">
+                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 borderNoneCard">
                         <div class="card text-center">
-                            <div class="card-body p-0">
+                            <div class="card-body shadowcard p-0">
                                 <h3 class="heding"> {{ $sub_package_stnd->packageName }}</h3>
                                 <h1 class="priceColor">${{ $sub_package_stnd->price }}<span class="month">/month</span>
                                 </h1>
@@ -790,11 +783,12 @@
                         $day = $sub_package_primium->packageDuration;
                     @endphp
 
-                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 ">
+                    <div class="col-md-6 col-sm-12 col-lg-4 mb-4 borderNoneCard">
                         <div class="card text-center">
-                            <div class="card-body p-0">
+                            <div class="card-body shadowcard p-0">
                                 <h3 class="heding"> {{ $sub_package_primium->packageName }}</h3>
-                                <h1 class="priceColor">${{ $sub_package_primium->price }}<span class="month">/month</span>
+                                <h1 class="priceColor">${{ $sub_package_primium->price }}<span
+                                        class="month">/month</span>
                                 </h1>
                                 {{-- <p class="text_muted">
                                              galley of type and scrambled it to make a type specimen book.

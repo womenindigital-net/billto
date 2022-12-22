@@ -392,14 +392,15 @@ textarea {
 /* Button Start  */
 .billto_btn {
     background-color: #FFB317;
-    font-size: 18px;
+    font-size: 30px;
     font-weight: 700;
-    width: 210px;
-    color: #ffffff;
+    width: 200px;
+    color: #FFFFFF;
     align-items: center;
-    line-height: 40px;
-    height: 55px;
+    line-height: 45px;
+    height: 60px;
     text-align: center;
+    border-radius: 10px;
 }
 /* Button End  */
 /* Title Start */
