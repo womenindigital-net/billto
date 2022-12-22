@@ -173,16 +173,42 @@
                                     <div class="form-group pb-3">
                                         <label for="email" class="pb-2 fw-bolder">Email</label>
                                         <input type="email" name="email"
-                                            class="py-2 form-control @error('email') is-invalid @enderror" required
+                                            class=" form-control @error('email') is-invalid @enderror" required
                                             autofocus id="email" aria-describedby="emailHelp" placeholder="Enter email">
                                     </div>
                                     <!-- Password -->
-                                    <div class="form-group pb-3">
+                                    {{-- <div class="form-group pb-3">
                                         <label for="password" class="pb-2 fw-bolder">Password</label>
                                         <input type="password" name="password" required
                                             class="py-2 form-control @error('email') is-invalid @enderror" id="password"
                                             placeholder="Password" autocomplete="current-password">
+                                    </div> --}}
+                                    <!-- show password -->
+                                    <div class="login_oueter">
+                                        <div class="form-row">
+
+
+                                            <div class="input-group mb-3">
+
+                                                <input type="password" name="password" required
+                                                class="form-control @error('email') is-invalid @enderror" id="password"
+                                                placeholder="Password" autocomplete="current-password">
+                                              <div class="input-group-append">
+                                                <span
+                                                  class="input-group-text"
+                                                  onclick="password_show_hide();"
+                                                >
+                                                  <i class="bi bi-eye" id="show_eye"></i>
+                                                  <i class="bi bi-eye-slash d-none" id="hide_eye"></i>
+                                                </span>
+                                              </div>
+                                            </div>
+
+
+
+                                        </div>
                                     </div>
+
                                     <!-- Remember Me -->
                                     <div class="mt-1 form-check">
                                         <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
@@ -288,4 +314,21 @@
 
 @endsection
 @push('frontend_js')
+<script>
+    function password_show_hide() {
+      var x = document.getElementById("password");
+      var show_eye = document.getElementById("show_eye");
+      var hide_eye = document.getElementById("hide_eye");
+      hide_eye.classList.remove("d-none");
+      if (x.type === "password") {
+        x.type = "text";
+        show_eye.style.display = "none";
+        hide_eye.style.display = "block";
+      } else {
+        x.type = "password";
+        show_eye.style.display = "block";
+        hide_eye.style.display = "none";
+      }
+    }
+  </script>
 @endpush
