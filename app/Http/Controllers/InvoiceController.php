@@ -21,8 +21,14 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 
+
+
 class InvoiceController extends Controller
 {
+    public function __construct(){
+        session_start();
+      }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,29 +36,54 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+      // If the user has login Start
+        if(Auth::check()){
+            $data  = Invoice::where('id',1)->get()->first();
+            $user = Auth::user()->id;
+            $template_id = "";
+            $template_id_check = InvoiceTemplate::get()->first();
 
-        $data  = Invoice::where('id',1)->get()->first();
+            $lastInvoice = Invoice::where('user_id', $user)
+                ->orderBy('created_at', 'desc')
+                ->get([
+                    'invoice_form',
+                    'invoice_to',
+                    'id',
+                ])
+                ->first();
+            $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
+            $invoiceCountNew += 1;
+            $invoice_template = InvoiceTemplate::get();
+            $session =Session::get('session_invoice_id');
+          if($session!=""){
+            return redirect()->to('/edit/invoices/'.$session);
+          }else{
+             return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
+          }
 
-        $user = Auth::user()->id;
-        // Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
+        }else{
 
-        $template_id = "";
-        $template_id_check = InvoiceTemplate::get()->first();
+            // If the user is not logined in Start.
+            $sessionId = session_id();
+            $data  = Invoice::where('id',1)->get()->first();
+            $template_id = "";
+            $template_id_check = InvoiceTemplate::get()->first();
 
-        $lastInvoice = Invoice::where('user_id', $user)
-            ->orderBy('created_at', 'desc')
-            ->get([
-                'invoice_form',
-                'invoice_to',
-                'id',
-            ])
-            ->first();
-        $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
-        $invoiceCountNew += 1;
-        $invoice_template = InvoiceTemplate::get();
+            $lastInvoice = Invoice::where('session_id',  $sessionId)
+                ->orderBy('created_at', 'desc')
+                ->get([
+                    'invoice_form',
+                    'invoice_to',
+                    'id',
+                ])
+                ->first();
+            $invoiceCountNew = Invoice::where('session_id',  $sessionId)->count();
+            $invoiceCountNew += 1;
+            $invoice_template = InvoiceTemplate::get();
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
-    }
+            return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
+        }
+   }
 
     public function index_home($id)
     {
@@ -114,6 +145,7 @@ class InvoiceController extends Controller
             'invoice_notes' => 'max:1024',
             'invoice_terms' => 'max:1024',
         ]);
+
         $user_id = Auth::user()->id;
         // dd($request->invoice_date);
        $template_id_check = $request->template_name;
@@ -206,12 +238,13 @@ class InvoiceController extends Controller
                     'invoice_tax_percent' => $request->invoice_tax,
                     'requesting_advance_amount_percent' => $request->requesting_advance_amount,
                     'total' => $total,
-                    'invoice_status' => 'complete',
+                    'invoice_status' => 'incomlete',
                     'subtotal_no_vat'=> $request->subtotal_no_vat,
                     'template_name' => $request->template_name,
                 );
-                $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
 
+                Session::forget('session_invoice_id');
+                $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
                 return response()->json([$invoice->id]);
 
             }
@@ -219,7 +252,9 @@ class InvoiceController extends Controller
         } else {
             return response()->json(['message' => '123']);
         }
-    }
+
+
+  }
 
     /**
      * Display the specified resource.
@@ -328,7 +363,7 @@ class InvoiceController extends Controller
             'subtotal_no_vat'
         ])->first();
         Invoice::where('id',$id)->update([
-            'invoice_status'=>'complete',
+            'invoice_status'=>'incomlete',
         ]);
         $productsDatas = Invoice::find($id)->products->skip(0)->take(10);
         $due = $invoiceData->total;

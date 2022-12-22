@@ -126,7 +126,7 @@ function addData() {
 $("#invoiceForm").submit(function (e) {
     e.preventDefault();
     const fd = new FormData(this);
-
+alert(0);
     $.ajax({
         url: '/invoices/store',
         method: 'post',
@@ -461,6 +461,7 @@ function readURL(input) {
 }
 $("#imageUpload").change(function () {
     readURL(this);
+    $('.logo_text').hide();
 });
 
 
@@ -604,6 +605,7 @@ $("#send_mail_data").on("click", function () {
     var emai_to = document.getElementById('emai_to').value;
     var email_subject = document.getElementById('email_subject').value;
     var email_body = document.getElementById('email_body').value;
+
     //  alert(template_id);
     if (emai_to == "") {
         $('#emai_to').addClass("is-invalid");
@@ -641,17 +643,19 @@ $("#send_mail_data").on("click", function () {
 
                         })
 
-                    document.getElementById('emai_to').value = "";
-                    document.getElementById('email_subject').value = "";
-                    document.getElementById('email_body').value = "";
+                    // document.getElementById('emai_to').value = "";
+                    // document.getElementById('email_subject').value = "";
+                    // document.getElementById('email_body').value = "";
 
              // Alert disable
-                // $('#staticBackdrop').addClass("d-none");
-                // $('.modal-backdrop').css("display","none");
-                // $('#body_alert').removeClass("modal-open");
-                // $('#body_alert').css("overflow","auto");
-                // $('#body_alert').css("padding-right","0");
-                // $('#staticBackdrop').removeClass("show");
+
+                $('#staticBackdrop').css("d-none");
+                $('.modal-backdrop').css("display","none");
+                $('#body_alert').removeClass("modal-open");
+                $('#body_alert').css("overflow","auto");
+                $('#body_alert').css("padding-right","0");
+                $('#staticBackdrop').removeClass("show");
+                $('.modal-backdrop').removeClass("show");
 
 
             // Alert disable
@@ -713,4 +717,6 @@ $(document).on("change", "#invoice_to,#invoice_form,#invoice_id,#invoice_dou_dat
     $('#previw_id').addClass("d-none");
 
 
-});  
+});
+
+

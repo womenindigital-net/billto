@@ -15,12 +15,13 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
+            $table->string('session_id')->nullable();
             $table->string('invoice_logo', 1024)->nullable();
             $table->string('invoice_form', 1024)->nullable();
             $table->string('invoice_to', 1024)->nullable();

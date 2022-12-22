@@ -6,6 +6,9 @@
             border-radius: 0px !important;
             background-size: contain !important0;
         }
+            .form-control:disabled, .form-control[readonly] {
+            background-color: #fff !important;
+            }
     </style>
 @endpush
 @section('frontend_content')
@@ -71,8 +74,12 @@
     <!-- Invoice Section Start -->
     <section class="invoice_section">
         <div class="my-5">
+            @if(Auth::check())
             <form method="post" id="invoiceForm" enctype="multipart/form-data">
-                {{-- <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data"> --}}
+            @else
+            <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
+            @endif
+
                 @csrf
                 <div class="container p-4 " style="background-color: #F0F0F0;">
                     <div class="row md-2 invoice_header_right">
@@ -84,14 +91,29 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="row">
+                                <style>
+                                    .logo_text{
+                                    position: absolute;
+                                    right: 61px;
+                                    z-index: 1;
+                                    top: 38px;
+                                    }
+                                </style>
                                 <div class="col-md-4 text-center">
                                     <label  for="imageUpload">
                                     <div class="input-group ">
                                         <div class="avatar-upload">
-                                            <div class="avatar-edit">
-                                                <input type='file' name="invoice_logo" id="imageUpload" />
-                                                <label  for="imageUpload" ><i class="bi bi-plus"></i></label>
+                                            <div class="logo_text">
+                                                <span>Add your logo</span>
                                             </div>
+
+                                            <div class="avatar-edit">
+
+                                                <input type='file' name="invoice_logo"  id="imageUpload" />
+                                                <label  for="imageUpload" ><i class="bi bi-plus"></i></label>
+
+                                            </div>
+
                                             <div class="avatar-preview">
                                                 <div id="imagePreview"
                                                     @if (isset($invoiceData->invoice_logo)) style="background-image: url({{ url('storage/invoice/logo/' . $invoiceData->invoice_logo) }});"
@@ -101,7 +123,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                 
+
                                 </label>
                                 </div>
 
@@ -349,11 +371,16 @@
                                 </div>
                             </div>
                             <div class="row mb-2">
-                                <label for="invoice_date" class="col-sm-4 col-form-label">Date *</label>
+                                <label  class="col-sm-4 col-form-label">Date *</label>
                                 <div class="col-sm-8">
-                                    <input type="date" name="invoice_date" class="form-control"
-                                        value="@if (isset($invoiceData->invoice_date)) {{ $invoiceData->invoice_date }}@else{{ date('Y-m-d') }} @endif"
-                                        id="invoice_date">
+                                    <div class="input-group">
+                                    <input type="text" name="invoice_date" class="form-control"
+                                        value=" @if (isset($invoiceData->invoice_date)) {{ $invoiceData->invoice_date }}@else{{ date('Y-m-d') }} @endif"
+                                        id="invoice_date" readonly>
+                                        <label class="input-group-text" for="invoice_date">
+                                            <i class="bi bi-calendar3"></i>
+                                          </label>
+                                    </div>
                                     <div id="invoice_date_error" class="invalid-feedback"></div>
                                 </div>
                             </div>
@@ -367,16 +394,21 @@
                                 </div>
                             </div>
                             <div class="row mb-2">
-                                <label for="invoice_dou_date" class="col-sm-4 col-form-label">Due Date *</label>
+                                <label  class="col-sm-4 col-form-label">Due Date *</label>
                                 @php
                                     $date = new DateTime(now());
-                                    $date->modify('0 day');
+                                    $date->modify('1 day');
                                 @endphp
-                                <div class="col-sm-8">
-                                    <input type="date" name="invoice_dou_date" class="form-control"
+                                <div class="col-sm-8 ">
+                                    <div class="input-group">
+                                    <input type="text" name="invoice_dou_date" class="form-control"
                                         value="@if (isset($invoiceData->invoice_dou_date)) {{ $invoiceData->invoice_dou_date }}@else {{ $date->format('Y-m-d') }} @endif"
-                                        id="invoice_dou_date">
+                                        id="invoice_dou_date" readonly>
+                                        <label class="input-group-text" for="invoice_dou_date">
+                                            <i class="bi bi-calendar3"></i>
+                                          </label>
                                     <div id="invoice_dou_date_error" class="invalid-feedback"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -590,6 +622,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-7">
                         </div>
@@ -624,7 +657,7 @@
                         class="btn bnt_responsive send-invoice preview_image py-2 px-4 my-2 "  @if (isset($invoiceData)) @else disabled @endif>
                         {{-- @if (isset($invoiceData)) @else  @endif> --}}
                         @if (isset($invoiceData))
-                            {{ 'Update Invoice' }} @else{{ 'Save' }}
+                            {{ 'Save' }} @else{{ 'Save' }}
                         @endif
                     </button>
 
@@ -882,9 +915,9 @@
     <!-- Send invoice Modal start -->
     <!-- Button trigger modal -->
     <!-- Modal -->
-
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    {{--  --}}
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        aria-labelledby="staticBackdropLabel" >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -987,6 +1020,29 @@
     @endif
 @endsection
 @push('frontend_js')
+<script>
+    $(document).on("click", "#send_email_id", function(e) {
+    e.preventDefault();
+    $('#staticBackdrop').addClass("show");
+    $('.modal-backdrop').css("display","block");
+    $('#body_alert').addClass("modal-open");
+    $('#body_alert').css("overflow","hidden");
+    $('#staticBackdrop').removeClass("d-none");
+    $('.modal-backdrop').removeClass("d-none");
+
+});
+</script>
+<script src="{{ asset('js/datepicker-ui-js/jquery-ui-cdn.js') }}"></script>
+<script>
+    $( function() {
+      $( "#invoice_date" ).datepicker();
+    } );
+
+    $( function() {
+      $( "#invoice_dou_date" ).datepicker();
+    } );
+  </script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
@@ -996,5 +1052,5 @@
         });
     </script>
 
-    <script></script>
+
 @endpush
