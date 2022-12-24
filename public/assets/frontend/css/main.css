@@ -529,22 +529,19 @@ p{
   background: #f1f1f1;
   border-color: #d6d6d6;
 }
-.avatar-upload .avatar-edit input + label i {
+.avatar-upload .logo_text  label i {
   color: #757575;
-  position: absolute;
-  top: -2px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin: auto;
-  font-size: 25px;
+  font-size: 40px;
+  font-weight: 700;
+
 }
 .avatar-upload .avatar-preview {
   width: 192px;
   height: 100px;
   position: relative;
-  /* border-radius: 100%; */
-  border: 6px solid #F8F8F8;
+  border-radius: 10px;
+  border: 1px solid #CCCCCC;
+  background-color: #FFFFFF;
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
 }
 .avatar-upload .avatar-preview > div {

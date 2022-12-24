@@ -97,7 +97,7 @@
             font-size: 30px;
             font-weight: 700;
             line-height: 35.76px;
-            margin-top: 13px;
+            margin-top: 12px;
             text-align: center;
         }
 
@@ -207,9 +207,9 @@
             text-align: center;
         }
 
-        .plan {
+        /* .plan {
             padding: 3px 10px 40px 10px;
-        }
+        } */
     }
 
     .pakages_name {
@@ -254,7 +254,7 @@
     <!-- Banner End -->
     <style>
         .create_section {
-            margin-top: 60px;
+            margin-top: 70px;
         }
     </style>
 
@@ -310,7 +310,7 @@
         }
 
         .invoice_template {
-            margin-top: 50px;
+            margin-top: 55px;
         }
 
         .invoice_template .h2_title2 {
@@ -329,7 +329,7 @@
         }
 
         .invoice_template .invoice_template_margin {
-            margin-top: 35px;
+            margin-top: 55px;
         }
     </style>
     <!-- Invoice Template Start -->
@@ -530,7 +530,7 @@
         }
 
         .package_area {
-            margin-top: 30px;
+            margin-top: 28px;
         }
 
         .package_area_border {
@@ -545,7 +545,7 @@
     @endphp
     <div class="package_area ">
         <div class="container package_area_border">
-            <div class="row">
+            <div class="row" style="margin-bottom: 58px;">
                 <div class="col-12">
                     <div class="plan text-center ctrate-text">
                         <span>There’s a BillTO for every business</span>
@@ -567,7 +567,7 @@
 
                 .heding {
                     font-weight: 700;
-                    margin-top: 31px;
+                    margin-top: 25px;
                     font-size: 16px;
                     text-align: center;
                 }
@@ -596,7 +596,10 @@
                 }
 
                 .emty_margin {
-                    margin: 11px 25px;
+                    margin-left: 25px;
+                    margin-right: 25px;
+                    margin-top: 9px;
+                    margin-bottom: 22px;
                     border: 1px solid #D9D9D9;
                 }
 
@@ -620,7 +623,8 @@
                     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
                     border-radius: 10px;
                 }
-                .borderNoneCard .card{
+
+                .borderNoneCard .card {
                     border: none;
                 }
             </style>

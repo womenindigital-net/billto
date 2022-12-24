@@ -136,7 +136,7 @@
                                 <a href="#" class="dropdown-toggle nav-link  align-items-center d-flex"
                                     data-bs-toggle="dropdown"aria-expanded="false">
                                     <div class="border_custom1">
-                                        <svg>
+                                        <svg style="height: 25px; width: 25px">
                                             <circle cx="10" cy="11" r="7" stroke="green"
                                                 stroke-width="5" fill="red" />
                                         </svg>
