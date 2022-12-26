@@ -49,10 +49,12 @@
 
 </head>
 
+
 <body style="min-height: 100vh;" id="body_alert">
     <!-- Header Start -->
     @include('layouts.frontend.partial.header')
     <!-- Header End -->
+
 
     @yield('frontend_content')
 
@@ -81,7 +83,7 @@
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async></script>
     @stack('frontend_js')
-    
+
      {{-- date picker --}}
      <script src="{{ asset('js/datepicker-ui-js/jquery-ui-cdn.js') }}"></script>
      <script>

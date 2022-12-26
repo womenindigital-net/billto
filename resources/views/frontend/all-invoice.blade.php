@@ -61,7 +61,8 @@
                                     <p>{{ $item->email }}</p>
                                 </div>
                                 <div class="create_new_btn_sidebar">
-                                    <a href="{{ route('create') }}" class="btn btn-warning btn-blog ">Create New Invoice</a>
+                                    <a href="{{ route('create') }}" class="btn btn-warning btn-blog ">Create New
+                                        Invoice</a>
                                 </div>
                                 <nav class='dash_menu @yield('custom_dash_menu') '>
 
@@ -73,12 +74,23 @@
                                             </a>
                                             <ul class="@yield('d-block')">
                                                 <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
-                                                        Invoices <span class="circle @yield('all_invoice_left') submenu_circle_bg">{{ $all_Invoice_Count }}</span></a></li>
-                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due <span class="circle   submenu_circle_bg">0</span></a></li>
-                                                <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid <span class="circle submenu_circle_bg">0</span></a></li>
-                                                <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span class="circle submenu_circle_bg">0</span></a></li>
-                                                <li><a href='{{ url('/all/invoices/send-by-Mail') }}' class="@yield('SendbyEmail') ">Send by Email <span class="circle @yield('SendbyEmail_bg') submenu_circle_bg">{{ $sendByMail_count }}</span></a></li>
-                                                <li><a href='{{ url("/my-trash-invoice") }}' class="@yield('Trush') "> Drafts <span class="circle submenu_circle_bg">{{ $trash }}</span> </a></li>
+                                                        Invoices <span
+                                                            class="circle @yield('all_invoice_left') submenu_circle_bg">{{ $all_Invoice_Count }}</span></a>
+                                                </li>
+                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due <span
+                                                            class="circle   submenu_circle_bg">0</span></a></li>
+                                                <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid <span
+                                                            class="circle submenu_circle_bg">0</span></a></li>
+                                                <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span
+                                                            class="circle submenu_circle_bg">0</span></a></li>
+                                                <li><a href='{{ url('/all/invoices/send-by-Mail') }}'
+                                                        class="@yield('SendbyEmail') ">Send by Email <span
+                                                            class="circle @yield('SendbyEmail_bg') submenu_circle_bg">{{ $sendByMail_count }}</span></a>
+                                                </li>
+                                                <li><a href='{{ url('/my-trash-invoice') }}' class="@yield('Trush') ">
+                                                        Drafts <span
+                                                            class="circle submenu_circle_bg">{{ $trash }}</span>
+                                                    </a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -93,7 +105,7 @@
                                                     src="{{ asset('assets/frontend/img/icon/settings.png') }}"
                                                     alt="">Settings</a>
 
-                                                </li>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -102,14 +114,14 @@
                 </section>
             </div>
 
-            <div class="col-md-10 m-0 p-0">
-
+            <div class="col-md-10 m-0 p-0 mt-1">
                 @yield('dashboard_content')
                 <div class="container-fluid  m-0 p-0 @yield('display-none')">
                     <div class="row mt-2 m-0 p-0">
-                         <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header"  style="background-image: url('{{asset('assets/frontend/img/user_dashbord/dashboard_img.png')}}');  background-repeat: no-repeat; background-size: cover;  height:96px;">
+                        <div class="col-md-4">
+                            <div class="card  card_mb" >
+                                <div class="card-header"
+                                    style="background-image: url('{{ asset('assets/frontend/img/user_dashbord/dashboard_img.png') }}');  background-repeat: no-repeat; background-size: cover;  height:96px;">
                                     <div class="heading_tag_desh">
                                         <h1 class="welcome_back"> Welcome Back</h1>
                                         <p>WID Dashboard</p>
@@ -118,9 +130,11 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6">
-                                             <div class="left_content_deshboard d-flex align-items-center justify-content-center">
+                                            <div
+                                                class="left_content_deshboard d-flex align-items-center justify-content-center">
                                                 <div class="image_deshboar">
-                                                <img src="{{asset('assets/frontend/img/user_dashbord/logo.png')}}"   alt="">
+                                                    <img src="{{ asset('assets/frontend/img/user_dashbord/logo.png') }}"
+                                                        alt="">
                                                 </div>
                                             </div>
                                             <div class="address_user">
@@ -128,7 +142,7 @@
                                                 <p class="p-0 m-0">Address line 2 </p>
                                             </div>
                                             <div class="address_user_phone">
-                                               <p class="p-0 m-0">Phone Number:</p>
+                                                <p class="p-0 m-0">Phone Number:</p>
                                                 <span class="p-0 m-0">+880 162 xxx xxxx</span>
                                             </div>
 
@@ -136,29 +150,126 @@
                                         <div class="col-6">
                                             <div class="address_user_phone">
                                                 <p class="p-0 m-0">Email Address:</p>
-                                                 <span class="p-0 m-0">  info@womenindigital.net</span>
-                                             </div>
-                                             <div class="user_signeture">
-                                                <p class="p-0 m-0">Signature</p>
-                                                <div class="d-flex align-items-center justify-content-center">
+                                                <span class="p-0 m-0"> info@womenindigital.net</span>
+                                            </div>
+                                            <div class="user_signeture">
+                                                <p class="p-0 m-0 mb-1">Signature</p>
+                                                <div class="d-flex align-items-center ">
                                                     <div class="Signature_img">
                                                         <img src="" alt="">
                                                     </div>
                                                     <div class="edit_signatuer_btn">
-                                                        <a href="" class="fs-4 text-black"> <i class="bi bi-pencil-square"></i></a>
+                                                        <a href="" class="fs-4"> <i
+                                                                class="bi bi-pencil-square"></i></a>
                                                     </div>
 
                                                 </div>
 
-                                             </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                         </div>
-                         <div class="col-md-8">
-                         <div class="row">
-                            <div class="col-6 col-md-4 col-lg-3">
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="earning_header">
+                                        <span> Monthly Earning</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="monthly_total">
+                                                <span class="p-0 m-0">৳ 34,250</span>
+                                                <p class="p-0 m-0">July 2022 From</p>
+                                            </div>
+                                            <div class="monthly_previus">
+                                                <a href="#">Previous month</a>
+                                            </div>
+                                            <div class="more_preview_btn d-flex justify-content-center align-items-center">
+                                                <a href="">View More</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 d-flex justify-content-center align-items-center">
+                                            <div class="earning_graph  d-flex   justify-content-center align-items-center">
+                                                <div>
+                                                    <span>12%+ </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-6  col-md-4 col-lg-4">
+                                    <div class="card  bg-c-pink">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <div class="total_amount_left">
+                                                    <p class=" ">Total Amount</p>
+                                                    <span class="">{{ number_format($Total_Amount_conut, 2) }}</span>
+                                                </div>
+
+                                                <div class="d-flex total_amount_body">
+                                                    <div class="total_amount_right">
+                                                        <div class="icon_total_Amount"><i
+                                                                class="bi bi-arrows-fullscreen text-white"></i> </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6  col-md-4 col-lg-4">
+                                    <div class="card  bg-c-pink">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <div class="total_amount_left_paid">
+                                                    <p class=" ">Paid Amount</p>
+                                                    <span class="">{{ number_format($Total_Amount_conut, 2) }}</span>
+                                                </div>
+
+                                                <div class="d-flex total_amount_body_paid">
+                                                    <div class="total_amount_right_paid">
+                                                        <div class="icon_total_Amount_paid">
+                                                            <img src="{{ asset('assets/frontend/img/user_dashbord/paid.svg') }}"
+                                                                alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6  col-md-4 col-lg-4">
+                                    <div class="card  bg-c-pink">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <div class="total_amount_left_due">
+                                                    <p class=" ">Paid Amount</p>
+                                                    <span class="">{{ number_format($Total_Amount_conut, 2) }}</span>
+                                                </div>
+
+                                                <div class="d-flex total_amount_body_due">
+                                                    <div class="total_amount_right_due">
+                                                        <div class="icon_total_Amount_due">
+                                                            <img src="{{ asset('assets/frontend/img/user_dashbord/due.svg') }}"
+                                                                alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- <div class="col-6 col-md-4 col-lg-4">
                                 <div class="card ">
                                     <div class="card-body">
                                         <div class="d-flex">
@@ -173,8 +284,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-3">
+                            </div> --}}
+                                {{-- <div class="col-6 col-md-4 col-lg-4">
                                 <div class="card bg-c-pink">
                                     <div class="card-body">
                                         <div class="d-flex">
@@ -189,43 +300,107 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div> --}}
                             </div>
-                            <div class=" col-6 col-md-4 col-lg-3">
-                                <div class="card bg-c-yellow ">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1 text-white">
-                                                <p class="text-white fw-medium ">Send Invoice</p>
-                                                <h4 class="mb-0 ">
-                                                    {{ $sendByMail_count }}
-                                                </h4>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card_title">
+                                               <p> Latest Transaction</p>
                                             </div>
-                                            <div
-                                                class="d-flex justify-content-end align-item-center text-white cir-pink-bg   px-4 rounded-circle">
-                                                <div class="m-auto"><i class="bi bi-send fs-6"></i> </div>
-                                            </div>
+                                            <table class="table table-hover" style="color:#686868">
+                                                <thead style="border-bottom: 2px solid #FFB317 !important;">
+                                                  <tr >
+                                                    <th >SL#</th>
+                                                    <th >CUSTOMER </th>
+                                                    <th >DATE</th>
+                                                    <th >STATUS</th>
+                                                    <th >PAID</th>
+                                                    <th >TOTAL</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Bill to</td>
+                                                    <td>10-12-2022</td>
+                                                    <td>
+                                                        <div class="paid_btn">
+                                                             <a href="">paid </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Bill to</td>
+                                                    <td>10-12-2022</td>
+                                                    <td>
+                                                        <div class="due_btn">
+                                                             <a href="">Due </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Bill to</td>
+                                                    <td>10-12-2022</td>
+                                                    <td>
+                                                        <div class="draft_btn">
+                                                             <a href="">Draft </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Bill to</td>
+                                                    <td>10-12-2022</td>
+                                                    <td>
+                                                        <div class="paid_btn">
+                                                             <a href="">paid </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Bill to</td>
+                                                    <td>10-12-2022</td>
+                                                    <td>
+                                                        <div class="due_btn">
+                                                             <a href="">Due </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Bill to</td>
+                                                    <td>10-12-2022</td>
+                                                    <td>
+                                                        <div class="draft_btn">
+                                                             <a href="">Draft </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                  </tr>
+
+                                                </tbody>
+                                              </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6  col-md-4 col-lg-3">
-                                <div class="card bg-c-green ">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1 text-white">
-                                                <p class="text-white fw-medium ">Total Amount</p>
-                                                <h4 class="mb-0 ">{{ number_format($Total_Amount_conut,2) }}</h4>
-                                            </div>
-                                            <div
-                                                class="d-flex justify-content-end align-item-center text-white  cir-pink-bg px-4 rounded-circle">
-                                                <div class="m-auto"><i class="bi bi-bell-slash fs-6"></i> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                         </div>
-                    </div>
+                        </div>
                     </div>
                 </div>
 

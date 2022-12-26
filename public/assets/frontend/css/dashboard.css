@@ -38,18 +38,170 @@ div.dataTables_wrapper div.dataTables_paginate,
 }
 
 .bg-c-pink {
-    background: linear-gradient(45deg, #FF5370, #ff869a);
+    background: #ffffff;
 }
 
+.total_amount_left {}
+
+.total_amount_left p {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #0072BC;
+}
+
+.total_amount_left span {
+
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #0072BC;
+}
+
+
+.total_amount_left_paid p {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #197B30;
+}
+
+.total_amount_left_paid span {
+
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #197B30;
+}
+
+.total_amount_left_due p {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #A950A0;
+}
+
+.total_amount_left_due span {
+
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #A950A0;
+}
+
+
+
+
+.total_amount_right {
+    width: 40px;
+    height: 40px;
+    background-color: #0072BC;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.total_amount_body {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+}
+
+.total_amount_body_paid {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+}
+
+.total_amount_body_due {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+}
+
+.icon_total_Amount {
+    margin-top: 12px;
+}
 
 .card {
     border-radius: 5px;
     -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
     box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
     border: none;
-    margin-bottom: 30px;
+    margin-bottom: 18px;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+
+.card_title p {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #686868;
+
+}
+
+.card_title {
+
+    border-bottom: 1px solid #FFB317;
+}
+
+.paid_btn {
+    width: 60px;
+    background: #BDFFCD;
+    border-radius: 5px;
+    display: flex;
+
+}
+
+.paid_btn a {
+    font-size: 10px;
+    text-decoration: none;
+    color: #414141;
+    margin: 0 auto;
+    padding: 2px 15px;
+
+}
+
+.due_btn {
+    width: 60px;
+    background:  #FFCBE1;
+    border-radius: 5px;
+    display: flex;
+
+}
+
+.due_btn a {
+    font-size: 10px;
+    text-decoration: none;
+    color: #414141;
+    margin: 0 auto;
+    padding: 2px 15px;
+
+}
+
+.draft_btn {
+    width: 60px;
+    background: #CCCCCC;
+    border-radius: 5px;
+    display: flex;
+
+}
+
+.draft_btn a {
+    font-size: 10px;
+    text-decoration: none;
+    color: #414141;
+    margin: 0 auto;
+    padding: 2px 15px;
+
 }
 
 .card .card-block {
@@ -76,7 +228,20 @@ div.dataTables_wrapper div.dataTables_paginate,
     background-color: #9a9494;
 }
 
-
+.all_invice_title p{
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 22px;
+color: #686868;
+}
+.rond_all{
+width: 18px;
+background: #FFB317;
+border-radius: 50%;
+font-size: 12px;
+padding: 2px 3px;
+}
 
 #picture__input {
     display: none;
@@ -226,50 +391,69 @@ body {
     margin: 0 auto;
 
 }
-.address_user{
-font-weight: 400;
-font-size: 10px;
-line-height: 18px;
-color: #686868;
+
+.address_user {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 18px;
+    color: #686868;
 }
 
-.address_user_phone{
+.address_user p {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 18px;
+    color: #686868;
+}
+
+.address_user_phone {
     margin-top: 11px;
 }
-.address_user_phone p{
-    width:  600;
-    font-size:    10px;
-    line-height:  12.19px;
-    color:#686868;
+
+.address_user_phone p {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12.19px;
+    color: #686868;
 }
-.address_user_phone span{
-    width:  400;
-    font-size:    10px;
-    line-height:  12.19px;
-    color:#686868;
+
+.address_user_phone span {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12.19px;
+    color: #686868;
 }
-.user_signeture{
+
+.user_signeture {
     margin-top: 16px;
 }
-.user_signeture p{
-    width:  600;
-    font-size:    10px;
-    line-height:  12.19px;
-    color:#686868;
+
+.user_signeture p {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12.19px;
+    color: #686868;
 }
-.Signature_img{
+
+.Signature_img {
     width: 100px;
     height: 60px;
     border: 1px solid #CCCCCC;
 }
+
 .heading_tag_desh p {
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
     color: #FFFFFF;
 }
-.edit_signatuer_btn{
-    margin-left:4px;
+
+.edit_signatuer_btn {
+    margin-left: 4px;
+}
+
+.edit_signatuer_btn a {
+    color: #686868;
 }
 
 .design_logo {
@@ -308,11 +492,93 @@ color: #686868;
     font-weight: 700;
 }
 
+
+.earning_header {}
+
+.earning_header span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #686868;
+}
+
+.monthly_total {
+    margin-top: 50px;
+}
+
+.monthly_total p {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+    color: #686868;
+}
+
+.monthly_previus {
+    margin-top: 16px;
+}
+
+.monthly_previus a {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    text-decoration: none;
+    color: #686868;
+
+}
+
+.more_preview_btn {
+    width: 80px;
+    height: 30px;
+    left: 256px;
+    top: 521px;
+    background: #FFB317;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.more_preview_btn a {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.earning_graph {
+    width: 110px;
+    height: 110px;
+    left: 426px;
+    top: 421px;
+    background: #E1E1E1;
+    border-radius: 50%;
+}
+
+.earning_graph span {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #414141;
+}
+
+.monthly_total span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #686868;
+}
+
 .dash_menu ul li:first-child {}
 
 .left_manu {
     color: #686868;
 }
+
 
 .dash_menu ul li:first-child::hover {
     background: #FFFFFF;

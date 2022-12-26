@@ -9,7 +9,7 @@
     active
 @endsection
 @section('all_invoice_left')
-active_left
+    active_left
 @endsection
 @section('all_invoice')
     left_manu
@@ -25,22 +25,66 @@ active_left
 
     }
 
-    .iconTable{
+    .iconTable {
         color: black !important;
         width: 9px !important;
         height: 11.25px !important;
-        padding:5px;
+        padding: 5px;
     }
+
     /* .border_top{
         border-top: 1px solid rgb(175, 175, 175) !important;
     } */
 
-    table.dataTable tfoot tr, table.dataTable tfoot td {
-    border-top: 1px solid #dbdbdb !important ;
-}
+    table.dataTable tfoot tr,
+    table.dataTable tfoot td {
+        border-top: 1px solid #dbdbdb !important;
+    }
 </style>
 @section('dashboard_content')
     <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="row mt-2">
+                    <div class="col-sm-2">
+                        <div class="all_invice_title">
+                            <p>All Invoice <span class="rond_all">10</span></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 d-flex justify-content-center align-items-center">
+                        <div style="width: 30%">
+                            <span>Date From</span>
+                        </div>
+                        <div class="input-group" style="width: 70%">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
+                            <input type="date" class="form-control" placeholder="Username" aria-label="Username"
+                                aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+
+                        <div class="row mb-2">
+                            <label class="col-sm-4 col-form-label textColor">Date *</label>
+                            <div class="col-sm-8">
+                                <div class="input-group ">
+                                    <input type="text" name="invoice_date" class="form-control textColor inputBorderRedius"
+                                        value=""
+                                        id="invoice_date" readonly>
+                                    <label class="input-group-text dateForm" for="invoice_date">
+                                        <i class="bi bi-calendar3"></i>
+                                    </label>
+                                </div>
+                                <div id="invoice_date_error" class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="card p-4 mt-2 table-responsive">
@@ -68,13 +112,17 @@ active_left
                                     {{ $invoiceData->invoice_id }}
                                 </td>
                                 <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
-                                <td class="m-0  ">@if($invoiceData->invoice_amu_paid !="") {{ $invoiceData->currency }} {{  number_format( $invoiceData->invoice_amu_paid,2) }} @endif</td>
-                                <td class="m-0  ">{{ $invoiceData->currency }} {{ number_format( $invoiceData->total,2) }}</td>
+                                <td class="m-0  ">
+                                    @if ($invoiceData->invoice_amu_paid != '')
+                                        {{ $invoiceData->currency }} {{ number_format($invoiceData->invoice_amu_paid, 2) }}
+                                    @endif
+                                </td>
+                                <td class="m-0  ">{{ $invoiceData->currency }} {{ number_format($invoiceData->total, 2) }}
+                                </td>
                                 <td class=" m-0  text-center">
                                     @if ($invoiceData->invoice_status == 'complete')
-                                        <a class="custom_btn_sm  preview_image_user" href="#"  data-bs-toggle="modal"
-                                        data-bs-target="#staticBackdrop_previw" ><i
-                                                class="bi bi-eye iconTable"></i></a>
+                                        <a class="custom_btn_sm  preview_image_user" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye iconTable"></i></a>
                                     @else
                                         <a class="custom_btn_sm  " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
                                                 class="bi bi-pencil-square iconTable"></i></a>
@@ -87,23 +135,25 @@ active_left
                         @endforelse
                     </tbody>
 
-                   <tfoot>
-                    <tr class=" border-0" >
-                        <td colspan="7" class=" border-0 text-white">.</td>
-                    </tr>
-                    <tr class="border-0">
-                        <th colspan="6" class="border-0">Total</th>
-                        <th  class=" border-0"> {{ number_format($Total_Amount_conut,2) }}</th>
-                    </tr>
+                    <tfoot>
+                        <tr class=" border-0">
+                            <td colspan="7" class=" border-0 text-white">.</td>
+                        </tr>
+                        <tr class="border-0">
+                            <th colspan="6" class="border-0">Total</th>
+                            <th class=" border-0"> {{ number_format($Total_Amount_conut, 2) }}</th>
+                        </tr>
 
-                    <tr class="border-0">
-                        <th colspan="6" class="border-0"> </th>
-                        <th  class=" border-0 text-white"> .</th>
-                    </tr>
-                   </tfoot>
+                        <tr class="border-0">
+                            <th colspan="6" class="border-0"> </th>
+                            <th class=" border-0 text-white"> .</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
     </div>
     </div>
+
 @endsection
+
