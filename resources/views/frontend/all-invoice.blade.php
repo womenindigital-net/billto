@@ -25,7 +25,7 @@
     <!-- Sign in form Start -->
     <section class="container-fluid bg-color ">
         <div class="row">
-            <div class="col-md-2 m-0 p-0">
+            <div class="col-md-3 col-lg-2 m-0 p-0">
                 <section class="page-top">
                     <div class="side-bar border_right">
                         @foreach ($user as $item)
@@ -114,94 +114,106 @@
                 </section>
             </div>
 
-            <div class="col-md-10 m-0 p-0 mt-1">
+            <style>
+                .dashboad_card_width{
+                    width: 100%;
+                    height: 255px;
+                }
+                
+            </style>
+            <div class="col-md-9 col-lg-10 m-0 p-0 mt-1">
                 @yield('dashboard_content')
-                <div class="container-fluid  m-0 p-0 @yield('display-none')">
+                <div class="container-fluid overflow_scroll  m-0 p-0 @yield('display-none')">
                     <div class="row mt-2 m-0 p-0">
-                        <div class="col-md-4">
-                            <div class="card  card_mb" >
-                                <div class="card-header"
-                                    style="background-image: url('{{ asset('assets/frontend/img/user_dashbord/dashboard_img.png') }}');  background-repeat: no-repeat; background-size: cover;  height:96px;">
-                                    <div class="heading_tag_desh">
-                                        <h1 class="welcome_back"> Welcome Back</h1>
-                                        <p>WID Dashboard</p>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div
-                                                class="left_content_deshboard d-flex align-items-center justify-content-center">
-                                                <div class="image_deshboar">
-                                                    <img src="{{ asset('assets/frontend/img/user_dashbord/logo.png') }}"
-                                                        alt="">
-                                                </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="card  card_mb dashboad_card_width" >
+                                        <div class="card-header" style="background-image: url('{{ asset('assets/frontend/img/user_dashbord/dashboard_img.png') }}');  background-repeat: no-repeat; background-size: cover;  height:96px;">
+                                            <div class="heading_tag_desh">
+                                                <h1 class="welcome_back"> Welcome Back</h1>
+                                                <p>WID Dashboard</p>
                                             </div>
-                                            <div class="address_user">
-                                                <p class="p-0 m-0">Address line 1 </p>
-                                                <p class="p-0 m-0">Address line 2 </p>
-                                            </div>
-                                            <div class="address_user_phone">
-                                                <p class="p-0 m-0">Phone Number:</p>
-                                                <span class="p-0 m-0">+880 162 xxx xxxx</span>
-                                            </div>
-
                                         </div>
-                                        <div class="col-6">
-                                            <div class="address_user_phone">
-                                                <p class="p-0 m-0">Email Address:</p>
-                                                <span class="p-0 m-0"> info@womenindigital.net</span>
-                                            </div>
-                                            <div class="user_signeture">
-                                                <p class="p-0 m-0 mb-1">Signature</p>
-                                                <div class="d-flex align-items-center ">
-                                                    <div class="Signature_img">
-                                                        <img src="" alt="">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div
+                                                        class="left_content_deshboard d-flex align-items-center justify-content-center">
+                                                        <div class="image_deshboar">
+                                                            <img src="{{ asset('assets/frontend/img/user_dashbord/logo.png') }}"
+                                                                alt="">
+                                                        </div>
                                                     </div>
-                                                    <div class="edit_signatuer_btn">
-                                                        <a href="" class="fs-4"> <i
-                                                                class="bi bi-pencil-square"></i></a>
+                                                    <div class="address_user">
+                                                        <p class="p-0 m-0">Address line 1 </p>
+                                                        <p class="p-0 m-0">Address line 2 </p>
+                                                    </div>
+                                                    <div class="address_user_phone">
+                                                        <p class="p-0 m-0">Phone Number:</p>
+                                                        <span class="p-0 m-0">+880 162 xxx xxxx</span>
                                                     </div>
 
                                                 </div>
+                                                <div class="col-6">
+                                                    <div class="address_user_phone">
+                                                        <p class="p-0 m-0">Email Address:</p>
+                                                        <span class="p-0 m-0"> info@womenindigital.net</span>
+                                                    </div>
+                                                    <div class="user_signeture">
+                                                        <p class="p-0 m-0 mb-1">Signature</p>
+                                                        <div class="d-flex align-items-center ">
+                                                            <div class="Signature_img">
+                                                                <img src="" alt="">
+                                                            </div>
+                                                            <div class="edit_signatuer_btn">
+                                                                <a href="" class="fs-4"> <i
+                                                                        class="bi bi-pencil-square"></i></a>
+                                                            </div>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                                        </div>
 
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="earning_header">
-                                        <span> Monthly Earning</span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="monthly_total">
-                                                <span class="p-0 m-0">৳ 34,250</span>
-                                                <p class="p-0 m-0">July 2022 From</p>
-                                            </div>
-                                            <div class="monthly_previus">
-                                                <a href="#">Previous month</a>
-                                            </div>
-                                            <div class="more_preview_btn d-flex justify-content-center align-items-center">
-                                                <a href="">View More</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 d-flex justify-content-center align-items-center">
-                                            <div class="earning_graph  d-flex   justify-content-center align-items-center">
-                                                <div>
-                                                    <span>12%+ </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
+                                </div>
+                                <div class="col-md-6 col-lg-12">
+                                    <div class="card dashboad_card_width">
+                                        <div class="card-body">
+                                            <div class="earning_header">
+                                                <span> Monthly Earning</span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="monthly_total">
+                                                        <span class="p-0 m-0">৳ 34,250</span>
+                                                        <p class="p-0 m-0">July 2022 From</p>
+                                                    </div>
+                                                    <div class="monthly_previus">
+                                                        <a href="#">Previous month</a>
+                                                    </div>
+                                                    <div class="more_preview_btn d-flex justify-content-center align-items-center">
+                                                        <a href="">View More</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 d-flex justify-content-center align-items-center">
+                                                    <div class="earning_graph  d-flex   justify-content-center align-items-center">
+                                                        <div>
+                                                            <span>12%+ </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12 col-lg-8">
                             <div class="row">
                                 <div class="col-6  col-md-4 col-lg-4">
                                     <div class="card  bg-c-pink">
@@ -303,21 +315,22 @@
                             </div> --}}
                             </div>
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card">
+                                <div class="col-12">
+                                    <div class="card table-responsive">
                                         <div class="card-body">
                                             <div class="card_title">
                                                <p> Latest Transaction</p>
                                             </div>
-                                            <table class="table table-hover" style="color:#686868">
-                                                <thead style="border-bottom: 2px solid #FFB317 !important;">
+
+                                            <table class="table table-hover table-responsive" style="color:#686868;   ">
+                                                <thead style="border-bottom: 2px solid #FFB317 !important;  border-top: 1px solid #FFB317 !important;">
                                                   <tr >
-                                                    <th >SL#</th>
-                                                    <th >CUSTOMER </th>
-                                                    <th >DATE</th>
-                                                    <th >STATUS</th>
-                                                    <th >PAID</th>
-                                                    <th >TOTAL</th>
+                                                    <th style="width:5%">SL#</th>
+                                                    <th style="width:30%">CUSTOMER </th>
+                                                    <th style="width:20%">DATE</th>
+                                                    <th style="width:15%">STATUS</th>
+                                                    <th style="width:15%">PAID</th>
+                                                    <th style="width:15%">TOTAL</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody>
@@ -393,7 +406,18 @@
                                                     <td>@mdo</td>
                                                     <td>@mdo</td>
                                                   </tr>
-
+                                                  <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Bill to</td>
+                                                    <td>10-12-2022</td>
+                                                    <td>
+                                                        <div class="draft_btn">
+                                                             <a href="">Draft </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>@mdo</td>
+                                                    <td>@mdo</td>
+                                                  </tr>
                                                 </tbody>
                                               </table>
                                         </div>

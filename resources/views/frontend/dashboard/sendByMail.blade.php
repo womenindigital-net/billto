@@ -26,17 +26,14 @@ active_left
     }
 
     .iconTable{
-        color: black !important;
-        width: 9px !important;
-        height: 11.25px !important;
-        padding:5px;
+
     }
 </style>
 @section('dashboard_content')
-    <div class="container-fluid">
+    <div class="container-fluid overflow_scroll">
         <div class="row">
             <div class="card p-4 mt-2 table-responsive ">
-                <table id="example" class="table table-striped table-hover border table-bordered mt-1" >
+                <table id="example" class="table table-hover  mt-1"  style="color:#686868"  >
                     <thead>
                         <tr>
                             <th class="text-center">SL</th>
@@ -54,7 +51,7 @@ active_left
                                 <td class="m-0  "> {{ $sendByMail->mail_subject }}</td>
                                 <td class="m-0  ">{{ $sendByMail->mail_body }}</td>
 
-                                <td class="m-0 text-center "> <a href="" class="preview_image_user text-center"    data-bs-toggle="modal"
+                                <td class="m-0 text-center "> <a href="" class="preview_image_user btn_view text-center btn btn-sm"    data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop_previw" ><i class="bi bi-eye iconTable"></i></a></td>
                                  <input type="hidden" id="invoice_id_user" value="{{ $sendByMail->invoice_tamplate_id }}">
 

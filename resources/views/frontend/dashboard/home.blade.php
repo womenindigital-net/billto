@@ -42,51 +42,266 @@
     }
 </style>
 @section('dashboard_content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="card">
+    <div class="container-fluid overflow_scroll">
+        <div class="row mt-2">
+            <div class="card  table-responsive">
                 <div class="row mt-2">
-                    <div class="col-sm-2">
-                        <div class="all_invice_title">
+                    <div class="col-12 col-sm-12 col-md-2">
+                        <div class="all_invice_title pt-2 ">
                             <p>All Invoice <span class="rond_all">10</span></p>
                         </div>
                     </div>
-                    <div class="col-sm-3 d-flex justify-content-center align-items-center">
-                        <div style="width: 30%">
+                    <style>
+
+                    @media all and (max-width: 575px) {
+                        .custom_width{
+                            width: 30% !important;
+                        }
+                        .custom_width_text {
+                            width: 50% !important;
+                            margin-bottom: 8px;
+                        }
+                        .mr_custom{
+                            display:flex;
+                            justify-content: center;
+                            margin-right: 10px;
+                        }
+                    }
+
+                    @media all and (max-width: 768px) {
+                        .custom_width{
+                            width: 30% !important;
+                        }
+                        .custom_width_text {
+                            width: 70% !important;
+                            margin-bottom: 8px;
+                        }
+
+                    }
+                    </style>
+                    <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center m-0 p-0">
+                        <div class="custom_width" style="width: 30%">
                             <span>Date From</span>
                         </div>
-                        <div class="input-group" style="width: 70%">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
-                            <input type="date" class="form-control" placeholder="Username" aria-label="Username"
-                                aria-describedby="basic-addon1">
+                        <div class="input-group bg-white custom_width_text" style="width: 70%">
+                            <label class="input-group-text" for="invoice_date"><i class="bi bi-calendar3"></i></label>
+                            <input type="text" class="form-control  bg-white" id="invoice_date" readonly>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-
-                        <div class="row mb-2">
-                            <label class="col-sm-4 col-form-label textColor">Date *</label>
-                            <div class="col-sm-8">
-                                <div class="input-group ">
-                                    <input type="text" name="invoice_date" class="form-control textColor inputBorderRedius"
-                                        value=""
-                                        id="invoice_date" readonly>
-                                    <label class="input-group-text dateForm" for="invoice_date">
-                                        <i class="bi bi-calendar3"></i>
-                                    </label>
-                                </div>
-                                <div id="invoice_date_error" class="invalid-feedback"></div>
-                            </div>
+                    <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
+                        <div class="custom_width" style="width: 10%; text-align:center">
+                            <span>To</span>
                         </div>
-
-
+                        <div class="input-group bg-white custom_width_text" style="width: 90%">
+                            <label class="input-group-text" for="invoice_dou_date" ><i class="bi bi-calendar3"></i></label>
+                            <input type="text" class="form-control  bg-white"   id="invoice_dou_date" readonly>
+                        </div>
                     </div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-2"></div>
+                    <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
+                        <div class="custom_width" style="width: 20%; text-align:center">
+                            <span>Status</span>
+                        </div>
+                        <div class="input-group bg-white custom_width_text" style="width: 80%">
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Choose...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-1 d-flex justify-content-end align-items-center">
+                        <div class="input-group   mr_custom">
+                            <button class=" btn btn-warning ">Search</button>
+                        </div>
+                    </div>
                 </div>
+                <style>
+
+                </style>
+                <div style=" margin-top:25px"></div>
+                <table class="table table-hover btn_design" style="color:#686868">
+                    <thead style="border-bottom: 2px solid #FFB317 !important; border-top: 1px solid #FFB317 !important;">
+                      <tr >
+                        <th style="width: 8%">SL#</th>
+                        <th style="width: 20%">CUSTOMER </th>
+                        <th style="width: 15%">DATE</th>
+                        <th style="width: 15%" >STATUS</th>
+                        <th style="width: 15%">PAID</th>
+                        <th style="width: 15%">TOTAL</th>
+                        <th style="width:12%">ACTION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Bill to</td>
+                        <td>10-12-2022</td>
+                        <td>
+                            <div class="paid_btn">
+                                 <a href="">paid </a>
+                            </div>
+                        </td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
+                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
+                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Bill to</td>
+                        <td>10-12-2022</td>
+                        <td>
+                            <div class="due_btn">
+                                 <a href="">Due </a>
+                            </div>
+                        </td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+
+
+                            <td>
+                                <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
+                                <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
+                                <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
+                            </td>
+
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Bill to</td>
+                        <td>10-12-2022</td>
+                        <td>
+                            <div class="draft_btn">
+                                 <a href="">Draft </a>
+                            </div>
+                        </td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Bill to</td>
+                        <td>10-12-2022</td>
+                        <td>
+                            <div class="paid_btn">
+                                 <a href="">paid </a>
+                            </div>
+                        </td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
+                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
+                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Bill to</td>
+                        <td>10-12-2022</td>
+                        <td>
+                            <div class="due_btn">
+                                 <a href="">Due </a>
+                            </div>
+                        </td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
+                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
+                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Bill to</td>
+                        <td>10-12-2022</td>
+                        <td>
+                            <div class="draft_btn">
+                                 <a href="">Draft </a>
+                            </div>
+                        </td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
+                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
+                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Bill to</td>
+                        <td>10-12-2022</td>
+                        <td>
+                            <div class="draft_btn">
+                                 <a href="">Draft </a>
+                            </div>
+                        </td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
+                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
+                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Bill to</td>
+                        <td>10-12-2022</td>
+                        <td>
+                            <div class="draft_btn">
+                                 <a href="">Draft </a>
+                            </div>
+                        </td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
+                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
+                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                  <div class="row">
+                    <div class="col-4 col-sm-6 col-md-7">
+                        page:1|2|3|
+                    </div>
+                    <div class="col-8 col-sm-6 col-md-5">
+                        <div class="row">
+                            <div class="col-4">
+                              <p class="total_text_design"> TOTAL</p>
+                            </div>
+                            <div class="col-8">
+                               <p class="total_amount " >1000.00</p>
+                            </div>
+                            <div class="col-4">
+                                <p class="total_text_design "> PAID AMOUNT</p>
+                              </div>
+                              <div class="col-8">
+                                 <p class="total_amount " >1000.00</p>
+                              </div><div class="col-4">
+                                <p class="total_text_design"> BALANCE DUE</p>
+                              </div>
+                              <div class="col-8">
+                                 <p class="total_amount " >1000.00</p>
+                              </div>
+
+                        </div>
+                    </div>
+                  </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row d-none">
             <div class="card p-4 mt-2 table-responsive">
                 <table id="example" class="table  table-hover border table-bordered mt-1 ">
                     <thead>

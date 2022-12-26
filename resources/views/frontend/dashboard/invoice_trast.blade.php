@@ -13,20 +13,20 @@
 @endsection
 <style>
     .custom_btn_sm {
-        background-color: #f8f9fa;
+        /* background-color: #f8f9fa;
         font-size: 18px;
         padding: 4px;
         width: 18px;
         height: 18px;
-        border-radius: 3px;
+        border-radius: 3px; */
 
     }
 
     .iconTable{
-        color: black !important;
+        /* color: black !important;
         width: 9px !important;
         height: 11.25px !important;
-        padding:5px;
+        padding:5px; */
     }
 </style>
 @section('dashboard_content')
@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="card p-4 mt-2 table-responsive">
-                <table id="example" class="table table-striped table-hover border table-bordered mt-1 ">
+                <table id="example" class="table table-hover  mt-1 ">
                     <thead>
                         <tr>
                             <th class="text-center">SL</th>
@@ -62,8 +62,8 @@
                                         <a class="custom_btn_sm" href=""><i
                                                 class="bi bi-eye iconTable"></i></a>
                                     @else
-                                        <a class="custom_btn_sm " href="{{ route('edit.invoice', $invoiceData->id) }}"><i
-                                                class="bi bi-pencil-square iconTable"></i></a>
+                                        <a class="custom_btn_sm btn_view btn btn-sm" href="{{ route('edit.invoice', $invoiceData->id) }}"><i class="bi bi-pencil"></i></a>
+                                        <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
                                     @endif
                                 </td>
                             </tr>
