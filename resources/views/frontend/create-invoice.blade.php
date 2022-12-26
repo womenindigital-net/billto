@@ -60,14 +60,14 @@
 
     <!-- Invoice Section Start -->
     <section class="invoice_section">
-        <div class="my-5">
+        <div class="">
             @if (Auth::check())
                 <form method="post" id="invoiceForm" enctype="multipart/form-data">
                 @else
                     <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
             @endif
             @csrf
-            <div class="container p-4 " style="background-color: #F0F0F0;">
+            <div class="container p-4 mt-5 " style="background-color: #F0F0F0; border-radius: 10px;">
                 <div class="row">
                     <div class="col-md-7">
                         <div class="row">
@@ -94,9 +94,10 @@
                                     border-left: 0;
                                     border-radius: 0 10px 10px 0px !important;
                                 }
+
                                 .dateForm {
                                     margin-left: -40px !important;
-                                    z-index: 99;
+                                    z-index: 3;
                                     border-left: 0;
                                     border-radius: 0 10px 10px 0px !important;
                                     background-color: #FFFFFF !important;
@@ -111,15 +112,15 @@
                                 }
 
                                 /* .form-control:focus {
-                                    border-color: none !important;
-                                    box-shadow: none !important;
-                                    border:none !important;
-                                } */
-                                .textColor{
+                                                                    border-color: none !important;
+                                                                    box-shadow: none !important;
+                                                                    border:none !important;
+                                                                } */
+                                .textColor {
                                     color: #898989;
                                 }
                             </style>
-                            <div class="col-md-4 text-center ">
+                            <div class="col-md-4 text-center mt-3">
                                 <label for="imageUpload">
                                     <div class="input-group ">
                                         <div class="avatar-upload">
@@ -144,8 +145,8 @@
                                 </label>
                             </div>
 
-                            <div class="col-md-8">
-                                <div class="d-flex ">
+                            <div class="col-md-8 ">
+                                <div class="d-flex my-3">
                                     <label class="form-label pe-2 pt-1 textColor">Currency: </label>
                                     <select class="tk w-50 fw-bolder form-select form-select-sm inputBorderRedius"
                                         name="currency" id="currencyList" onchange="currency1()">
@@ -331,7 +332,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <label for="invoice_form" class="form-label textColor">From *</label>
+                                {{-- <label for="invoice_form" class="form-label textColor"></label> --}}
                                 <textarea name="invoice_form" id="invoice_form" rows="2" type="text"
                                     class="form-control inputBorderRedius textColor" placeholder="Who is this invoice from?">
 @if (isset($invoiceData->invoice_form))
@@ -344,12 +345,12 @@
                                 <div id="invoice_form_error" class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="row pt-1 pb-3">
+                        <div class="row pt-4 pb-3">
                             <div class="col-md-8">
 
                                 <label for="invoice_to" class="form-label textColor">Bill to *</label>
-                                <textarea name="invoice_to" id="invoice_to" rows="2" type="text" class="form-control inputBorderRedius textColor"
-                                    placeholder="Who is this invoice to?">
+                                <textarea name="invoice_to" id="invoice_to" rows="2" type="text"
+                                    class="form-control inputBorderRedius textColor" placeholder="Who is this invoice to?">
 @if (isset($invoiceData->invoice_to))
 {{ $invoiceData->invoice_to }}
 @elseif(isset($lastInvoice->invoice_to))
@@ -392,7 +393,8 @@
                             <label class="col-sm-4 col-form-label textColor">Date *</label>
                             <div class="col-sm-8">
                                 <div class="input-group ">
-                                    <input type="text" name="invoice_date" class="form-control textColor inputBorderRedius"
+                                    <input type="text" name="invoice_date"
+                                        class="form-control textColor inputBorderRedius"
                                         value=" @if (isset($invoiceData->invoice_date)) {{ $invoiceData->invoice_date }}@else{{ date('Y-m-d') }} @endif"
                                         id="invoice_date" readonly>
                                     <label class="input-group-text dateForm" for="invoice_date">
@@ -403,7 +405,8 @@
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <label for="invoice_payment_term" class="col-sm-4 col-form-label textColor">Payment Terms</label>
+                            <label for="invoice_payment_term" class="col-sm-4 col-form-label textColor">Payment
+                                Terms</label>
                             <div class="col-sm-8">
                                 <input type="text" name="invoice_payment_term" class="form-control inputBorderRedius"
                                     id="invoice_payment_term" placeholder="Online/Bank/Cash Transaction"
@@ -419,7 +422,8 @@
                             @endphp
                             <div class="col-sm-8 ">
                                 <div class="input-group">
-                                    <input type="text" name="invoice_dou_date" class="form-control textColor inputBorderRedius"
+                                    <input type="text" name="invoice_dou_date"
+                                        class="form-control textColor inputBorderRedius"
                                         value="@if (isset($invoiceData->invoice_dou_date)) {{ $invoiceData->invoice_dou_date }}@else {{ $date->format('Y-m-d') }} @endif"
                                         id="invoice_dou_date" readonly>
                                     <label class="input-group-text dateForm" for="invoice_dou_date">
@@ -432,25 +436,67 @@
                         <div class="row mb-2">
                             <label for="invoice_po_number" class="col-sm-4 col-form-label textColor">PO Number</label>
                             <div class="col-sm-8">
-                                <input type="text" name="invoice_po_number" class="form-control inputBorderRedius textColor"
-                                    id="invoice_po_number"
+                                <input type="text" name="invoice_po_number"
+                                    class="form-control inputBorderRedius textColor" id="invoice_po_number"
                                     value="@if (isset($invoiceData->invoice_po_number)) {{ $invoiceData->invoice_po_number }} @endif">
                                 <div id="invoice_po_number_error" class="invalid-feedback"></div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <style>
+                    .table .custab1 {
+                        background-color: #FFB317;
+                        color: #FFFFFF;
+                        -webkit-border-radius: 10px 0px 0px 10px;
+                        border-radius: 10px 0px 0px 10px;
+                        border-collapse: separate;
+                    }
 
-                <div class="table-responsive ">
-                    <table class="table">
-                        <thead style="background-color: #FFB317; color:#FFFFFF;">
-                            <tr>
-                                <th scope="col" style="width: 3%">#</th>
-                                <th scope="col" style="width: 30%">Item</th>
-                                <th scope="col" style="width: 17%">Quantity</th>
-                                <th scope="col" style="width: 17%">Rate</th>
-                                <th scope="col" style="width: 28%">Amount</th>
-                                <th scope="col" style="width: 15%">Action</th>
+                    .table .custab2 {
+                        background-color: #FFB317;
+                        color: #FFFFFF;
+
+                        border-collapse: separate;
+                    }
+
+                    .table .custab3 {
+                        background-color: #FFB317;
+                        color: #FFFFFF;
+                        -webkit-border-radius: 10px 0px 0px 10px;
+                        border-radius: 0px 10px 10px 0px;
+                        border-collapse: separate;
+                    }
+
+                    .bgInput {
+                        background-color: #f7f2f247 !important;
+                    }
+
+                    .InputCustomize {
+                        z-index: 99;
+                        background-color: #f7f2f247;
+                    }
+
+                    .InputCustomizeTex {
+                        margin-left: -40px !important;
+                        z-index: 99;
+                        border-left: 0;
+                        margin-top: 2px;
+                        margin-bottom: 2px;
+                        border-radius: 0 10px 10px 0px !important;
+                        background: #FFFFFF;
+                    }
+                </style>
+                <div class="table-responsive customBG">
+                    <table class="table ">
+                        <thead class="">
+                            <tr class="tr_f ">
+                                {{-- <th scope="col" style="width: 3%" class="custab1">#</th> --}}
+                                <th scope="col" style="width: 58%" class="custab1">Item</th>
+                                <th scope="col" style="width: 10%" class="custab2">Quantity</th>
+                                <th scope="col" style="width: 10%" class="custab2">Rate</th>
+                                <th scope="col" style="width: 10%" class="custab2">Amount</th>
+                                <th scope="col" style="width: 10%" class="custab3">Action</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
@@ -460,12 +506,12 @@
                     </table>
                 </div>
                 <div class="product row m-0">
-                    <div class="p-0 pe-1 pb-2 col-md-4">
+                    <div class="p-0 pe-2 pb-2 me-2 col-md-7">
                         <textarea type="text" name="product_name" id="product_name" class="form-control inputBorderRedius"
                             placeholder="Description of service or product" rows="1" onchange="addData();"></textarea>
                         <div id="name_error" class="invalid-feedback"></div>
                     </div>
-                    <div class="text-start p-0 pb-2 col-md-2">
+                    <div class="text-start me-3 p-0 pb-2 col-md-1">
                         <div class="input-group">
                             <input type="number" name="product_quantity" id="product_quantity"
                                 class="form-control inputBorderRedius" placeholder="Quantity"
@@ -475,7 +521,7 @@
                         </div>
                     </div>
 
-                    <div class="text-start p-0 pe-1 pb-2 col-md-2 ">
+                    <div class="text-start p-0 me-3 pe-1 pb-2 col-md-1 ">
                         <div class="input-group ">
                             <input type="number" name="product_rate" id="product_rate"
                                 class="form-control inputBorderRedius" placeholder="Rate" onchange="ptotal();addData();">
@@ -484,11 +530,12 @@
                         </div>
 
                     </div>
-                    <div class=" col-md-3 p-0  pb-2">
+                    <div class=" col-md-1 p-0  pb-2">
                         <div
                             class="ps-2 input-group inputBorderRedius text-center  border rounded justify-content-between align-items-center d-flex ">
-                            <span id="product_amount" class="fw-bolder"></span>
-                            <div class="input-group-text inputBorderRedius" id="currency">USD</div>
+                            <div class="input-group-text inputBorderRedius border-0 bgInput textColor" id="currency">$
+                            </div>
+                            <span id="product_amount" class="fw-bolder px-2"></span>
                         </div>
                     </div>
                     <style>
@@ -500,7 +547,7 @@
                         }
                     </style>
                     <div class=" col-md-1  text-center">
-                        <div class=" ms-4">
+                        <div class="" style="padding-left: 30px">
                             <div class="svg_size_plus">
                                 <img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt=""
                                     style="width: 33px;height:33px; margin-top:2px;">
@@ -509,9 +556,11 @@
                         </div>
                     </div>
                 </div>
+                <style>
 
-                <div class="mt-4 ">
-                    <span id="product_clear" class="btn btn-danger" onclick="pclear()">
+                </style>
+                <div class="mt-2 ">
+                    <span id="product_clear" class="btn btn-danger inputBorderRedius " onclick="pclear()">
                         Clear Input
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-x-octagon" viewBox="0 0 16 16">
@@ -526,8 +575,8 @@
                 <div class="row pt-4">
                     <div class="col-md-6">
                         <div>
-                            <label for="invoice_notes" class="form-label">Notes</label>
-                            <textarea name="invoice_notes" id="invoice_notes" rows="5" class="form-control inputBorderRedius"
+                            <label for="invoice_notes" class="form-label textColor">Notes</label>
+                            <textarea name="invoice_notes" id="invoice_notes" rows="4" class="form-control inputBorderRedius"
                                 placeholder="Notes - any related information not already covered">
 @if (isset($invoiceData->invoice_notes))
 {{ $invoiceData->invoice_notes }}
@@ -536,8 +585,9 @@
                             <div id="invoice_notes_error" class="invalid-feedback"></div>
                         </div>
                         <div class="">
-                            <label for="invoice_terms" class="form-label pt-2 d-flex align-items-center">Terms</label>
-                            <textarea name="invoice_terms" id="invoice_terms" rows="5" class="form-control inputBorderRedius"
+                            <label for="invoice_terms"
+                                class="form-label pt-2 d-flex align-items-center textColor">Terms</label>
+                            <textarea name="invoice_terms" id="invoice_terms" rows="4" class="form-control inputBorderRedius"
                                 placeholder="Terms and conditions, late fees, payment methods, delivery schedule">
 @if (isset($invoiceData->invoice_terms))
 {{ $invoiceData->invoice_terms }}
@@ -545,23 +595,32 @@
 </textarea>
                             <div id="invoice_terms_error" class="invalid-feedback"></div>
                         </div>
+                        <div class="pt-3">
+                            <input type="checkbox">
+                            <label class="textColor">Add Signature</label><br>
+                        </div>
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-end pt-2 pe-4">
                         <div class="row">
                             <div class="col-7 d-flex align-items-center fw-bolder  textColor">Sub total</div>
                             <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
+                                <div class="input-group-text  InputCustomize border-0  textColor" id="currency">$</div>
                                 <span class="p-2 fw-bolder textColor" id="subtotal">0.00</span>
-                                {{-- <div class="input-group-text" id="currency">USD</div> --}}
                                 <input type="hidden" id="subtotal_no_vat" name="subtotal_no_vat">
                             </div>
                         </div>
                         <div class="row pt-2 ">
                             <div class="col-7 d-flex align-items-center textColor">Tax</div>
                             <div class="col input-group p-0">
-                                <input type="number" name="invoice_tax" class="form-control inputBorderRedius"
+                                {{-- <div class="input-group-text  border-0 bgInput textColor ">&#8453;</div> --}}
+
+                                <input type="number" name="invoice_tax"
+                                    class="form-control text-end pe-5 inputBorderRedius"
                                     value="@if (isset($invoiceData->invoice_tax_percent)) {{ $invoiceData->invoice_tax_percent }} @endif"
                                     id="invoice_tax" onchange="total()">
-                                {{-- <div class="input-group-text">&#8453;</div> --}}
+                                <div class="input-group-text  InputCustomizeTex border-0  textColor" id="">
+                                    &#8453;
+                                </div>
                                 <div id="invoice_tax_error" class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -569,6 +628,7 @@
                             <div class="row">
                                 <div class="col-7 d-flex align-items-center fw-bolder textColor">Total</div>
                                 <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
+                                    <div class="input-group-text  InputCustomize border-0  textColor" id="currency">$</div>
                                     <span class="p-2 fw-bolder textColor" id="total" onchange="totalInwords();">
                                         @if (isset($invoiceData->total))
                                             {{ $invoiceData->total }}
@@ -588,10 +648,30 @@
                 </div>
               </div> --}}
                             <div class="row pt-2 ">
-                                <div class="col-7 d-flex align-items-center textColor"><label for="#advance_amount">Requesting
+                                <div class="col-7 d-flex align-items-center textColor"><label
+                                        for="#advance_amount">Discount</label></div>
+                                <div class="col input-group p-0">
+                                    <input type="number" name="discount" class="form-control inputBorderRedius">
+                                    <div class="input-group-text  InputCustomizeTex border-0  textColor" id="">
+                                        &#8453;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row pt-2">
+                                <div class="col-7 d-flex align-items-center  textColor">Discount Amount</div>
+                                <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
+                                    <span class="p-2 fw-bolder text-dark" id="discount_amount">
+                                    </span>
+                                    <div class="input-group-text bgInput border-0 textColor" id="currency">$</div>
+                                </div>
+                            </div>
+                            <div class="row pt-2 ">
+                                <div class="col-7 d-flex align-items-center textColor"><label
+                                        for="#advance_amount">Requesting
                                         Advance Amount</label></div>
                                 <div class="col input-group p-0">
-                                    <input type="number" name="requesting_advance_amount" class="form-control inputBorderRedius"
+                                    <input type="number" name="requesting_advance_amount"
+                                        class="form-control inputBorderRedius"
                                         value="@if (isset($invoiceData->requesting_advance_amount_percent)) {{ $invoiceData->requesting_advance_amount_percent }} @endif"
                                         id="requesting_advance_amount" onchange="requestingAdvanceAmount()">
                                     {{-- <div class="input-group-text">&#8453;</div> --}}
@@ -607,15 +687,15 @@
                                             {{ $requesting_advance_amount }}
                                         @endif
                                     </span>
-                                    <div class="input-group-text " id="currency">USD</div>
+                                    <div class="input-group-text bgInput border-0 textColor" id="currency">$</div>
                                 </div>
                             </div>
                             <div class="row pt-2 ">
                                 <div class="col-7 d-flex align-items-center textColor">Receive Advance Amount</div>
                                 <div class="col input-group p-0">
-                                    <input placeholder="$" type="number" name="receive_advance_amount" class="form-control inputBorderRedius"
-                                        role="button" aria-disabled="true" value="" id="receive_advance_amount"
-                                        disabled onchange="">
+                                    <input type="number" name="receive_advance_amount"
+                                        class="form-control inputBorderRedius" role="button" aria-disabled="true"
+                                        value="" id="receive_advance_amount" disabled onchange="">
                                     {{-- <div class="input-group-text" id="currency">USD</div> --}}
                                     <div id="receive_advance_amount_error" class="invalid-feedback"></div>
                                 </div>
@@ -629,10 +709,11 @@
                 </div>
               </div> --}}
                             <div class="row pt-2">
-                                <div class="col-7 d-flex align-items-center fw-bolder textColor">Balance Due</div>
+                                <div class="col-7 d-flex align-items-center fw-bolder textColor textColor">Balance Due
+                                </div>
                                 <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
-                                    <span class="p-2 fw-bolder text-Color" id="balanceDue">0.00</span>
-                                    <div class="input-group-text" id="currency">USD</div>
+                                    <div class="input-group-text bgInput border-0 textColor" id="currency">$</div>
+                                    <span class="p-2 fw-bolder textColor" id="balanceDue">0.00</span>
                                 </div>
                             </div>
                         </div>
@@ -667,29 +748,32 @@
                     border-bottom: none !important
                 }
             </style>
-            <div class="container p-0 create_page">
+            <div class="container p-0 create_page mt-4 mb-0">
                 {{-- id="completeInvoice" --}}
-                <button type="submit" id="completeInvoice"
-                    class="btn bnt_responsive send-invoice preview_image py-2 px-4 my-2 "
+                <button style="background-color: #686868" type="submit" id="completeInvoice"
+                    class="btn bnt_responsive send-invoice preview_image  px-4   inputBorderRedius"
                     @if (isset($invoiceData)) @else disabled @endif>
+                    <i class="bi bi-clipboard-plus me-2"></i>
                     {{-- @if (isset($invoiceData)) @else  @endif> --}}
                     @if (isset($invoiceData))
                         {{ 'Save' }} @else{{ 'Save' }}
                     @endif
                 </button>
 
-                <a id="previw_id" class="btn send-invoice preview_image bnt_responsive d-none bordered   py-2 px-4 my-2"
-                    data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">Preview</a>
+                <a id="previw_id"
+                    class="btn inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered    py-2 px-4 my-2"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye"></i> Preview</a>
 
-                <button type="button" id="send_email_id"
-                    class="btn send-invoice bnt_responsive py-2 px-4 my-2 disabled " data-bs-toggle="modal"
+                <button style="background-color: #686868" type="button" id="send_email_id"
+                    class="btn send-invoice bnt_responsive  px-4  disabled inputBorderRedius " data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
+                    <i class="bi bi-envelope-fill me-2"></i>
                     Send Invoice
                 </button>
-                <a href="" id="downlodeInvoice" target="_blank"
-                    class="btn bnt_responsive send-invoice py-2 px-4 disabled">Download
+                <a style="background-color: #686868" href="" id="downlodeInvoice" target="_blank"
+                    class="btn bnt_responsive send-invoice  px-4 disabled inputBorderRedius"> <i
+                        class="bi bi-cloud-arrow-down me-2"></i> Download
                     Invoice</a>
-
             </div>
 
         </div>
@@ -764,14 +848,14 @@
 
         .pakages_name {
 
-            background: rgb(9 25 30 / 100%);
+            background: #FFB317;
             padding: 1px 11px;
             border-radius: 2px;
             font-size: 13px;
             position: absolute;
             top: 0.4%;
             ;
-            color: #FFB317;
+            color: #000000;
             font-weight: 700;
             z-index: 1;
             text-decoration: none;
@@ -828,43 +912,42 @@
     </style>
     <style>
         /* .spinner {
-                                    width: 80px;
-                                    height: 80px;
+                                                                    width: 80px;
+                                                                    height: 80px;
 
-                                    border: 2px solid #f3f3f3;
-                                    border-top: 3px solid #f25a41;
-                                    border-radius: 100%;
+                                                                    border: 2px solid #f3f3f3;
+                                                                    border-top: 3px solid #f25a41;
+                                                                    border-radius: 100%;
 
-                                    top: 0;
-                                    bottom: 0;
-                                    left: 0;
-                                    right: 0;
-                                    margin: auto;
+                                                                    top: 0;
+                                                                    bottom: 0;
+                                                                    left: 0;
+                                                                    right: 0;
+                                                                    margin: auto;
 
-                                    animation: spin 1s infinite linear;
-                                }
+                                                                    animation: spin 1s infinite linear;
+                                                                }
 
-                                @keyframes spin {
-                                    from {
-                                        transform: rotate(0deg);
-                                    }
+                                                                @keyframes spin {
+                                                                    from {
+                                                                        transform: rotate(0deg);
+                                                                    }
 
-                                    to {
-                                        transform: rotate(360deg);
-                                    }
-                                } */
+                                                                    to {
+                                                                        transform: rotate(360deg);
+                                                                    }
+                                                                } */
     </style>
-
 
     <section class="invoice_template">
         <div>
-            <div class="container my-3">
-                <div class="text-center pb-5">
+            <div class="container">
+                <div class="text-center  my-5">
                     <h2 class="h2_title">Choose Your Invoice Template</h2>
                     <p class="fs-sm fw-bolder">Start creating your professional bill</p>
                 </div>
                 @if (!$template_id == '')
-                    <div class="row text-center">
+                    <div class="row text-center ">
                         @foreach ($invoice_template as $invoice_temp)
                             @php
                                 $join_table_valu = DB::table('subscription_package_templates')
@@ -874,7 +957,7 @@
                                 $join_table_value = $join_table_valu->unique('subscription_packages.id');
                             @endphp
                             @foreach ($join_table_value as $join_table_values)
-                                <label class="custom-radio col-sm-6 col-md-4 col-lg-3 mt-4 ">
+                                <label class="custom-radio col-sm-6 col-md-4 col-lg-3  ">
                                     <div class="card shadow border-0">
                                         <span class="pakages_name">
                                             {{ $join_table_values->packageName }}
@@ -893,7 +976,7 @@
                         @endforeach
                     </div>
                 @else
-                    <div class="row text-center">
+                    <div class="row text-center mb-5 ">
                         @foreach ($invoice_template as $invoice_temp)
                             @php
                                 $join_table_valu = DB::table('subscription_package_templates')
@@ -903,7 +986,7 @@
                                 $join_table_value = $join_table_valu->unique('subscription_packages.id');
                             @endphp
                             @foreach ($join_table_value as $join_table_values)
-                                <label class="custom-radio  col-sm-6 col-md-4 col-lg-3 mt-4 ">
+                                <label class="custom-radio  col-sm-6 col-md-4 col-lg-3 mb-3 ">
                                     <div class=" card shadow border-0">
                                         <span class="pakages_name">
                                             {{ $join_table_values->packageName }}
@@ -1049,7 +1132,7 @@
 
         });
     </script>
-    
+
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
