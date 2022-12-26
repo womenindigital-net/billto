@@ -278,12 +278,12 @@ function allData() {
             $.each(responce, function (key, value) {
                 totalamount = totalamount + value.product_amount
                 data = data + "<tr id='tableRow-" + value.id + "'>"
-                data = data + "<th onClick='editData(" + value.id + ")' scope='row' id='key-" + value.id + "'>" + ++key + "</th>"
+                // data = data + "<th  onClick='editData(" + value.id + ")' scope='row' id='key-" + value.id + "'>" + ++key + "</th>"
                 data = data + "<td onClick='editData(" + value.id + ")' id='product_name-" + value.id + "'>" + value.product_name + "</td>"
                 data = data + "<td onClick='editData(" + value.id + ")' id='product_quantity-" + value.id + "'>" + value.product_quantity + "</td>"
                 data = data + "<td onClick='editData(" + value.id + ")' id='product_rate-" + value.id + "'>" + value.product_rate + "</td>"
                 data = data + "<td onClick='editData(" + value.id + ")' >" + value.product_amount + "</td>"
-                data = data + "<td class='text-center'>"
+                data = data + "<td class='ps-3'>"
                 data = data + "<button type='button' onClick='deleteData(" + value.id + ")' class='btn btn-sm btn-danger fw-bolder'><i class='bi bi-trash'></i></button>"
                 data = data + "</td>"
                 data = data + "</tr>"
@@ -394,7 +394,7 @@ function editData(id) {
     // $("#tableRow-"+id).css("display", "none");
     var input = '';
     input = input + "<tr id='editInput-" + id + "'>"
-    input = input + "<th scope='row' class='p-3' id='row-" + id + "'>" + key + "</th>"
+    // input = input + "<th scope='row' class='p-3' id='row-" + id + "'>" + key + "</th>"
     input = input + "<td>"
     input = input + "<textarea type='text' name='product_name' id='product_name" + id + "' class='form-control' placeholder='Description of service or product' rows='1' onchange='addData();'>" + product_name + "</textarea>"
     input = input + "<div id='name_error' class='invalid-feedback'></div>"
@@ -418,7 +418,7 @@ function editData(id) {
     input = input + "</div>"
     input = input + "</td>"
     input = input + "<td>"
-    input = input + "<button type='button' onClick='saveData(" + id + ")' class='btn btn-success fw-bolder'><i class='bi bi-check-circle-fill'></i></button>"
+    input = input + "<button type='button' onClick='saveData(" + id + ")' class='btn btn-success btn-sm ms-2 fw-bolder'><i class='bi bi-check-circle-fill'></i></button>"
     input = input + "</td>"
     input = input + "</tr>"
     $("#tableRow-" + id).replaceWith(input);

@@ -437,7 +437,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker .ui-datepicker-title {
 	margin: 0 2.3em;
-	line-height: 1.8em;
+	line-height: 26px;
 	text-align: center;
 }
 .ui-datepicker .ui-datepicker-title select {
@@ -450,7 +450,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker table {
 	width: 100%;
-	font-size: .9em;
+	font-size: 12px;
 	border-collapse: collapse;
 	margin: 0 0 .4em;
 }
@@ -926,7 +926,7 @@ html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
 	border: 1px solid #cccccc;
 	background: #f6f6f6 url("images/ui-bg_glass_100_f6f6f6_1x400.png") 50% 50% repeat-x;
-	font-weight: bold;
+	font-size: 11px;
 	color: #1c94c4;
 }
 .ui-state-default a,
