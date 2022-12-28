@@ -1,28 +1,45 @@
 @extends('layouts.frontend.app')
 @section('title', 'Home page')
 @push('frontend_css')
-    
 @endpush
 @section('frontend_content')
-    <!-- Sub Nav Start -->
-    <section class="sub_nav py-4 border-bottom">
-        <div class="">
-            <div class="container">
-                <div class="nav">
-                    <p class="m-0">You are here : <span><a href="#">Home</a> &#8921;</span> <span
-                            style="color: #FFB317 !important;">Sign up</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
+
+
+
+    <style>
+        .inputPadding {
+            padding-top: 11px;
+            padding-bottom: 11px;
+        }
+
+        .BetweeenChatac {
+            color: #FFB317 !important;
+        }
+
+        .BetweeenChatac:hover {
+            color: #898989 !important;
+        }
+
+        .allreadyOnBillto {
+            color: #898989 !important;
+        }
+
+        .eye {
+            margin-left: -38px !important;
+            z-index: 3;
+            border-left: 0;
+            border-radius: 0 10px 10px 0px !important;
+        }
+    </style>
+
     <!-- Sub Nav Start -->
     <!-- Sign in form Start -->
     <section class="form_sign_in">
         <div>
-            <div class="container my-5">
-                <div class="text-center">
-                    <h2 class="h2_title mb-4">Welcome to Billto</h2>
-                    <p class="form_title pb-4">Sign up</p>
+            <div class="container mb-4">
+                <div class="text-center ">
+                    <h2 class="h2_title  mt-4 mb-3 fw-light">Welcome back to Billto</h2>
+                    <h2 class="mb-4  fw-bolder" style="color: #000000">Sign up</h2>
                 </div>
                 <div class="row">
                     <div class="col-md-6 my-0 mx-auto">
@@ -32,8 +49,11 @@
                                 <div class="p-5">
                                     <!-- Name -->
                                     <div class="form-group pb-3">
-                                        <label for="name" class="pb-2 fw-bolder">Full Name</label>
-                                        <input id="name" type="text" class="py-2 form-control @error('name')  is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Enter Full Name" required autofocus >
+                                        <label for="name" class="pb-2 " style="font-size: 14px;">Full Name</label>
+                                        <input style="background-color: #FFFFFF; border-radius:10px" id="name"
+                                            type="text"
+                                            class=" inputPadding form-control @error('name')  is-invalid @enderror"
+                                            name="name" value="{{ old('name') }}" required autofocus>
                                         @error('name')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -42,8 +62,11 @@
                                     </div>
                                     <!-- Email Address -->
                                     <div class="form-group pb-3">
-                                        <label for="email" class="pb-2 fw-bolder">Email address</label>
-                                        <input id="email" type="email" name="email" value="{{ old('email') }}" class="py-2 form-control @error('email')  is-invalid @enderror" placeholder="Enter email" required>
+                                        <label for="email" class="pb-2" style="font-size: 14px;">Email address</label>
+                                        <input style="background-color: #FFFFFF; border-radius:10px" id="email"
+                                            type="email" name="email" value="{{ old('email') }}"
+                                            class="inputPadding form-control @error('email')  is-invalid @enderror"
+                                            required>
                                         @error('email')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -51,31 +74,69 @@
                                         @enderror
                                     </div>
                                     <!-- Password -->
-                                    <div class="form-group pb-3">
-                                        <label for="password" class="pb-2 fw-bolder">Password</label>
-                                        <input id="password" type="password" name="password" class="py-2 form-control @error('password')  is-invalid @enderror" placeholder="Password" required autocomplete="new-password">
+                                    <div class="form-row pb-3">
+                                        <label for="password" class="pb-2" style="font-size: 14px;">Password</label>
+                                        <div class="input-group mb-3">
+                                            <input style="background-color: #FFFFFF; border-radius:10px" id="password"
+                                                type="password" name="password"
+                                                class="inputPadding form-control @error('password')  is-invalid @enderror"
+                                                required autocomplete="new-password">
+                                            <div class=" eye">
+                                                <div class=" inputPadding border-0  eyeColor d-flex align-items-center  pe-4"
+                                                    onclick="password_show_hide();">
+                                                    <i class="bi bi-eye" id="show_eye"></i>
+                                                    <i class="bi bi-eye-slash d-none" id="hide_eye"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                         @error('password')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
+
+                                    {{-- niye aschi --}}
+                                    
                                     <!-- Confirm Password -->
                                     <div class="form-group pb-3">
-                                        <label for="password_confirmation" class="pb-2 fw-bolder">Confirm Password</label>
-                                        <input id="password_confirmation" type="password" name="password_confirmation" class="py-2 form-control" placeholder="Confirm Password" required >
+                                        <label for="password_confirmation" class="pb-2" style="font-size: 14px;">Confirm
+                                            Password</label>
+                                        <input style="background-color: #FFFFFF; border-radius:10px"
+                                            id="password_confirmation" type="password" name="password_confirmation"
+                                            class="inputPadding form-control" required>
                                     </div>
+                                    <p class="BetweeenChatac">Between 8 and 72 characters</p>
+
+                                    <!--continue -->
                                     <button type="submit"
-                                        class="form_btn my-4 py-2 btn btn-dark border-0 w-100 fw-bolder"
-                                        style="background: #FFB317;">Continue</button>
-                                    <div class="mb-4 mt-3"
-                                        style="width: 100%; height: 20px; border-bottom: 2px solid #CCCCCC; text-align: center">
-                                        <span style="font-size: 25px; background-color: #F3F5F6; padding: 0 10px;">
+                                        class="form_btn mt-4 inputPadding btn btn-dark border-0 w-100 text-bold "
+                                        style="background: #FFB317; font-size:14px; border-radius:10px; ">Continue</button>
+
+                                    <div class="mt-3 mb-4"
+                                        style="width: 100%; height: 20px; border-bottom: 0.5px solid #CCCCCC; text-align: center">
+                                        <span style="font-size: 14px; background-color: #F0F0F0; color:#CCCCCC;">
                                             or
                                         </span>
                                     </div>
+
+                                    <!-- google	 -->
+                                    <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
+                                        class="form_btn my-3 inputPadding btn btn-dark border-0 w-100 text-bold"
+                                        href="/auth/google/redirect">
+                                        <p class="text-white"><i class="bi bi-google me-1"></i> Sign in with Google</p>
+                                    </a>
+
+                                    <!-- facebook	 -->
+                                    <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
+                                        class="form_btn mt-3  inputPadding btn btn-dark border-0 w-100 text-bold"
+                                        href="/auth/facebook/redirect">
+                                        <p class="text-white"><i class="bi bi-facebook me-1"></i> Sign in with Facebook</p>
+                                    </a>
                                     <div class="my-3 already_billto">
-                                        <p class="fw-bold">Already on Billto? <a href="{{ route('login') }}">Sign in here</a></p>
+                                        <p class="allreadyOnBillto">Already on Billto? <a class="BetweeenChatac"
+                                                href="{{ route('login') }}">Sign in
+                                                here</a></p>
                                     </div>
                                 </div>
                             </form>
@@ -89,5 +150,21 @@
     <!-- Sign in form End -->
 @endsection
 @push('frontend_js')
-    
+    <script>
+        function password_show_hide() {
+            var x = document.getElementById("password");
+            var show_eye = document.getElementById("show_eye");
+            var hide_eye = document.getElementById("hide_eye");
+            hide_eye.classList.remove("d-none");
+            if (x.type === "password") {
+                x.type = "text";
+                show_eye.style.display = "none";
+                hide_eye.style.display = "block";
+            } else {
+                x.type = "password";
+                show_eye.style.display = "block";
+                hide_eye.style.display = "none";
+            }
+        }
+    </script>
 @endpush
