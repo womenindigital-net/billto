@@ -59,11 +59,11 @@ function addData() {
     var product_quantity = $('#product_quantity').val();
     var product_rate = $('#product_rate').val();
 
-    var invoice_to =  $('#invoice_to').val();
-    var invoice_form =  $('#invoice_form').val();
-    var invoice_id =  $('#invoice_id').val();
-    var invoice_dou_date =  $('#invoice_dou_date').val();
-    var invoice_date =  $('#invoice_date').val();
+    var invoice_to = $('#invoice_to').val();
+    var invoice_form = $('#invoice_form').val();
+    var invoice_id = $('#invoice_id').val();
+    var invoice_dou_date = $('#invoice_dou_date').val();
+    var invoice_date = $('#invoice_date').val();
 
     $('#completeInvoice').removeClass("d-none");
     $('#previw_id').addClass("d-none");
@@ -74,16 +74,16 @@ function addData() {
             method: 'post',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
-                    product_name: product_name,
-                    product_quantity: product_quantity,
-                    product_rate: product_rate,
-                    id: id,
-                    invoice_to: invoice_to,
-                    invoice_form: invoice_form,
-                    invoice_id: invoice_id,
-                    invoice_dou_date: invoice_dou_date,
-                    invoice_date: invoice_date
-                 },
+                product_name: product_name,
+                product_quantity: product_quantity,
+                product_rate: product_rate,
+                id: id,
+                invoice_to: invoice_to,
+                invoice_form: invoice_form,
+                invoice_id: invoice_id,
+                invoice_dou_date: invoice_dou_date,
+                invoice_date: invoice_date
+            },
             dataType: 'json',
             success: function (response) {
                 $('#id').val(response[1]);
@@ -126,7 +126,7 @@ function addData() {
 $("#invoiceForm").submit(function (e) {
     e.preventDefault();
     const fd = new FormData(this);
-alert(0);
+    alert(0);
     $.ajax({
         url: '/invoices/store',
         method: 'post',
@@ -162,8 +162,8 @@ alert(0);
                         title: ' Successfuly Invoice Created ',
 
                     });
-                    $('#previw_id').removeClass("d-none");
-                    $('#completeInvoice').addClass("d-none");
+                $('#previw_id').removeClass("d-none");
+                $('#completeInvoice').addClass("d-none");
 
                 // Alert disable
                 // $('#staticBackdrop_previw').addClass("block");
@@ -175,20 +175,20 @@ alert(0);
                 // Alert disable
 
 
-                    // Priview invoice show in this code
-                    // var invoice_last_id = document.getElementById('id').value;
-                    // // alert(invoice_last_id);
-                    // $.ajax({
-                    //     url: '/preview/image/' + invoice_last_id,
-                    //     method: 'get',
-                    //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                    //     success: function (data) {
-                    //         $('.preview_invoice_show').html(data);
-                    //     }
-                    // });
+                // Priview invoice show in this code
+                // var invoice_last_id = document.getElementById('id').value;
+                // // alert(invoice_last_id);
+                // $.ajax({
+                //     url: '/preview/image/' + invoice_last_id,
+                //     method: 'get',
+                //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                //     success: function (data) {
+                //         $('.preview_invoice_show').html(data);
+                //     }
+                // });
 
-                    // Priview invoice show in this code
-                  }
+                // Priview invoice show in this code
+            }
 
 
             $('#downlodeInvoice').removeClass("disabled");
@@ -264,7 +264,7 @@ alert(0);
 function allData() {
     var id = $('#id').val();
     // console.log(id);
-    var value ="";
+    var value = "";
 
     $.ajax({
         type: "POST",
@@ -362,25 +362,53 @@ function total(itemAmount) {
 function total(itemAmount) {
     $('#subtotal').text(itemAmount);
     var itemAmount = $('#subtotal').text() * 1;
-
-    var tax = $('#invoice_tax').val() * 1;
-
     $('#subtotal_no_vat').val(itemAmount);
 
+    var tax = $('#invoice_tax').val() * 1;
     var persent = (itemAmount * tax) / 100
-
+    $('#text_pecent_amount').text(persent);
     var total = itemAmount + persent;
-    $('#total').text(total);
-    inWords(total);
-    var advance = $('#advance_amount').val() * 1;
-    if (advance > 0) {
-        var paid = (total * advance) / 100;
-        $('#invoice_amu_paid').val(paid);
+
+
+    var discount_persent = $('#discount_persent').val() * 1;
+
+    if (discount_persent >= 100) {
+        $('#discount_persent').addClass("is-invalid");
+        $('#discount_persent_realtime').removeClass("d-none");
+
     } else {
-        var paid = $('#invoice_amu_paid').val() * 1;
+        $('#discount_persent').removeClass("is-invalid");
+        $('#discount_persent_realtime').addClass("d-none");
+
+        var discount_amount = (total * discount_persent) / 100
+        $('#discount_amount').text(discount_amount);
+
+        var balance_due_After_dis = total - discount_amount;
+        $('#total').text(balance_due_After_dis);
+
+        inWords(balance_due_After_dis);
+
+        $('#balanceDue').text(total - discount_amount);
     }
-    var balanceDue = total - paid;
-    $('#balanceDue').text(total);
+
+    var advance = $('#receive_advance_amount').val() * 1;
+
+
+
+    if (advance > balance_due_After_dis) {
+        $('.dateForm_recived').addClass("border_real");
+        $('#receive_advance_amount').addClass("is-invalid");
+        $('#receive_amount_realtime').removeClass("d-none");
+
+    } else {
+        $('.dateForm_recived').removeClass("border_real");
+        $('#receive_advance_amount').removeClass("is-invalid");
+        $('#receive_amount_realtime').addClass("d-none");
+        var paid = balance_due_After_dis - advance;
+        $('#balanceDue').text(paid);
+
+    }
+    // $('#balanceDue').text(balance_due_After_dis);
 }
 
 function editData(id) {
@@ -647,18 +675,18 @@ $("#send_mail_data").on("click", function () {
                     // document.getElementById('email_subject').value = "";
                     // document.getElementById('email_body').value = "";
 
-             // Alert disable
+                    // Alert disable
 
-                $('#staticBackdrop').css("d-none");
-                $('.modal-backdrop').css("display","none");
-                $('#body_alert').removeClass("modal-open");
-                $('#body_alert').css("overflow","auto");
-                $('#body_alert').css("padding-right","0");
-                $('#staticBackdrop').removeClass("show");
-                $('.modal-backdrop').removeClass("show");
+                    $('#staticBackdrop').css("d-none");
+                    $('.modal-backdrop').css("display", "none");
+                    $('#body_alert').removeClass("modal-open");
+                    $('#body_alert').css("overflow", "auto");
+                    $('#body_alert').css("padding-right", "0");
+                    $('#staticBackdrop').removeClass("show");
+                    $('.modal-backdrop').removeClass("show");
 
 
-            // Alert disable
+                    // Alert disable
 
                 } else {
                     button =
@@ -674,19 +702,19 @@ $("#send_mail_data").on("click", function () {
         })
     }
 });
-$(document).on("click", ".preview_image_user", function(e) {
+$(document).on("click", ".preview_image_user", function (e) {
     e.preventDefault();
-    var template_id =  $(this).closest(".data_table_id").find("#invoice_id_user").val();
+    var template_id = $(this).closest(".data_table_id").find("#invoice_id_user").val();
 
-//    alert(template_id);
-        $.ajax({
-            url: '/create/invoice/view/' + template_id ,
-            method: 'get',
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            success: function (data) {
-                $('.preview_invoice_show').html(data);
-            }
-        })
+    //    alert(template_id);
+    $.ajax({
+        url: '/create/invoice/view/' + template_id,
+        method: 'get',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function (data) {
+            $('.preview_invoice_show').html(data);
+        }
+    })
 
 });
 
@@ -711,7 +739,7 @@ $(".save_btn_anable").on("click", function () {
 
 
 
-$(document).on("change", "#invoice_to,#invoice_form,#invoice_id,#invoice_dou_date,#invoice_date, #invoice_tax, #invoice_terms, #invoice_notes,  #invoice_po_number,#invoice_payment_term,  #currencyList, #imageUpload ", function(e) {
+$(document).on("change", "#invoice_to,#invoice_form,#invoice_id,#invoice_dou_date,#invoice_date, #invoice_tax, #invoice_terms, #invoice_notes,  #invoice_po_number,#invoice_payment_term,  #currencyList, #imageUpload ", function (e) {
     e.preventDefault();
     $('#completeInvoice').removeClass("d-none");
     $('#previw_id').addClass("d-none");
