@@ -39,8 +39,10 @@
         .btn-fb .fb-content {
             display: flex;
             align-items: center;
-            width: 300px;
-            height: 50px;
+            width: 448px;
+            height: 44px;
+            background-color: #FFB317;
+            border-radius: 10px;
         }
 
         .btn-google .google-content .logo,
@@ -73,6 +75,7 @@
 
         .btn-google {
             background: #FFF;
+            border-radius: 10px;
         }
 
         .btn-google:hover {
@@ -84,13 +87,14 @@
         }
 
         .btn-google .google-content p {
-            color: #757575;
+            color: #FFFFFF;
         }
 
         .btn-fb {
             padding-top: 1.5px;
             background: #4267b2;
-            background-color: #3b5998;
+            background-color: #FFB317;
+            border-radius: 10px;
         }
 
         .btn-fb:hover {
@@ -119,12 +123,29 @@
             color: #fff !important;
         }
 
-        .color{
-            color: black !important;
+        .color {
+            color: #898989 !important;
             text-decoration: underline !important;
         }
-        .color:hover{
+
+        .color:hover {
             color: #FFB317 !important;
+        }
+
+        .eye {
+            margin-left: -38px !important;
+            z-index: 3;
+            border-left: 0;
+            border-radius: 0 10px 10px 0px !important;
+        }
+
+        .eyeColor {
+            color: #CCCCCC !important;
+        }
+
+        .inputPadding {
+            padding-top: 11px;
+            padding-bottom: 11px;
         }
     </style>
 @endpush
@@ -147,15 +168,15 @@
         <div>
             <div class="container ">
                 <div class="text-center">
-                    <h2 class="h2_title ">Welcome back to Billto</h2>
-                    <p class="form_title pb-3">Sign in</p>
+                    <h2 class="h2_title  mt-4 mb-3 fw-light">Welcome back to Billto</h2>
+                    <h2 class="mb-4  fw-bolder" style="color: #000000">Sign in</h2>
                 </div>
-                <div class="row">
+                <div class="row mb-4">
                     <div class="col-md-6 my-0 mx-auto">
                         <div class="border rounded" style="background: #F0F0F0;">
                             <form method="POST" action="{{ route('login') }}" autocomplete="on">
                                 @csrf
-                                <div class="p-5">
+                                <div class="pt-4 pb-4 ps-5 pe-5">
                                     @if ($errors->any())
                                         <div>
                                             <div class="fs-5 text-danger">
@@ -170,11 +191,13 @@
                                         </div>
                                     @endif
                                     <!-- Email Address -->
-                                    <div class="form-group pb-3">
-                                        <label for="email" class="pb-2 fw-bolder">Email</label>
-                                        <input type="email" name="email"
-                                            class=" form-control @error('email') is-invalid @enderror" required
-                                            autofocus id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <div class="form-group pb-4">
+                                        <label for="email" class="pb-2 " style="font-size: 14px ;">Email / Phone
+                                            number</label>
+                                        <input style="background-color: #FFFFFF; border-radius:10px" type="email"
+                                            name="email"
+                                            class=" inputPadding border-0 form-control @error('email') is-invalid @enderror"
+                                            required autofocus id="email" aria-describedby="emailHelp">
                                     </div>
                                     <!-- Password -->
                                     {{-- <div class="form-group pb-3">
@@ -186,121 +209,64 @@
                                     <!-- show password -->
                                     <div class="login_oueter">
                                         <div class="form-row">
-
-
+                                            <label for="email" class="pb-2 " style="font-size: 14px ;">Password</label>
                                             <div class="input-group mb-3">
-
-                                                <input type="password" name="password" required
-                                                class="form-control @error('email') is-invalid @enderror" id="password"
-                                                placeholder="Password" autocomplete="current-password">
-                                              <div class="input-group-append">
-                                                <span
-                                                  class="input-group-text"
-                                                  onclick="password_show_hide();"
-                                                >
-                                                  <i class="bi bi-eye" id="show_eye"></i>
-                                                  <i class="bi bi-eye-slash d-none" id="hide_eye"></i>
-                                                </span>
-                                              </div>
+                                                <input style="border-radius: 10px;" type="password" name="password" required
+                                                    class="form-control inputPadding border-0 @error('email') is-invalid @enderror"
+                                                    id="password" autocomplete="current-password">
+                                                <div class=" eye">
+                                                    <div class=" inputPadding border-0  eyeColor d-flex align-items-center pe-4"  onclick="password_show_hide();">
+                                                        <i class="bi bi-eye" id="show_eye"></i>
+                                                        <i class="bi bi-eye-slash d-none" id="hide_eye"></i>
+                                                    </div>
+                                                </div>
                                             </div>
-
-
-
                                         </div>
                                     </div>
-
                                     <!-- Remember Me -->
-                                    <div class="mt-1 form-check">
+                                    {{-- <div class="mt-1 form-check">
                                         <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
                                         <label for="remember_me" class="form-check-label text-sm"> Remember me </label>
-                                    </div>
+                                    </div> --}}
 
-                                    <button type="submit" class="form_btn my-3 py-2 btn btn-dark border-0 w-100 fw-bolder"
-                                        style="background: #FFB317;">Continue</button>
+                                    <button type="submit"
+                                        class="form_btn mt-3 inputPadding btn btn-dark border-0 w-100 text-bold "
+                                        style="background: #FFB317; font-size:14px; border-radius:10px; ">Continue</button>
 
-                                    <p class="my-2">
+                                    <!--reset password-->
+                                    <p class="text-center mt-2  ">
                                         @if (Route::has('password.request'))
-                                            <a href="{{ route('password.request') }}" class="fw-bolder reset color">Forgot your
+                                            <a href="{{ route('password.request') }}" class="reset color">Forgot your
                                                 password?</a>
                                         @endif
                                     </p>
-
-                                    {{-- <div class="mb-4 mt-3"
-                                        style="width: 100%; height: 20px; border-bottom: 2px solid #CCCCCC; text-align: center">
-                                        <span style="font-size: 25px; background-color: #F3F5F6; padding: 0 10px;">
+                                    <div class="mt-3 mb-4"
+                                        style="width: 100%; height: 20px; border-bottom: 0.5px solid #CCCCCC; text-align: center">
+                                        <span style="font-size: 14px; background-color: #F0F0F0; color:#CCCCCC;">
                                             or
                                         </span>
-                                    </div> --}}
+                                    </div>
+
+                                    <!-- google	 -->
+                                    <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
+                                    class="form_btn my-3 inputPadding btn btn-dark border-0 w-100 text-bold"
+                                    href="/auth/google/redirect">
+                                        <p class="text-white"><i class="bi bi-google me-1"></i> Sign in with Google</p>
+                                   </a>
+
+                                    <!-- facebook	 -->
+                                    <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
+                                    class="form_btn mt-3  inputPadding btn btn-dark border-0 w-100 text-bold"
+                                    href="/auth/facebook/redirect">
+                                    <p class="text-white"><i class="bi bi-facebook me-1"></i> Sign in with Facebook</p>
+                                    </a>
+                                    <!--text singup -->
                                     <div class="mt-3 already_billto">
-                                        <p class="fw-bold">Do not have an account? <a class="color" href="{{ route('register') }}">Sign up
+                                        <p class="text-center" style="color: #898989">Don't have an account yet?<a
+                                                class="color" href="{{ route('register') }}">No worries, joining is easy.
                                                 here</a></p>
                                     </div>
-                                    <div class="mb-4 "
-                                        style="width: 100%; height: 20px; border-bottom: 0.5px solid #CCCCCC; text-align: center">
-                                        {{-- <span style="font-size: 25px; background-color: #F3F5F6; padding: 0 10px;">
-                                            or
-                                        </span> --}}
-                                    </div>
-                                    <div class="block-wrap">
 
-                                        <!-- google	 -->
-                                        <div class="mb-2">
-                                            <a class="btn-google" href="/auth/google/redirect">
-                                                <div class="google-content">
-                                                    <div class="logo">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48">
-                                                            <defs>
-                                                                <path id="a"
-                                                                    d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z" />
-                                                            </defs>
-                                                            <clipPath id="b">
-                                                                <use xlink:href="#a" overflow="visible" />
-                                                            </clipPath>
-                                                            <path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z" />
-                                                            <path clip-path="url(#b)" fill="#EA4335"
-                                                                d="M0 11l17 13 7-6.1L48 14V0H0z" />
-                                                            <path clip-path="url(#b)" fill="#34A853"
-                                                                d="M0 37l30-23 7.9 1L48 0v48H0z" />
-                                                            <path clip-path="url(#b)" fill="#4285F4"
-                                                                d="M48 48L17 24l-4-3 35-10z" />
-                                                        </svg>
-                                                    </div>
-                                                    <p>Sign in with Google</p>
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                        <!-- facebook	 -->
-                                        <div class="mb-2">
-                                            <a class="btn-fb" href="/auth/facebook/redirect">
-                                                <div class="fb-content">
-                                                    <div class="logo">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32"
-                                                            height="32" viewBox="0 0 32 32" version="1">
-                                                            <path fill="#FFFFFF"
-                                                                d="M32 30a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v28z" />
-                                                            <path fill="#4267b2"
-                                                                d="M22 32V20h4l1-5h-5v-2c0-2 1.002-3 3-3h2V5h-4c-3.675 0-6 2.881-6 7v3h-4v5h4v12h5z" />
-                                                        </svg>
-                                                    </div>
-                                                    <p>Sign in with Facebook</p>
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                        <!-- GitHub	 -->
-                                        <div>
-                                            <a class="btn-fb btn-gh " href="/auth/github/redirect">
-                                                <div class="fb-content">
-                                                    <div class="logo">
-                                                        <i class="bi bi-github"></i>
-                                                    </div>
-                                                    <p>Sign in with GitHub</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -314,21 +280,21 @@
 
 @endsection
 @push('frontend_js')
-<script>
-    function password_show_hide() {
-      var x = document.getElementById("password");
-      var show_eye = document.getElementById("show_eye");
-      var hide_eye = document.getElementById("hide_eye");
-      hide_eye.classList.remove("d-none");
-      if (x.type === "password") {
-        x.type = "text";
-        show_eye.style.display = "none";
-        hide_eye.style.display = "block";
-      } else {
-        x.type = "password";
-        show_eye.style.display = "block";
-        hide_eye.style.display = "none";
-      }
-    }
-  </script>
+    <script>
+        function password_show_hide() {
+            var x = document.getElementById("password");
+            var show_eye = document.getElementById("show_eye");
+            var hide_eye = document.getElementById("hide_eye");
+            hide_eye.classList.remove("d-none");
+            if (x.type === "password") {
+                x.type = "text";
+                show_eye.style.display = "none";
+                hide_eye.style.display = "block";
+            } else {
+                x.type = "password";
+                show_eye.style.display = "block";
+                hide_eye.style.display = "none";
+            }
+        }
+    </script>
 @endpush
