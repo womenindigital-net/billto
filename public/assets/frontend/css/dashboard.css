@@ -46,6 +46,9 @@ div.dataTables_wrapper div.dataTables_paginate,
     height: 85vh;
     overflow-y: scroll;
 }
+.overflow_scroll::-webkit-scrollbar{
+    display: none;
+  }
 
 .total_amount_left p {
     font-style: normal;
@@ -103,9 +106,17 @@ div.dataTables_wrapper div.dataTables_paginate,
 
 
 .total_amount_right {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     background-color: #0072BC;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+.paid_amount {
+    width: 48px;
+    height: 48px;
+    background-color:  #197B30;
     border-radius: 50%;
     text-align: center;
     margin: 0 auto;
@@ -308,7 +319,7 @@ padding: 2px 3px;
     outline-offset: -2px;
     font-size: 18px;
     border-radius: 4px;
-    border: 1px solid #878787;
+    border: 1px solid #686868;
 }
 
 input:focus {
@@ -316,8 +327,20 @@ input:focus {
 }
 
 
-
-
+.settingUpdatebutton {
+    background-color: #FFB317;
+    color: #FFFFFF;
+     font-size: 18px;
+     padding: 12px 12px 12px 12px;
+    color: #FFFFFF;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+}
+.settingUpdatebutton:hover {
+    color: #686868;
+}
 
 
 
@@ -478,7 +501,10 @@ color: #898989;
     height: 60px;
     border: 1px solid #CCCCCC;
 }
-
+.Signature_img img {
+    width: 100%;
+    height: 58px;
+}
 .heading_tag_desh p {
     font-weight: 400;
     font-size: 10px;
@@ -503,7 +529,6 @@ color: #898989;
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    border: 1px solid;
 }
 
 .design_logo p {
@@ -638,7 +663,7 @@ color: #898989;
     text-decoration: none;
     transition: 0.2s linear;
     color: #CCCCCC;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
 }
 
@@ -718,8 +743,17 @@ color: #898989;
     border-radius: 6px;
     margin-top: 1px;
 }
+@media all and (min-width: 767px) {
+    .verticaleHeight_col_4 {
+        height: 75vh;
+    }
+    .verticaleHeight_col_8 {
+        min-height: 75vh;
+    }
+}
 
 @media all and (max-width: 767px) {
+
     .nav-icon {
         display: block;
     }
@@ -843,7 +877,17 @@ color: #898989;
     }
 }
 
+@media all and (max-width: 575px) {
+
+}
+
 @media all and (max-width: 374px) {
+    .verticaleHeight_col_4 {
+        height: 80vh;
+    }
+    .verticaleHeight_col_8 {
+        height: 70vh;
+    }
     .nav-icon {
         display: block;
     }

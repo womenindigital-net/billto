@@ -89,6 +89,17 @@ class DashboardController extends Controller
             $file->move('uploads/userImage/', $filename);
             $user->picture__input = $filename;
         }
+        if ($request->hasFile('signature')) {
+            $path = 'uploads/signature/' . $user->signature;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+            $file = $request->file('signature');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/signature/', $filename);
+            $user->signature = $filename;
+        }
         $user->update();
         return redirect()->back()->with('success', 'Successfully updated.');
     }

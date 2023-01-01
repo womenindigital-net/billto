@@ -34,7 +34,7 @@
 
         <div class="row">
             <div class="card p-4 mt-2 table-responsive">
-                <table id="example" class="table table-hover  mt-1 ">
+                <table id="example" class="table table-hover  mt-1 " style="color: #686868">
                     <thead>
                         <tr>
                             <th class="text-center">SL</th>
