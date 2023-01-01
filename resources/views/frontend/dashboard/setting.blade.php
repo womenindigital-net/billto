@@ -13,6 +13,16 @@
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endpush
+<style>
+    /* .verticaleHeight {
+
+        height: 74vh;
+    } */
+
+    .border_radius {
+        border-radius: 10px;
+    }
+</style>
 
 @section('dashboard_content')
     @foreach ($user as $item)
@@ -28,49 +38,71 @@
             <form action="{{ url('/all/invoices/user-setting' . $item->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="row   bg-white">
-                    <div class="text-end mt-2 "><button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">Change password</button></div>
-                    <div class="col-sm-4 ">
+                <div class="row   bg-white border_radius mb-2 ">
+                    <div class="text-end  mt-2  p-0 m-0 "><button type="button" class="settingUpdatebutton btn-sm        me-2"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Change
+                            password</button></div>
+
+                    <div class="col-sm-4 mt-4  verticaleHeight verticaleHeight_col_4">
                         <div class="d-flex justify-content-center">
-                            <div class="card border-0   my-sm-5 my-2" style="width: 18rem;">
-                                <div class="card-body" style="margin: 0 auto;">
+                            <div class="card border-0    my-2" style="width: 18rem;">
+                                <div class="card-body p-5" style="margin: 0 auto;">
                                     <label for="picture__input" tabIndex="0">
                                         <img class="propic" src="{{ asset('uploads/userImage/' . $item->picture__input) }}"
                                             alt="">
-                                        <span class="picture__image text-success"></span>
+                                        <span class="picture__image text-warning"></span>
                                     </label>
                                     <input type="file" name="picture__input" id="picture__input">
                                 </div>
-
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="card  " style="width: 18rem; ">
+                                <div class="card-body ">
+                                    @if ($item->signature)
+                                        <div class="text-center">
+                                            <img height="70px" width="120px"
+                                                src="{{ asset('uploads/signature/' . $item->signature) }}" alt="">
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-8 ">
-                        <div class="row mt-sm-5">
+                    <div class="col-sm-8 mt-4  verticaleHeight verticaleHeight_col_8">
+                        <div class="row ">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" name="name" value="{{ $item->name }}" class="form-control">
+                                    <input style="border-radius: 10px !important;" type="text" name="name"
+                                        value="{{ $item->name }}" class="form-control py-2">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Address</label>
-                                    <input type="text" name="address" value="{{ $item->address }}" class="form-control">
+                                    <textarea style="border-radius: 10px !important;" type="text" rows="5" name="address" value=""
+                                        class="form-control py-2"> {{ $item->address }}</textarea>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label class="form-label">Phone</label>
-                                    <input type="text" name="phone" value="{{ $item->phone }}" class="form-control">
+                                    <input style="border-radius: 10px !important;" type="text" name="phone"
+                                        value="{{ $item->phone }}" class="form-control py-2">
+                                </div>
+                                <div class="mb-3 ">
+                                    <label class="form-label mt-1">Email</label>
+                                    <input style="border-radius: 10px !important;" type="text" name="email"
+                                        value="{{ $item->email }}" class="form-control py-2" readonly>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="text" name="email" value="{{ $item->email }}" class="form-control"
-                                        readonly>
+                                    <label class="form-label mt-2">Signature</label>
+                                    <input style="border-radius: 10px !important;" name="signature" type="file"
+                                        name="signature" class="form-control " readonly>
                                 </div>
+
                             </div>
                             <div class="mb-2">
-                                <button type="submit" class="btn btn-sm btn-outline-success">Update</button>
+                                <button type="submit" class="settingUpdatebutton btn-sm">Update</button>
                             </div>
                         </div>
                     </div>
