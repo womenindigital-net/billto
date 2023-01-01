@@ -111,11 +111,7 @@
                                     border-radius: 10px 0px 0px 10px;
                                 }
 
-                                /* .form-control:focus {
-                                                                        border-color: none !important;
-                                                                        box-shadow: none !important;
-                                                                        border:none !important;
-                                                                    } */
+
                                 .textColor {
                                     color: #898989;
                                 }
@@ -372,7 +368,7 @@
                                     <div class="input-group-text invoiceIdOne">&#9839;</div>
                                     <input readonly type="text" name="invoice_id"
                                         class="form-control inputBorderRedius"
-                                        value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @else {{ 'INVID' . $invoiceCountNew }} @endif"
+                                        value="    @if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @else {{ 'INVID' . $invoiceCountNew }} @endif"
                                         id="invoice_id" placeholder="INVOICE ID">
                                     <input type="hidden" id="id" name="id"
                                         value="@if (isset($invoiceData->id)) {{ $invoiceData->id }} @endif">
@@ -616,7 +612,7 @@
                             <div id="invoice_terms_error" class="invalid-feedback"></div>
                         </div>
                         <div class="pt-3 d-flex align-items-center">
-                            <input type="checkbox" style="width: 20px; height:20px " checked>
+                            <input type="checkbox" style="width: 20px; height:20px" name="invoice_signature" checked>
                             <label class="textColor ms-2">Add Signature</label><br>
                         </div>
                     </div>
@@ -634,9 +630,9 @@
                             <div class="col input-group p-0">
                                 {{-- <div class="input-group-text  border-0 bgInput textColor ">&#8453;</div> --}}
 
-                                <input type="number" name="invoice_tax" max="100"
+                                <input type="text" name="invoice_tax" max="100"
                                     class="form-control text-end pe-3 inputBorderRedius"
-                                    value="@if (isset($invoiceData->invoice_tax_percent)) {{ $invoiceData->invoice_tax_percent }} @endif"
+                                    value="@if(isset($invoiceData->invoice_tax_percent)) {{ $invoiceData->invoice_tax_percent }} @endif"
                                     id="invoice_tax" onchange="total()">
                                     <div class="input-group-text  InputCustomizeTex border-0 p-0 textColor" > &#8453; </div>
 
@@ -646,7 +642,7 @@
                                     </div>
 
                                 <div id="invoice_tax_error" class="invalid-feedback"></div>
-
+                                <input type="hidden" id="invoice_tax_amounts"  name="invoice_tax_amounts">
                             </div>
 
                         </div>
@@ -658,7 +654,8 @@
                                     <label for="#discount_persent">Discount</label>
                                 </div>
                                 <div class="col input-group p-0">
-                                    <input type="number" name="discount" id="discount_persent" min="0" max="100"
+                                    <input type="text" name="discount_percent" id="discount_persent" min="0" max="100"
+                                     value="@if (isset($invoiceData->discount_percent)) {{ $invoiceData->discount_percent }} @endif"
                                         class="form-control text-end pe-3 inputBorderRedius" onchange="total()">
                                     <div class="input-group-text  InputCustomizeTex border-0  textColor p-0">
                                         &#8453;
@@ -670,6 +667,7 @@
                                     </div>
 
                                     <div class="text-danger w-100 ps-2 d-none" id="discount_persent_realtime" style="font-size: 12px;"> Below 100% </div>
+                                    <input type="hidden" id="discount_amounts" name="discount_amounts" >
                                 </div>
                             </div>
                            {{--  <div class="row pt-2">
@@ -696,6 +694,7 @@
                                 </div>
                                 <p id="totalInwords" class="text-end text-dark"
                                     style="font-size: 10px;text-transform: capitalize;"></p>
+                                    <input type="hidden" id="final_total" name="final_total">
                             </div>
                             {{-- <div class="row pt-2 ">
                 <div class="col-7 d-flex align-items-center">Advance Amount</div>
@@ -715,9 +714,10 @@
                         <div class="row pt-2 ">
                             <div class="col-7 d-flex align-items-center justify-content-end  pe-5 textColor">Receive Advance Amount</div>
                             <div class="col input-group p-0">
-                                <input type="number" name="receive_advance_amount"
+                                <input type="text" name="receive_advance_amount"
                                     class="form-control inputBorderRedius text-end  pe-5" role="button" aria-disabled="true"
-                                    value="" id="receive_advance_amount"  onchange="total()">
+                                    value="@if (isset($invoiceData->receive_advance_amount)) {{ $invoiceData->receive_advance_amount }} @endif"
+                                     id="receive_advance_amount"  onchange="total()">
                                   <div class="input-group-text textColor dateForm_recived pe-4 " id="currency">$</div>
                                 <div id="receive_advance_amount_error" class="invalid-feedback"></div>
                                 <div class="text-danger w-100 ps-2 d-none" id="receive_amount_realtime" style="font-size: 12px;">  Below total balance </div>
@@ -731,7 +731,7 @@
                                     <label for="#requesting_advance_amount">Requesting Advance Amount</label>
                                 </div>
                                 <div class="col input-group p-0">
-                                    <input type="number" name="requesting_advance_amount"
+                                    <input type="text" name="requesting_advance_amount"
                                         class="form-control text-end  inputBorderRedius"
                                         value="@if (isset($invoiceData->requesting_advance_amount_percent)) {{ $invoiceData->requesting_advance_amount_percent }} @endif"
                                         id="requesting_advance_amount" onchange="requestingAdvanceAmount()">

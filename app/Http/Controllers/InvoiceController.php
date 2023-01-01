@@ -140,7 +140,6 @@ class InvoiceController extends Controller
             'invoice_id' => 'required',
             'invoice_date' => 'required|date',
             'invoice_payment_term' => 'max:30',
-            'invoice_dou_date' => 'date|after:invoice_date',
             'invoice_po_number' => 'max:30',
             'invoice_notes' => 'max:1024',
             'invoice_terms' => 'max:1024',
@@ -221,7 +220,12 @@ class InvoiceController extends Controller
                     }
                 }
                 // invocie Logo name End
-
+                $status ="";
+                 if($request->receive_advance_amount === $request->final_total){
+                    $status="paid";
+                 }else{
+                    $status="due";
+                 }
                 // Update Invoice Data
                 $data = array(
                     'invoice_logo' => $filename,
@@ -236,9 +240,17 @@ class InvoiceController extends Controller
                     'invoice_notes' => $request->invoice_notes,
                     'invoice_terms' => $request->invoice_terms,
                     'invoice_tax_percent' => $request->invoice_tax,
+                    'invoice_tax_amounts' => $request->invoice_tax_amounts,
+
                     'requesting_advance_amount_percent' => $request->requesting_advance_amount,
                     'total' => $total,
+                    'final_total' => $request->final_total,
+                    'receive_advance_amount'=>$request->receive_advance_amount,
+                    'discount_amounts' => $request->discount_amounts,
+                    'discount_percent' => $request->discount_percent,
+
                     'invoice_status' => 'incomlete',
+                    'status_due_paid' => $status,
                     'subtotal_no_vat'=> $request->subtotal_no_vat,
                     'template_name' => $request->template_name,
                 );
@@ -355,9 +367,10 @@ class InvoiceController extends Controller
             'invoice_notes',
             'invoice_terms',
             'invoice_tax_percent',
+            'invoice_tax_amounts',
             'requesting_advance_amount_percent',
-            // 'invoice_amu_paid_percent',
-            // 'invoice_amu_paid',
+            'receive_advance_amount',
+            'discount_percent',
             'total',
             'template_name',
             'subtotal_no_vat'
@@ -396,8 +409,10 @@ class InvoiceController extends Controller
             'invoice_notes',
             'invoice_terms',
             'invoice_tax_percent',
+            'invoice_tax_amounts',
             'requesting_advance_amount_percent',
-
+            'receive_advance_amount',
+            'discount_percent',
             'total',
             'template_name',
             'subtotal_no_vat'

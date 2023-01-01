@@ -33,14 +33,19 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_notes', 1024)->nullable();
             $table->string('invoice_terms', 1024)->nullable();
             $table->string('invoice_tax_percent')->nullable();
+            $table->string('invoice_tax_amounts', 30)->nullable();
             $table->string('requesting_advance_amount_percent')->nullable();
             $table->string('receive_advance_amount')->nullable();
             $table->string('total')->nullable();
+            $table->string('final_total')->nullable();
             $table->string('currency', 30)->nullable();
             $table->string('template_name', 30)->nullable();
             $table->string('subtotal_no_vat', 30)->nullable();
+            $table->string('discount_percent', 30)->nullable();
+            $table->string('discount_amounts', 30)->nullable();
 
             $table->enum('invoice_status', ['complete','incomlete'])->default('incomlete');
+            $table->enum('status_due_paid', ['due','paid'])->default('due');
             $table->timestamps();
         });
     }

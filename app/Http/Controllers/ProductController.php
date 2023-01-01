@@ -61,19 +61,20 @@ class ProductController extends Controller
         if(Auth::check()){
             // If the user has login Start
             $data = array(
-                'user_id' => Auth::user()->id
-
-           );
-
-           $invoice =  Invoice::updateOrCreate([
-               'id' => $id,
-               'invoice_form'=>$request->invoice_form,
+                'user_id' => Auth::user()->id,
+                'invoice_form'=>$request->invoice_form,
                 'invoice_to'=>$request->invoice_to,
                 'invoice_id'=>$request->invoice_id,
                 'invoice_dou_date'=>$request->invoice_dou_date,
                 'invoice_date'=>$request->invoice_date,
-
-           ], $data);
+                'discount_amounts'=>$request->discount_amounts,
+                'invoice_tax_amounts'=>$request->invoice_tax_amounts,
+                'final_total'=>$request->final_total,
+                'invoice_po_number'=>$request->invoice_po_number
+               );
+           $invoice =  Invoice::updateOrCreate([
+               'id' => $id,
+             ], $data);
 
            $invoice_id = $invoice->id;
 
@@ -92,17 +93,19 @@ class ProductController extends Controller
            // If the user is not logined in Start.
             $data = array(
                 'session_id' => session_id(),
-
-           );
-
-           $invoice =  Invoice::updateOrCreate([
-               'id' => $id,
-               'invoice_form'=>$request->invoice_form,
+                'invoice_form'=>$request->invoice_form,
                 'invoice_to'=>$request->invoice_to,
                 'invoice_id'=>$request->invoice_id,
                 'invoice_dou_date'=>$request->invoice_dou_date,
                 'invoice_date'=>$request->invoice_date,
+                'discount_amounts'=>$request->discount_amounts,
+                'invoice_tax_amounts'=>$request->invoice_tax_amounts,
+                'final_total'=>$request->final_total,
+                'invoice_po_number'=>$request->invoice_po_number
+                 );
 
+           $invoice =  Invoice::updateOrCreate([
+            'id' => $id,
            ], $data);
 
            $invoice_id = $invoice->id;
