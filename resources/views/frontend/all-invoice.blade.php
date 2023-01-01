@@ -208,7 +208,10 @@
                                                     <div
                                                         class="earning_graph  d-flex   justify-content-center align-items-center">
                                                         <div>
-                                                            <span>12%+ </span>
+                                                            <div role="progressbar" class="bar " aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="--value:70"></div>
+
+
+                                                            {{-- <span>12%+ </span> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -219,6 +222,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-12 col-lg-8">
                             <div class="row">
                                 <div class="col-6  col-md-4 col-lg-4">
