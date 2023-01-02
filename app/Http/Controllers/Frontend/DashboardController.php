@@ -30,7 +30,9 @@ class DashboardController extends Controller
         $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('total');
-        return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut'));
+        $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)
+        ->get();
+        return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut','latestDataInvoices'));
     }
 
     public function edit($id)
