@@ -345,9 +345,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach($latestDataInvoices as $key => $latestDataInvoice)
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Bill to</td>
+                                                        <th scope="row">{{ ++$key }}</th>
+                                                        <td>{{ $latestDataInvoice->invoice_to }}</td>
                                                         <td>10-12-2022</td>
                                                         <td>
                                                             <div class="paid_btn">
@@ -355,80 +356,9 @@
                                                             </div>
                                                         </td>
                                                         <td>@mdo</td>
-                                                        <td>@mdo</td>
+                                                        <td>{{  $latestDataInvoice->total  }}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Bill to</td>
-                                                        <td>10-12-2022</td>
-                                                        <td>
-                                                            <div class="due_btn">
-                                                                <a href="">Due </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Bill to</td>
-                                                        <td>10-12-2022</td>
-                                                        <td>
-                                                            <div class="draft_btn">
-                                                                <a href="">Draft </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Bill to</td>
-                                                        <td>10-12-2022</td>
-                                                        <td>
-                                                            <div class="paid_btn">
-                                                                <a href="">paid </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Bill to</td>
-                                                        <td>10-12-2022</td>
-                                                        <td>
-                                                            <div class="due_btn">
-                                                                <a href="">Due </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Bill to</td>
-                                                        <td>10-12-2022</td>
-                                                        <td>
-                                                            <div class="draft_btn">
-                                                                <a href="">Draft </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Bill to</td>
-                                                        <td>10-12-2022</td>
-                                                        <td>
-                                                            <div class="draft_btn">
-                                                                <a href="">Draft </a>
-                                                            </div>
-                                                        </td>
-                                                        <td>@mdo</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

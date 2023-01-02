@@ -29,7 +29,8 @@ class SettignsController extends Controller
         $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
-        return view('frontend.dashboard.home')->with(compact('invoicessData', 'count','user' ,'all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut'));
+        $allInvoiceDatas = Invoice::paginate(10);
+        return view('frontend.dashboard.home')->with(compact('invoicessData', 'count','user' ,'all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut','allInvoiceDatas'));
     }
 
     public function MyTrashinvoice()

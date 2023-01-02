@@ -78,6 +78,7 @@
                         }
 
                     }
+
                     </style>
                     <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center m-0 p-0">
                         <div class="custom_width" style="width: 30%">
@@ -88,6 +89,9 @@
                             <input type="text" class="form-control  bg-white" id="invoice_date" readonly>
                         </div>
                     </div>
+
+
+
                     <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
                         <div class="custom_width" style="width: 10%; text-align:center">
                             <span>To</span>
@@ -134,146 +138,30 @@
                       </tr>
                     </thead>
                     <tbody>
+                        @foreach ($allInvoiceDatas as $key => $InvoiceData )
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Bill to</td>
-                        <td>10-12-2022</td>
+                        <th scope="row">{{ ++$key }}</th>
+                        <td>{{ $InvoiceData->invoice_to }}</td>
+                        <td>{{ $InvoiceData->invoice_date }}</td>
                         <td>
                             <div class="paid_btn">
                                  <a href="">paid </a>
                             </div>
                         </td>
                         <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>{{ $InvoiceData->total }}</td>
                         <td>
                             <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
                             <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
                             <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
                         </td>
                       </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Bill to</td>
-                        <td>10-12-2022</td>
-                        <td>
-                            <div class="due_btn">
-                                 <a href="">Due </a>
-                            </div>
-                        </td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-
-
-                            <td>
-                                <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
-                                <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
-                                <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
-                            </td>
-
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Bill to</td>
-                        <td>10-12-2022</td>
-                        <td>
-                            <div class="draft_btn">
-                                 <a href="">Draft </a>
-                            </div>
-                        </td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Bill to</td>
-                        <td>10-12-2022</td>
-                        <td>
-                            <div class="paid_btn">
-                                 <a href="">paid </a>
-                            </div>
-                        </td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
-                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
-                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Bill to</td>
-                        <td>10-12-2022</td>
-                        <td>
-                            <div class="due_btn">
-                                 <a href="">Due </a>
-                            </div>
-                        </td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
-                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
-                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Bill to</td>
-                        <td>10-12-2022</td>
-                        <td>
-                            <div class="draft_btn">
-                                 <a href="">Draft </a>
-                            </div>
-                        </td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
-                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
-                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Bill to</td>
-                        <td>10-12-2022</td>
-                        <td>
-                            <div class="draft_btn">
-                                 <a href="">Draft </a>
-                            </div>
-                        </td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
-                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
-                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Bill to</td>
-                        <td>10-12-2022</td>
-                        <td>
-                            <div class="draft_btn">
-                                 <a href="">Draft </a>
-                            </div>
-                        </td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
-                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
-                            <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
-                        </td>
-                      </tr>
-
+                      @endforeach
                     </tbody>
                   </table>
                   <div class="row">
                     <div class="col-4 col-sm-6 col-md-7">
-                        page:1|2|3|
+                        {{ $allInvoiceDatas->links() }}
                     </div>
                     <div class="col-8 col-sm-6 col-md-5">
                         <div class="row">
