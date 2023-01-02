@@ -61,12 +61,12 @@
     <!-- Invoice Section Start -->
     <section class="invoice_section">
         <div class="">
-            {{-- @if (Auth::check())
+            @if (Auth::check())
                 <form method="post" id="invoiceForm" enctype="multipart/form-data">
                 @else
                     <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
-            @endif --}}
-            <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data">
+            @endif
+            {{-- <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data"> --}}
             @csrf
             <div class="container p-4 mt-5 " style="background-color: #F0F0F0; border-radius: 10px;">
                 <div class="row">
@@ -116,6 +116,7 @@
                                 .textColor {
                                     color: #898989;
                                 }
+
                             </style>
                             <div class="col-md-4 text-center mt-3">
                                 <label for="imageUpload">
@@ -127,13 +128,14 @@
                                                 <span class="textColor">Add your logo</span>
                                                  @endif
                                             </div>
+
                                             <div class="avatar-edit">
                                                 <input class="" type='file' name="invoice_logo" id="imageUpload" />
-                                                @if(isset($user_logo_terms->invoice_logo))
-                                                 <img class="hide_image"src="{{ asset('storage/invoice/logo/'.$user_logo_terms->invoice_logo) }}"  style="width:100%; border-radius:10px;" alt="">
-                                                @endif
-                                            </div>
 
+                                            @if(isset($user_logo_terms->invoice_logo))
+                                            <img class="hide_image "src="{{ asset('storage/invoice/logo/'.$user_logo_terms->invoice_logo) }}"  style="width:100%;  border-radius:10px;" alt="">
+                                           @endif
+                                        </div>
                                             <div class="avatar-preview">
                                                 <div id="imagePreview"
                                                     @if (isset($invoiceData->invoice_logo)) style=" border-radius:10px; background-image: url({{ url('storage/invoice/logo/' . $invoiceData->invoice_logo) }});"
