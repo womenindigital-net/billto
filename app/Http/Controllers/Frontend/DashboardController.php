@@ -30,8 +30,7 @@ class DashboardController extends Controller
         $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('total');
-        $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)
-        ->get();
+        $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)->get();
         return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut','latestDataInvoices'));
     }
 
@@ -48,7 +47,12 @@ class DashboardController extends Controller
 
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
         $invoiceCountNew += 0;
-        return view('frontend.create-invoice')->with(compact('invoiceData', 'invoiceCount', 'requesting_advance_amount','template_id','invoice_template','template_id_check','sendByMail_count','Total_Amount_conut','invoiceCountNew'));
+        $user_logo_terms = User::where('id', Auth::user()->id)->get([
+            'invoice_logo',
+            'terms',
+        ]) ->first();
+
+        return view('frontend.create-invoice')->with(compact('invoiceData','user_logo_terms', 'invoiceCount', 'requesting_advance_amount','template_id','invoice_template','template_id_check','sendByMail_count','Total_Amount_conut','invoiceCountNew'));
     }
 
     public function destroy($id)
@@ -70,7 +74,8 @@ class DashboardController extends Controller
         $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
-        return view('frontend.dashboard.setting',compact('user','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut'));
+        $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)->get();
+        return view('frontend.dashboard.setting',compact('user','latestDataInvoices','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut'));
     }
     public function userUpdate(UpdateUserRequest $request, $id){
         $get_id = $id;
@@ -134,7 +139,8 @@ class DashboardController extends Controller
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $sendByMails = SendMail_info::where('user_id', $user_id)->latest()->get();
         $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
-        return view('frontend.dashboard.sendByMail',compact('user','all_Invoice_Count','trash','sendByMail_count','sendByMails','Total_Amount_conut'));
+        $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)->get();
+        return view('frontend.dashboard.sendByMail',compact('user','latestDataInvoices','all_Invoice_Count','trash','sendByMail_count','sendByMails','Total_Amount_conut'));
     }
 
 public function user_view_tamplate($id)
