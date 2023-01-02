@@ -499,6 +499,7 @@ function readURL(input) {
 $("#imageUpload").change(function () {
     readURL(this);
     $('.logo_text').hide();
+    $('.hide_image').hide();
 });
 
 

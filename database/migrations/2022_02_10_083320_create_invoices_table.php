@@ -43,6 +43,7 @@ class CreateInvoicesTable extends Migration
             $table->string('subtotal_no_vat', 30)->nullable();
             $table->string('discount_percent', 30)->nullable();
             $table->string('discount_amounts', 30)->nullable();
+            $table->string('invoice_signature', 30)->nullable();
 
             $table->enum('invoice_status', ['complete','incomlete'])->default('incomlete');
             $table->enum('status_due_paid', ['due','paid'])->default('due');

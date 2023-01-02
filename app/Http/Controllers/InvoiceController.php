@@ -54,11 +54,20 @@ class InvoiceController extends Controller
             $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
+
+           $user_logo_terms = User::where('id', Auth::user()->id)->get([
+                'invoice_logo',
+                'terms',
+            ]) ->first();
+
+
+
+
             $session =Session::get('session_invoice_id');
           if($session!=""){
             return redirect()->to('/edit/invoices/'.$session);
           }else{
-             return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
+             return view('frontend.create-invoice')->with(compact('lastInvoice','user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
           }
 
         }else{
@@ -112,7 +121,13 @@ class InvoiceController extends Controller
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
         $invoiceCountNew += 1;
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template'));
+        $user_logo_terms = User::where('id', Auth::user()->id)->get([
+            'invoice_logo',
+            'terms',
+        ]) ->first();
+
+
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template'));
     }
 
     /**
@@ -219,6 +234,23 @@ class InvoiceController extends Controller
                         $file->move(public_path('storage/invoice/logo'), $filename);
                     }
                 }
+
+                if($request->file('invoice_logo') || $request->invoice_terms != null ){
+
+                    User::where('id', Auth::user()->id)
+                    ->update([
+                        'invoice_logo' =>$filename,
+                     ]);
+                }
+                if($request->invoice_terms != null ){
+
+                    User::where('id', Auth::user()->id)
+                    ->update([
+                        'terms' => $request->invoice_terms,
+                     ]);
+                }
+
+
                 // invocie Logo name End
                 $status ="";
                  if($request->receive_advance_amount === $request->final_total){
@@ -228,7 +260,7 @@ class InvoiceController extends Controller
                  }
                 // Update Invoice Data
                 $data = array(
-                    'invoice_logo' => $filename,
+                    'invoice_logo' => 0,
                     'currency' => $request->currency,
                     'invoice_form' => $request->invoice_form,
                     'invoice_to' => $request->invoice_to,
@@ -238,7 +270,7 @@ class InvoiceController extends Controller
                     'invoice_dou_date' => $request->invoice_dou_date,
                     'invoice_po_number' => $request->invoice_po_number,
                     'invoice_notes' => $request->invoice_notes,
-                    'invoice_terms' => $request->invoice_terms,
+                    'invoice_terms' => 0,
                     'invoice_tax_percent' => $request->invoice_tax,
                     'invoice_tax_amounts' => $request->invoice_tax_amounts,
 
@@ -253,6 +285,8 @@ class InvoiceController extends Controller
                     'status_due_paid' => $status,
                     'subtotal_no_vat'=> $request->subtotal_no_vat,
                     'template_name' => $request->template_name,
+                    'invoice_signature' => $request->invoice_signature,
+
                 );
 
                 Session::forget('session_invoice_id');
