@@ -64,6 +64,11 @@ function addData() {
     var invoice_id = $('#invoice_id').val();
     var invoice_dou_date = $('#invoice_dou_date').val();
     var invoice_date = $('#invoice_date').val();
+    var discount_amounts = $('#discount_amounts').val();
+    var invoice_tax_amounts = $('#invoice_tax_amounts').val();
+    var final_total = $('#final_total').val();
+    var invoice_po_number = $('#invoice_po_number').val();
+
 
     $('#completeInvoice').removeClass("d-none");
     $('#previw_id').addClass("d-none");
@@ -82,7 +87,11 @@ function addData() {
                 invoice_form: invoice_form,
                 invoice_id: invoice_id,
                 invoice_dou_date: invoice_dou_date,
-                invoice_date: invoice_date
+                invoice_date: invoice_date,
+                discount_amounts: discount_amounts,
+                invoice_tax_amounts:invoice_tax_amounts,
+                final_total: final_total,
+                invoice_po_number:invoice_po_number,
             },
             dataType: 'json',
             success: function (response) {
@@ -366,6 +375,7 @@ function total(itemAmount) {
 
     var tax = $('#invoice_tax').val() * 1;
     var persent = (itemAmount * tax) / 100
+    $('#invoice_tax_amounts').val(persent);
     $('#text_pecent_amount').text(persent);
     var total = itemAmount + persent;
 
@@ -382,18 +392,17 @@ function total(itemAmount) {
 
         var discount_amount = (total * discount_persent) / 100
         $('#discount_amount').text(discount_amount);
-
+        $('#discount_amounts').val(discount_amount);
         var balance_due_After_dis = total - discount_amount;
         $('#total').text(balance_due_After_dis);
 
         inWords(balance_due_After_dis);
 
+        $('#final_total').val(balance_due_After_dis);
         $('#balanceDue').text(total - discount_amount);
     }
 
     var advance = $('#receive_advance_amount').val() * 1;
-
-
 
     if (advance > balance_due_After_dis) {
         $('.dateForm_recived').addClass("border_real");
