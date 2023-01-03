@@ -716,7 +716,7 @@ $(document).on("click", ".preview_image_user", function (e) {
     e.preventDefault();
     var template_id = $(this).closest(".data_table_id").find("#invoice_id_user").val();
 
-    //    alert(template_id);
+     alert(template_id);
     $.ajax({
         url: '/create/invoice/view/' + template_id,
         method: 'get',

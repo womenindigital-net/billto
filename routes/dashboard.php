@@ -23,4 +23,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/all/invoices/send-by-Mail', [DashboardController::class, 'SendByMail']);
 
     Route::get('/create/invoice/view/{id}', [DashboardController::class, 'user_view_tamplate']);
+
+    // search result dasboard
+    Route::GET('/search-result', [DashboardController::class, 'search_result'])->name('search.result');
+
 });

@@ -41,56 +41,69 @@
         border-top: 1px solid #dbdbdb !important;
     }
 </style>
+<style>
+
+    @media all and (max-width: 575px) {
+        .custom_width{
+            width: 30% !important;
+        }
+        .custom_width_text {
+            width: 50% !important;
+            margin-bottom: 8px;
+        }
+        .mr_custom{
+            display:flex;
+            justify-content: center;
+            margin-right: 10px;
+        }
+    }
+
+    @media all and (max-width: 768px) {
+        .custom_width{
+            width: 30% !important;
+        }
+        .custom_width_text {
+            width: 70% !important;
+            margin-bottom: 8px;
+        }
+
+    }
+
+    </style>
 @section('dashboard_content')
     <div class="container-fluid overflow_scroll">
         <div class="row mt-2">
             <div class="card  table-responsive">
+                <div class="mt-1">
+                    @if ($errors->any())
+                    <div class=" alert alert-danger p-0 m-0">
+                        <ul class="mt-2 text-danger">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                  @endif
+                </div>
+                <form action="{{ route('search.result') }}"  method="GET">
                 <div class="row mt-2">
                     <div class="col-12 col-sm-12 col-md-2">
                         <div class="all_invice_title pt-2 ">
+
                             <p>All Invoice <span class="rond_all">{{  $all_Invoice_Count }}</span></p>
+
                         </div>
                     </div>
-                    <style>
-
-                    @media all and (max-width: 575px) {
-                        .custom_width{
-                            width: 30% !important;
-                        }
-                        .custom_width_text {
-                            width: 50% !important;
-                            margin-bottom: 8px;
-                        }
-                        .mr_custom{
-                            display:flex;
-                            justify-content: center;
-                            margin-right: 10px;
-                        }
-                    }
-
-                    @media all and (max-width: 768px) {
-                        .custom_width{
-                            width: 30% !important;
-                        }
-                        .custom_width_text {
-                            width: 70% !important;
-                            margin-bottom: 8px;
-                        }
-
-                    }
-
-                    </style>
                     <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center m-0 p-0">
                         <div class="custom_width" style="width: 30%">
-                            <span>Date From</span>
+                            <span>Date From </span>
                         </div>
                         <div class="input-group bg-white custom_width_text" style="width: 70%">
                             <label class="input-group-text" for="invoice_date"><i class="bi bi-calendar3"></i></label>
-                            <input type="text" class="form-control  bg-white" id="invoice_date" readonly>
+                            <input type="text" class="form-control  bg-white @error('from_date')  is-invalid @enderror" name="from_date" required id="invoice_date" readonly>
                         </div>
+
                     </div>
-
-
 
                     <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
                         <div class="custom_width" style="width: 10%; text-align:center">
@@ -98,7 +111,7 @@
                         </div>
                         <div class="input-group bg-white custom_width_text" style="width: 90%">
                             <label class="input-group-text" for="invoice_dou_date" ><i class="bi bi-calendar3"></i></label>
-                            <input type="text" class="form-control  bg-white"   id="invoice_dou_date" readonly>
+                            <input type="text" class="form-control  bg-white @error('to_date')  is-invalid @enderror"  name="to_date" required  id="invoice_dou_date" readonly>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
@@ -106,8 +119,7 @@
                             <span>Status</span>
                         </div>
                         <div class="input-group bg-white custom_width_text" style="width: 80%">
-                            <select class="form-select" id="inputGroupSelect01" name="invoice_status">
-                                <option selected>Choose...</option>
+                            <select class="form-select  @error('invoice_status')  is-invalid @enderror" id="inputGroupSelect01" name="invoice_status" required>
                                 <option value="paid">Paid</option>
                                 <option value="due">Due</option>
                                 {{-- <option value="draft">Draft</option> --}}
@@ -121,9 +133,8 @@
                         </div>
                     </div>
                 </div>
-                <style>
+            </form>
 
-                </style>
                 <div style=" margin-top:25px"></div>
                 <table class="table table-hover btn_design" style="color:#686868">
                     <thead style="border-bottom: 2px solid #FFB317 !important; border-top: 1px solid #FFB317 !important;">
@@ -138,24 +149,43 @@
                       </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $final_total = 0;
+                            $paid_total = 0;
+                        @endphp
                         @foreach ($allInvoiceDatas as $key => $InvoiceData )
-                      <tr>
+                      <tr class="data_table_id">
                         <th scope="row">{{ ++$key }}</th>
                         <td>{{ $InvoiceData->invoice_to }}</td>
                         <td>{{ $InvoiceData->invoice_date }}</td>
                         <td>
-                            <div class="paid_btn">
-                                 <a href="">paid </a>
+                            @if ($InvoiceData->status_due_paid=="due")
+                            <div class="due_btn">
+                                <a href=""> Due </a>
                             </div>
+                            @else
+                            <div class="paid_btn">
+                                <a href="">Paid </a>
+                            </div>
+                            @endif
                         </td>
-                        <td>@mdo</td>
-                        <td>{{ $InvoiceData->total }}</td>
+                        <td> {{number_format($InvoiceData->receive_advance_amount,2 ) }}</td>
+
+                        <td> {{number_format($InvoiceData->final_total,2 ) }} </td>
                         <td>
-                            <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a>
-                            <a href="" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
+                            {{-- <a href="" class="btn btn-sm btn_view"> <i class="bi bi-eye "></i></a> --}}
+                            <a href="" class="preview_image_user btn btn-sm btn_view"    data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop_previw" ><i class="bi bi-eye "></i></a>
+                            <a href="{{ route('edit.invoice', $InvoiceData->id) }}" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
                             <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
                         </td>
+                         <input type="hidden" id="invoice_id_user" value="{{ $InvoiceData->id }}">
+
                       </tr>
+                      @php
+                      $final_total += $InvoiceData->final_total;
+                      $paid_total += $InvoiceData->receive_advance_amount;
+                      @endphp
                       @endforeach
                     </tbody>
                   </table>
@@ -169,18 +199,18 @@
                               <p class="total_text_design"> TOTAL</p>
                             </div>
                             <div class="col-8">
-                               <p class="total_amount " >1000.00</p>
+                               <p class="total_amount " >{{ number_format($final_total,2) }}</p>
                             </div>
                             <div class="col-4">
                                 <p class="total_text_design "> PAID AMOUNT</p>
                               </div>
                               <div class="col-8">
-                                 <p class="total_amount " >1000.00</p>
+                                 <p class="total_amount " >{{ number_format($paid_total,2) }}</p>
                               </div><div class="col-4">
                                 <p class="total_text_design"> BALANCE DUE</p>
                               </div>
                               <div class="col-8">
-                                 <p class="total_amount " >1000.00</p>
+                                 <p class="total_amount " >{{ number_format($paid_total,2) }}</p>
                               </div>
 
                         </div>
@@ -231,7 +261,6 @@
                                                 class="bi bi-pencil-square iconTable"></i></a>
                                     @endif
                                 </td>
-                                <input type="hidden" id="invoice_id_user" value="{{ $invoiceData->id }}">
 
                             </tr>
                         @empty

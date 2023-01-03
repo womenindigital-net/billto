@@ -151,5 +151,29 @@ public function user_view_tamplate($id)
 
 }
 
+public function search_result(Request $request )
+{
+    $request->validate([
+        'to_date'=>'required',
+        'from_date'=>'required',
+        'invoice_status'=>'required'
+    ]);
+    $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency']);
+    $count = $invoicessData->count();
+    $user_id = Auth::user()->id;
+    $user = User::where('id',$user_id)->get();
+    $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
+    $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
+    $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
+    $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
+    $allInvoiceDatas = Invoice::paginate(10);
+    $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)->get();
+
+    $search_result = Invoice::whereBetween('invoice_date', [$request->from_date, $request->to_date] )->where('status_due_paid',$request->invoice_status)->get();
+
+    return view('frontend.dashboard.search_result_all_invoice')->with(compact('search_result','invoicessData','latestDataInvoices', 'count','user' ,'all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut','allInvoiceDatas'));
+
+}
+
 
 }

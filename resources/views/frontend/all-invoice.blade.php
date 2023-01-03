@@ -349,14 +349,21 @@
                                                     <tr>
                                                         <th scope="row">{{ ++$key }}</th>
                                                         <td>{{ $latestDataInvoice->invoice_to }}</td>
-                                                        <td>10-12-2022</td>
+                                                        <td>{{ $latestDataInvoice->invoice_date }}</td>
                                                         <td>
-                                                            <div class="paid_btn">
-                                                                <a href="">paid </a>
+                                                            @if ($latestDataInvoice->status_due_paid=="due")
+                                                            <div class="due_btn">
+                                                                <a href=""> Due </a>
                                                             </div>
+                                                            @else
+                                                            <div class="paid_btn">
+                                                                <a href="">Paid </a>
+                                                            </div>
+                                                            @endif
+
                                                         </td>
-                                                        <td>@mdo</td>
-                                                        <td>{{  $latestDataInvoice->total  }}</td>
+                                                        <td>{{ number_format( $latestDataInvoice->receive_advance_amount,2) }}</td>
+                                                        <td>{{number_format(  $latestDataInvoice->final_total,2 ) }}</td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
