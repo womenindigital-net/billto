@@ -118,10 +118,9 @@
   <section>
     <div class="row">
       <div class="col-4 bgColorYellow">
-        <div class="d-flex justify-content-center imgMarginPadding">
-
-         @if($data->invoice_logo!="")
-          <img src="{{ asset('storage/invoice/logo/'.$data->invoice_logo) }}" class="rounded-circle" src="/logo.png" alt=""  height="122px" width="122px"/>
+        <div class="d-flex justify-content-center imgMarginPadding" >
+         @if($userLogoAndTerms->invoice_logo!="")
+          <img src="{{ asset('storage/invoice/logo/'. $userLogoAndTerms->invoice_logo) }}" class="" src="/logo.png" alt=""  height="122px" width="122px"/>
           @endif
         </div>
         <div class="hadingMarginPadding">
@@ -241,7 +240,7 @@
           <h1 class="footerThank">Thank You for your business </h1>
           <div class="">
               <h5 class="tramsAndCondition">Terms & conditions </h5>
-              <p class="payment">{{  $data->invoice_terms }} <br> {{  $data->invoice_notes}}</p>
+              <p class="payment">{{  $userLogoAndTerms->terms }} <br> {{  $data->invoice_notes}}</p>
           </div>
           <div class="mt-4">
               <p class="payment"></p>
