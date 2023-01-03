@@ -487,6 +487,10 @@ class InvoiceController extends Controller
     public function previewImage($id)
     {
         $data  = Invoice::find($id);
+        $user_id = Auth::user()->id;
+        $userLogoAndTerms = User::where('id','$user_id')->get([
+            'invoice_logo','terms'
+        ])->first;
         $productsDatas = Product::where('invoice_id',$id)->get();
         return view('invoices.preview_invoice.all_pre_invoice',compact('data','productsDatas'))->render();
 
