@@ -90,7 +90,11 @@ class InvoiceController extends Controller
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
 
-            return view('frontend.create-invoice')->with(compact('lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
+            $user_logo_terms = User::where('id',1 && 'is_admin',1)->get([
+                'invoice_logo',
+                'terms',
+            ]) ->first();
+            return view('frontend.create-invoice')->with(compact('user_logo_terms','lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
         }
    }
 
