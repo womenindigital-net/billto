@@ -505,9 +505,9 @@ p{
 }
 .avatar-upload .avatar-edit {
   position: absolute;
-  right: 12px;
+  /* right: 12px; */
   z-index: 1;
-  top: 10px;
+  /* top: 10px; */
 }
 .avatar-upload .avatar-edit input {
   display: none;

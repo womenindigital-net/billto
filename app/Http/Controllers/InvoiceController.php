@@ -239,13 +239,13 @@ class InvoiceController extends Controller
                     }
                 }
 
-                if($request->file('invoice_logo') || $request->invoice_terms != null ){
+                // if($request->file('invoice_logo')){
 
-                    User::where('id', Auth::user()->id)
-                    ->update([
-                        'invoice_logo' =>$filename,
-                     ]);
-                }
+                //     User::where('id', Auth::user()->id)
+                //     ->update([
+                //         'invoice_logo' =>$filename,
+                //      ]);
+                // }
                 if($request->invoice_terms != null ){
 
                     User::where('id', Auth::user()->id)
@@ -491,12 +491,13 @@ class InvoiceController extends Controller
     public function previewImage($id)
     {
         $data  = Invoice::find($id);
-        $user_id = Auth::user()->id;
-        $userLogoAndTerms = User::where('id','$user_id')->get([
-            'invoice_logo','terms'
-        ])->first;
+        $userLogoAndTerms = User::where('id', Auth::user()->id)->get([
+            'invoice_logo',
+            'terms',
+        ]) ->first();
+
         $productsDatas = Product::where('invoice_id',$id)->get();
-        return view('invoices.preview_invoice.all_pre_invoice',compact('data','productsDatas'))->render();
+        return view('invoices.preview_invoice.all_pre_invoice',compact('data','productsDatas','userLogoAndTerms'))->render();
 
     }
 }

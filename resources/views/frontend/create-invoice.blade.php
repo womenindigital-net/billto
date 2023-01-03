@@ -129,10 +129,10 @@
                                                  @endif
                                             </div>
 
-                                            <div class="avatar-edit">
+                                            <div class="avatar-edit" style=" overflow-y: hidden !important; height:100px">
                                              <input class="" type='file' name="invoice_logo" id="imageUpload" />
                                             @if(isset($user_logo_terms->invoice_logo))
-                                            <img class="hide_image "src="{{ asset('storage/invoice/logo/'.$user_logo_terms->invoice_logo) }}"  style="width:100%;  border-radius:10px;" alt="">
+                                            <img  class="hide_image"src="{{ asset('storage/invoice/logo/'.$user_logo_terms->invoice_logo) }}"  style=" border-radius:10px;    width:193px " alt="">
                                            @endif
                                         </div>
                                             <div class="avatar-preview">
