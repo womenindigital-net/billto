@@ -130,8 +130,7 @@
                                             </div>
 
                                             <div class="avatar-edit">
-                                                <input class="" type='file' name="invoice_logo" id="imageUpload" />
-
+                                             <input class="" type='file' name="invoice_logo" id="imageUpload" />
                                             @if(isset($user_logo_terms->invoice_logo))
                                             <img class="hide_image "src="{{ asset('storage/invoice/logo/'.$user_logo_terms->invoice_logo) }}"  style="width:100%;  border-radius:10px;" alt="">
                                            @endif
