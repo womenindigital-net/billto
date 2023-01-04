@@ -22,32 +22,27 @@ class SettignsController extends Controller
     public function Myallinvoice()
     {
         $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency']);
-        $count = $invoicessData->count();
+
         $user_id = Auth::user()->id;
-        $user = User::where('id',$user_id)->get();
-        $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
         $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
-        $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
+        $Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('final_total');
+        $paid_Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('receive_advance_amount');
+        $due_Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('balanceDue_amounts');
         $allInvoiceDatas = Invoice::where('user_id', Auth::user()->id)->paginate(10);
+
         $latestDataInvoices = Invoice::where('user_id',Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
 
-        return view('frontend.dashboard.home')->with(compact('invoicessData','latestDataInvoices', 'count','user' ,'all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut','allInvoiceDatas'));
+        return view('frontend.dashboard.home')
+        ->with(compact('invoicessData',
+        'latestDataInvoices','all_Invoice_Count',
+        'sendByMail_count','Total_Amount_conut',
+        'allInvoiceDatas','due_Total_Amount_conut','paid_Total_Amount_conut'));
     }
 
     public function MyTrashinvoice()
     {
-        $invoicessData = Invoice::where('user_id', Auth::user()->id)->where('invoice_status','incomlete')->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency','currency']);
-        $count = $invoicessData->count();
-        $user_id = Auth::user()->id;
-        $user = User::where('id',$user_id)->get();
-        $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
-        $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
-        $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
-        $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
-        $allInvoiceDatas = Invoice::where('user_id', Auth::user()->id)->paginate(10);
-        $latestDataInvoices = Invoice::where('user_id',Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
-        return view('frontend.dashboard.invoice_trast')->with(compact('latestDataInvoices','invoicessData', 'count','user' ,'all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut'));
-
+     $invoicessData = Invoice::where('user_id', Auth::user()->id)->where('invoice_status','incomlete')->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency','currency']);
+     return view('frontend.dashboard.invoice_trast')->with(compact('invoicessData'));
     }
 }

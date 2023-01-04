@@ -28,92 +28,77 @@
         border-radius: 5px;
     }
 </style>
+
+<style>
+    .custom_btn_sm {
+        background-color: #f8f9fa;
+        font-size: 18px;
+        padding: 4px;
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+
+    }
+
+    .iconTable {
+        color: black !important;
+        width: 9px !important;
+        height: 11.25px !important;
+        padding: 5px;
+    }
+
+    /* .border_top{
+        border-top: 1px solid rgb(175, 175, 175) !important;
+    } */
+
+    table.dataTable tfoot tr,
+    table.dataTable tfoot td {
+        border-top: 1px solid #dbdbdb !important;
+    }
+</style>
+{{-- home page css  --}}
+
+
+
+<style>
+    @media all and (max-width: 575px) {
+        .custom_width {
+            width: 30% !important;
+        }
+
+        .custom_width_text {
+            width: 50% !important;
+            margin-bottom: 8px;
+        }
+
+        .mr_custom {
+            display: flex;
+            justify-content: center;
+            margin-right: 10px;
+        }
+    }
+
+    @media all and (max-width: 768px) {
+        .custom_width {
+            width: 30% !important;
+        }
+
+        .custom_width_text {
+            width: 70% !important;
+            margin-bottom: 8px;
+        }
+
+    }
+</style>
+{{-- home page css  --}}
 @section('frontend_content')
-    <!-- Sign in form Start -->
+
     <section class="container-fluid bg-color ">
         <div class="row">
             <div class="col-md-3 col-lg-2 m-0 p-0">
-                <section class="page-top">
-                    <div class="side-bar border_right">
-                        @foreach ($user as $item)
-                            <div class="logo design_logo text-center hide_mobile_view">
-                                @if ($item->picture__input)
-                                    <a href="{{ route('all.invoice') }}"><img
-                                            src="{{ asset('uploads/userImage/' . $item->picture__input) }}"
-                                            alt="Logo"></a>
-                                @else
-                                    <a href="{{ route('all.invoice') }}"><img
-                                            src="{{ asset('uploads/defaultUserImage/avater.jpg') }}" alt="Logo"></a>
-                                @endif
-                                <h5 style="">Women In Digital</h5>
-                                <p>{{ $item->email }}</p>
-                                <span href="#" class="nav-icon"><i class="bi bi-list"></i></span>
-                            </div>
-                        @endforeach
-
-                        @foreach ($user as $item)
-                            <div class="mobile_menu canvas-menu">
-                                <div class="text-center d-md-none mobile_sidebar">
-                                    @if ($item->picture__input)
-                                        <a href="{{ route('all.invoice') }}"><img
-                                                src="{{ asset('uploads/userImage/' . $item->picture__input) }}"
-                                                alt="Logo"></a>
-                                    @else
-                                        <a href="{{ route('all.invoice') }}"><img
-                                                src="{{ asset('uploads/defaultUserImage/avater.jpg') }}"
-                                                alt="Logo"></a>
-                                    @endif
-
-                                    <h5 style="">Women In Digital</h5>
-                                    <p>{{ $item->email }}</p>
-                                </div>
-                                <div class="create_new_btn_sidebar">
-                                    <a href="{{ route('create') }}" class="btn btn-warning btn-blog ">Create New
-                                        Invoice</a>
-                                </div>
-                                <nav class='dash_menu @yield('custom_dash_menu') '>
-
-                                    <ul>
-                                        <li class="sub-menu    @yield('all_invoice')">
-                                            <a class="mb-2" href='#invoice'><i class="bi bi-file-text myInvoiceIcon me-3"></i> My
-                                                Invoices
-                                                <div class='fa fa-caret-down mt-2'> <i class="bi bi-caret-down"></i></div>
-                                            </a>
-                                            <ul class="@yield('d-block')">
-                                                <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
-                                                        Invoices <span
-                                                            class="circle @yield('all_invoice_left') submenu_circle_bg">{{ $all_Invoice_Count }}</span></a>
-                                                </li>
-                                                <li><a href='#invoice' class="@yield('over-view') ">Over Due <span
-                                                            class="circle   submenu_circle_bg">0</span></a></li>
-                                                <li><a href='#invoice' class="@yield('Pertially') ">Pertially Paid <span
-                                                            class="circle submenu_circle_bg">0</span></a></li>
-                                                <li><a href='#invoice' class="@yield('Unpaid') ">Unpaid <span
-                                                            class="circle submenu_circle_bg">0</span></a></li>
-                                                <li><a href='{{ url('/all/invoices/send-by-Mail') }}'
-                                                        class="@yield('SendbyEmail') ">Send by Email <span
-                                                            class="circle @yield('SendbyEmail_bg') submenu_circle_bg">{{ $sendByMail_count }}</span></a>
-                                                </li>
-                                                <li><a href='{{ url('/my-trash-invoice') }}' class="@yield('Trush') ">
-                                                        Drafts <span
-                                                            class="circle submenu_circle_bg">{{ $trash }}</span>
-                                                    </a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="mb-2" href='#'><i class="bi bi-person-circle myInvoiceIcon me-3"></i> My Customers</a>
-                                        </li>
-                                        <li><a href='#'><i class="bi bi-bar-chart myInvoiceIcon me-3"></i> My Reports</a></li>
-                                        <li><a href='{{ url('/all/invoices/user-setting') }}'
-                                                class="@yield('setting')"> <i class="bi bi-gear-fill myInvoiceIcon me-3"></i> Settings</a>
-
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        @endforeach
-                    </div>
-                </section>
+                 <!-- user Dashboar sidebar  -->
+               @include('frontend.dashboard.inc.sidebar')
+                <!-- user Dashboar sidebar  -->
             </div>
 
             <style>
@@ -123,8 +108,7 @@
                 }
             </style>
             <div class="col-md-9 col-lg-10 m-0 p-0 mt-1">
-                @yield('dashboard_content')
-                <div class="container-fluid overflow_scroll  m-0 p-0 @yield('display-none')">
+                <div class="container-fluid overflow_scroll  m-0 p-0 ">
                     <div class="row mt-2 m-0 p-0">
                         <div class="col-md-12 col-lg-4">
                             <div class="row">
@@ -307,22 +291,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-                                {{-- <div class="col-6 col-md-4 col-lg-4">
-                                <div class="card bg-c-pink">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1 text-white">
-                                                <p class="text-white fw-medium ">Drafts Invoice</p>
-                                                <h4 class="mb-0 ">{{ $trash }}</h4>
-                                            </div>
-                                            <div
-                                                class="d-flex justify-content-end align-item-center text-white cir-pink-bg  px-4 rounded-circle">
-                                                <div class="m-auto"><i class="bi bi-bell-slash fs-6"></i> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
+
                             </div>
                             <div class="row">
                                 <div class="col-12">
