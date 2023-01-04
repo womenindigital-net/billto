@@ -56,7 +56,8 @@
                     </div>
                   @endif
                 </div>
-                <form action="{{ route('search.result') }}"  method="GET">
+                <form action="{{ route('search.result') }}"  method="post">
+                 @csrf
                 <div class="row mt-2">
                     <div class="col-12 col-sm-12 col-md-2">
                         <div class="all_invice_title pt-2 ">
@@ -123,6 +124,7 @@
                         @php
                             $final_total = 0;
                             $paid_total = 0;
+                            $due_total = 0;
                         @endphp
                           @forelse($search_result as $key => $InvoiceData )
                       <tr class="data_table_id">
@@ -156,6 +158,7 @@
                       @php
                       $final_total += $InvoiceData->final_total;
                       $paid_total += $InvoiceData->receive_advance_amount;
+                      $due_total += $InvoiceData->balanceDue_amounts;
                       @endphp
                        @empty
                        <tr>
@@ -171,7 +174,7 @@
                   </table>
                   <div class="row display_none">
                     <div class="col-4 col-sm-6 col-md-7">
-                        {{ $allInvoiceDatas->links() }}
+                     
                     </div>
                     <div class="col-8 col-sm-6 col-md-5">
                         <div class="row">
@@ -190,7 +193,7 @@
                                 <p class="total_text_design"> BALANCE DUE</p>
                               </div>
                               <div class="col-8">
-                                 <p class="total_amount " >{{ number_format($paid_total,2) }}</p>
+                                 <p class="total_amount " >{{ number_format($due_total,2) }}</p>
                               </div>
 
                         </div>

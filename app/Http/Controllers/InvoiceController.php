@@ -282,6 +282,7 @@ class InvoiceController extends Controller
                     'total' => $total,
                     'final_total' => $request->final_total,
                     'receive_advance_amount'=>$request->receive_advance_amount,
+                    'balanceDue_amounts'=>$request->balanceDue_amounts,
                     'discount_amounts' => $request->discount_amounts,
                     'discount_percent' => $request->discount_percent,
 

@@ -30,7 +30,7 @@ class DashboardController extends Controller
         $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('total');
-        $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)->get();
+        $latestDataInvoices = Invoice::where('user_id',Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
         return view('frontend.all-invoice')->with(compact('invoicessData', 'count','user','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut','latestDataInvoices'));
     }
 
@@ -74,7 +74,7 @@ class DashboardController extends Controller
         $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
-        $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)->get();
+        $latestDataInvoices = Invoice::where('user_id',Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
         return view('frontend.dashboard.setting',compact('user','latestDataInvoices','all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut'));
     }
     public function userUpdate(UpdateUserRequest $request, $id){
@@ -139,7 +139,7 @@ class DashboardController extends Controller
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $sendByMails = SendMail_info::where('user_id', $user_id)->latest()->get();
         $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
-        $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)->get();
+        $latestDataInvoices = Invoice::where('user_id',Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
         return view('frontend.dashboard.sendByMail',compact('user','latestDataInvoices','all_Invoice_Count','trash','sendByMail_count','sendByMails','Total_Amount_conut'));
     }
 
@@ -166,10 +166,10 @@ public function search_result(Request $request )
     $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
     $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
     $Total_Amount_conut = Invoice::where('user_id',$user_id )->where('invoice_status','complete')->sum('total');
-    $allInvoiceDatas = Invoice::paginate(10);
-    $latestDataInvoices = Invoice::orderBy('id', 'DESC')->limit(7)->get();
+    $allInvoiceDatas = Invoice::where('user_id', Auth::user()->id)->paginate(10);
+    $latestDataInvoices = Invoice::where('user_id',Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
 
-    $search_result = Invoice::whereBetween('invoice_date', [$request->from_date, $request->to_date] )->where('status_due_paid',$request->invoice_status)->get();
+    $search_result = Invoice::whereBetween('invoice_date', [$request->from_date, $request->to_date] )->where('status_due_paid',$request->invoice_status)->where('user_id', Auth::user()->id)->get();
 
     return view('frontend.dashboard.search_result_all_invoice')->with(compact('search_result','invoicessData','latestDataInvoices', 'count','user' ,'all_Invoice_Count','trash','sendByMail_count','Total_Amount_conut','allInvoiceDatas'));
 

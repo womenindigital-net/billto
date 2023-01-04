@@ -400,6 +400,7 @@ function total(itemAmount) {
 
         $('#final_total').val(balance_due_After_dis);
         $('#balanceDue').text(total - discount_amount);
+        $('#balanceDue_amounts').val(total - discount_amount);
     }
 
     var advance = $('#receive_advance_amount').val() * 1;
@@ -415,6 +416,7 @@ function total(itemAmount) {
         $('#receive_amount_realtime').addClass("d-none");
         var paid = balance_due_After_dis - advance;
         $('#balanceDue').text(paid);
+        $('#balanceDue_amounts').val(paid);
 
     }
     // $('#balanceDue').text(balance_due_After_dis);

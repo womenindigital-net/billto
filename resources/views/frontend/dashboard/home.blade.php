@@ -85,7 +85,8 @@
                     </div>
                   @endif
                 </div>
-                <form action="{{ route('search.result') }}"  method="GET">
+                <form action="{{ route('search.result') }}"  method="post">
+                    @csrf
                 <div class="row mt-2">
                     <div class="col-12 col-sm-12 col-md-2">
                         <div class="all_invice_title pt-2 ">
@@ -152,6 +153,7 @@
                         @php
                             $final_total = 0;
                             $paid_total = 0;
+                            $due_total = 0;
                         @endphp
                         @foreach ($allInvoiceDatas as $key => $InvoiceData )
                       <tr class="data_table_id">
@@ -163,9 +165,13 @@
                             <div class="due_btn">
                                 <a href=""> Due </a>
                             </div>
-                            @else
+                            @elseif($InvoiceData->status_due_paid=="paid")
                             <div class="paid_btn">
                                 <a href="">Paid </a>
+                            </div>
+                            @else
+                            <div class="draft_btn">
+                                <a href="">Draft </a>
                             </div>
                             @endif
                         </td>
@@ -185,6 +191,7 @@
                       @php
                       $final_total += $InvoiceData->final_total;
                       $paid_total += $InvoiceData->receive_advance_amount;
+                      $due_total += $InvoiceData->balanceDue_amounts;
                       @endphp
                       @endforeach
                     </tbody>
@@ -210,7 +217,7 @@
                                 <p class="total_text_design"> BALANCE DUE</p>
                               </div>
                               <div class="col-8">
-                                 <p class="total_amount " >{{ number_format($paid_total,2) }}</p>
+                                 <p class="total_amount " >{{ number_format($due_total,2) }}</p>
                               </div>
 
                         </div>

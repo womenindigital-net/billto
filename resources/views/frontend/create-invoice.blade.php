@@ -786,6 +786,7 @@
                                     <span class="p-2 fw-bolder textColor" id="balanceDue">0.00</span>
                                 </div>
                             </div>
+                            <input type="hidden" id="balanceDue_amounts" name="balanceDue_amounts" >
                         </div>
                     </div>
                 </div>

@@ -25,6 +25,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/create/invoice/view/{id}', [DashboardController::class, 'user_view_tamplate']);
 
     // search result dasboard
-    Route::GET('/search-result', [DashboardController::class, 'search_result'])->name('search.result');
+    Route::post('/search-result', [DashboardController::class, 'search_result'])->name('search.result');
 
 });
