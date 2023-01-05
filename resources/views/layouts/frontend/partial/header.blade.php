@@ -50,14 +50,13 @@
             </a>
             <div class="navbar">
                 <div>
-                    @php
-                    use App\Models\User;
-                    $user_photo = User::where('id', Auth::user()->id)->get([
-                        'picture__input'
-                    ])->first();
-
-                @endphp
+                   @php
+                       use App\Models\User;
+                   @endphp
                     @if (auth()->check())
+                        @php
+                            $user_photo = User::where('id', Auth::user()->id)->get(['picture__input'])->first();
+                        @endphp
                         <img class="me-1" src="{{ asset('uploads/userImage/' . $user_photo->picture__input) }}" height="32px"
                             width="32px" style="border-radius: 50%" alt="">
                     @else

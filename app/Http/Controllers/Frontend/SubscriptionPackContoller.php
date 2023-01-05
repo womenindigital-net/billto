@@ -34,7 +34,12 @@ class SubscriptionPackContoller extends Controller
         // 'auth_user_id'=>'required'
     ]);
 
+    if(1==$request->package_id){
+        return redirect()->back()->with('delete','Something went wrong. Please try again.');
+    }
+    
   $subscriptn_package =  SubscriptionPackage::where('id', $request->package_id)->first();
+
 
     if($subscriptn_package->price === $request->package_price){
 
