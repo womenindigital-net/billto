@@ -100,20 +100,6 @@ Route::get('/check',  function () {
     // ->selectRaw( 'users.*, payment_getways.*, subscription_packages.*, payment_getways.created_at as payment_name, subscription_packages.created_at as contacts_name')
     // ->where('users.id', 1)->get();
 
-    //  $join_table_value = DB::table('subscription_package_templates')
-    // ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
-    // ->where('subscription_package_templates.template', 3)->get();
-    // dd($join_table_value);
-    // foreach($join_table_value as $join_table_valued){
-    //    echo $join_table_valued->packageName;
-    // }
-
-
-    // $join_table_valu = DB::table('subscription_packages')
-    // ->join('pricings', 'subscription_packages.id', '=', 'pricings.subscription_package_id')
-    // ->where('pricings.subscription_package_id', 1)
-    // ->get();
-
     session_start();
     $sessionId = session_id();
     dd($sessionId );

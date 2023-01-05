@@ -224,10 +224,14 @@ class InvoiceController extends Controller
                         $extension = $file->getClientOriginalExtension();
                         $filename = time() . '.' . $extension;
                         $file->move(public_path('storage/invoice/logo'), $filename);
+                        User::where('id', Auth::user()->id)
+                        ->update([
+                            'invoice_logo' =>$filename,
+                         ]);
                     }
                 } elseif ($id != null && $invoice_logo != null) {
 
-                    $find = Invoice::findOrFail($id);
+                    $find = User::findOrFail(Auth::user()->id);
                     $image_path         = public_path("storage/invoice/logo//") . $find->invoice_logo;
                     if (File::exists($image_path)) {
                         File::delete($image_path);
@@ -236,16 +240,14 @@ class InvoiceController extends Controller
                         $extension = $file->getClientOriginalExtension();
                         $filename = time() . '.' . $extension;
                         $file->move(public_path('storage/invoice/logo'), $filename);
+                        User::where('id', Auth::user()->id)
+                        ->update([
+                            'invoice_logo' =>$filename,
+                         ]);
                     }
                 }
 
-                // if($request->file('invoice_logo')){
 
-                //     User::where('id', Auth::user()->id)
-                //     ->update([
-                //         'invoice_logo' =>$filename,
-                //      ]);
-                // }
                 if($request->invoice_terms != null ){
 
                     User::where('id', Auth::user()->id)

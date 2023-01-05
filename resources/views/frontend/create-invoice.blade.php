@@ -116,7 +116,6 @@
                                 .textColor {
                                     color: #898989;
                                 }
-
                             </style>
                             <div class="col-md-4 text-center mt-3">
                                 <label for="imageUpload">
@@ -124,22 +123,23 @@
                                         <div class="avatar-upload">
                                             <div class="logo_text">
                                                 <label for="imageUpload"><i class="bi bi-plus"></i></label>
-                                                @if($user_logo_terms->invoice_logo=="")
-                                                <span class="textColor">Add your logo</span>
-                                                 @endif
+                                                @if ($user_logo_terms->invoice_logo == '')
+                                                    <span class="textColor">Add your logo</span>
+                                                @endif
                                             </div>
 
                                             <div class="avatar-edit" style=" overflow-y: hidden !important; height:100px">
-                                             <input class="" type='file' name="invoice_logo" id="imageUpload" />
-                                            @if(isset($user_logo_terms->invoice_logo))
-                                            <img  class="hide_image"src="{{ asset('storage/invoice/logo/'.$user_logo_terms->invoice_logo) }}"  style=" border-radius:10px;    width:193px " alt="">
-                                           @endif
-                                        </div>
+                                                <input class="" type='file' name="invoice_logo" id="imageUpload" />
+                                                @if (isset($user_logo_terms->invoice_logo))
+                                                    <img class="hide_image"src="{{ asset('storage/invoice/logo/' . $user_logo_terms->invoice_logo) }}"
+                                                        style=" border-radius: 10px; width: 193px; object-fit: cover; height: 100%;" alt="">
+                                                @endif
+                                            </div>
                                             <div class="avatar-preview">
                                                 <div id="imagePreview"
                                                     @if (isset($invoiceData->invoice_logo)) style=" border-radius:10px; background-image: url({{ url('storage/invoice/logo/' . $invoiceData->invoice_logo) }});"
                                                       @else
-                                                          style="background-image: url();" @endif  >
+                                                          style="background-image: url();" @endif>
                                                 </div>
                                             </div>
                                         </div>
@@ -490,14 +490,15 @@
                         background: #FFFFFF;
                     }
 
-                    .border_round{
+                    .border_round {
                         border: 1px solid #cfcdcd;
                         border-radius: 10px !important;
                         min-width: 50%;
                         justify-content: flex-end;
 
                     }
-                    .dateForm_recived{
+
+                    .dateForm_recived {
                         z-index: 3;
                         border-left: 0;
                         border-radius: 0 10px 10px 0px !important;
@@ -506,7 +507,7 @@
                     }
 
                     input[type="checkbox"] {
-                    accent-color: #FFB317;
+                        accent-color: #FFB317;
 
                     }
                 </style>
@@ -619,13 +620,16 @@
                             <div id="invoice_terms_error" class="invalid-feedback"></div>
                         </div>
                         <div class="pt-3 d-flex align-items-center">
-                            <input type="checkbox" style="width: 20px; height:20px" name="invoice_signature" value="signature_add" checked>
+                            <input type="checkbox" style="width: 20px; height:20px" name="invoice_signature"
+                                value="signature_add" checked>
                             <label class="textColor ms-2">Add Signature</label><br>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-end pt-2 pe-4">
                         <div class="row">
-                            <div class="col-7 d-flex align-items-center justify-content-end pe-5 fw-bolder  textColor text-right">Sub total</div>
+                            <div
+                                class="col-7 d-flex align-items-center justify-content-end pe-5 fw-bolder  textColor text-right">
+                                Sub total</div>
                             <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
                                 <div class="input-group-text  InputCustomize border-0  textColor" id="currency">$</div>
                                 <span class="pt-2 pe-2 fw-bolder textColor" id="subtotal">0.00</span>
@@ -638,18 +642,19 @@
                                 {{-- <div class="input-group-text  border-0 bgInput textColor ">&#8453;</div> --}}
 
                                 <input type="text" name="invoice_tax" max="100"
-                                    class="form-control text-end pe-3 inputBorderRedius"
-                                    value="@if(isset($invoiceData->invoice_tax_percent)) {{ $invoiceData->invoice_tax_percent }} @endif"
+                                    class="form-control text-end pe-4 inputBorderRedius"
+                                    value="@if (isset($invoiceData->invoice_tax_percent)) {{ $invoiceData->invoice_tax_percent }} @endif"
                                     id="invoice_tax" onchange="total()">
-                                    <div class="input-group-text  InputCustomizeTex border-0 p-0 textColor" > &#8453; </div>
+                                <div class="input-group-text  InputCustomizeTex border-0 p-0 textColor"> &#8453; </div>
 
-                                    <div class="d-flex border_round align-items-center  p-0 ms-2">
-                                        <div class="input-group-text bgInput border-0 textColor p-0 pe-2 ps-2" id="currency">$ </div>
-                                        <span class="fw-bolder  textColor pe-2 p-0" id="text_pecent_amount"> </span>
-                                    </div>
+                                <div class="d-flex border_round align-items-center  p-0 ms-2">
+                                    <div class="input-group-text bgInput border-0 textColor p-0 pe-2 ps-2" id="currency">
+                                        $ </div>
+                                    <span class="fw-bolder  textColor pe-2 p-0" id="text_pecent_amount"> </span>
+                                </div>
 
                                 <div id="invoice_tax_error" class="invalid-feedback"></div>
-                                <input type="hidden" id="invoice_tax_amounts"  name="invoice_tax_amounts">
+                                <input type="hidden" id="invoice_tax_amounts" name="invoice_tax_amounts">
                             </div>
 
                         </div>
@@ -661,23 +666,27 @@
                                     <label for="#discount_persent">Discount</label>
                                 </div>
                                 <div class="col input-group p-0">
-                                    <input type="text" name="discount_percent" id="discount_persent" min="0" max="100"
-                                     value="@if (isset($invoiceData->discount_percent)) {{ $invoiceData->discount_percent }} @endif"
-                                        class="form-control text-end pe-3 inputBorderRedius" onchange="total()">
+                                    <input type="text" name="discount_percent" id="discount_persent" min="0"
+                                        max="100"
+                                        value="@if (isset($invoiceData->discount_percent)) {{ $invoiceData->discount_percent }} @endif"
+                                        class="form-control text-end pe-4 inputBorderRedius" onchange="total()">
                                     <div class="input-group-text  InputCustomizeTex border-0  textColor p-0">
                                         &#8453;
                                     </div>
 
                                     <div class="d-flex border_round align-items-center  p-0 ms-2">
-                                        <div class="input-group-text bgInput border-0 textColor p-0 pe-2 ps-2" id="currency">$ </div>
-                                        <span class="fw-bolder  textColor pe-2 p-0" id="discount_amount" onchange="totalInwords();"> </span>
+                                        <div class="input-group-text bgInput border-0 textColor p-0 pe-2 ps-2"
+                                            id="currency">$ </div>
+                                        <span class="fw-bolder  textColor pe-2 p-0" id="discount_amount"
+                                            onchange="totalInwords();"> </span>
                                     </div>
 
-                                    <div class="text-danger w-100 ps-2 d-none" id="discount_persent_realtime" style="font-size: 12px;"> Below 100% </div>
-                                    <input type="hidden" id="discount_amounts" name="discount_amounts" >
+                                    <div class="text-danger w-100 ps-2 d-none" id="discount_persent_realtime"
+                                        style="font-size: 12px;"> Below 100% </div>
+                                    <input type="hidden" id="discount_amounts" name="discount_amounts">
                                 </div>
                             </div>
-                           {{--  <div class="row pt-2">
+                            {{--  <div class="row pt-2">
                                 <div class="col-7 d-flex align-items-center  textColor">Discount Amount</div>
                                 <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
                                     <div class="input-group-text bgInput border-0 textColor" id="currency">$</div>
@@ -685,14 +694,16 @@
                                     </span>
 
                                 </div>
-                            </div>--}}
+                            </div> --}}
 
                             <div class="row pt-2">
-                                <div class="col-7 d-flex align-items-center fw-bolder justify-content-end  pe-5 textColor">Total</div>
+                                <div class="col-7 d-flex align-items-center fw-bolder justify-content-end  pe-5 textColor">
+                                    Total</div>
                                 <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
                                     <div class="input-group-text  InputCustomize border-0  textColor" id="currency">$
                                     </div>
-                                    <span class="pt-2 pe-2 fw-bolder textColor" id="total" onchange="totalInwords();">
+                                    <span class="pt-2 pe-2 fw-bolder textColor" id="total"
+                                        onchange="totalInwords();">
                                         @if (isset($invoiceData->total))
                                             {{ $invoiceData->total }}
                                         @endif
@@ -701,7 +712,7 @@
                                 </div>
                                 <p id="totalInwords" class="text-end text-dark"
                                     style="font-size: 10px;text-transform: capitalize;"></p>
-                                    <input type="hidden" id="final_total" name="final_total">
+                                <input type="hidden" id="final_total" name="final_total">
                             </div>
                             {{-- <div class="row pt-2 ">
                 <div class="col-7 d-flex align-items-center">Advance Amount</div>
@@ -711,26 +722,29 @@
                   <div id="advance_amount_error" class="invalid-feedback"></div>
                 </div>
               </div> --}}
-              <style>
-                .border_real{
-                    border-top:1px solid rgb(250, 39, 39);
-                    border-bottom:1px solid rgb(255, 22, 22);
-                    border-right:1px solid rgb(250, 39, 39);
-                }
-            </style>
-                        <div class="row pt-2 ">
-                            <div class="col-7 d-flex align-items-center justify-content-end  pe-5 textColor">Receive Advance Amount</div>
-                            <div class="col input-group p-0">
-                                <input type="text" name="receive_advance_amount"
-                                    class="form-control inputBorderRedius text-end  pe-5" role="button" aria-disabled="true"
-                                    value="@if (isset($invoiceData->receive_advance_amount)) {{ $invoiceData->receive_advance_amount }} @endif"
-                                     id="receive_advance_amount"  onchange="total()">
-                                  <div class="input-group-text textColor dateForm_recived pe-4 " id="currency">$</div>
-                                <div id="receive_advance_amount_error" class="invalid-feedback"></div>
-                                <div class="text-danger w-100 ps-2 d-none" id="receive_amount_realtime" style="font-size: 12px;">  Below total balance </div>
+                            <style>
+                                .border_real {
+                                    border-top: 1px solid rgb(250, 39, 39);
+                                    border-bottom: 1px solid rgb(255, 22, 22);
+                                    border-right: 1px solid rgb(250, 39, 39);
+                                }
+                            </style>
+                            <div class="row pt-2 ">
+                                <div class="col-7 d-flex align-items-center justify-content-end  pe-5 textColor">Receive
+                                    Advance Amount</div>
+                                <div class="col input-group p-0">
+                                    <input type="text" name="receive_advance_amount"
+                                        class="form-control inputBorderRedius text-end  pe-5" role="button"
+                                        aria-disabled="true"
+                                        value="@if (isset($invoiceData->receive_advance_amount)) {{ $invoiceData->receive_advance_amount }} @endif"
+                                        id="receive_advance_amount" onchange="total()">
+                                    <div class="input-group-text textColor dateForm_recived pe-4 " id="currency">$</div>
+                                    <div id="receive_advance_amount_error" class="invalid-feedback"></div>
+                                    <div class="text-danger w-100 ps-2 d-none" id="receive_amount_realtime"
+                                        style="font-size: 12px;"> Below total balance </div>
 
+                                </div>
                             </div>
-                        </div>
 
 
                             <div class="row pt-2 ">
@@ -745,7 +759,8 @@
                                     {{-- <div class="input-group-text">&#8453;</div> --}}
 
                                     <div class="d-flex border_round align-items-center  p-0 ms-1">
-                                        <div class="input-group-text bgInput border-0 textColor p-0 pe-2 ps-2" id="currency">$ </div>
+                                        <div class="input-group-text bgInput border-0 textColor p-0 pe-2 ps-2"
+                                            id="currency">$ </div>
                                         <span class="fw-bolder  textColor pe-2 p-0" id="requesting_advance_amount_number">
                                             @if (isset($requesting_advance_amount))
                                                 {{ $requesting_advance_amount }}
@@ -779,14 +794,16 @@
                 </div>
               </div> --}}
                             <div class="row pt-2">
-                                <div class="col-7 d-flex align-items-center justify-content-end pe-5 fw-bolder textColor textColor">Balance Due
+                                <div
+                                    class="col-7 d-flex align-items-center justify-content-end pe-5 fw-bolder textColor textColor">
+                                    Balance Due
                                 </div>
                                 <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
                                     <div class="input-group-text bgInput border-0 textColor" id="currency">$</div>
                                     <span class="p-2 fw-bolder textColor" id="balanceDue">0.00</span>
                                 </div>
                             </div>
-                            <input type="hidden" id="balanceDue_amounts" name="balanceDue_amounts" >
+                            <input type="hidden" id="balanceDue_amounts" name="balanceDue_amounts">
                         </div>
                     </div>
                 </div>
@@ -983,31 +1000,31 @@
     </style>
     <style>
         /* .spinner {
-                width: 80px;
-                height: 80px;
+                    width: 80px;
+                    height: 80px;
 
-                border: 2px solid #f3f3f3;
-                border-top: 3px solid #f25a41;
-                border-radius: 100%;
+                    border: 2px solid #f3f3f3;
+                    border-top: 3px solid #f25a41;
+                    border-radius: 100%;
 
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                margin: auto;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
 
-                animation: spin 1s infinite linear;
-                }
+                    animation: spin 1s infinite linear;
+                    }
 
-                @keyframes spin {
-                from {
-                    transform: rotate(0deg);
-                }
+                    @keyframes spin {
+                    from {
+                        transform: rotate(0deg);
+                    }
 
-                to {
-                    transform: rotate(360deg);
-                }
-                } */
+                    to {
+                        transform: rotate(360deg);
+                    }
+                    } */
     </style>
 
     <section class="invoice_template">

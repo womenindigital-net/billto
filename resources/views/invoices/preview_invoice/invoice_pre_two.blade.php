@@ -120,7 +120,7 @@
       <div class="col-4 bgColorYellow">
         <div class="d-flex justify-content-center imgMarginPadding" >
          @if($userLogoAndTerms->invoice_logo!="")
-          <img src="{{ asset('storage/invoice/logo/'. $userLogoAndTerms->invoice_logo) }}" class="" src="/logo.png" alt=""  height="122px" width="122px"/>
+          <img src="{{ asset('storage/invoice/logo/'. $userLogoAndTerms->invoice_logo) }}"  alt="" style="height:80px; width: 80px; object-fit:cover;" />
           @endif
         </div>
         <div class="hadingMarginPadding">
