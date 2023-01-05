@@ -129,7 +129,7 @@
                                 <tbody>
 
                                     @foreach ($allInvoiceDatas as $key => $InvoiceData)
-                                        <tr class="data_table_id">
+                                        <tr class="data_table_id table_th_td">
                                             <th scope="row">{{ ++$key }}</th>
                                             <td>{{ $InvoiceData->invoice_to }}</td>
                                             <td>{{ $InvoiceData->invoice_date }}</td>

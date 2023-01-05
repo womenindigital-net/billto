@@ -81,7 +81,10 @@ div.dataTables_wrapper div.dataTables_paginate,
 
     color: #197b30;
 }
-
+.table_th_td th,td {
+    font-size: 15px;
+    font-weight: 500;
+}
 .total_amount_left_due p {
     font-style: normal;
     font-weight: 600;
@@ -371,23 +374,29 @@ body {
 }
 
 .btn_view {
-    background-color: #686868;
+    background-color: #686868 !important;
     color: white;
 }
 .btn_edit {
-    background-color: #ffb317;
+    background-color: #ffb317 !important;
     color: white;
 }
 .btn_delte {
-    background-color: red;
+    background-color: red !important;
     color: white;
 }
-.btn_design .btn-group-sm > .btn,
-.btn-sm {
-    padding: 4px !important;
-    font-size: 0.875rem;
+
+.btn_design .btn-group-sm > .btn, .btn-sm {
+    padding: 2px 5px!important;
+    font-size: 12px;
     border-radius: 0.2rem;
 }
+
+.send_view_btn{
+    padding: 6px !important;
+}
+
+
 .total_amount {
     font-style: normal;
     font-weight: 600;

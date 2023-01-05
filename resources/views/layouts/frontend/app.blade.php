@@ -36,6 +36,22 @@
         * {
             font-family: 'Open Sans', sans-serif !important;
         }
+
+        .swal2-icon.swal2-error {
+            border: 10px solid #FFB317 !important;
+            color: #f27474;
+        }
+
+        .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+            background-color: #FFB317 !important;
+            height: 8px !important;
+        }
+        .swal2-styled.swal2-confirm {
+        background-color: #686868 !important;
+        }
+
+
+
     </style>
 
     <!--JQuery-->
@@ -84,17 +100,17 @@
     <script src="https://www.google-analytics.com/analytics.js" async></script>
     @stack('frontend_js')
 
-     {{-- date picker --}}
-     <script src="{{ asset('js/datepicker-ui-js/jquery-ui-cdn.js') }}"></script>
-     <script>
-         $(function() {
-             $("#invoice_date").datepicker();
-         });
+    {{-- date picker --}}
+    <script src="{{ asset('js/datepicker-ui-js/jquery-ui-cdn.js') }}"></script>
+    <script>
+        $(function() {
+            $("#invoice_date").datepicker();
+        });
 
-         $(function() {
-             $("#invoice_dou_date").datepicker();
-         });
-     </script>
+        $(function() {
+            $("#invoice_dou_date").datepicker();
+        });
+    </script>
 
     {{-- alert message show  --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

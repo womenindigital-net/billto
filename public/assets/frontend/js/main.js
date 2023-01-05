@@ -150,12 +150,12 @@ $("#invoiceForm").submit(function (e) {
             if (response['message'] != null) {
 
                 Swal.fire({
-                    title: 'Your package limit is over! ',
+                    title: '<span style="color:#FFB317;">Your package limit is over!</span> ',
                     text: "Please Update Your Package..!",
                     icon: 'error',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
+                    confirmButtonColor: '#FFB317',
+                    cancelButtonColor: '#686868',
                     confirmButtonText: 'Go to Package Page',
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -206,7 +206,7 @@ $("#invoiceForm").submit(function (e) {
         error: function (error) {
             okButton.fire({
                 icon: 'error',
-                title: 'Fill UP Invoice Form Properly',
+                title: '<span style="color: #ffb317;">Fill up invoice form properly</span>',
             })
 
             // Invoice Validation
@@ -288,11 +288,11 @@ function allData() {
                 totalamount = totalamount + value.product_amount
                 data = data + "<tr id='tableRow-" + value.id + "'>"
                 // data = data + "<th  onClick='editData(" + value.id + ")' scope='row' id='key-" + value.id + "'>" + ++key + "</th>"
-                data = data + "<td onClick='editData(" + value.id + ")' id='product_name-" + value.id + "'>" + value.product_name + "</td>"
-                data = data + "<td onClick='editData(" + value.id + ")' id='product_quantity-" + value.id + "'>" + value.product_quantity + "</td>"
-                data = data + "<td onClick='editData(" + value.id + ")' id='product_rate-" + value.id + "'>" + value.product_rate + "</td>"
-                data = data + "<td onClick='editData(" + value.id + ")' >" + value.product_amount + "</td>"
-                data = data + "<td class='ps-3'>"
+                data = data + "<td style='border-bottom: 1px solid #d9d8d8;padding: 8px 10px;color: #686868; font-weight: 500;' onClick='editData(" + value.id + ")' id='product_name-" + value.id + "'>" + value.product_name + "</td>"
+                data = data + "<td style='border-bottom: 1px solid #d9d8d8;padding: 8px 10px;color: #686868; font-weight: 500;' onClick='editData(" + value.id + ")' id='product_rate-" + value.id + "'>" + value.product_rate + "</td>"
+                data = data + "<td style='border-bottom: 1px solid #d9d8d8;padding: 8px 10px;color: #686868; font-weight: 500;'  onClick='editData(" + value.id + ")' id='product_quantity-" + value.id + "'>" + value.product_quantity + "</td>"
+                data = data + "<td style='border-bottom: 1px solid #d9d8d8;padding: 8px 10px;color: #686868; font-weight: 500;' onClick='editData(" + value.id + ")' >" + value.product_amount + "</td>"
+                data = data + "<td style='border-bottom: 1px solid #d9d8d8;padding: 8px 10px;color: #686868; font-weight: 500;' class='ps-3'>"
                 data = data + "<button type='button' onClick='deleteData(" + value.id + ")' class='btn btn-sm btn-danger fw-bolder'><i class='bi bi-trash'></i></button>"
                 data = data + "</td>"
                 data = data + "</tr>"
@@ -435,29 +435,29 @@ function editData(id) {
     input = input + "<tr id='editInput-" + id + "'>"
     // input = input + "<th scope='row' class='p-3' id='row-" + id + "'>" + key + "</th>"
     input = input + "<td>"
-    input = input + "<textarea type='text' name='product_name' id='product_name" + id + "' class='form-control' placeholder='Description of service or product' rows='1' onchange='addData();'>" + product_name + "</textarea>"
+    input = input + "<textarea type='text' name='product_name' id='product_name" + id + "' class='form-control edit_data_invoice  edit_data_textarea' placeholder='Description of service or product' rows='1' onchange='addData();'>" + product_name + "</textarea>"
     input = input + "<div id='name_error' class='invalid-feedback'></div>"
     input = input + "</td>"
     input = input + "<td class='px-0'>"
-    input = input + "<div class='input-group'>"
-    input = input + "<input type='number' name='product_quantity' id='product_quantity" + id + "' class='form-control' value='" + product_quantity + "' placeholder='Quantity' onchange='ptotal();addData();'>"
-    input = input + "<div class='input-group-text fw-bold border-0'>X</div>"
+    input = input + "<div class=''>"
+    input = input + "<input type='number' name='product_quantity' id='product_quantity" + id + "' class='form-control edit_data_invoice edit_data_input1' value='" + product_quantity + "' placeholder='Quantity' onchange='ptotal();addData();'>"
+
     input = input + "<div id='quantity_error' class='invalid-feedback'></div>"
     input = input + "</div>"
     input = input + " </td>"
     input = input + "<td class='px-0'>"
-    input = input + "<div class='input-group'>"
-    input = input + "<input type='number' name='product_rate' id='product_rate" + id + "' class='form-control' value='" + product_rate + "' placeholder='Rate' onchange='ptotal();addData();'>"
+    input = input + "<div class=''>"
+    input = input + "<input type='number' name='product_rate' id='product_rate" + id + "' class='form-control edit_data_invoice edit_data_input2' value='" + product_rate + "' placeholder='Rate' onchange='ptotal();addData();'>"
     input = input + "<div id='product_rate_error' class='invalid-feedback'></div>"
     input = input + "</div>"
     input = input + "</td>"
     input = input + "<td class='pe-0'>"
     input = input + "<div class='rounded'>"
-    input = input + "<span id='product_amount' class='fw-bolder form-control'>" + product_amount + "</span>"
+    input = input + "<span id='product_amount' class='fw-bolder form-control edit_data_invoice edit_data_input3'>" + product_amount + "</span>"
     input = input + "</div>"
     input = input + "</td>"
     input = input + "<td>"
-    input = input + "<button type='button' onClick='saveData(" + id + ")' class='btn btn-success btn-sm ms-2 fw-bolder'><i class='bi bi-check-circle-fill'></i></button>"
+    input = input + "<button type='button' onClick='saveData(" + id + ")' class='btn btn-success btn-sm ms-3 fw-bolder edit_data_invoice'><i class='bi bi-check-circle-fill'></i></button>"
     input = input + "</td>"
     input = input + "</tr>"
     $("#tableRow-" + id).replaceWith(input);
@@ -718,7 +718,7 @@ $(document).on("click", ".preview_image_user", function (e) {
     e.preventDefault();
     var template_id = $(this).closest(".data_table_id").find("#invoice_id_user").val();
 
-     alert(template_id);
+     alert("user" + template_id);
     $.ajax({
         url: '/create/invoice/view/' + template_id,
         method: 'get',

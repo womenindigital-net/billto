@@ -12,6 +12,8 @@
             background-color: #fff !important;
         }
     </style>
+
+
 @endpush
 @section('frontend_content')
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
@@ -68,56 +70,11 @@
             @endif
             {{-- <form method="post" action="{{ url('/invoices/store') }}" enctype="multipart/form-data"> --}}
             @csrf
-            <div class="container p-4 mt-5 " style="background-color: #F0F0F0; border-radius: 10px;">
+            <div class="container p-4 mt-2 mt-sm-5" style="background-color: #F0F0F0; border-radius: 10px;">
                 <div class="row">
                     <div class="col-md-7">
                         <div class="row">
-                            <style>
-                                .logo_text {
-                                    position: absolute;
-                                    z-index: 1;
-                                    top: 15px;
-                                    margin-left: 17px;
-                                }
-
-                                .inputBorderRedius {
-                                    border-radius: 10px !important;
-                                }
-
-                                .invoice {
-                                    color: #898989;
-                                    font-size: 400;
-                                }
-
-                                .invoiceID {
-                                    margin-left: -35px !important;
-                                    z-index: 99;
-                                    border-left: 0;
-                                    border-radius: 0 10px 10px 0px !important;
-                                }
-
-                                .dateForm {
-                                    margin-left: -40px !important;
-                                    z-index: 3;
-                                    border-left: 0;
-                                    border-radius: 0 10px 10px 0px !important;
-                                    background-color: #FFFFFF !important;
-                                }
-
-                                .invoiceIdOne {
-                                    z-index: 99;
-                                    margin-right: -32px;
-                                    background-color: #CCCCCC;
-                                    border-right: none;
-                                    border-radius: 10px 0px 0px 10px;
-                                }
-
-
-                                .textColor {
-                                    color: #898989;
-                                }
-                            </style>
-                            <div class="col-md-4 text-center mt-3">
+                            <div class="col-sm-5 col-md-4 text-center mt-3">
                                 <label for="imageUpload">
                                     <div class="input-group ">
                                         <div class="avatar-upload">
@@ -132,7 +89,8 @@
                                                 <input class="" type='file' name="invoice_logo" id="imageUpload" />
                                                 @if (isset($user_logo_terms->invoice_logo))
                                                     <img class="hide_image"src="{{ asset('storage/invoice/logo/' . $user_logo_terms->invoice_logo) }}"
-                                                        style=" border-radius: 10px; width: 193px; object-fit: cover; height: 100%;" alt="">
+                                                        style=" border-radius: 10px; width: 193px; object-fit: cover; height: 100%;"
+                                                        alt="">
                                                 @endif
                                             </div>
                                             <div class="avatar-preview">
@@ -148,7 +106,9 @@
 
                             </div>
 
-                            <div class="col-md-8 ">
+                            <div class="col-sm-7 col-md-8 ">
+
+
                                 <div class="d-flex my-3">
                                     <label class="form-label pe-2 pt-1 textColor">Currency: </label>
                                     <select class="tk w-50 fw-bolder form-select form-select-sm inputBorderRedius"
@@ -365,21 +325,22 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-5" style="display: grid">
                         <div class="row">
                             <div class="col-sm-4 d-flex">
                             </div>
                             <div class="col-sm-8 mb-2">
-                                <h1 class="text-center invoice">INVOICE</h1>
+                                <h1 class="text-center invoice d-none d-md-block">INVOICE</h1>
                                 <div class="input-group">
                                     <div class="input-group-text invoiceIdOne">&#9839;</div>
                                     <input readonly type="text" name="invoice_id"
-                                        class="form-control inputBorderRedius"
+                                        class="form-control inputBorderRedius "
                                         value="    @if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @else {{ 'INVID' . $invoiceCountNew }} @endif"
                                         id="invoice_id" placeholder="INVOICE ID">
                                     <input type="hidden" id="id" name="id"
                                         value="@if (isset($invoiceData->id)) {{ $invoiceData->id }} @endif">
-                                    <div class="input-group-text bg-white invoiceID">
+                                    <div class="invoiceID">
                                         @if (isset($invoiceCount))
                                             {{ $invoiceCount }}
                                         @elseif (isset($invoiceCountNew))
@@ -400,7 +361,7 @@
                                         class="form-control textColor inputBorderRedius"
                                         value=" @if (isset($invoiceData->invoice_date)) {{ $invoiceData->invoice_date }}@else{{ date('Y-m-d') }} @endif"
                                         id="invoice_date" readonly>
-                                    <label class="input-group-text dateForm" for="invoice_date">
+                                    <label class="invoiceID" for="invoice_date">
                                         <i class="bi bi-calendar3"></i>
                                     </label>
                                 </div>
@@ -429,7 +390,7 @@
                                         class="form-control textColor inputBorderRedius"
                                         value="@if (isset($invoiceData->invoice_dou_date)) {{ $invoiceData->invoice_dou_date }}@else {{ $date->format('Y-m-d') }} @endif"
                                         id="invoice_dou_date" readonly>
-                                    <label class="input-group-text dateForm" for="invoice_dou_date">
+                                    <label class="invoiceID" for="invoice_dou_date">
                                         <i class="bi bi-calendar3"></i>
                                     </label>
                                     <div id="invoice_dou_date_error" class="invalid-feedback"></div>
@@ -447,76 +408,13 @@
                         </div>
                     </div>
                 </div>
-                <style>
-                    .table .custab1 {
-                        background-color: #FFB317;
-                        color: #FFFFFF;
-                        -webkit-border-radius: 10px 0px 0px 10px;
-                        border-radius: 10px 0px 0px 10px;
-                        border-collapse: separate;
-                    }
 
-                    .table .custab2 {
-                        background-color: #FFB317;
-                        color: #FFFFFF;
-
-                        border-collapse: separate;
-                    }
-
-                    .table .custab3 {
-                        background-color: #FFB317;
-                        color: #FFFFFF;
-                        -webkit-border-radius: 10px 0px 0px 10px;
-                        border-radius: 0px 10px 10px 0px;
-                        border-collapse: separate;
-                    }
-
-                    .bgInput {
-                        background-color: #f7f2f247 !important;
-                    }
-
-                    .InputCustomize {
-                        z-index: 99;
-                        background-color: #f7f2f247;
-                    }
-
-                    .InputCustomizeTex {
-                        margin-left: -19px !important;
-                        z-index: 99;
-                        border-left: 0;
-                        margin-top: 2px;
-                        margin-bottom: 2px;
-                        border-radius: 0 10px 10px 0px !important;
-                        background: #FFFFFF;
-                    }
-
-                    .border_round {
-                        border: 1px solid #cfcdcd;
-                        border-radius: 10px !important;
-                        min-width: 50%;
-                        justify-content: flex-end;
-
-                    }
-
-                    .dateForm_recived {
-                        z-index: 3;
-                        border-left: 0;
-                        border-radius: 0 10px 10px 0px !important;
-                        background-color: #FFFFFF !important;
-                        margin-left: -47px !important;
-                    }
-
-                    input[type="checkbox"] {
-                        accent-color: #FFB317;
-
-                    }
-                </style>
                 <div class="table-responsive customBG">
-                    <table class="table ">
+                    <table class="custom_table ">
                         <thead class="">
-                            <tr class="tr_f ">
+                            <tr class="tr_f">
                                 {{-- <th scope="col" style="width: 3%" class="custab1">#</th> --}}
-                                <th scope="col" style="width: 58%" class="custab1">Item</th>
+                                <th scope="col" style="width: 58% ; padding:8px;" class="custab1">Item</th>
                                 <th scope="col" style="width: 10%" class="custab2">Quantity</th>
                                 <th scope="col" style="width: 10%" class="custab2">Rate</th>
                                 <th scope="col" style="width: 10%" class="custab2">Amount</th>
@@ -529,13 +427,13 @@
 
                     </table>
                 </div>
-                <div class="product row m-0">
-                    <div class="p-0 pe-2 pb-2 me-2 col-md-7">
+                <div class="product row m-0 mt-3">
+                    <div class="p-0 pe-2 pb-2 me-2 col-12 col-md-7">
                         <textarea type="text" name="product_name" id="product_name" class="form-control inputBorderRedius"
                             placeholder="Description of service or product" rows="1" onchange="addData();"></textarea>
                         <div id="name_error" class="invalid-feedback"></div>
                     </div>
-                    <div class="text-start me-3 p-0 pb-2 col-md-1">
+                    <div class="text-start me-0 p-0 me-sm-3 pb-2 col-6 col-md-1">
                         <div class="input-group">
                             <input type="number" name="product_quantity" id="product_quantity"
                                 class="form-control inputBorderRedius" placeholder="Quantity"
@@ -545,7 +443,7 @@
                         </div>
                     </div>
 
-                    <div class="text-start p-0 me-3 pe-1 pb-2 col-md-1 ">
+                    <div class="text-start p-0 me-0 me-sm-3 pe-1 pb-2 col-6 col-md-1 ">
                         <div class="input-group ">
                             <input type="number" name="product_rate" id="product_rate"
                                 class="form-control inputBorderRedius" placeholder="Rate" onchange="ptotal();addData();">
@@ -554,7 +452,7 @@
                         </div>
 
                     </div>
-                    <div class=" col-md-1 p-0  pb-2">
+                    <div class=" col-10 col-md-1 p-0  pb-2">
                         <div
                             class="ps-2 input-group inputBorderRedius text-center  border rounded justify-content-between align-items-center d-flex ">
                             <div class="input-group-text inputBorderRedius border-0 bgInput textColor" id="currency">$
@@ -562,16 +460,18 @@
                             <span id="product_amount" class="fw-bolder px-2"></span>
                         </div>
                     </div>
-                    <style>
-                        .svg_size_plus {
-                            width: 33px;
-                            cursor: pointer;
-                            margin-left: 3px;
-                            margin-top: 1px;
-                        }
-                    </style>
-                    <div class=" col-md-1  text-center">
-                        <div class="" style="padding-left: 30px">
+<style>
+
+@media screen and (min-width: 768px) {
+    .btn_pluss_image{
+     padding-left: 30px;
+    }
+}
+
+
+</style>
+                    <div class=" col-2 col-md-1  text-center">
+                        <div class="btn_pluss_image" >
                             <div class="svg_size_plus">
                                 <img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt=""
                                     style="width: 33px;height:33px; margin-top:2px;">
@@ -580,9 +480,7 @@
                         </div>
                     </div>
                 </div>
-                <style>
 
-                </style>
                 <div class="mt-2 ">
                     <span id="product_clear" class="btn btn-danger inputBorderRedius " onclick="pclear()">
                         Clear Input
@@ -686,15 +584,7 @@
                                     <input type="hidden" id="discount_amounts" name="discount_amounts">
                                 </div>
                             </div>
-                            {{--  <div class="row pt-2">
-                                <div class="col-7 d-flex align-items-center  textColor">Discount Amount</div>
-                                <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
-                                    <div class="input-group-text bgInput border-0 textColor" id="currency">$</div>
-                                    <span class="p-2 fw-bolder  textColor" id="discount_amount">
-                                    </span>
 
-                                </div>
-                            </div> --}}
 
                             <div class="row pt-2">
                                 <div class="col-7 d-flex align-items-center fw-bolder justify-content-end  pe-5 textColor">
@@ -714,21 +604,8 @@
                                     style="font-size: 10px;text-transform: capitalize;"></p>
                                 <input type="hidden" id="final_total" name="final_total">
                             </div>
-                            {{-- <div class="row pt-2 ">
-                <div class="col-7 d-flex align-items-center">Advance Amount</div>
-                <div class="col input-group p-0">
-                  <input type="number" name="advance_amount" class="form-control" value="" id="advance_amount" onchange="total()">
-                  <div class="input-group-text">&#8453;</div>
-                  <div id="advance_amount_error" class="invalid-feedback"></div>
-                </div>
-              </div> --}}
-                            <style>
-                                .border_real {
-                                    border-top: 1px solid rgb(250, 39, 39);
-                                    border-bottom: 1px solid rgb(255, 22, 22);
-                                    border-right: 1px solid rgb(250, 39, 39);
-                                }
-                            </style>
+
+
                             <div class="row pt-2 ">
                                 <div class="col-7 d-flex align-items-center justify-content-end  pe-5 textColor">Receive
                                     Advance Amount</div>
@@ -771,28 +648,7 @@
                                     <div id="requesting_advance_amount_error" class="invalid-feedback"></div>
                                 </div>
                             </div>
-                            {{-- <div class="row pt-2">
-                                <div class="col-7 d-flex align-items-center fw-bolder textColor">Requesting Advance Amount </div>
-                                <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
-                                    <span class="p-2 fw-bolder text-dark" id="requesting_advance_amount_number">
-                                        @if (isset($requesting_advance_amount))
-                                            {{ $requesting_advance_amount }}
-                                        @endif
-                                    </span>
-                                    <div class="input-group-text bgInput border-0 textColor" id="currency">$</div>
 
-                                </div>
-                            </div> --}}
-
-
-                            {{-- <div class="row pt-2">
-                <div class="col-7 d-flex align-items-center">Amount Paid</div>
-                <div class="col input-group p-0">
-                  <input type="number" class="form-control" name="invoice_amu_paid" value="" id="invoice_amu_paid" onchange="total()">
-                  <div class="input-group-text" id="currency">USD</div>
-                  <div id="invoice_amu_paid_error" class="invalid-feedback"></div>
-                </div>
-              </div> --}}
                             <div class="row pt-2">
                                 <div
                                     class="col-7 d-flex align-items-center justify-content-end pe-5 fw-bolder textColor textColor">
@@ -814,16 +670,7 @@
 
                 </div>
             </div>
-            <style>
-                @media screen and (max-width: 767px) {
 
-                    .create_page .bnt_responsive {
-                        font-size: 13px;
-                        padding: 5px 11px !important;
-                        margin: 5px 3px 0px 0px !important;
-                    }
-                }
-            </style>
             @php
                 if (isset($lastInvoice)) {
                     $last_invoice_id = $lastInvoice->id;
@@ -831,11 +678,7 @@
                     $last_invoice_id = 0;
                 }
             @endphp
-            <style>
-                .modal-header .priviewModel {
-                    border-bottom: none !important
-                }
-            </style>
+
             <div class="container p-0 create_page mt-4 mb-0">
                 {{-- id="completeInvoice" --}}
                 <button style="background-color: #686868" type="submit" id="completeInvoice"
@@ -868,164 +711,8 @@
     </section>
     <!-- Invoice Section End -->
 
-    <style>
-        .custom-radio input {
-            display: none;
-        }
 
-        .radio-btn {
-            width: 100%;
-            display: inline-block;
-            border-radius: 2px;
-            position: relative;
-            text-align: center;
-            cursor: pointer;
-            height: 342px;
-        }
 
-        .radio-btn>i {
-            color: #ffffff;
-            background-color: #FFB317;
-            font-size: 20px;
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%) scale(4);
-            border-radius: 50%;
-            padding: 0px 5px;
-            transition: 0.2s;
-            pointer-events: none;
-            opacity: 0;
-            z-index: 1;
-        }
-
-        .radio-btn .hobbies-icon {
-            width: 100%;
-            height: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .radio-btn .hobbies-icon i {
-            color: #FFB317;
-            line-height: 80px;
-            font-size: 60px;
-        }
-
-        .radio-btn .hobbies-icon h3 {
-            color: #FFB317;
-            font-size: 16px;
-            font-weight: 400;
-
-        }
-
-        .custom-radio input:checked+.radio-btn {
-            border: 3px solid #FFB317;
-        }
-
-        .custom-radio input:checked+.radio-btn>i {
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-        }
-
-        .radio-btn img {
-            width: 100%;
-        }
-
-        .pakages_name {
-
-            background: #FFB317;
-            padding: 1px 11px;
-            border-radius: 2px;
-            font-size: 13px;
-            position: absolute;
-            top: 0.4%;
-            ;
-            color: #000000;
-            font-weight: 700;
-            z-index: 1;
-            text-decoration: none;
-            right: 0%;
-            text-align: center;
-        }
-
-        @media only screen and (max-width: 991px) {
-            .tempResponsive {
-                /* border: 1px solid red; */
-            }
-
-            .tempResponsive img {
-                height: 295px
-            }
-
-            .radio-btn {
-                width: 100%;
-                display: inline-block;
-                border-radius: 2px;
-                position: relative;
-                text-align: center;
-                cursor: pointer;
-                height: 300px;
-            }
-        }
-
-        @media only screen and (min-width: 992px) {
-
-            .tempResponsive img {
-                height: 335px;
-            }
-        }
-
-        @media only screen and (max-width: 575px) {
-            .tempResponsive {
-                /* border: 1px solid red; */
-            }
-
-            .tempResponsive img {
-                height: 480px
-            }
-
-            .radio-btn {
-                width: 100%;
-                display: inline-block;
-                border-radius: 2px;
-                position: relative;
-                text-align: center;
-                cursor: pointer;
-                height: 485px;
-            }
-        }
-    </style>
-    <style>
-        /* .spinner {
-                    width: 80px;
-                    height: 80px;
-
-                    border: 2px solid #f3f3f3;
-                    border-top: 3px solid #f25a41;
-                    border-radius: 100%;
-
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-
-                    animation: spin 1s infinite linear;
-                    }
-
-                    @keyframes spin {
-                    from {
-                        transform: rotate(0deg);
-                    }
-
-                    to {
-                        transform: rotate(360deg);
-                    }
-                    } */
-    </style>
 
     <section class="invoice_template">
         <div>
@@ -1152,6 +839,10 @@
     </div>
 
     <style>
+        .modal-header .priviewModel {
+            border-bottom: none !important
+        }
+
         .priviewModel {
             padding: 0.2rem 0.5rem !important;
             border-bottom: 1px solid #ededed !important;
@@ -1198,10 +889,6 @@
             </div>
         </div>
     </div> --}}
-
-
-
-
     <!-- Invoice Template End -->
 
     @if (isset($invoiceData->id))

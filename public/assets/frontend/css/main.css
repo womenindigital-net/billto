@@ -659,3 +659,304 @@ p{
   }
 }
 
+
+/* invoice create page css start */
+
+    .logo_text {
+        position: absolute;
+        z-index: 1;
+        top: 15px;
+        margin-left: 17px;
+    }
+
+    .inputBorderRedius {
+        border-radius: 10px !important;
+    }
+
+    .invoice {
+        color: #898989;
+        font-size: 400;
+    }
+
+    .invoiceID {
+        margin-left: -25px !important;
+        z-index: 3;
+        border-left: 0;
+        align-items: center;
+        display: flex;
+        margin-right: 9px;
+    }
+
+    .dateForm {
+        margin-left: -40px !important;
+        z-index: 3;
+        border-left: 0;
+        border-radius: 0 10px 10px 0px !important;
+        background-color: #FFFFFF !important;
+    }
+
+    .invoiceIdOne {
+        z-index: 99;
+        margin-right: -32px;
+        background-color: #CCCCCC;
+        border-right: none;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+
+    .textColor {
+        color: #898989;
+    }
+
+    .custom_table .custab1 {
+        background-color: #FFB317;
+        color: #FFFFFF;
+        -webkit-border-radius: 10px 0px 0px 10px;
+        border-radius: 10px 0px 0px 10px;
+        border-collapse: separate;
+    }
+
+    .custom_table .custab2 {
+        background-color: #FFB317;
+        color: #FFFFFF;
+
+        border-collapse: separate;
+    }
+
+    .custom_table .custab3 {
+        background-color: #FFB317;
+        color: #FFFFFF;
+        -webkit-border-radius: 10px 0px 0px 10px;
+        border-radius: 0px 10px 10px 0px;
+        border-collapse: separate;
+    }
+
+    .bgInput {
+        background-color: #f7f2f247 !important;
+    }
+
+    .InputCustomize {
+        z-index: 99;
+        background-color: #f7f2f247;
+    }
+
+    .InputCustomizeTex {
+        margin-left: -19px !important;
+        z-index: 99;
+        border-left: 0;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        border-radius: 0 10px 10px 0px !important;
+        background: #FFFFFF;
+    }
+
+    .border_round {
+        border: 1px solid #cfcdcd;
+        border-radius: 10px !important;
+        min-width: 50%;
+        justify-content: flex-end;
+
+    }
+
+    .dateForm_recived {
+        z-index: 3;
+        border-left: 0;
+        border-radius: 0 10px 10px 0px !important;
+        background-color: #FFFFFF !important;
+        margin-left: -47px !important;
+    }
+
+    input[type="checkbox"] {
+        accent-color: #FFB317;
+
+    }
+
+    .custom_table {
+        width: 100%;
+        border-radius: 10px !important;
+
+
+    }
+
+    .custom_table .tr_f {
+        background: #FFB317;
+        border-radius: 10px !important;
+    }
+
+    .edit_data_invoice {
+        margin-top: 10px;
+    }
+
+    .edit_data_textarea {
+        width: 97.5%;
+    }
+
+    .edit_data_input1 {
+        width: 80%;
+    }
+
+    .edit_data_input2 {
+        width: 74%;
+    }
+
+    .edit_data_input3 {
+        width: 100%;
+        margin-left: -10px;
+    }
+
+        .custom-radio input {
+            display: none;
+        }
+
+        .radio-btn {
+            width: 100%;
+            display: inline-block;
+            border-radius: 2px;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            height: 342px;
+        }
+
+        .radio-btn>i {
+            color: #ffffff;
+            background-color: #FFB317;
+            font-size: 20px;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) scale(4);
+            border-radius: 50%;
+            padding: 0px 5px;
+            transition: 0.2s;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .radio-btn .hobbies-icon {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .radio-btn .hobbies-icon i {
+            color: #FFB317;
+            line-height: 80px;
+            font-size: 60px;
+        }
+
+        .radio-btn .hobbies-icon h3 {
+            color: #FFB317;
+            font-size: 16px;
+            font-weight: 400;
+
+        }
+
+        .custom-radio input:checked+.radio-btn {
+            border: 3px solid #FFB317;
+        }
+
+        .custom-radio input:checked+.radio-btn>i {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .radio-btn img {
+            width: 100%;
+        }
+
+        .pakages_name {
+
+            background: #FFB317;
+            padding: 1px 11px;
+            border-radius: 2px;
+            font-size: 13px;
+            position: absolute;
+            top: 0.4%;
+            ;
+            color: #000000;
+            font-weight: 700;
+            z-index: 1;
+            text-decoration: none;
+            right: 0%;
+            text-align: center;
+        }
+
+
+
+
+
+        .svg_size_plus {
+            width: 33px;
+            cursor: pointer;
+            margin-left: 3px;
+            margin-top: 1px;
+        }
+
+        .border_real {
+            border-top: 1px solid rgb(250, 39, 39);
+            border-bottom: 1px solid rgb(255, 22, 22);
+            border-right: 1px solid rgb(250, 39, 39);
+        }
+
+        @media only screen and (max-width: 991px) {
+            .tempResponsive {
+                /* border: 1px solid red; */
+            }
+
+            .tempResponsive img {
+                height: 295px
+            }
+
+            .radio-btn {
+                width: 100%;
+                display: inline-block;
+                border-radius: 2px;
+                position: relative;
+                text-align: center;
+                cursor: pointer;
+                height: 300px;
+            }
+        }
+
+
+        @media only screen and (min-width: 992px) {
+
+.tempResponsive img {
+    height: 335px;
+}
+}
+        @media only screen and (max-width: 575px) {
+            .tempResponsive {
+                /* border: 1px solid red; */
+            }
+
+            .tempResponsive img {
+                height: 480px
+            }
+
+            .radio-btn {
+                width: 100%;
+                display: inline-block;
+                border-radius: 2px;
+                position: relative;
+                text-align: center;
+                cursor: pointer;
+                height: 485px;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .create_page .bnt_responsive {
+                font-size: 13px;
+                padding: 5px 11px !important;
+                margin: 5px 3px 0px 0px !important;
+            }
+        }
+
+         /* invoice create page css end */
+

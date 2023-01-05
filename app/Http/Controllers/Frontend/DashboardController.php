@@ -17,13 +17,15 @@ use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
 class DashboardController extends Controller
 {
-    
+
     public function allInvoice()
     {
         $user_id = Auth::user()->id;
         $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total', 'template_name', 'currency']);
         $user = User::where('id', $user_id)->get();
         $Total_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('final_total');
+        $due_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('final_total');
+        $paid_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('final_total');
         $latestDataInvoices = Invoice::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
         return view('frontend.all-invoice')->with(compact('invoicessData', 'user', 'Total_Amount_conut', 'latestDataInvoices'));
     }
@@ -146,8 +148,12 @@ class DashboardController extends Controller
     public function user_view_tamplate($id)
     {
         $data  = Invoice::find($id);
+        $userLogoAndTerms = User::where('id', Auth::user()->id)->get([
+            'invoice_logo',
+            'terms',
+        ]) ->first();
         $productsDatas = Product::where('invoice_id', $id)->get();
-        return view('invoices.preview_invoice.all_pre_invoice', compact('data', 'productsDatas'))->render();
+        return view('invoices.preview_invoice.all_pre_invoice', compact('data', 'productsDatas','userLogoAndTerms'))->render();
     }
 
 

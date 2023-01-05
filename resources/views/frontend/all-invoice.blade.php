@@ -99,11 +99,14 @@
                                                         <a href="">View More</a>
                                                     </div>
                                                 </div>
+                                                @php
+                                                    $total = 90;
+                                                @endphp
                                                 <div class="col-6 d-flex justify-content-center align-items-center">
                                                     <div
                                                         class="earning_graph  d-flex   justify-content-center align-items-center">
                                                         <div>
-                                                            <div role="progressbar" class="bar " aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="--value:70"></div>
+                                                            <div role="progressbar" class="bar " aria-valuenow="{{ $total }}" aria-valuemin="0" aria-valuemax="100" style="--value:{{ $total }}"></div>
 
 
                                                             {{-- <span>12%+ </span> --}}
@@ -235,9 +238,13 @@
                                                             <div class="due_btn">
                                                                 <a href=""> Due </a>
                                                             </div>
-                                                            @else
+                                                            @elseif($latestDataInvoice->status_due_paid=="paid")
                                                             <div class="paid_btn">
                                                                 <a href="">Paid </a>
+                                                            </div>
+                                                            @else
+                                                            <div class="draft_btn">
+                                                                <a href="">Draft </a>
                                                             </div>
                                                             @endif
 

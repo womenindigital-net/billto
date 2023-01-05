@@ -50,8 +50,15 @@
             </a>
             <div class="navbar">
                 <div>
+                    @php
+                    use App\Models\User;
+                    $user_photo = User::where('id', Auth::user()->id)->get([
+                        'picture__input'
+                    ])->first();
+
+                @endphp
                     @if (auth()->check())
-                        <img class="me-1" src="{{ asset('uploads/defaultUserImage/avater.jpg') }}" height="32px"
+                        <img class="me-1" src="{{ asset('uploads/userImage/' . $user_photo->picture__input) }}" height="32px"
                             width="32px" style="border-radius: 50%" alt="">
                     @else
                     @endif

@@ -58,8 +58,11 @@ active_left
                                             <td class="m-0  ">{{ $sendByMail->send_mail_to }}</td>
                                             <td class="m-0  "> {{ $sendByMail->mail_subject }}</td>
                                             <td class="m-0  ">{{ $sendByMail->mail_body }}</td>
-                                            <td class="m-0 text-center "> <a href="" class="preview_image_user btn_view text-center btn btn-sm"    data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop_previw" ><i class="bi bi-eye iconTable"></i></a>
+                                            <td class="m-0 text-center ">
+                                                 <a href="" class="preview_image_user btn btn-sm btn_view send_view_btn"    data-bs-toggle="modal"
+                                                data-bs-target="#staticBackdrop_previw" ><i class="bi bi-eye "></i></a>
+
+
                                             </td>
                                              <input type="hidden" id="invoice_id_user" value="{{ $sendByMail->invoice_tamplate_id }}">
 
