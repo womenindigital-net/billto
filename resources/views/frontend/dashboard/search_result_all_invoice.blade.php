@@ -1,9 +1,3 @@
-=================================================
-
-==============================================================
-
-
-==========================================
 
 @extends('layouts.frontend.app')
 @section('title', 'Home page')
@@ -16,87 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/datatable_css_custom.css') }}">
 @endpush
-<style>
-    .circle {
-        width: 20px;
-        height: 20px;
-        line-height: 21px;
-        border-radius: 50%;
-        font-size: 12px;
-        color: #fff;
-        text-align: center;
-        float: right;
-    }
 
-    .myInvoiceIcon {
-        border: 1px solid #898989;
-        font-size: 16px;
-        padding: 1px 3px 1px 3px;
-        border-radius: 5px;
-    }
-</style>
-
-<style>
-    .custom_btn_sm {
-        background-color: #f8f9fa;
-        font-size: 18px;
-        padding: 4px;
-        width: 18px;
-        height: 18px;
-        border-radius: 3px;
-
-    }
-
-    .iconTable {
-        color: black !important;
-        width: 9px !important;
-        height: 11.25px !important;
-        padding: 5px;
-    }
-
-    /* .border_top{
-         border-top: 1px solid rgb(175, 175, 175) !important;
-     } */
-
-    table.dataTable tfoot tr,
-    table.dataTable tfoot td {
-        border-top: 1px solid #dbdbdb !important;
-    }
-</style>
-{{-- home page css  --}}
-
-
-
-<style>
-    @media all and (max-width: 575px) {
-        .custom_width {
-            width: 30% !important;
-        }
-
-        .custom_width_text {
-            width: 50% !important;
-            margin-bottom: 8px;
-        }
-
-        .mr_custom {
-            display: flex;
-            justify-content: center;
-            margin-right: 10px;
-        }
-    }
-
-    @media all and (max-width: 768px) {
-        .custom_width {
-            width: 30% !important;
-        }
-
-        .custom_width_text {
-            width: 70% !important;
-            margin-bottom: 8px;
-        }
-
-    }
-</style>
 {{-- home page css  --}}
 
 @section('d-block')
@@ -111,34 +25,6 @@
 @section('all_invoice')
     left_manu
 @endsection
-<style>
-    .custom_btn_sm {
-        background-color: #f8f9fa;
-        font-size: 18px;
-        padding: 4px;
-        width: 18px;
-        height: 18px;
-        border-radius: 3px;
-
-    }
-
-    .iconTable {
-        color: black !important;
-        width: 9px !important;
-        height: 11.25px !important;
-        padding: 5px;
-    }
-
-
-
-    table.dataTable tfoot tr,
-    table.dataTable tfoot td {
-        border-top: 1px solid #dbdbdb !important;
-    }
-</style>
-
-
-
 @section('frontend_content')
 
     <section class="container-fluid bg-color ">
