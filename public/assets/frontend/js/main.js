@@ -135,7 +135,7 @@ function addData() {
 $("#invoiceForm").submit(function (e) {
     e.preventDefault();
     const fd = new FormData(this);
-    alert(0);
+    // alert(0);
     $.ajax({
         url: '/invoices/store',
         method: 'post',
@@ -718,7 +718,7 @@ $(document).on("click", ".preview_image_user", function (e) {
     e.preventDefault();
     var template_id = $(this).closest(".data_table_id").find("#invoice_id_user").val();
 
-     alert("user" + template_id);
+    //  alert("user" + template_id);
     $.ajax({
         url: '/create/invoice/view/' + template_id,
         method: 'get',

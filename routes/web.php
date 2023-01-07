@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 
     //payment payment gateway
-    Route::post('/payment/store', [SubscriptionPackContoller::class, 'payment_gateway_store'])->name('payment.store');
+Route::post('/payment/store', [SubscriptionPackContoller::class, 'payment_gateway_store'])->name('payment.store');
 
 
     // just chek route
