@@ -25,9 +25,10 @@ use Illuminate\Support\Facades\Storage;
 
 class InvoiceController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         session_start();
-      }
+    }
 
     /**
      * Display a listing of the resource.
@@ -36,9 +37,9 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-      // If the user has login Start
-        if(Auth::check()){
-            $data  = Invoice::where('id',1)->get()->first();
+        // If the user has login Start
+        if (Auth::check()) {
+            $data  = Invoice::where('id', 1)->get()->first();
             $user = Auth::user()->id;
             $template_id = "";
             $template_id_check = InvoiceTemplate::get()->first();
@@ -55,26 +56,21 @@ class InvoiceController extends Controller
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
 
-           $user_logo_terms = User::where('id', Auth::user()->id)->get([
+            $user_logo_terms = User::where('id', Auth::user()->id)->get([
                 'invoice_logo',
                 'terms',
-            ]) ->first();
-
-
-
-
-            $session =Session::get('session_invoice_id');
-          if($session!=""){
-            return redirect()->to('/edit/invoices/'.$session);
-          }else{
-             return view('frontend.create-invoice')->with(compact('lastInvoice','user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
-          }
-
-        }else{
+            ])->first();
+            $session = Session::get('session_invoice_id');
+            if ($session != "") {
+                return redirect()->to('/edit/invoices/' . $session);
+            } else {
+                return view('frontend.create-invoice')->with(compact('lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
+            }
+        } else {
 
             // If the user is not logined in Start.
             $sessionId = session_id();
-            $data  = Invoice::where('id',1)->get()->first();
+            $data  = Invoice::where('id', 1)->get()->first();
             $template_id = "";
             $template_id_check = InvoiceTemplate::get()->first();
 
@@ -90,13 +86,13 @@ class InvoiceController extends Controller
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
 
-            $user_logo_terms = User::where('id',1 && 'is_admin',1)->get([
+            $user_logo_terms = User::where('id', 1 && 'is_admin', 1)->get([
                 'invoice_logo',
                 'terms',
-            ]) ->first();
-            return view('frontend.create-invoice')->with(compact('user_logo_terms','lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check','data'));
+            ])->first();
+            return view('frontend.create-invoice')->with(compact('user_logo_terms', 'lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
         }
-   }
+    }
 
     public function index_home($id)
     {
@@ -104,14 +100,13 @@ class InvoiceController extends Controller
         $user = Auth::user()->id;
 
         $join_table_template = DB::table('users')
-        ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
-        ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
-        ->join('subscription_package_templates', 'payment_getways.subscription_package_id', '=', 'subscription_package_templates.subscriptionPackageId')
-        ->where('users.id',  $user)->get();
-        // dd( $join_table_template);
-
+            ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+            ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+            ->join('subscription_package_templates', 'payment_getways.subscription_package_id', '=', 'subscription_package_templates.subscriptionPackageId')
+            ->where('users.id',  $user)->get();
 
         // Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
+
         $lastInvoice = Invoice::where('user_id', $user)
             ->orderBy('created_at', 'desc')
             ->get([
@@ -128,7 +123,7 @@ class InvoiceController extends Controller
         $user_logo_terms = User::where('id', Auth::user()->id)->get([
             'invoice_logo',
             'terms',
-        ]) ->first();
+        ])->first();
 
 
         return view('frontend.create-invoice')->with(compact('lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template'));
@@ -165,8 +160,8 @@ class InvoiceController extends Controller
         ]);
 
         $user_id = Auth::user()->id;
-        // dd($request->invoice_date);
-       $template_id_check = $request->template_name;
+       
+        $template_id_check = $request->template_name;
         // Chack package limit
         $join_table_value = DB::table('users')
             ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
@@ -175,30 +170,30 @@ class InvoiceController extends Controller
             ->selectRaw('users.*, payment_getways.*, subscription_packages.*,subscription_package_templates.*, payment_getways.created_at as payment_created_at')
             ->where('users.id',  $user_id)->get();
 
-            // dd($join_table_value);
+        // dd($join_table_value);
 
-        $data="";
+        $data = "";
         foreach ($join_table_value as $join_table) {
-             $truvalue = $join_table->template === $template_id_check;
-             if($truvalue==true){
-                 $data = 1;
-             }
+            $truvalue = $join_table->template === $template_id_check;
+            if ($truvalue == true) {
+                $data = 1;
+            }
         }
 
         $check = ComplateInvoiceCount::where('user_id', $user_id)->first();
-       $invoice_last_id = $check->count_invoice_id;
+        $invoice_last_id = $check->count_invoice_id;
 
         ComplateInvoiceCount::where('user_id', $user_id)->update([
-            'count_invoice_id'=>$request->id
-             ]);
+            'count_invoice_id' => $request->id
+        ]);
         $packageDuration = $join_table->packageDuration;
         $create_date = $join_table->payment_created_at;
         $date = new Carbon($create_date);
         $today_date = $date->diffInDays(Carbon::now());
 
-        if ($join_table->limitInvoiceGenerate >= $check->current_invoice_total + 1 && $packageDuration >= $today_date && $data==1) {
+        if ($join_table->limitInvoiceGenerate >= $check->current_invoice_total + 1 && $packageDuration >= $today_date && $data == 1) {
 
-            if($invoice_last_id != $request->id){
+            if ($invoice_last_id != $request->id) {
                 ComplateInvoiceCount::where('user_id', $user_id)->where('count_invoice_id', $request->id)->increment('invoice_count_total');
                 ComplateInvoiceCount::where('user_id', $user_id)->where('count_invoice_id', $request->id)->increment('current_invoice_total');
             }
@@ -225,9 +220,9 @@ class InvoiceController extends Controller
                         $filename = time() . '.' . $extension;
                         $file->move(public_path('storage/invoice/logo'), $filename);
                         User::where('id', Auth::user()->id)
-                        ->update([
-                            'invoice_logo' =>$filename,
-                         ]);
+                            ->update([
+                                'invoice_logo' => $filename,
+                            ]);
                     }
                 } elseif ($id != null && $invoice_logo != null) {
 
@@ -241,29 +236,29 @@ class InvoiceController extends Controller
                         $filename = time() . '.' . $extension;
                         $file->move(public_path('storage/invoice/logo'), $filename);
                         User::where('id', Auth::user()->id)
-                        ->update([
-                            'invoice_logo' =>$filename,
-                         ]);
+                            ->update([
+                                'invoice_logo' => $filename,
+                            ]);
                     }
                 }
 
 
-                if($request->invoice_terms != null ){
+                if ($request->invoice_terms != null) {
 
                     User::where('id', Auth::user()->id)
-                    ->update([
-                        'terms' => $request->invoice_terms,
-                     ]);
+                        ->update([
+                            'terms' => $request->invoice_terms,
+                        ]);
                 }
 
 
                 // invocie Logo name End
-                $status ="";
-                 if($request->receive_advance_amount === $request->final_total){
-                    $status="paid";
-                 }else{
-                    $status="due";
-                 }
+                $status = "";
+                if ($request->receive_advance_amount === $request->final_total) {
+                    $status = "paid";
+                } else {
+                    $status = "due";
+                }
                 // Update Invoice Data
                 $data = array(
                     'invoice_logo' => 0,
@@ -283,14 +278,14 @@ class InvoiceController extends Controller
                     'requesting_advance_amount_percent' => $request->requesting_advance_amount,
                     'total' => $total,
                     'final_total' => $request->final_total,
-                    'receive_advance_amount'=>$request->receive_advance_amount,
-                    'balanceDue_amounts'=>$request->balanceDue_amounts,
+                    'receive_advance_amount' => $request->receive_advance_amount,
+                    'balanceDue_amounts' => $request->balanceDue_amounts,
                     'discount_amounts' => $request->discount_amounts,
                     'discount_percent' => $request->discount_percent,
 
                     'invoice_status' => 'incomlete',
                     'status_due_paid' => $status,
-                    'subtotal_no_vat'=> $request->subtotal_no_vat,
+                    'subtotal_no_vat' => $request->subtotal_no_vat,
                     'template_name' => $request->template_name,
                     'invoice_signature' => $request->invoice_signature,
 
@@ -299,15 +294,12 @@ class InvoiceController extends Controller
                 Session::forget('session_invoice_id');
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
                 return response()->json([$invoice->id]);
-
             }
             return response()->json(['message' => 'Please create product']);
         } else {
             return response()->json(['message' => '123']);
         }
-
-
-  }
+    }
 
     /**
      * Display the specified resource.
@@ -416,8 +408,8 @@ class InvoiceController extends Controller
             'template_name',
             'subtotal_no_vat'
         ])->first();
-        Invoice::where('id',$id)->update([
-            'invoice_status'=>'incomlete',
+        Invoice::where('id', $id)->update([
+            'invoice_status' => 'incomlete',
         ]);
         $productsDatas = Invoice::find($id)->products->skip(0)->take(10);
         $due = $invoiceData->total;
@@ -459,7 +451,7 @@ class InvoiceController extends Controller
             'subtotal_no_vat'
         ])->first();
         Invoice::where('id', $template_id)->update([
-            'invoice_status'=>'complete',
+            'invoice_status' => 'complete',
         ]);
 
 
@@ -477,18 +469,18 @@ class InvoiceController extends Controller
             $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
         });
         SendMail_info::create([
-            'user_id'=> Auth::user()->id,
-            'send_mail_to'=> $data['email'],
-            'mail_subject'=> $data['subject'],
-            'mail_body'=>$data['body'],
-            'invoice_tamplate_id'=>$data['template_id'],
-            'created_at'=>Carbon::now()
+            'user_id' => Auth::user()->id,
+            'send_mail_to' => $data['email'],
+            'mail_subject' => $data['subject'],
+            'mail_body' => $data['body'],
+            'invoice_tamplate_id' => $data['template_id'],
+            'created_at' => Carbon::now()
         ]);
 
 
         return response()->json(['message' => '1']);
         // return response()->json($template_id = $request->template_id);
-    //    return redirect()->back()->with('success', "Mail Successfully Send");
+        //    return redirect()->back()->with('success', "Mail Successfully Send");
     }
 
     public function previewImage($id)
@@ -497,10 +489,9 @@ class InvoiceController extends Controller
         $userLogoAndTerms = User::where('id', Auth::user()->id)->get([
             'invoice_logo',
             'terms',
-        ]) ->first();
+        ])->first();
 
-        $productsDatas = Product::where('invoice_id',$id)->get();
-        return view('invoices.preview_invoice.all_pre_invoice',compact('data','productsDatas','userLogoAndTerms'))->render();
-
+        $productsDatas = Product::where('invoice_id', $id)->get();
+        return view('invoices.preview_invoice.all_pre_invoice', compact('data', 'productsDatas', 'userLogoAndTerms'))->render();
     }
 }
