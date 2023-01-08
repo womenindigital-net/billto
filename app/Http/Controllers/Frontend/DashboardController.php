@@ -190,8 +190,7 @@ class DashboardController extends Controller
             'balanceDue_amounts'=> $balanceDue_amounts,
          ]);
          return response()->json(['message' => '1']);
-    //    return redirect()->back()->with('success', 'Payment success');
-
+   
     }
 
     public function search_result(Request $request)
