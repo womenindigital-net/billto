@@ -38,6 +38,18 @@
             height: 40px;
         }
     }
+
+    @media only screen and (max-width: 425px) {
+        .profileName{
+            padding: 5px 3px 5px 1px;
+            font-size: 8px !important;
+        }
+        .user-menu-wrap .btn {
+        font-size: 12px !important;
+        font-weight: 400;
+    }
+
+    }
 </style>
 
 <header class="header_sevtion sticky-top p-0 m-0">
@@ -67,7 +79,7 @@
                         <li class="nav-item d-flex align-items-center">
                             <div class="user-menu-wrap">
                                 <div onclick="myFunction()">
-                                    <button class="dropbtn btn btncustom ">
+                                    <button class="dropbtn btn  profileName btncustom ">
                                         {{ auth()->user()->name }}
                                     </button>
                                 </div>
