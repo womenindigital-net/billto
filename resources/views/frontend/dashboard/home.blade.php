@@ -113,7 +113,7 @@
                             </form>
 
                             <div style=" margin-top:25px"></div>
-                            <table class="table table-hover btn_design" style="color:#686868">
+                            <table class="table table-hover btn_design" style="color:#686868" id="cart_realaod_table">
                                 <thead
                                     style="border-bottom: 2px solid #FFB317 !important; border-top: 1px solid #FFB317 !important;">
                                     <tr>
@@ -136,7 +136,7 @@
                                             <td>
                                                 @if ($InvoiceData->status_due_paid == 'due')
                                                     <div class="due_btn">
-                                                        <a href=""> Due </a>
+                                                        <a href="" class="preview_payment_user"data-bs-toggle="modal" data-bs-target="#staticBackdrop_paid_preview"> Due </a>
                                                     </div>
                                                 @elseif($InvoiceData->status_due_paid == 'paid')
                                                     <div class="paid_btn">

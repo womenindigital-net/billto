@@ -26,6 +26,40 @@
         }
     }
 </style>
+{{-- preview paid amount  alert  --}}
+<div class="modal fade" id="staticBackdrop_paid_preview" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header priviewModel">
+                <h5 class="modal-title " id="staticBackdropLabel">New payment</h5>
+                <button type="button" id="stop_btn" class="btn-close stop_btn " data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 0.5rem 1rem 0rem 1rem;">
+                <div class="row">
+                    <form action="{{ route('payment.save') }}" method="POST">
+                        @csrf
+                    <div class="preview_invoice_show1">
+
+                    </div>
+                    <div class="modal-footer modal_footer ">
+                        <button type="button" class="btn btn-outline-danger btn-sm "
+                            data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i> Cancel</button>
+                        <button class="btn  btn-sm btn-warning disabled"  id="submit_btn"><i class="bi bi-clipboard-plus"></i> Submit  </button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 {{-- preview image alert  --}}
 <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">

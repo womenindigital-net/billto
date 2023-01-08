@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Redirect;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
 class DashboardController extends Controller
@@ -144,7 +145,7 @@ class DashboardController extends Controller
     }
 
 
-
+// user preview invoice
     public function user_view_tamplate($id)
     {
         $data  = Invoice::find($id);
@@ -156,7 +157,42 @@ class DashboardController extends Controller
         return view('invoices.preview_invoice.all_pre_invoice', compact('data', 'productsDatas','userLogoAndTerms'))->render();
     }
 
+    // user due bill payment
+    public function user_view_payment($id)
+    {
 
+        $data  = Invoice::findOrfail($id);
+        return view('due_bill_amount.index', compact('data' ))->render();
+    }
+
+    //payment save
+    public function user_payment_save(Request $request)
+    {
+        $request->validate([
+
+
+            'amount_id' => 'required',
+            'date_id' => 'required',
+            'invoice_id' => 'required',
+            'invoice_user_id' => 'required',
+
+        ]);
+
+
+        if( $request->balanceDue_amounts_user < $request->amount_id){
+            return redirect()->back()->with('delete', 'Psease check due Amount');
+        }
+       $receive_advance_amount = $request->amount_id + $request->old_recived_amount;
+       $balanceDue_amounts = $request->balanceDue_amounts_user - $request->amount_id ;
+
+       Invoice::where('id',$request->invoice_id)->update([
+            'receive_advance_amount'=> $receive_advance_amount,
+            'balanceDue_amounts'=> $balanceDue_amounts,
+         ]);
+         return response()->json(['message' => '1']);
+    //    return redirect()->back()->with('success', 'Payment success');
+
+    }
 
     public function search_result(Request $request)
     {

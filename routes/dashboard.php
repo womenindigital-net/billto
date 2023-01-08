@@ -23,6 +23,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/all/invoices/send-by-Mail', [DashboardController::class, 'SendByMail']);
 
     Route::get('/create/invoice/view/{id}', [DashboardController::class, 'user_view_tamplate']);
+    //payment due
+    Route::get('/create/invoice/payment/{id}', [DashboardController::class, 'user_view_payment']);
+    Route::post('/create/invoice/payment/save', [DashboardController::class, 'user_payment_save'])->name('payment.save');
 
     // search result dasboard
     Route::post('/search-result', [DashboardController::class, 'search_result'])->name('search.result');

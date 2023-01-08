@@ -89,9 +89,9 @@ function addData() {
                 invoice_dou_date: invoice_dou_date,
                 invoice_date: invoice_date,
                 discount_amounts: discount_amounts,
-                invoice_tax_amounts:invoice_tax_amounts,
+                invoice_tax_amounts: invoice_tax_amounts,
                 final_total: final_total,
-                invoice_po_number:invoice_po_number,
+                invoice_po_number: invoice_po_number,
             },
             dataType: 'json',
             success: function (response) {
@@ -646,7 +646,6 @@ $("#send_mail_data").on("click", function () {
     var email_subject = document.getElementById('email_subject').value;
     var email_body = document.getElementById('email_body').value;
 
-    //  alert(template_id);
     if (emai_to == "") {
         $('#emai_to').addClass("is-invalid");
     } else {
@@ -683,10 +682,6 @@ $("#send_mail_data").on("click", function () {
 
                         })
 
-                    // document.getElementById('emai_to').value = "";
-                    // document.getElementById('email_subject').value = "";
-                    // document.getElementById('email_body').value = "";
-
                     // Alert disable
 
                     $('#staticBackdrop').css("d-none");
@@ -714,6 +709,7 @@ $("#send_mail_data").on("click", function () {
         })
     }
 });
+// priview invoice user
 $(document).on("click", ".preview_image_user", function (e) {
     e.preventDefault();
     var template_id = $(this).closest(".data_table_id").find("#invoice_id_user").val();
@@ -729,6 +725,107 @@ $(document).on("click", ".preview_image_user", function (e) {
     })
 
 });
+
+// priview invoice Due payemnt user
+$(document).on("click", "#submit_btn", function (e) {
+    e.preventDefault();
+    var old_recived_amount = document.getElementById('old_recived_amount').value;
+    var balanceDue_amounts_user = document.getElementById('balanceDue_amounts_user').value;
+    var invoice_user_id = document.getElementById('invoice_user_id').value;
+    var invoice_id = document.getElementById('invoice_id').value;
+    var date_id = document.getElementById('date_id').value;
+    var amount_id = document.getElementById('amount_id').value;
+    var invoice_id = document.getElementById('invoice_id').value;
+
+    $.ajax({
+        url: '/create/invoice/payment/save',
+        method: 'post',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: {
+            old_recived_amount: old_recived_amount,
+            balanceDue_amounts_user: balanceDue_amounts_user,
+            invoice_user_id: invoice_user_id,
+            invoice_id: invoice_id,
+            date_id: date_id,
+            amount_id: amount_id
+        },
+        success: function (data) {
+            console.log(data);
+            if (data['message'] != null) {
+                button =
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Payment success',
+                    })
+
+               $("#cart_realaod_table").load(location.href + " #cart_realaod_table");
+               location.reload();
+            } else {
+                button =
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'Payment Not success',
+                  })
+            }
+          }
+    })
+
+
+
+
+});
+
+// payment user priview
+$(document).on("click", ".preview_payment_user", function (e) {
+    e.preventDefault();
+    var invoice_id = $(this).closest(".data_table_id").find("#invoice_id_user").val();
+
+    // alert("user" + invoice_id);
+    $.ajax({
+        url: '/create/invoice/payment/' + invoice_id,
+        method: 'get',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function (data) {
+            $('.preview_invoice_show1').html(data);
+        }
+    })
+
+});
+
+$(document).on("keyup", "#date_id , #amount_id", function (e) {
+    e.preventDefault();
+    var date_id = document.getElementById('date_id').value;
+    var amount_id = document.getElementById('amount_id').value;
+    var balanceDue_amounts_user = document.getElementById('balanceDue_amounts_user').value;
+    var balanceDue_amounts_user = parseInt(balanceDue_amounts_user);
+
+    if (date_id != "" && amount_id != "") {
+        $('#submit_btn').removeClass("disabled");
+    }
+    if (balanceDue_amounts_user < amount_id) {
+        $('#amount_id').addClass("is-invalid");
+        $('#message_error').removeClass("d-none");
+        $('#submit_btn').addClass("disabled");
+    } else {
+        if(amount_id != "" && date_id != ""){
+            $('#amount_id').removeClass("is-invalid");
+            $('#amount_id').addClass("is-valid");
+            $('#submit_btn').removeClass("disabled");
+            $('#message_error').addClass("d-none");
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+});
+
 
 
 $("#previw_id").on("click", function () {
