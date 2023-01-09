@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\InvcPymntTransction;
 use Illuminate\Support\Facades\Redirect;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
@@ -170,7 +171,6 @@ class DashboardController extends Controller
     {
         $request->validate([
 
-
             'amount_id' => 'required',
             'date_id' => 'required',
             'invoice_id' => 'required',
@@ -185,12 +185,24 @@ class DashboardController extends Controller
        $receive_advance_amount = $request->amount_id + $request->old_recived_amount;
        $balanceDue_amounts = $request->balanceDue_amounts_user - $request->amount_id ;
 
+       $status = "due";
+       if($balanceDue_amounts==0){
+        $status = "paid";
+       }
        Invoice::where('id',$request->invoice_id)->update([
             'receive_advance_amount'=> $receive_advance_amount,
             'balanceDue_amounts'=> $balanceDue_amounts,
+            'status_due_paid'=> $status
          ]);
+        InvcPymntTransction::create([
+
+            'invoice_id'=> $request->invoice_id,
+            'user_id'=> $request->invoice_user_id,
+            'new_payment'=>$request->amount_id,
+            'payment_date'=>$request->date_id
+        ]);
+
          return response()->json(['message' => '1']);
-   
     }
 
     public function search_result(Request $request)

@@ -45,6 +45,7 @@ return array(
     'App\\Http\\Requests\\UpdateSubscriptionPackageRequest' => $baseDir . '/app/Http/Requests/UpdateSubscriptionPackageRequest.php',
     'App\\Http\\Requests\\UpdateUserRequest' => $baseDir . '/app/Http/Requests/UpdateUserRequest.php',
     'App\\Models\\ComplateInvoiceCount' => $baseDir . '/app/Models/ComplateInvoiceCount.php',
+    'App\\Models\\InvcPymntTransction' => $baseDir . '/app/Models/InvcPymntTransction.php',
     'App\\Models\\Invoice' => $baseDir . '/app/Models/Invoice.php',
     'App\\Models\\InvoiceTemplate' => $baseDir . '/app/Models/InvoiceTemplate.php',
     'App\\Models\\OrganizationPackage' => $baseDir . '/app/Models/OrganizationPackage.php',

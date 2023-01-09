@@ -229,14 +229,15 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach($latestDataInvoices as $key => $latestDataInvoice)
-                                                    <tr>
+                                                    <tr class="data_table_id">
                                                         <th scope="row">{{ ++$key }}</th>
                                                         <td>{{ $latestDataInvoice->invoice_to }}</td>
                                                         <td>{{ $latestDataInvoice->invoice_date }}</td>
                                                         <td>
                                                             @if ($latestDataInvoice->status_due_paid=="due")
                                                             <div class="due_btn">
-                                                                <a href=""> Due </a>
+                                                                <a href="" class="preview_payment_user"data-bs-toggle="modal" data-bs-target="#staticBackdrop_paid_preview"> Due </a>
+
                                                             </div>
                                                             @elseif($latestDataInvoice->status_due_paid=="paid")
                                                             <div class="paid_btn">
@@ -251,6 +252,8 @@
                                                         </td>
                                                         <td>{{ number_format( $latestDataInvoice->receive_advance_amount,2) }}</td>
                                                         <td>{{number_format(  $latestDataInvoice->final_total,2 ) }}</td>
+
+                                                        <input type="hidden" id="invoice_id_user" value="{{ $latestDataInvoice->id }}">
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
