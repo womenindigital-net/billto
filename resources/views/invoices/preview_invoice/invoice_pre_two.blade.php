@@ -24,7 +24,7 @@
     .headerTextOne {
         color: #686868;
         text-align: center;
-        font-size: 18px;
+        font-size: 15px;
         line-height: 27px;
         font-weight: 700;
     }
@@ -43,12 +43,13 @@
         margin-bottom: 44px;
     }
 
+
     .invoiceText {
         color: #fcb21c;
         font-weight: 700;
         font-size: 60px;
         line-height: 73px;
-        margin: 70px 0px 22px 75px;
+        margin: 50px 0px 0px 78px;
         text-transform: uppercase;
     }
 
@@ -68,7 +69,7 @@
     }
 
     .invoiceMarginPadding {
-        margin: 22px 0px 22px 100px;
+        margin: 15px 0px 22px 70px;
     }
 
     .tableSection {
@@ -118,7 +119,7 @@
     }
 
     .tramsAndCondition {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 700;
         line-height: 22.8px;
         color: #fcb21c;
@@ -142,28 +143,36 @@
                     @endif
                 </div>
                 <div class="hadingMarginPadding">
-                    <h1 class="headerTextOne"> {{ $data->invoice_form }} </h1>
-                    <h6 class="headerTextTwo">
-
-                    </h6>
+                    <h1 class="headerTextOne text-break"> {{ $data->invoice_form }} </h1>
                 </div>
             </div>
             <div class="col-2"></div>
             <div class="col-6">
                 <h1 class="invoiceText">Invoice</h1>
-                <div class="d-flex invoiceMarginPadding">
-                    <div class="invoiceTextOne me-1">
-                        <p>Incoice #</p>
-                        <p>Invoice date</p>
-                        <p>P.O.#</p>
-                        <p>Due date</p>
-                    </div>
-                    <div class="invoiceTextTwo ms-5">
-                        <p>{{ $data->invoice_id }}</p>
-                        <p>{{ $data->invoice_date }}</p>
-                        <p>{{ $data->invoice_po_number }}</p>
-                        <p>{{ $data->invoice_dou_date }}</p>
-                    </div>
+                <div class="invoiceMarginPadding">
+                    <table class="table table-borderless mb-5">
+                        <thead>
+                            <tr>
+                                <th scope="col-2">Incoice #</th>
+                                <td scope="col-2">{{ $data->invoice_id }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Invoice date</th>
+                                <td>{{ $data->invoice_date }}</td>
+
+                            </tr>
+                            <tr>
+                                <th scope="row">P.O.#</th>
+                                <td>{{ $data->invoice_po_number }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Due date</th>
+                                <td colspan="2">{{ $data->invoice_dou_date }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -255,18 +264,25 @@
             <div class="col-4 bgColorYellow2">
                 <div class="">
                     <h4 class="footerHader text-white">To</h4>
-                    <p class="footertext  text-white">{{ $data->invoice_to }}</p>
+                    <p class="footertext  text-white text-break ps-1">{{ $data->invoice_to }}</p>
                 </div>
             </div>
             <div class="col-8">
                 <h1 class="footerThank">Thank You for your business </h1>
-                <div class="">
-                    <h5 class="tramsAndCondition">Terms & conditions </h5>
-                    <p class="payment">{{ $userLogoAndTerms->terms }} <br> {{ $data->invoice_notes }}</p>
+                <div class="d-flex">
+                    <div>
+                       <h5 class="tramsAndCondition ">Terms & conditions </h5>
+                       <p class="payment text-break">{{ $userLogoAndTerms->terms }} <br> {{ $data->invoice_notes }}</p>
+                    </div>
+                    <div class="mx-auto border">
+                        <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt="" height="122px" width="122px"
+                        style="object-fit:cover;" />
+                    </div>
                 </div>
-                <div class="mt-4">
+                {{-- <div class="mt-4">
+                    <h5 class="tramsAndCondition ">Terms & conditions </h5>
                     <p class="payment"></p>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
