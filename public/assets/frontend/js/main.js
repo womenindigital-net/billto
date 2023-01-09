@@ -841,6 +841,20 @@ $("#previw_id").on("click", function () {
 
 });
 
+$("#complate_invoice_id").on("click", function () {
+    var invoice_last_id = document.getElementById('id').value;
+    alert(invoice_last_id);
+    $.ajax({
+        url: 'invoice/complate/page' + invoice_last_id,
+        method: 'get',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function (data) {
+            //$('.preview_invoice_show').html(data);
+        }
+    });
+
+});
+
 $(".save_btn_anable").on("click", function () {
     $('#completeInvoice').removeClass("d-none");
     $('#previw_id').addClass("d-none");

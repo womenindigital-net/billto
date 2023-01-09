@@ -691,9 +691,10 @@
                     @endif
                 </button>
 
-                <a id="previw_id"
-                    class="btn inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered    py-2 px-4 my-2"
+                <a id="previw_id" class="btn inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered    py-2 px-4 my-2"
                     data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye"></i> Preview</a>
+
+                <a  style="background-color: #686868" id="complate_invoice_id" class="btn inputBorderRedius  send-invoice  bnt_responsive bordered"><i class="bi bi-eye"></i> Complate Invoice</a>
 
                 <button style="background-color: #686868" type="button" id="send_email_id"
                     class="btn send-invoice bnt_responsive  px-4  disabled inputBorderRedius " data-bs-toggle="modal"

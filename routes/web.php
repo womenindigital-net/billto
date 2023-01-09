@@ -60,6 +60,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // Route::PUT('/products/update', [ProductController::class, 'update']);
     // Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
     Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('store.');
+
+    Route::get('invoice/complate/page{id}', [InvoiceController::class, 'complate_invoice']);
     Route::get('home/invoice/page/{id}', [InvoiceController::class, 'index_home']);
 
     Route::post('/invoices/complete/{id}', [InvoiceController::class, 'complete'])->name('complete.');
