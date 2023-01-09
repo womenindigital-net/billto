@@ -160,7 +160,7 @@ class InvoiceController extends Controller
         ]);
 
         $user_id = Auth::user()->id;
-       
+
         $template_id_check = $request->template_name;
         // Chack package limit
         $join_table_value = DB::table('users')
@@ -488,7 +488,7 @@ class InvoiceController extends Controller
         $data  = Invoice::find($id);
         $userLogoAndTerms = User::where('id', Auth::user()->id)->get([
             'invoice_logo',
-            'terms',
+            'terms','signature'
         ])->first();
 
         $productsDatas = Product::where('invoice_id', $id)->get();
