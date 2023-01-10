@@ -1,5 +1,10 @@
 <section class="page-top">
     <div class="side-bar border_right">
+        <style>
+            .Trush_bg{
+                background:#ffb317;
+            }
+        </style>
         @php
             use App\Models\User;
             use App\Models\Invoice;
@@ -70,9 +75,8 @@
                                         class="@yield('SendbyEmail') ">Send by Email <span
                                             class="circle @yield('SendbyEmail_bg') submenu_circle_bg">{{ $sendByMail_count }}</span></a>
                                 </li>
-                                <li><a href='{{ url('/my-trash-invoice') }}' class="@yield('Trush') ">
-                                        Drafts <span
-                                            class="circle submenu_circle_bg">{{ $trash }}</span>
+                                <li><a href='{{ url('/my-trash-invoice') }}' class="@yield('Trush') "> Drafts <span
+                                            class="circle submenu_circle_bg @yield('Trush_bg')">{{ $trash }}</span>
                                     </a></li>
                             </ul>
                         </li>
