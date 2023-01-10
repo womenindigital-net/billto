@@ -1,223 +1,294 @@
 <style>
     .page {
-      width: 21cm;
-      min-height: 29.7cm;
-      overflow: hidden;
-      margin: 0 auto;
+        width: 21cm;
+        min-height: 29.7cm;
+        overflow: hidden;
+        margin: 0 auto;
     }
+
     .bgColorYellow {
-      background-color: #0370BF;
-      min-height: 335px;
-      align-content: center;
+        background-color:
+            #0370BF;
+        min-height: 335px;
     }
+
+    .bgColorYellow2 {
+        background-color:
+            #0370BF;
+        min-height: 420px;
+    }
+
     .imgMarginPadding {
-      margin-top: 40px;
-      margin-bottom: 49px;
+        margin-top: 40px;
+        margin-bottom: 49px;
     }
+
     .headerTextOne {
-      color: #FFFFFF;
-      text-align: center;
-      font-size: 18px;
-      line-height: 27px;
-      font-weight: 700;
-    }
-    .headerTextTwo {
-      color: #FFFFFF;
-      text-align: center;
-      font-size: 16px;
-      line-height: 27px;
-      font-weight: 300;
-    }
-    .hadingMarginPadding {
-      margin-right: 20px;
-      margin-left: 26px;
-      margin-bottom: 44px;
-    }
-    .invoiceText {
-      color: #0370BF;
-      font-weight: 700;
-      font-size: 60px;
-      line-height: 73px;
-      margin: 70px 0px 22px 75px;
-      text-transform: uppercase;
-    }
-    .invoiceTextOne {
-      font-size: 18px;
-      line-height: 26px;
-    }
-    .invoiceTextOne p{
         color: #686868;
+        text-align: center;
+        font-size: 15px;
+        line-height: 27px;
         font-weight: 700;
     }
+
+    .headerTextTwo {
+        color: #686868;
+        text-align: center;
+        font-size: 16px;
+        line-height: 27px;
+        font-weight: 300;
+    }
+
+    .hadingMarginPadding {
+        margin-right: 20px;
+        margin-left: 26px;
+        margin-bottom: 44px;
+    }
+
+
+    .invoiceText {
+        color:
+            #0370BF;
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 73px;
+        margin: 50px 0px 0px 78px;
+        text-transform: uppercase;
+    }
+
+    .invoiceTextOne {
+        color: #686868;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26px;
+    }
+
     .invoiceTextTwo {
-      color: #686868;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 26px;
-      text-align: right;
+        color: #686868;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+        text-align: right;
     }
+
     .invoiceMarginPadding {
-      margin: 22px 0px 22px 80px;
+        margin: 15px 0px 22px 70px;
     }
+
     .tableSection {
-      color: #686868 !important;
+        color: #686868 !important;
     }
+
     .tableSectionBgColor {
-      background-color: #f2f2f2;
+        background-color: #f2f2f2;
     }
-    .tableSection_border .table > :not(:last-child) > :last-child > * {
-      border-bottom-color: #d9d5cda1 !important;
+
+    .tableSection_border .table> :not(:last-child)> :last-child>* {
+        border-bottom-color: #d9d5cda1 !important;
     }
-    .bordertop{
+
+    .solide_border_top {
         border: 1px solid #0370BF;
         margin-top: 80px;
     }
-    .footerHader{
+
+    .bordertop {}
+
+    .bordertop_left {
+        margin-top: 50px;
+    }
+
+    .footerHader {
         margin: 34px 70px 6px 70px;
         text-align: center;
         font-size: 18px;
-        color:#FFFFFF;
+        color: #686868;
         border-bottom: 2px solid #FFFFFF;
     }
-    .footertext{
+
+    .footertext {
         font-weight: 400;
         font-size: 16;
         line-height: 21.1px;
         text-align: center;
-        color: #FFFFFF;
+        color: #686868;
     }
-    .footerThank{
+
+    .footerThank {
         font-size: 30px;
         color: #686868;
         margin-top: 55px;
-        margin-bottom:48px ;
+        margin-bottom: 48px;
     }
-    .tramsAndCondition{
-        font-size: 14px;
+
+    .tramsAndCondition {
+        font-size: 16px;
         font-weight: 700;
         line-height: 22.8px;
-        color:#0370BF ;
+        color:
+            #0370BF;
     }
-    .payment{
+
+    .payment {
         font-size: 12px;
         font-weight: 400;
         line-height: 19.8px;
-        color:#686868;
+        color: #686868;
     }
-  </style>
-  <div class="page">
+</style>
+<div class="page">
     <section>
-      <div class="row">
-        <div class="col-4 bgColorYellow">
-          <div class="d-flex justify-content-center imgMarginPadding">
-            @if($data->invoice_logo!="")
-            <img class="rounded-circle" src="{{ asset('storage/invoice/logo/'.$data->invoice_logo) }}" alt="" height="122px"   width="122px"/>
-            @endif
-          </div>
-          <div class="hadingMarginPadding">
-            <h1 class="headerTextOne">{{ $data->invoice_form }}</h1>
-            <h6 class="headerTextTwo">
-                {{-- {{ $data->invoice_form }} --}}
-            </h6>
-          </div>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-6">
-          <h1 class="invoiceText">Invoice</h1>
-          <div class="d-flex invoiceMarginPadding">
-            <div class="invoiceTextOne me-1">
-              <p>Incoice #</p>
-              <p>Invoice date</p>
-              <p>P.O.#</p>
-              <p>Due date</p>
+        <div class="row">
+            <div class="col-4 bgColorYellow">
+                <div class="d-flex justify-content-center imgMarginPadding">
+                    @if ($userLogoAndTerms->invoice_logo != '')
+                        <img src="{{ asset('storage/invoice/logo/' . $userLogoAndTerms->invoice_logo) }}" alt=""
+                            style="height:80px; width: 80px; object-fit:cover;" />
+                    @endif
+                </div>
+                <div class="hadingMarginPadding">
+                    <h1 class="headerTextOne text-break text-white" > {{ $data->invoice_form }} </h1>
+                </div>
             </div>
-            <div class="invoiceTextTwo ms-5">
-                <p>{{ $data->invoice_id }}</p>
-                <p>{{  $data->invoice_date }}</p>
-                <p>{{ $data->invoice_po_number }}</p>
-                <p>{{  $data->invoice_dou_date }}</p>
+            <div class="col-2"></div>
+            <div class="col-6">
+                <h1 class="invoiceText">Invoice</h1>
+                <div class="invoiceMarginPadding">
+                    <table class="table table-borderless mb-5">
+                        <thead>
+                            <tr>
+                                <th scope="col-2">Incoice #</th>
+                                <td scope="col-2">{{ $data->invoice_id }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Invoice date</th>
+                                <td>{{ $data->invoice_date }}</td>
+
+                            </tr>
+                            <tr>
+                                <th scope="row">P.O.#</th>
+                                <td>{{ $data->invoice_po_number }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Due date</th>
+                                <td colspan="2">{{ $data->invoice_dou_date }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
     <section class="">
-      <!-- this is table section  -->
-      <div class="row tableSection_border tableSectionBgColor">
-        <div class="col-1"></div>
-        <div class="col-10">
-          <!-- second section -->
-          <table class="table tableSection">
-            <thead>
-              <tr>
-                <th scope="col">QTY</th>
-                <th scope="col">DESCRIPTION</th>
-                <th scope="col" class="text-end">UNIT PRICE</th>
-                <th scope="col" class="text-end">AMOUNT</th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($productsDatas as $product_detail)
-              <tr>
-                <th>{{ $product_detail->product_quantity }}</th>
-                <td>{{ $product_detail->product_name }}</td>
-                <td class="text-end">{{ number_format($product_detail->product_rate,2) }}</td>
-                <td class="text-end">{{number_format( $product_detail->product_amount,2)}}</td>
-              </tr>
-          @endforeach
-            </tbody>
-          </table>
-          <div class="row">
-            <div class="col-4"></div>
-            <div class="col-8">
-                  <div class="bordertop"></div>
-                  <table class="table table-borderless tableSection ">
+        <!-- this is table section  -->
+        <div class="row tableSection_border tableSectionBgColor">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <!-- second section -->
+                <table class="table tableSection">
+                    <thead>
+                        <tr>
+                            <th scope="col">QTY</th>
+                            <th scope="col">DESCRIPTION</th>
+                            <th scope="col" class="text-end">UNIT PRICE</th>
+                            <th scope="col" class="text-end">AMOUNT</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                      <tr>
-                        @php
-                         $subtotal = $data->total;
-                         $tax = $data->invoice_tax_percent;
-                         $total_value = ceil($subtotal-(($subtotal*$tax)/100));
-                        @endphp
-                        <td class="text-end">Sub total</td>
-                        <td class="text-end">{{ number_format($total_value ,2) }}</td>
-                      </tr>
-                      <tr>
-                        <td class="text-end">Sales Tax {{$tax = $data->invoice_tax_percent }}%</td>
-                        <td class="text-end">{{number_format( $tax_value = $total_value*$tax /100,2) }}</td>
-                      </tr>
-                      <tr>
-                        <td class="text-end fw-bold">Total</td>
-                        <td class="text-end fw-bold">{{  number_format($subtotal,2)  }}</td>
-                      </tr>
+                        @foreach ($productsDatas as $product_detail)
+                            <tr>
+                                <th>{{ $product_detail->product_quantity }}</th>
+                                <td> {{ $product_detail->product_name }}</td>
+                                <td class="text-end">{{ number_format($product_detail->product_rate, 2) }}</td>
+                                <td class="text-end">{{ number_format($product_detail->product_amount, 2) }}</td>
+                            </tr>
+                        @endforeach
+                        {{-- <tr>
+              <th>1</th>
+              <td>Front and rear brake cable</td>
+              <td class="text-end">1000</td>
+              <td class="text-end">100</td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>Front and rear brake cable</td>
+              <td class="text-end">1000</td>
+              <td class="text-end">100</td>
+            </tr> --}}
                     </tbody>
-                  </table>
+                </table>
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-8">
+                        <div class="solide_border_top"> </div>
+                    </div>
+                    <div class="col-4">
+
+                    </div>
+                    <div class="col-7">
+                        <div class="bordertop"></div>
+                        <table class="table table-borderless tableSection ">
+                            <tbody>
+                                <tr>
+                                    <td class="text-end">Sub total </td>
+                                    <td class="text-end">{{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-end"> Sales Tax
+                                        {{ number_format($percent = $data->invoice_tax_percent) }} %</td>
+                                    <td class="text-end">{{ number_format(($no_vat * $percent) / 100, 2) }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-end"> Requesting Advance Amount
+                                        ({{ $data->requesting_advance_amount_percent }}%)</td>
+                                    <td class="text-end">
+                                        {{ number_format(($data->total * $data->requesting_advance_amount_percent) / 100, 2) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-end fw-bold">Total</td>
+                                    <td class="text-end fw-bold">{{ number_format($data->total, 2) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
+                </div>
+                <div class="col-1"></div>
             </div>
-        </div>
-        <div class="col-1"></div>
-      </div>
     </section>
 
     <section>
         <div class="row">
-          <div class="col-4 bgColorYellow">
-            <h4 class="footerHader">To</h4>
-            <p  class="footertext">{{   $data->invoice_to }}</p>
-            {{-- <h4 class="footerHader mt-5">SHIF To</h4>
-            <p  class="footertext">Neals BD. 123 Rockfeller Street,New York, NY 12210</p> --}}
-          </div>
-          <div class="col-8">
-            <h1 class="footerThank ">Thank You for your business </h1>
-            <div class="">
-                <h5 class="tramsAndCondition">Terms & conditions </h5>
-                <p class="payment">{{  $data->invoice_terms }} <br> {{  $data->invoice_notes}}</p>
+            <div class="col-4 bgColorYellow2">
+                <div class="">
+                    <h4 class="footerHader text-white">To</h4>
+                    <p class="footertext  text-white text-break ps-1">{{ $data->invoice_to }}</p>
+                </div>
             </div>
-            {{-- <div class="mt-4">
-                <h5 class="tramsAndCondition">terms & conditions </h5>
-                <p class="payment">Payment is due within 15 days <br>
-                    Please make checks payable to: Company Name</p>
-            </div> --}}
-          </div>
+            <div class="col-8">
+                <h1 class="footerThank">Thank You for your business </h1>
+                <div class="d-flex">
+                    <div>
+                        <h5 class="tramsAndCondition ">Terms & conditions </h5>
+                        <p class="payment text-break">{{ $userLogoAndTerms->terms }} <br> {{ $data->invoice_notes }}
+                        </p>
+                    </div>
+                    <div class="mx-auto border">
+                        <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
+                            height="122px" width="122px" style="object-fit:cover;" />
+                    </div>
+                </div>
+                {{-- <div class="mt-4">
+                    <h5 class="tramsAndCondition ">Terms & conditions </h5>
+                    <p class="payment"></p>
+                </div> --}}
+            </div>
         </div>
-      </section>
-  </div>
+    </section>
+</div>
