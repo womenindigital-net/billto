@@ -199,8 +199,8 @@
     <div class="invoice_body page" size="A4">
         <section class="first_section">
             <div class="logo_area">
-                @if($invoiceData->invoice_logo!="")
-                <img src="{{ public_path('storage/invoice/logo/'.$invoiceData->invoice_logo) }}" alt="img">
+                @if($userInvoiceLogo->invoice_logo!="")
+                <img style="object-fit: cover" src="{{ public_path('storage/invoice/logo/'.$userInvoiceLogo->invoice_logo) }}" alt="img">
                @endif
                 <p><b>Company Name </b></p>
                 <p>{{ $invoiceData->invoice_form }}</p>
@@ -355,7 +355,7 @@
                         </div>
                         <div class="g" style="color: #686868;">
                             <p style="font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">terms & conditions</p>
-                            <p>{{  $invoiceData->invoice_terms }}</p>
+                            <p>{{  $userInvoiceLogo->invoice_terms }}</p>
                             <p>{{  $invoiceData->invoice_notes}}</p>
                         </div>
                     </div>
