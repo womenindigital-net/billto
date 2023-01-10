@@ -410,17 +410,19 @@ class InvoiceController extends Controller
             'template_name',
             'subtotal_no_vat'
         ])->first();
-        Invoice::where('id', $id)->update([
-            'invoice_status' => 'incomlete',
-        ]);
+        // Invoice::where('id', $id)->update([
+        //     'invoice_status' => 'incomlete',
+        // ]);
+        $userInvoiceLogo  = user::where('id', Auth::user()->id)->get(['invoice_logo','terms','signature'])->first();
+
         $productsDatas = Invoice::find($id)->products->skip(0)->take(10);
         $due = $invoiceData->total;
         Session::forget('last_invoice_id_download');
         if (Auth::user()->plan == 'free') {
-            $pdf = Pdf::loadView('invoices.free.all_invoice', compact('invoiceData', 'productsDatas', 'due'));
+            $pdf = Pdf::loadView('invoices.free.all_invoice', compact('invoiceData', 'productsDatas','userInvoiceLogo', 'due'));
             return $pdf->stream('invoices.free.all_invoice.pdf');
         } elseif (Auth::user()->plan == 'premium') {
-            $pdf = Pdf::loadView('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'due'));
+            $pdf = Pdf::loadView('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'userInvoiceLogo','due'));
             return $pdf->stream('invoices.wid.pdf');
         }
     }
@@ -453,7 +455,7 @@ class InvoiceController extends Controller
             'template_name',
             'subtotal_no_vat'
         ])->first();
-        
+
         // Invoice::where('id', $template_id)->update([
         //     'invoice_status' => 'complete',
         // ]);
