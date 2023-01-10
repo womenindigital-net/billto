@@ -14,11 +14,11 @@
 @section('d-block')
     d-block
 @endsection
-@section('Trush')
+@section('pertial')
     active
 @endsection
-@section('Trush_bg')
-Trush_bg
+@section('pertial_bg')
+active_left
 @endsection
 
 
@@ -56,7 +56,7 @@ Trush_bg
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($invoicessData as $key => $invoiceData)
+                                    @forelse ($partial_payment_Invoices as $key => $invoiceData)
                                         <tr class="m-0 p-0 ">
                                             <td class="m-0  text-center ">{{ ++$key }}</td>
                                             <td class="m-0  ">{{ $invoiceData->invoice_to }}</td>
@@ -65,8 +65,7 @@ Trush_bg
                                             </td>
                                             <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
                                             <td class="m-0  ">{{ $invoiceData->currency }} {{ number_format($invoiceData->receive_advance_amount,2) }}</td>
-                                            <td class="m-0  ">{{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total,2) }}</td>
-                                            
+                                            <td class="m-0  ">{{ $invoiceData->currency }} {{ number_format($invoiceData->final_total,2) }}</td>
                                             <td class=" m-0  text-center">
                                                 @if ($invoiceData->invoice_status == 'complete')
                                                     <a class="custom_btn_sm" href=""><i

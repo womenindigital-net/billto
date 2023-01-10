@@ -410,9 +410,7 @@ class InvoiceController extends Controller
             'template_name',
             'subtotal_no_vat'
         ])->first();
-        // Invoice::where('id', $id)->update([
-        //     'invoice_status' => 'incomlete',
-        // ]);
+      
         $userInvoiceLogo  = user::where('id', Auth::user()->id)->get(['invoice_logo','terms','signature'])->first();
 
         $productsDatas = Invoice::find($id)->products->skip(0)->take(10);

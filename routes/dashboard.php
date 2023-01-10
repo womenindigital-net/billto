@@ -18,6 +18,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/all/invoices/user-setting', [DashboardController::class, 'userSettingEdit']);
     Route::put('/all/invoices/user-setting{id}', [DashboardController::class, 'userUpdate']);
     Route::post('/all/invoices/change-password', [DashboardController::class, 'changePassword']);
+    Route::get('/unpaid/invoice/list', [DashboardController::class, 'unpaid_invoice']);
+    Route::get('pertialy/payment/list', [DashboardController::class, 'pertialy_payment']);
+    Route::get('/over/due/payment/list/', [DashboardController::class, 'over_due_payment']);
 
     //dashboard user setting start
     Route::get('/all/invoices/send-by-Mail', [DashboardController::class, 'SendByMail']);
