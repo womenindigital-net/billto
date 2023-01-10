@@ -60,6 +60,7 @@ class InvoiceController extends Controller
                 'invoice_logo',
                 'terms',
             ])->first();
+
             $session = Session::get('session_invoice_id');
             if ($session != "") {
                 return redirect()->to('/edit/invoices/' . $session);
@@ -90,6 +91,7 @@ class InvoiceController extends Controller
                 'invoice_logo',
                 'terms',
             ])->first();
+
             return view('frontend.create-invoice')->with(compact('user_logo_terms', 'lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
         }
     }
@@ -413,6 +415,7 @@ class InvoiceController extends Controller
         ]);
         $productsDatas = Invoice::find($id)->products->skip(0)->take(10);
         $due = $invoiceData->total;
+        Session::forget('last_invoice_id_download');
         if (Auth::user()->plan == 'free') {
             $pdf = Pdf::loadView('invoices.free.all_invoice', compact('invoiceData', 'productsDatas', 'due'));
             return $pdf->stream('invoices.free.all_invoice.pdf');
@@ -450,9 +453,10 @@ class InvoiceController extends Controller
             'template_name',
             'subtotal_no_vat'
         ])->first();
-        Invoice::where('id', $template_id)->update([
-            'invoice_status' => 'complete',
-        ]);
+        
+        // Invoice::where('id', $template_id)->update([
+        //     'invoice_status' => 'complete',
+        // ]);
 
 
 
@@ -477,7 +481,7 @@ class InvoiceController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-
+        Session::forget('last_invoice_id_send');
         return response()->json(['message' => '1']);
         // return response()->json($template_id = $request->template_id);
         //    return redirect()->back()->with('success', "Mail Successfully Send");
@@ -494,4 +498,14 @@ class InvoiceController extends Controller
         $productsDatas = Product::where('invoice_id', $id)->get();
         return view('invoices.preview_invoice.all_pre_invoice', compact('data', 'productsDatas', 'userLogoAndTerms'))->render();
     }
+
+
+    public function complate_invoice($id)
+    {
+        Session::put('last_invoice_id_send', $id);
+        Session::put('last_invoice_id_download', $id);
+        Invoice::where('id',$id)->update(['invoice_status'=>"complete"]);
+        return response()->json(['message' => $id]);
+    }
 }
+

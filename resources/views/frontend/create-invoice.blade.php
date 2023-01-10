@@ -340,7 +340,7 @@
                                         id="invoice_id" placeholder="INVOICE ID">
                                     <input type="hidden" id="id" name="id"
                                         value="@if (isset($invoiceData->id)) {{ $invoiceData->id }} @endif">
-                                    <div class="invoiceID">
+                                    <div class="invoiceID d-none">
                                         @if (isset($invoiceCount))
                                             {{ $invoiceCount }}
                                         @elseif (isset($invoiceCountNew))
@@ -694,16 +694,17 @@
                 <a id="previw_id" class="btn inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered    py-2 px-4 my-2"
                     data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye"></i> Preview</a>
 
-                <a  style="background-color: #686868" id="complate_invoice_id" class="btn inputBorderRedius  send-invoice  bnt_responsive bordered"><i class="bi bi-eye"></i> Complate Invoice</a>
+                <a  style="background-color: #686868" id="complate_invoice_id" class="btn inputBorderRedius d-none  send-invoice  bnt_responsive bordered"><i class="bi bi-clipboard-plus "></i> Complate Invoice</a>
 
                 <button style="background-color: #686868" type="button" id="send_email_id"
-                    class="btn send-invoice bnt_responsive  px-4  disabled inputBorderRedius " data-bs-toggle="modal"
+                    class="btn send-invoice bnt_responsive  px-4   inputBorderRedius {{ Session::get('last_invoice_id_send') ? '' : 'disabled' }}  " data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-envelope-fill me-2"></i>
                     Send Invoice
                 </button>
-                <a style="background-color: #686868" href="" id="downlodeInvoice" target="_blank"
-                    class="btn bnt_responsive send-invoice  px-4 disabled inputBorderRedius"> <i
+
+                <a style="background-color: #686868" href="/invoice/download/{{Session::get('last_invoice_id_download')}}" id="downlodeInvoice" target="_blank"
+                    class="btn bnt_responsive send-invoice  px-4  inputBorderRedius  {{ Session::get('last_invoice_id_download') ? '' : 'disabled' }} "> <i
                         class="bi bi-cloud-arrow-down me-2"></i> Download
                     Invoice</a>
             </div>
@@ -806,7 +807,7 @@
 
 
                         <div class="mb-3">
-                            <input type="hidden" name="template_id" id="id">
+                            <input type="text" name="template_id" id="last_invoice_id"  value="@php echo Session::get('last_invoice_id_send') @endphp" >
                             <br>
                             <label for="emai_to" class="form-label">To</label>
                             <input type="email" class="form-control" id="emai_to" name="emai_to"

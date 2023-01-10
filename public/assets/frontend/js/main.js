@@ -72,6 +72,8 @@ function addData() {
 
     $('#completeInvoice').removeClass("d-none");
     $('#previw_id').addClass("d-none");
+    $('#complate_invoice_id').addClass("d-none");
+
 
     if ((product_name != '') && (product_quantity != '') && (product_rate != '')) {
         $.ajax({
@@ -172,6 +174,7 @@ $("#invoiceForm").submit(function (e) {
 
                     });
                 $('#previw_id').removeClass("d-none");
+                $('#complate_invoice_id').removeClass("d-none");
                 $('#completeInvoice').addClass("d-none");
 
                 // Alert disable
@@ -200,8 +203,8 @@ $("#invoiceForm").submit(function (e) {
             }
 
 
-            $('#downlodeInvoice').removeClass("disabled");
-            $('#send_email_id').removeClass("disabled");
+            // $('#downlodeInvoice').removeClass("disabled");
+            // $('#send_email_id').removeClass("disabled");
         },
         error: function (error) {
             okButton.fire({
@@ -641,11 +644,12 @@ $("#getway_setup").submit(function (e) {
 
 
 $("#send_mail_data").on("click", function () {
-    var template_id = document.getElementById('id').value;
+
+    var template_id = document.getElementById('last_invoice_id').value;
     var emai_to = document.getElementById('emai_to').value;
     var email_subject = document.getElementById('email_subject').value;
     var email_body = document.getElementById('email_body').value;
-
+//  alert(template_id)
     if (emai_to == "") {
         $('#emai_to').addClass("is-invalid");
     } else {
@@ -691,10 +695,8 @@ $("#send_mail_data").on("click", function () {
                     $('#body_alert').css("padding-right", "0");
                     $('#staticBackdrop').removeClass("show");
                     $('.modal-backdrop').removeClass("show");
-
-
-                    // Alert disable
-
+                // Alert disable
+                $('#emai_to').val("");
                 } else {
                     button =
                         Toast.fire({
@@ -709,6 +711,17 @@ $("#send_mail_data").on("click", function () {
         })
     }
 });
+
+// send  invoice user deshboard
+$(document).on("click", ".send_invoice_mail", function (e) {
+    e.preventDefault();
+    var template_id = $(this).closest(".data_table_id").find("#invoice_id_user").val();
+//    alert("user" + template_id);
+   $('#last_invoice_id').val(template_id);
+
+});
+
+
 // priview invoice user
 $(document).on("click", ".preview_image_user", function (e) {
     e.preventDefault();
@@ -769,10 +782,6 @@ $(document).on("click", "#submit_btn", function (e) {
             }
           }
     })
-
-
-
-
 });
 
 // payment user priview
@@ -817,16 +826,7 @@ $(document).on("keyup", "#date_id , #amount_id", function (e) {
 
     }
 
-
-
-
-
-
-
-
 });
-
-
 
 $("#previw_id").on("click", function () {
     var invoice_last_id = document.getElementById('id').value;
@@ -843,13 +843,28 @@ $("#previw_id").on("click", function () {
 
 $("#complate_invoice_id").on("click", function () {
     var invoice_last_id = document.getElementById('id').value;
-    alert(invoice_last_id);
+
     $.ajax({
-        url: 'invoice/complate/page' + invoice_last_id,
+        url: '/invoice/complate/page/' + invoice_last_id,
         method: 'get',
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         success: function (data) {
-            //$('.preview_invoice_show').html(data);
+            if (data['message'] != null) {
+                button =
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Invoice Completed Success !!',
+                    })
+
+                    setTimeout( () => location.reload(), 2000 )
+
+            } else {
+                button =
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'Invoice Completed Not Success',
+                  })
+            }
         }
     });
 
@@ -858,6 +873,7 @@ $("#complate_invoice_id").on("click", function () {
 $(".save_btn_anable").on("click", function () {
     $('#completeInvoice').removeClass("d-none");
     $('#previw_id').addClass("d-none");
+
 });
 
 
@@ -866,8 +882,7 @@ $(document).on("change", "#invoice_to,#invoice_form,#invoice_id,#invoice_dou_dat
     e.preventDefault();
     $('#completeInvoice').removeClass("d-none");
     $('#previw_id').addClass("d-none");
-
-
+    $('#complate_invoice_id').addClass("d-none");
 });
 
 
