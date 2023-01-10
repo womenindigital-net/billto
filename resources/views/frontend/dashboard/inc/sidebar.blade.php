@@ -6,7 +6,7 @@
             use App\Models\SendMail_info;
             $user_id = Auth::user()->id;
             $user = User::where('id',$user_id)->get();
-            $trash = Invoice::where('user_id',$user_id)->where('invoice_status','incomlete')->count();
+            $trash = Invoice::where('user_id',$user_id)->where('status_due_paid','draft')->count();
             $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
             $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
 

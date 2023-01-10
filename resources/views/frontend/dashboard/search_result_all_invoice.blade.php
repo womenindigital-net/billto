@@ -45,7 +45,7 @@
                 <div class="container-fluid overflow_scroll">
                     <div class="row mt-2">
                         <div class="card  table-responsive">
-                            <div class="mt-1">
+                            {{-- <div class="mt-1">
                                 @if ($errors->any())
                                     <div class=" alert alert-danger p-0 m-0">
                                         <ul class="mt-2 text-danger">
@@ -104,7 +104,7 @@
                                                 id="inputGroupSelect01" name="invoice_status" required>
                                                 <option value="paid">Paid</option>
                                                 <option value="due">Due</option>
-                                                {{-- <option value="draft">Draft</option> --}}
+
                                             </select>
                                         </div>
                                     </div>
@@ -115,9 +115,19 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </form> --}}
 
-                            <div style=" margin-top:25px"></div>
+                            <div class="row pt-2 ">
+                                <div class="col-10">
+                                    <h6 class="pt-2 text-center">Search Results <span class="text-success">From:  {{ $date_from }} -- To:   {{ $date_to }} </span> Payment <span class="text-success">Status: {{ $invoice_status }}</span></h6>
+                                </div>
+
+                                <div class="col-2 text-end pt-2">
+                                    <a href="{{ url('my-all-invoice') }}" style="background:#686868; " class="btn btn-sm  fw-bold text-white"> <i class="bi bi-arrow-left-short fw-bold text-white"></i> Back &nbsp; </a>
+                                 </div>
+                            </div>
+
+                            <div style=" margin-top:2px"></div>
                             <table class="table table-hover btn_design" style="color:#686868">
                                 <thead
                                     style="border-bottom: 2px solid #FFB317 !important; border-top: 1px solid #FFB317 !important;">

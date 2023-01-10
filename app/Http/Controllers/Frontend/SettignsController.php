@@ -29,7 +29,7 @@ class SettignsController extends Controller
         $Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('final_total');
         $paid_Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('receive_advance_amount');
         $due_Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('balanceDue_amounts');
-        $allInvoiceDatas = Invoice::where('user_id', Auth::user()->id)->where('')->orderBy('id', 'DESC')->paginate(10);
+        $allInvoiceDatas = Invoice::where('user_id', Auth::user()->id)->where('status_due_paid','paid')->orwhere('status_due_paid','due')->orderBy('id', 'DESC')->paginate(10);
 
         $latestDataInvoices = Invoice::where('user_id',Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
 
@@ -42,7 +42,8 @@ class SettignsController extends Controller
 
     public function MyTrashinvoice()
     {
-     $invoicessData = Invoice::where('user_id', Auth::user()->id)->where('invoice_status','incomlete')->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency','currency']);
+
+     $invoicessData = Invoice::where('user_id', Auth::user()->id)->where('status_due_paid','draft')->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency','currency']);
      return view('frontend.dashboard.invoice_trast')->with(compact('invoicessData'));
     }
 }

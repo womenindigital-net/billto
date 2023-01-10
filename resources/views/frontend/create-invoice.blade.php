@@ -798,7 +798,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Send Invoice</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -807,8 +807,8 @@
 
 
                         <div class="mb-3">
-                            <input type="text" name="template_id" id="last_invoice_id"  value="@php echo Session::get('last_invoice_id_send') @endphp" >
-                            <br>
+                            <input type="hidden" name="template_id" id="last_invoice_id"  value="@php echo Session::get('last_invoice_id_send') @endphp" >
+
                             <label for="emai_to" class="form-label">To</label>
                             <input type="email" class="form-control" id="emai_to" name="emai_to"
                                 placeholder="example@gmail.com" required>

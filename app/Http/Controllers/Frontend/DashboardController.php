@@ -212,8 +212,11 @@ class DashboardController extends Controller
             'from_date' => 'required',
             'invoice_status' => 'required'
         ]);
+        $date_from =$request->from_date;
+        $date_to = $request->to_date;
+        $invoice_status = $request->invoice_status;
         $all_Invoice_Count = Invoice::where('user_id', Auth::user()->id)->count();
         $search_result = Invoice::whereBetween('invoice_date', [$request->from_date, $request->to_date])->where('status_due_paid', $request->invoice_status)->where('user_id', Auth::user()->id)->get();
-        return view('frontend.dashboard.search_result_all_invoice')->with(compact('search_result', 'all_Invoice_Count'));
+        return view('frontend.dashboard.search_result_all_invoice')->with(compact('invoice_status','date_to','date_from','search_result', 'all_Invoice_Count'));
     }
 }

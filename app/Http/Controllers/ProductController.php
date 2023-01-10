@@ -70,7 +70,8 @@ class ProductController extends Controller
                 'discount_amounts'=>$request->discount_amounts,
                 'invoice_tax_amounts'=>$request->invoice_tax_amounts,
                 'final_total'=>$request->final_total,
-                'invoice_po_number'=>$request->invoice_po_number
+                'invoice_po_number'=>$request->invoice_po_number,
+                'status_due_paid'=>"draft"
                );
            $invoice =  Invoice::updateOrCreate([
                'id' => $id,
@@ -101,7 +102,8 @@ class ProductController extends Controller
                 'discount_amounts'=>$request->discount_amounts,
                 'invoice_tax_amounts'=>$request->invoice_tax_amounts,
                 'final_total'=>$request->final_total,
-                'invoice_po_number'=>$request->invoice_po_number
+                'invoice_po_number'=>$request->invoice_po_number,
+                'status_due_paid'=>"draft"
                  );
 
            $invoice =  Invoice::updateOrCreate([

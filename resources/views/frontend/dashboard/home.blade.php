@@ -55,9 +55,13 @@
                                 @csrf
                                 <div class="row mt-2">
                                     <div class="col-12 col-sm-12 col-md-2">
-                                        <div class="all_invice_title pt-2 ">
-
-                                            <p>All Invoice <span class="rond_all">{{ $all_Invoice_Count }}</span></p>
+                                        <div class="all_invice_title pt-2 d-flex ">
+                                            <div>
+                                                <p>All Invoice </p>
+                                            </div>
+                                            <div>
+                                                <span class="rond_all rounded-circle"> {{ $all_Invoice_Count }} </span>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -141,10 +145,6 @@
                                                 @elseif($InvoiceData->status_due_paid == 'paid')
                                                     <div class="paid_btn">
                                                         <a href="#">Paid </a>
-                                                    </div>
-                                                @else
-                                                    <div class="draft_btn">
-                                                        <a href="#">Draft </a>
                                                     </div>
                                                 @endif
                                             </td>
