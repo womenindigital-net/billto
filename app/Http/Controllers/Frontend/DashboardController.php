@@ -26,10 +26,10 @@ class DashboardController extends Controller
         $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total', 'template_name', 'currency']);
         $user = User::where('id', $user_id)->get();
         $Total_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('final_total');
-        $due_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('final_total');
-        $paid_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('final_total');
+        $due_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('balanceDue_amounts');
+        $paid_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('receive_advance_amount');
         $latestDataInvoices = Invoice::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->limit(7)->get();
-        return view('frontend.all-invoice')->with(compact('invoicessData', 'user', 'Total_Amount_conut', 'latestDataInvoices'));
+        return view('frontend.all-invoice')->with(compact('invoicessData', 'user', 'Total_Amount_conut','due_Amount_conut','paid_Amount_conut', 'latestDataInvoices'));
     }
 
 

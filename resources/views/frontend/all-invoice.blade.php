@@ -153,7 +153,7 @@
                                                 <div class="total_amount_left_paid">
                                                     <p class=" ">Paid Amount</p>
                                                     <span
-                                                        class="">{{ number_format($Total_Amount_conut, 2) }}</span>
+                                                        class="">{{ number_format($paid_Amount_conut, 2) }}</span>
                                                 </div>
 
                                                 <div class="d-flex align-items-center ms-3">
@@ -174,7 +174,7 @@
                                                 <div class="total_amount_left_due">
                                                     <p class=" ">Due Amount</p>
                                                     <span
-                                                        class="">{{ number_format($Total_Amount_conut, 2) }}</span>
+                                                        class="">{{ number_format($due_Amount_conut, 2) }}</span>
                                                 </div>
 
                                                 <div class="d-flex align-items-center ms-3">

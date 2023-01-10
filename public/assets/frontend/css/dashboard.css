@@ -239,11 +239,12 @@ div.dataTables_wrapper div.dataTables_paginate,
     color: #686868;
 }
 .rond_all {
-    width: 18px;
+
     background: #ffb317;
-    border-radius: 50%;
+    /* border-radius: 50%;
     font-size: 12px;
-    padding: 2px 3px;
+    padding: 2px 3px; */
+    margin-top: 2px;
 }
 
 #picture__input {

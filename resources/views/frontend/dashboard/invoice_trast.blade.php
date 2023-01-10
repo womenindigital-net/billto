@@ -17,8 +17,8 @@
 @section('Trush')
     active
 @endsection
-@section('Trush')
-    left_manu
+@section('Trush_bg')
+Trush_bg
 @endsection
 
 

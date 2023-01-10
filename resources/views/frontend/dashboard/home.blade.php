@@ -60,7 +60,7 @@
                                                 <p>All Invoice </p>
                                             </div>
                                             <div>
-                                                <span class="rond_all rounded-circle"> {{ $all_Invoice_Count }} </span>
+                                                <span class="rond_all circle "> {{ $all_Invoice_Count }}</span>
                                             </div>
 
                                         </div>
