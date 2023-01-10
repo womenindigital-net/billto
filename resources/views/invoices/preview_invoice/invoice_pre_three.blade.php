@@ -47,7 +47,7 @@
         color: #ffffff;
     }
 
-    .invoice {
+    .invoiceColor {
         color: #039dbf;
         font-size: 42px;
         line-height: 72px;
@@ -138,7 +138,7 @@
 
                 </div>
                 <div class="text-end me-5 mt-2">
-                    <h1 class="invoice">INVOICE</h1>
+                    <h1 class="invoiceColor">INVOICE</h1>
                 </div>
                 <div class="d-flex justify-content-end me-5 ">
                     <div>

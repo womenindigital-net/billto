@@ -72,7 +72,7 @@
     }
 
     .invoiceMarginPadding {
-        margin: 15px 0px 22px 70px;
+        margin: 15px 0px 22px 72px;
     }
 
     .tableSection {
@@ -153,6 +153,11 @@
             <div class="col-2"></div>
             <div class="col-6">
                 <h1 class="invoiceText">Invoice</h1>
+                <style>
+                    .table>:not(caption)>*>* {
+                        padding: 0.3rem 0.3rem;
+                    }
+                </style>
                 <div class="invoiceMarginPadding">
                     <table class="table table-borderless mb-5">
                         <thead>
@@ -279,7 +284,7 @@
                         <p class="payment text-break">{{ $userLogoAndTerms->terms }} <br> {{ $data->invoice_notes }}
                         </p>
                     </div>
-                    <div class="mx-auto border">
+                    <div class="mx-auto ">
                         <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
                             height="122px" width="122px" style="object-fit:cover;" />
                     </div>

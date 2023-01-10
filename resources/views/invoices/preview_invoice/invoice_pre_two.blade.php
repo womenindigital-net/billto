@@ -150,6 +150,11 @@
             <div class="col-6">
                 <h1 class="invoiceText">Invoice</h1>
                 <div class="invoiceMarginPadding">
+                    <style>
+                        .table>:not(caption)>*>* {
+                            padding: 0.3rem 0.3rem;
+                        }
+                    </style>
                     <table class="table table-borderless mb-5">
                         <thead>
                             <tr>
@@ -263,20 +268,21 @@
         <div class="row">
             <div class="col-4 bgColorYellow2">
                 <div class="">
-                    <h4 class="footerHader text-white">To</h4>
-                    <p class="footertext  text-white text-break ps-1">{{ $data->invoice_to }}</p>
+                    <h4 class="footerHader">To</h4>
+                    <p class="footertext   text-break ps-1">{{ $data->invoice_to }}</p>
                 </div>
             </div>
             <div class="col-8">
                 <h1 class="footerThank">Thank You for your business </h1>
                 <div class="d-flex">
                     <div>
-                       <h5 class="tramsAndCondition ">Terms & conditions </h5>
-                       <p class="payment text-break">{{ $userLogoAndTerms->terms }} <br> {{ $data->invoice_notes }}</p>
+                        <h5 class="tramsAndCondition ">Terms & conditions </h5>
+                        <p class="payment text-break">{{ $userLogoAndTerms->terms }} <br> {{ $data->invoice_notes }}
+                        </p>
                     </div>
-                    <div class="mx-auto border">
-                        <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt="" height="122px" width="122px"
-                        style="object-fit:cover;" />
+                    <div class="mx-auto ">
+                        <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
+                            height="122px" width="122px" style="object-fit:cover;" />
                     </div>
                 </div>
                 {{-- <div class="mt-4">
