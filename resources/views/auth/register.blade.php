@@ -3,35 +3,6 @@
 @push('frontend_css')
 @endpush
 @section('frontend_content')
-
-
-
-    <style>
-        .inputPadding {
-            padding-top: 11px;
-            padding-bottom: 11px;
-        }
-
-        .BetweeenChatac {
-            color: #FFB317 !important;
-        }
-
-        .BetweeenChatac:hover {
-            color: #898989 !important;
-        }
-
-        .allreadyOnBillto {
-            color: #898989 !important;
-        }
-
-        .eye {
-            margin-left: -38px !important;
-            z-index: 3;
-            border-left: 0;
-            border-radius: 0 10px 10px 0px !important;
-        }
-    </style>
-
     <!-- Sub Nav Start -->
     <!-- Sign in form Start -->
     <section class="form_sign_in">
@@ -97,7 +68,7 @@
                                     </div>
 
                                     {{-- niye aschi --}}
-                                    
+
                                     <!-- Confirm Password -->
                                     <div class="form-group pb-3">
                                         <label for="password_confirmation" class="pb-2" style="font-size: 14px;">Confirm
