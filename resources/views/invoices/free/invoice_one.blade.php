@@ -1,3 +1,4 @@
+{{-- template one  --}}
 <style>
     * {
         padding: 0;
@@ -8,10 +9,6 @@
         width: 100%;
         display: flex;
         margin-bottom: 75px;
-        justify-content: space-between;
-        /* position: relative; */
-        /* z-index: 2; */
-
     }
 
 
@@ -35,14 +32,16 @@
 
     .heading_area {
         text-align: right;
-        padding-top: 50px;
+        /* text-align: right; */
+        /* padding-top: 50px;
         padding-bottom: 100px;
-        padding-right: 60px;
-
+        padding-right: 60px; */
+        width: 60%;
+        float: right;
     }
 
     .heading_area h1 {
-        color: #FCB21C;
+        color: #0370BF;
         font-weight: 700;
         font-size: 59.9879px;
         line-height: 73px;
@@ -61,14 +60,14 @@
     }
 
     .heading_area .i_title {
-        /* margin-top: 20px; */
+        margin-top: 20px;
+        padding-right: 52px
     }
 
     .i_sub_title {
         display: flex;
         justify-content: space-between;
         padding-top: 5px;
-
     }
 
     .a {
@@ -158,12 +157,6 @@
         margin-left: 10%;
     }
 
-    .f {
-        margin-left: 10%;
-        padding: 76px 0px;
-        border: 1px solid red;
-    }
-
     .e h1 {
         font-size: 30px;
         padding: 40px 0px;
@@ -198,15 +191,20 @@
 
     .flex {
         display: flex;
+        justify-content: center;
         width: 100%
     }
-    .terms_condition_div{
-        width: 80%;
+
+    .terms_condition_div {
+        width: 70%;
         float: left;
+
     }
-    .signature_div{
-        width: 20%;
+
+    .signature_div {
+        width: 30%;
         float: right;
+        justify-content: center;
     }
 </style>
 <title>Billto.io</title>
@@ -220,35 +218,39 @@
                     <img style="object-fit: cover"
                         src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}" alt="img">
                 @endif
-                <p><b>Company Name </b></p>
                 <p>{{ $invoiceData->invoice_form }}</p>
-                {{-- <p>New York, NY 12210</p> --}}
-
             </div>
 
             <div class="heading_area" style="color: #686868;">
                 <div class="i_title">
                     <h1>INVOICE</h1>
                 </div>
-                <div class="i_sub_title">
-                    <div class="a">
-                        <p>Incoice #</p>
-                        <p>invoice date</p>
-                        <p>p.o.#</p>
-                        <p>due date</p>
-                    </div>
-                    <div class="b">
-                        <p>{{ $invoiceData->invoice_id }}</p>
-                        <p>{{ $invoiceData->invoice_date }}</p>
-                        <p>{{ $invoiceData->invoice_po_number }}</p>
-                        <p>{{ $invoiceData->invoice_dou_date }}</p>
-                    </div>
+                <div style="margin-top:20px;" class="">
+                    <table style="padding-left:160px">
+                        <tr>
+                            <th style="text-align:left; font-size:18px;">Incoice #</th>
+                            <th style="text-align: right;font-size:18px; padding-left:95px;">
+                                {{ $invoiceData->invoice_id }}</th>
+                        </tr>
+                        <tr>
+                            <th style="text-align:left; font-size:18px;">invoice date</th>
+                            <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_date }}</td>
+                        </tr>
+                        <tr>
+                            <th style=" text-align: left; font-size:18px;">p.o.#</th>
+                            <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_po_number }}</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left; font-size:18px;">due date</th>
+                            <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_dou_date }}
+                    </table>
                 </div>
+
             </div>
         </section>
 
 
-        <section class="second_section">
+        <section class="second_section" style="margin-top: 270px;">
             <div class="table">
                 <div style="margin-left: 70px; margin-right:60px; ">
                     <table class="table1" style="width:100%;  border-collapse: collapse;" class="">
@@ -272,7 +274,7 @@
                             @foreach ($productsDatas as $product_detail)
                                 <tr>
                                     <td
-                                        style=" padding:10px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
+                                        style=" padding:8px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
                                         {{ $product_detail->product_quantity }}</td>
                                     <td
                                         style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
@@ -308,8 +310,8 @@
                     <p><b>{{ $invoiceData->invoice_to }}</b></p>
                 </div>
             </div>
-            <div class="right_Side_bar " style="border: 1px solid red">
-                <div style="border: 1px solid blue">
+            <div class="right_Side_bar">
+                <div style=" margin-right:50px">
                     <table style="width: 100%;">
                         <tr style="text-align: right;">
                             <td style="color: #686868;">Subtotal</td>
@@ -329,30 +331,30 @@
                         </tr>
                     </table>
                 </div>
-                <div class="flex" style="border: 1px solid red;">
-                    <div  class="terms_condition_div" style="border: 1px solid rgb(0, 225, 255);">
-                        <div>
-                            <h5
-                                style="color: #686868; font-weight: 400; font-size: 24px; padding-top:10px; padding-bottom:20px; border-top:2px solid #0370BF; width: 60%">
-                                Thank You for your business</h5>
-                        </div>
+                <div class="flex" style="margin-left:10px">
+                    <div style="margin-top:50px">
+                        <h5
+                            style=" color: #686868; font-weight: 400; font-size: 24px; padding-top:10px; padding-bottom:20px; border-top:2px solid #0370BF; width:90%">
+                            Thank You for your business</h5>
+                    </div>
+                    <div class="terms_condition_div">
                         <div style="color: #686868;">
                             <p style="font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">terms
                                 & conditions</p>
-                            <p>{{ $userInvoiceLogo->invoice_terms }}ddddddddd</p>
-                            <p>{{ $invoiceData->invoice_notes }}ddddddddd</p>
+                            <p style="padding-bottom: 5px;padding-top:5px">{{ $userInvoiceLogo->terms }}</p>
+                            <p style="padding-bottom: 5px">{{ $invoiceData->invoice_notes }}</p>
                         </div>
                     </div>
-                    <div class="signature_div" style="border: 1px solid rgb(255, 145, 0)">
+                    <div class="signature_div">
                         @if ($userInvoiceLogo->signature != '')
-                            <img style="width: 100px; height:100px p"
+                            <img style="width: 100px; height:100px "
                                 src="{{ public_path('uploads/signature/' . $userInvoiceLogo->signature) }}"
                                 alt="img">
                         @endif
                     </div>
                 </div>
             </div>
-    </section>
+        </section>
     </div>
 
     </div>

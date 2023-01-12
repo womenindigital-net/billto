@@ -117,7 +117,6 @@
     .footerThank {
         font-size: 30px;
         color: #686868;
-        margin-top: 55px;
         margin-bottom: 48px;
     }
 
@@ -188,17 +187,17 @@
     </section>
     <section class="">
         <!-- this is table section  -->
-        <div class="row tableSection_border tableSectionBgColor">
+        <div class="row  tableSection_border tableSectionBgColor">
             <div class="col-1"></div>
-            <div class="col-10">
+            <div class="col-10 p-0 m-0">
                 <!-- second section -->
-                <table class="table tableSection">
+                <table class="table tableSection mb-5">
                     <thead>
                         <tr>
                             <th scope="col">QTY</th>
                             <th scope="col">DESCRIPTION</th>
                             <th scope="col" class="text-end">UNIT PRICE</th>
-                            <th scope="col" class="text-end">AMOUNT</th>
+                            <th scope="col"  class="text-end me-0">AMOUNT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -210,60 +209,8 @@
                                 <td class="text-end">{{ number_format($product_detail->product_amount, 2) }}</td>
                             </tr>
                         @endforeach
-                        {{-- <tr>
-              <th>1</th>
-              <td>Front and rear brake cable</td>
-              <td class="text-end">1000</td>
-              <td class="text-end">100</td>
-            </tr>
-            <tr>
-              <th>1</th>
-              <td>Front and rear brake cable</td>
-              <td class="text-end">1000</td>
-              <td class="text-end">100</td>
-            </tr> --}}
                     </tbody>
                 </table>
-                <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-8">
-                        <div class="solide_border_top"> </div>
-                    </div>
-                    <div class="col-4">
-
-                    </div>
-                    <div class="col-7">
-                        <div class="bordertop"></div>
-                        <table class="table table-borderless tableSection ">
-                            <tbody>
-                                <tr>
-                                    <td class="text-end">Sub total </td>
-                                    <td class="text-end">{{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end"> Sales Tax
-                                        {{ number_format($percent = $data->invoice_tax_percent) }} %</td>
-                                    <td class="text-end">{{ number_format(($no_vat * $percent) / 100, 2) }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end"> Requesting Advance Amount
-                                        ({{ $data->requesting_advance_amount_percent }}%)</td>
-                                    <td class="text-end">
-                                        {{ number_format(($data->total * $data->requesting_advance_amount_percent) / 100, 2) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end fw-bold">Total</td>
-                                    <td class="text-end fw-bold">{{ number_format($data->total, 2) }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-
-
-
-                    </div>
-                </div>
                 <div class="col-1"></div>
             </div>
     </section>
@@ -276,8 +223,35 @@
                     <p class="footertext  text-white text-break ps-1">{{ $data->invoice_to }}</p>
                 </div>
             </div>
-            <div class="col-8">
-                <h1 class="footerThank">Thank You for your business </h1>
+            <div class="col-8 " style="border-top: 2px solid  width:60%">
+                <div class="me-5">
+                    <table class="table table-borderless tableSection ">
+                        <tbody>
+                            <tr>
+                                <td class="text-end">Sub total </td>
+                                <td class="text-end">{{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-end"> Sales Tax
+                                    {{ number_format($percent = $data->invoice_tax_percent) }} %</td>
+                                <td class="text-end">{{ number_format(($no_vat * $percent) / 100, 2) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-end"> Requesting Advance Amount
+                                    ({{ $data->requesting_advance_amount_percent }}%)</td>
+                                <td class="text-end">
+                                    {{ number_format(($data->total * $data->requesting_advance_amount_percent) / 100, 2) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-end fw-bold">Total</td>
+                                <td class="text-end fw-bold">{{ number_format($data->total, 2) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="border-top:2px solid #0370BF; margin-top:50px">
+                    <h1 class="footerThank">Thank You for your business </h1>
                 <div class="d-flex">
                     <div>
                         <h5 class="tramsAndCondition ">Terms & conditions </h5>
@@ -289,10 +263,7 @@
                             height="122px" width="122px" style="object-fit:cover;" />
                     </div>
                 </div>
-                {{-- <div class="mt-4">
-                    <h5 class="tramsAndCondition ">Terms & conditions </h5>
-                    <p class="payment"></p>
-                </div> --}}
+                </div>
             </div>
         </div>
     </section>

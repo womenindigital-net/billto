@@ -153,7 +153,7 @@
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th scope="col-2" class="text-end">Incoice #</th>
+                                    <th scope="col-2" class="">Incoice #</th>
                                     <td scope="col-2" class="text-end pe-0">{{ $data->invoice_id }}</td>
                                 </tr>
                             </thead>
