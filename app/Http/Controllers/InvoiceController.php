@@ -410,7 +410,7 @@ class InvoiceController extends Controller
             'template_name',
             'subtotal_no_vat'
         ])->first();
-      
+
         $userInvoiceLogo  = user::where('id', Auth::user()->id)->get(['invoice_logo','terms','signature'])->first();
 
         $productsDatas = Invoice::find($id)->products->skip(0)->take(10);
@@ -454,12 +454,6 @@ class InvoiceController extends Controller
             'subtotal_no_vat'
         ])->first();
 
-        // Invoice::where('id', $template_id)->update([
-        //     'invoice_status' => 'complete',
-        // ]);
-
-
-
         $data['productsDatas'] = Invoice::find($template_id)->products->skip(0)->take(10);
         $data['due'] = $data['invoiceData']->total;
         $data['email'] = "$request->emai_to";
@@ -467,6 +461,7 @@ class InvoiceController extends Controller
         $data['body'] = "$request->email_body";
         $data['template_id'] = "$template_id";
 
+        $data['userInvoiceLogo']  = user::where('id', Auth::user()->id)->get(['invoice_logo','terms','signature'])->first();
 
         $pdf = Pdf::loadView('invoices.sendMail.mail_pdf', $data);
         Mail::send('invoices.sendMail.mail', $data,  function ($message) use ($data, $pdf) {

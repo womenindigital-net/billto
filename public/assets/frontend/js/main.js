@@ -299,7 +299,7 @@ function allData() {
                 data = data + "<button type='button' onClick='deleteData(" + value.id + ")' class='btn btn-sm btn-danger fw-bolder'><i class='bi bi-trash'></i></button>"
                 data = data + "</td>"
                 data = data + "</tr>"
-                if(key==1){
+                if(key==8){
                     $('#id_row_limit').addClass("d-none");
                     $('#row_limit_alert').removeClass("d-none");
                 }
