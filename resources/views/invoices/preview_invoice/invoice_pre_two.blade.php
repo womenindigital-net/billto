@@ -228,13 +228,13 @@
                     <div class="col-4">
 
                     </div>
-                    <div class="col-7">
+                    <div class="col-8">
                         <div class="bordertop"></div>
-                        <table class="table table-borderless tableSection ">
+                        <table class="table table-borderless tableSection "  >
                             <tbody>
                                 <tr>
                                     <td class="text-end">Sub total </td>
-                                    <td class="text-end">{{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
+                                    <td class="text-end" style="padding-left:100px;">{{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-end"> Sales Tax
