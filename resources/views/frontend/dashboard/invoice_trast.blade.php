@@ -66,7 +66,7 @@ Trush_bg
                                             <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
                                             <td class="m-0  ">{{ $invoiceData->currency }} {{ number_format($invoiceData->receive_advance_amount,2) }}</td>
                                             <td class="m-0  ">{{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total,2) }}</td>
-                                            
+
                                             <td class=" m-0  text-center">
                                                 @if ($invoiceData->invoice_status == 'complete')
                                                     <a class="custom_btn_sm" href=""><i
@@ -74,7 +74,7 @@ Trush_bg
                                                 @else
                                                 <a href="{{ route('edit.invoice', $invoiceData->id) }}"
                                                     class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
-                                                    <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
+                                                    {{-- <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a> --}}
                                                 @endif
                                             </td>
                                         </tr>

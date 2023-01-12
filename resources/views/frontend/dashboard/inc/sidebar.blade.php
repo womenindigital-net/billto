@@ -17,15 +17,11 @@
                 ->where('status_due_paid', 'draft')
                 ->count();
             $all_Invoice_Count = Invoice::where('user_id', $user_id)->count();
-            $unpaid_Invoice_Count = Invoice::where('user_id', $user_id)
-                ->where('receive_advance_amount', null)
+            $unpaid_Invoice_Count = Invoice::where('user_id', $user_id)->where('invoice_status','complete')->where('receive_advance_amount', null)
                 ->count();
-            $partial_payment_Invoice_Count = Invoice::where('user_id', $user_id)
-                ->where('receive_advance_amount', '>', '0')
-                ->count();
+            $partial_payment_Invoice_Count = Invoice::where('user_id', $user_id)->where('receive_advance_amount','>','0')->where('invoice_status','complete')->where('status_due_paid','due')->count();
             $overdue_Invoice_Count = Invoice::where('user_id', $user_id)
-                ->where('invoice_dou_date', '<=', $last_date)->where('invoice_status','complete')
-                ->count();
+                ->where('invoice_dou_date', '<=', $last_date)->where('balanceDue_amounts','>', 0)->count();
             $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
 
         @endphp
