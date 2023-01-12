@@ -216,19 +216,19 @@ class DashboardController extends Controller
         $date_to = $request->to_date;
         $invoice_status = $request->invoice_status;
         $all_Invoice_Count = Invoice::where('user_id', Auth::user()->id)->count();
-        $search_result = Invoice::whereBetween('invoice_date', [$request->from_date, $request->to_date])->where('status_due_paid', $request->invoice_status)->where('user_id', Auth::user()->id)->get();
+        $search_result = Invoice::whereBetween('invoice_date', [$request->from_date, $request->to_date])->where('status_due_paid', $request->invoice_status)->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         return view('frontend.dashboard.search_result_all_invoice')->with(compact('invoice_status','date_to','date_from','search_result', 'all_Invoice_Count'));
     }
 
 
     public function unpaid_invoice()
     {
-        $unpaid_Invoice_Counts = Invoice::where('user_id',Auth::user()->id)->where('receive_advance_amount',null)->orderBy('id', 'DESC')->get();
+        $unpaid_Invoice_Counts = Invoice::where('user_id',Auth::user()->id)->where('receive_advance_amount',null)->where('invoice_status','complete')->orderBy('id', 'DESC')->get();
        return view('frontend.dashboard.unpaid_invoice')->with(compact('unpaid_Invoice_Counts'));
     }
     public function pertialy_payment()
     {
-        $partial_payment_Invoices = Invoice::where('user_id',Auth::user()->id)->where('receive_advance_amount','>','0')->orderBy('id', 'DESC')->get();
+        $partial_payment_Invoices = Invoice::where('user_id',Auth::user()->id)->where('receive_advance_amount','>','0')->where('invoice_status','complete')->where('status_due_paid','due')->orderBy('id', 'DESC')->get();
        return view('frontend.dashboard.pertial_payment')->with(compact('partial_payment_Invoices'));
     }
 
@@ -236,7 +236,7 @@ class DashboardController extends Controller
     {
         $last_date = date('Y-m-d');
         $overdue_Invoices = Invoice::where('user_id', Auth::user()->id)
-        ->where('invoice_dou_date', '<=', $last_date)->where('invoice_status','complete')->orderBy('id', 'DESC')->get();
+        ->where('invoice_dou_date', '<=', $last_date)->where('balanceDue_amounts','>', 0)->orderBy('id', 'DESC')->get();
        return view('frontend.dashboard.ovar_due_payment')->with(compact('overdue_Invoices'));
     }
 

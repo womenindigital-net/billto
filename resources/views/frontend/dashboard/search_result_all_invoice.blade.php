@@ -171,10 +171,11 @@
                                                 <a href="" class="preview_image_user btn btn-sm btn_view"
                                                     data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i
                                                         class="bi bi-eye "></i></a>
-                                                <a href="{{ route('edit.invoice', $InvoiceData->id) }}"
+
+                                                {{-- <a href="{{ route('edit.invoice', $InvoiceData->id) }}"
                                                     class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
                                                 <a href="" class="btn btn-sm btn_delte"> <i
-                                                        class="bi bi-trash "></i></a>
+                                                        class="bi bi-trash "></i></a> --}}
                                             </td>
                                             <input type="hidden" id="invoice_id_user" value="{{ $InvoiceData->id }}">
 

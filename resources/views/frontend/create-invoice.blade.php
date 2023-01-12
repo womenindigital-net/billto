@@ -421,13 +421,15 @@
                                 <th scope="col" style="width: 10%" class="custab3">Action</th>
                             </tr>
                         </thead>
+
                         <tbody id="tableBody">
 
                         </tbody>
 
                     </table>
                 </div>
-                <div class="product row m-0 mt-3">
+
+                <div class="product row m-0 mt-3 " id="id_row_limit">
                     <div class="p-0 pe-2 pb-2 me-2 col-12 col-md-7">
                         <textarea type="text" name="product_name" id="product_name" class="form-control inputBorderRedius"
                             placeholder="Description of service or product" rows="1" onchange="addData();"></textarea>

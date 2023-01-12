@@ -149,6 +149,20 @@
                                 Sorry, your browser does not support inline SVG.
                             </svg>
                         </li>
+                        <style>
+
+                            .navbar-nav .dropdown-menu {
+                            position: absolute !important ;
+                            }
+                            .dropdown-menu {
+                                z-index: 1000;
+                                display: none;
+                                min-width: 20px !important;
+                                text-align: center !important;
+
+                            }
+
+                        </style>
                         <li class="nav-item d-flex align-items-center">
                             <div class=" dropdown">
                                 <a href="#" class="dropdown-toggle nav-link  align-items-center d-flex"

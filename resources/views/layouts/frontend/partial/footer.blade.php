@@ -54,10 +54,45 @@
         </div>
     </div>
 </div>
+{{-- =====================send mail user dashboard=========================== --}}
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" aria-labelledby="staticBackdropLabel">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" id="last_invoice_id" name="template_id">
+                    <div class="mb-3">
+                        <label for="emai_to" class="form-label">To</label>
+                        <input type="email" class="form-control" id="emai_to" name="emai_to" placeholder="example@gmail.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email_subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="email_subject" name="email_subject" id="Input2" value="A Invoice by Billto.io" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email_body" class="form-label">Body</label>
+                        <textarea class="form-control" id="email_body" name="email_body" rows="2">A invoice has been sent to you by BillTo.io. You can find it in the attachment below.</textarea>
+                    </div>
 
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i> Close</button>
+                        <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                            Send Mail</button>
+                        {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                            Send Mail</button> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-
+{{-- ==================================================== --}}
 
 
 {{-- preview image alert  --}}

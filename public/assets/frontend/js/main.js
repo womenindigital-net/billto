@@ -290,7 +290,7 @@ function allData() {
             $.each(responce, function (key, value) {
                 totalamount = totalamount + value.product_amount
                 data = data + "<tr id='tableRow-" + value.id + "'>"
-                // data = data + "<th  onClick='editData(" + value.id + ")' scope='row' id='key-" + value.id + "'>" + ++key + "</th>"
+                data = data + "<th class='d-none'  onClick='editData(" + value.id + ")' scope='row' id='key-" + value.id + "'>" + ++key + "</th>"
                 data = data + "<td style='border-bottom: 1px solid #d9d8d8;padding: 8px 10px;color: #686868; font-weight: 500;' onClick='editData(" + value.id + ")' id='product_name-" + value.id + "'>" + value.product_name + "</td>"
                 data = data + "<td style='border-bottom: 1px solid #d9d8d8;padding: 8px 10px;color: #686868; font-weight: 500;' onClick='editData(" + value.id + ")' id='product_rate-" + value.id + "'>" + value.product_rate + "</td>"
                 data = data + "<td style='border-bottom: 1px solid #d9d8d8;padding: 8px 10px;color: #686868; font-weight: 500;'  onClick='editData(" + value.id + ")' id='product_quantity-" + value.id + "'>" + value.product_quantity + "</td>"
@@ -299,9 +299,13 @@ function allData() {
                 data = data + "<button type='button' onClick='deleteData(" + value.id + ")' class='btn btn-sm btn-danger fw-bolder'><i class='bi bi-trash'></i></button>"
                 data = data + "</td>"
                 data = data + "</tr>"
+                if(key==2){
+                    $('#id_row_limit').addClass("d-none");
+                }
             })
             $('#tableBody').html(data);
             total(totalamount);
+
 
 
         }

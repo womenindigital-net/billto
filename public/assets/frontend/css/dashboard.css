@@ -317,8 +317,8 @@ input:focus {
 .settingUpdatebutton {
     background-color: #ffb317;
     color: #ffffff;
-    font-size: 18px;
-    padding: 12px 12px 12px 12px;
+    font-size: 14px;
+    /* padding: 12px 12px 12px 12px; */
     color: #ffffff;
     align-items: center;
     text-align: center;

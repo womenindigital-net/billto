@@ -50,33 +50,56 @@ active_left
                                         <th>CUSTOMER</th>
                                         <th>NUMBER</th>
                                         <th>DATE</th>
-                                        <th>PAID</th>
+                                        <th>DUE DATE</th>
                                         <th>TOTAL</th>
+                                        <th>PAID</th>
+                                        <th>DUE</th>
+                                        <th>STATUS</th>
                                         <th class="text-center">ACTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($partial_payment_Invoices as $key => $invoiceData)
-                                        <tr class="m-0 p-0 ">
-                                            <td class="m-0  text-center ">{{ ++$key }}</td>
-                                            <td class="m-0  ">{{ $invoiceData->invoice_to }}</td>
-                                            <td class="m-0   ">
-                                                {{ $invoiceData->invoice_id }}
-                                            </td>
-                                            <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
-                                            <td class="m-0  ">{{ $invoiceData->currency }} {{ number_format($invoiceData->receive_advance_amount,2) }}</td>
-                                            <td class="m-0  ">{{ $invoiceData->currency }} {{ number_format($invoiceData->final_total,2) }}</td>
-                                            <td class=" m-0  text-center">
-                                                @if ($invoiceData->invoice_status == 'complete')
-                                                    <a class="custom_btn_sm" href=""><i
-                                                            class="bi bi-eye iconTable"></i></a>
-                                                @else
-                                                <a href="{{ route('edit.invoice', $invoiceData->id) }}"
-                                                    class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a>
-                                                    <a href="" class="btn btn-sm btn_delte"> <i class="bi bi-trash "></i></a>
-                                                @endif
-                                            </td>
-                                        </tr>
+                                    <tr class="m-0 p-0 data_table_id">
+                                        <td class="m-0  text-center ">{{ ++$key }}</td>
+                                        <td class="m-0">{{ $invoiceData->invoice_to }}</td>
+                                        <td class="m-0 "> {{ $invoiceData->invoice_id }}</td>
+                                        <td class="m-0 ">{{ $invoiceData->invoice_date }}</td>
+                                        <td class="m-0 ">{{ $invoiceData->invoice_dou_date }}</td>
+                                        <td class="m-0  ">{{ $invoiceData->currency }} {{
+                                            number_format($invoiceData->final_total,2) }}</td>
+                                        <td class="m-0  ">{{ $invoiceData->currency }} {{
+                                            number_format($invoiceData->receive_advance_amount,2) }}</td>
+                                        <td class="m-0  ">{{ $invoiceData->currency }} {{
+                                            number_format($invoiceData->balanceDue_amounts,2) }}</td>
+
+                                        <td class="m-0">
+                                            @if ($invoiceData->status_due_paid == 'due')
+                                            <div class="due_btn">
+                                                <a href="" class="preview_payment_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_paid_preview"> Due </a>
+                                            </div>
+                                            @elseif($invoiceData->status_due_paid == 'paid')
+                                            <div class="paid_btn">
+                                                <a href="#">Paid </a>
+                                            </div>
+                                            @endif
+                                        </td>
+
+                                        <td class=" m-0  text-center">
+                                            @if ($invoiceData->invoice_status == 'complete')
+                                            <a href="" title="Preview" class="preview_image_user btn btn-sm btn_view" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye "></i></a>
+
+                                            <button title="Send mail" style="background-color: #686868" type="button" id="send_email_id" class="btn btn-sm btn_edit send_invoice_mail" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <i class="bi bi-envelope-fill"></i>
+                                            </button>
+
+                                            <a title="Download" style="background-color: #686868" href="/invoice/download/{{ $invoiceData->id }}" target="_blank" class="btn btn-sm btn_edit "> <i class="bi bi-arrow-down"></i> </a>
+                                            @else
+
+                                            @endif
+                                        </td>
+                                        <input type="hidden" id="invoice_id_user" value="{{ $invoiceData->id }}">
+
+                                    </tr>
                                     @empty
                                     @endforelse
                                 </tbody>

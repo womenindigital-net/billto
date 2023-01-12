@@ -20,7 +20,7 @@ inputFile.addEventListener("change", function (e) {
       pictureImage.innerHTML = "";
       pictureImage.appendChild(img);
     });
-
+    $('#hide_image').hide();
     reader.readAsDataURL(file);
   } else {
     pictureImage.innerHTML = pictureImageTxt;
