@@ -307,7 +307,7 @@
                     <tr style="text-align: right">
                         <td ></td>
                         <td style="color: #686868; ">Discount Amount  ({{ $tax = $invoiceData->discount_percent }}%)</td>
-                        <td style="color: #686868;">  {{ number_format($invoiceData->discount_amounts,2) }}</td>
+                        <td style="color: #686868;"> {{ number_format($invoiceData->discount_amounts,2) }}</td>
                     </tr>
                     <tr style="text-align: right">
                         <td ></td>

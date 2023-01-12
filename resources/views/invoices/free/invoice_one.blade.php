@@ -61,7 +61,7 @@
 
     .heading_area .i_title {
         margin-top: 20px;
-        padding-right: 52px
+        padding-right: 55px
     }
 
     .i_sub_title {
@@ -106,7 +106,7 @@
         background-color: #0370BF;
         padding-top: 20px;
         padding-bottom: 20px;
-        min-height: 250px;
+        min-height: 300px;
         float: left;
     }
 
@@ -205,6 +205,7 @@
         width: 30%;
         float: right;
         justify-content: center;
+        margin-top: -30px
     }
 </style>
 <title>Billto.io</title>
@@ -226,7 +227,7 @@
                     <h1>INVOICE</h1>
                 </div>
                 <div style="margin-top:20px;" class="">
-                    <table style="padding-left:160px">
+                    <table style="padding-left:158px">
                         <tr>
                             <th style="text-align:left; font-size:18px;">Incoice #</th>
                             <th style="text-align: right;font-size:18px; padding-left:95px;">
@@ -274,7 +275,7 @@
                             @foreach ($productsDatas as $product_detail)
                                 <tr>
                                     <td
-                                        style=" padding:8px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
+                                        style=" padding:9px 0px; text-align:left; width:15%; border-bottom: 1px solid #C4C4C4; font-weight: 400; font-size: 16px; color: #686868; ">
                                         {{ $product_detail->product_quantity }}</td>
                                     <td
                                         style=" text-align:left; width:45%;border-bottom: 1px solid #C4C4C4;font-weight: 400; font-size: 16px; color: #686868; ">
@@ -289,8 +290,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </section>
@@ -313,21 +312,37 @@
             <div class="right_Side_bar">
                 <div style=" margin-right:50px">
                     <table style="width: 100%;">
-                        <tr style="text-align: right;">
-                            <td style="color: #686868;">Subtotal</td>
-                            <td style="color: #686868;">{{ number_format($subtotal = $invoiceData->total, 2) }}
+                        <tr style="text-align: right; ">
+                            <td ></td>
+                            <td style="color: #686868; ">Subtotal</td>
+                            <td style="color: #686868;padding-right:5">{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }}
                             </td>
                         </tr>
                         <tr style="text-align: right">
-                            <td style="color: #686868;">Sales Tax
-                                {{ $tax = $invoiceData->invoice_tax_percent }}%</td>
-                            <td style="color: #686868;">
-                                {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</td>
+                            <td ></td>
+                            <td style="color: #686868; ">Sales Tax  ({{ $tax = $invoiceData->invoice_tax_percent }}%)</td>
+                            <td style="color: #686868;padding-right:5"> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</td>
                         </tr>
                         <tr style="text-align: right">
-                            <td style="font-size: 18px; color: #686868;">Total</td>
-                            <td style="font-size: 18px; color: #686868;">
-                                {{ number_format($subtotal + $tax_value, 2) }}</td>
+                            <td ></td>
+                            <td style="color: #686868; ">Discount Amount  ({{ $tax = $invoiceData->discount_percent }}%)</td>
+                            <td style="color: #686868;padding-right:5">  {{ number_format($invoiceData->discount_amounts,2) }}</td>
+                        </tr>
+                        <tr style="text-align: right">
+                            <td ></td>
+                            <td style="color: #686868; ">Receive Advance Amount({{ $invoiceData->currency }})</td>
+                            <td style="color: #686868;padding-right:5"> {{ number_format($invoiceData->receive_advance_amount,2) }}</td>
+                        </tr>
+                        <tr style="text-align: right">
+                            <td ></td>
+                            <td style="color: #686868; ">Requesting Advance Amount({{ $invoiceData->requesting_advance_amount_percent }}%)</td>
+                            <td style="color: #686868;padding-right:5"> {{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}</td>
+                        </tr>
+                        <tr style="text-align: right">
+                            <td ></td>
+                            <td style="font-size: 18px; color: #686868; padding-left:80px;">Total</td>
+                            <td style="font-size: 18px; color: #686868; padding-right:5">
+                                {{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total- $invoiceData->receive_advance_amount, 2) }}</td>
                         </tr>
                     </table>
                 </div>
