@@ -414,7 +414,7 @@
                         <thead class="">
                             <tr class="tr_f">
                                 {{-- <th scope="col" style="width: 3%" class="custab1">#</th> --}}
-                                <th scope="col" style="width: 58% ; padding:8px;" class="custab1">Item</th>
+                                <th scope="col" style="width: 58% ; padding:8px;" class="custab1">Item &nbsp; &nbsp; <span  id="id_conut_row">0</span>/8</th>
                                 <th scope="col" style="width: 10%" class="custab2">Quantity</th>
                                 <th scope="col" style="width: 10%" class="custab2">Rate</th>
                                 <th scope="col" style="width: 10%" class="custab2">Amount</th>
@@ -482,8 +482,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="mt-2 ">
+            <div class="row">
+                <div class=" col-5 mt-2">
                     <span id="product_clear" class="btn btn-danger inputBorderRedius " onclick="pclear()">
                         Clear Input
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -495,6 +495,12 @@
                         </svg>
                     </span>
                 </div>
+                <div class="col-6 mt-2">
+                    <span class="text-danger text-center d-none ms-3" id="row_limit_alert">Items limit is 8.</span>
+                </div>
+            </div>
+
+
                 {{-- </form> --}}
                 <div class="row pt-4">
                     <div class="col-md-6">
