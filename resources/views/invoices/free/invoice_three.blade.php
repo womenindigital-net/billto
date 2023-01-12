@@ -263,7 +263,7 @@
                 <div class="margin_left_terms">
                     <div class="thanks" style="padding-top: 50px;">
                         <h5
-                            style="color: #686868; font-weight: 400; font-size: 25px; padding-bottom:20px; border-top:2px solid #0370BF; width: 80%">
+                            style="color: #686868; font-weight: 400; font-size: 25px; padding-bottom:20px;  width: 80%">
                             Thank You for your business</h5>
                     </div>
                     <div class="termsFelx">
