@@ -299,7 +299,7 @@ function allData() {
                 data = data + "<button type='button' onClick='deleteData(" + value.id + ")' class='btn btn-sm btn-danger fw-bolder'><i class='bi bi-trash'></i></button>"
                 data = data + "</td>"
                 data = data + "</tr>"
-                if(key==8){
+                if(key==6){
                     $('#id_row_limit').addClass("d-none");
                     $('#row_limit_alert').removeClass("d-none");
                 }
@@ -705,6 +705,7 @@ $("#send_mail_data").on("click", function () {
                     $('.modal-backdrop').removeClass("show");
                 // Alert disable
                 $('#emai_to').val("");
+                setTimeout( () => location.reload(), 2000 )
                 } else {
                     button =
                         Toast.fire({
@@ -864,7 +865,7 @@ $("#complate_invoice_id").on("click", function () {
                         title: 'Invoice Completed Success !!',
                     })
 
-                    setTimeout( () => location.reload(), 2000 )
+                    setTimeout( () => location.reload(), 1000 )
 
             } else {
                 button =

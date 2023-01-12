@@ -414,7 +414,7 @@
                         <thead class="">
                             <tr class="tr_f">
                                 {{-- <th scope="col" style="width: 3%" class="custab1">#</th> --}}
-                                <th scope="col" style="width: 58% ; padding:8px;" class="custab1">Item &nbsp; &nbsp; <span  id="id_conut_row">0</span>/8</th>
+                                <th scope="col" style="width: 58% ; padding:8px;" class="custab1">Item &nbsp; &nbsp; <span  id="id_conut_row">0</span>/6</th>
                                 <th scope="col" style="width: 10%" class="custab2">Quantity</th>
                                 <th scope="col" style="width: 10%" class="custab2">Rate</th>
                                 <th scope="col" style="width: 10%" class="custab2">Amount</th>
@@ -496,7 +496,7 @@
                     </span>
                 </div>
                 <div class="col-6 mt-2">
-                    <span class="text-danger text-center d-none ms-3" id="row_limit_alert">Items limit is 8.</span>
+                    <span class="text-danger text-center d-none ms-3" id="row_limit_alert">Items limit is 6</span>
                 </div>
             </div>
 
@@ -702,7 +702,7 @@
                 <a id="previw_id" class="btn inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered    py-2 px-4 my-2"
                     data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye"></i> Preview</a>
 
-                <a  style="background-color: #686868" id="complate_invoice_id" class="btn inputBorderRedius d-none  send-invoice  bnt_responsive bordered"><i class="bi bi-clipboard-plus "></i> Complate Invoice</a>
+                <a  style="background-color: #686868" id="complate_invoice_id" class="btn inputBorderRedius d-none  send-invoice  bnt_responsive bordered"><i class="bi bi-clipboard-plus "></i> Complete Invoice</a>
 
                 <button style="background-color: #686868" type="button" id="send_email_id"
                     class="btn send-invoice bnt_responsive  px-4   inputBorderRedius {{ Session::get('last_invoice_id_send') ? '' : 'disabled' }}  " data-bs-toggle="modal"

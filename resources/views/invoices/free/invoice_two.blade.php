@@ -296,21 +296,34 @@
                     <tr style="text-align: right; ">
                         <td ></td>
                         <td style="color: #686868; ">Subtotal</td>
-                        <td style="color: #686868;">{{ number_format($subtotal = $invoiceData->total, 2) }}
+                        <td style="color: #686868;">{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }}
                         </td>
                     </tr>
                     <tr style="text-align: right">
                         <td ></td>
-                        <td style="color: #686868; ">Sales Tax
-                            {{ $tax = $invoiceData->invoice_tax_percent }}%</td>
-                        <td style="color: #686868;">
-                            {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</td>
+                        <td style="color: #686868; ">Sales Tax  ({{ $tax = $invoiceData->invoice_tax_percent }}%)</td>
+                        <td style="color: #686868;"> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</td>
+                    </tr>
+                    <tr style="text-align: right">
+                        <td ></td>
+                        <td style="color: #686868; ">Discount Amount  ({{ $tax = $invoiceData->discount_percent }}%)</td>
+                        <td style="color: #686868;">  {{ number_format($invoiceData->discount_amounts,2) }}</td>
+                    </tr>
+                    <tr style="text-align: right">
+                        <td ></td>
+                        <td style="color: #686868; ">Receive Advance Amount({{ $invoiceData->currency }})</td>
+                        <td style="color: #686868;"> {{ number_format($invoiceData->receive_advance_amount,2) }}</td>
+                    </tr>
+                    <tr style="text-align: right">
+                        <td ></td>
+                        <td style="color: #686868; ">Requesting Advance Amount({{ $invoiceData->requesting_advance_amount_percent }}%)</td>
+                        <td style="color: #686868;"> {{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}</td>
                     </tr>
                     <tr style="text-align: right">
                         <td ></td>
                         <td style="font-size: 18px; color: #686868; padding-left:80px;">Total</td>
                         <td style="font-size: 18px; color: #686868;">
-                            {{ number_format($subtotal + $tax_value, 2) }}</td>
+                            {{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total- $invoiceData->receive_advance_amount, 2) }}</td>
                     </tr>
                 </table>
             </div>

@@ -408,7 +408,9 @@ class InvoiceController extends Controller
             'discount_percent',
             'total',
             'template_name',
-            'subtotal_no_vat'
+            'subtotal_no_vat',
+            'final_total',
+            'discount_amounts'
         ])->first();
 
         $userInvoiceLogo  = user::where('id', Auth::user()->id)->get(['invoice_logo','terms','signature'])->first();
@@ -487,7 +489,8 @@ class InvoiceController extends Controller
         $data  = Invoice::find($id);
         $userLogoAndTerms = User::where('id', Auth::user()->id)->get([
             'invoice_logo',
-            'terms','signature'
+            'terms','signature',
+
         ])->first();
 
         $productsDatas = Product::where('invoice_id', $id)->get();

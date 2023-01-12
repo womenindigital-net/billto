@@ -234,23 +234,36 @@
                             <tbody>
                                 <tr>
                                     <td class="text-end">Sub total </td>
-                                    <td class="text-end" style="padding-left:100px;">{{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
+                                    <td class="text-end" style="">  {{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-end"> Sales Tax
-                                        {{ number_format($percent = $data->invoice_tax_percent) }} %</td>
-                                    <td class="text-end">{{ number_format(($no_vat * $percent) / 100, 2) }}</td>
+                                        ({{ number_format($percent = $data->invoice_tax_percent) }} %)</td>
+                                    <td class="text-end">  {{ number_format(($no_vat * $percent) / 100, 2) }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-end"> Discount Amount
+                                        ({{ $data->discount_percent }}%)</td>
+                                    <td class="text-end">
+                                         {{ number_format($data->discount_amounts,2) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-end"> Receive Advance Amount
+                                        ({{ $data->currency }})</td>
+                                    <td class="text-end">
+                                      {{ number_format($data->receive_advance_amount,2) }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="text-end"> Requesting Advance Amount
                                         ({{ $data->requesting_advance_amount_percent }}%)</td>
-                                    <td class="text-end">
-                                        {{ number_format(($data->total * $data->requesting_advance_amount_percent) / 100, 2) }}
+                                    <td class="text-end"> {{ number_format(($data->final_total * $data->requesting_advance_amount_percent) / 100, 2) }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-end fw-bold">Total</td>
-                                    <td class="text-end fw-bold">{{ number_format($data->total, 2) }}</td>
+                                    <td class="text-end fw-bold">{{ $data->currency }} {{ number_format($data->final_total- $data->receive_advance_amount, 2) }}</td>
                                 </tr>
                             </tbody>
                         </table>

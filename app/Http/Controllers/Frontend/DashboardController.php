@@ -153,6 +153,7 @@ class DashboardController extends Controller
         $userLogoAndTerms = User::where('id', Auth::user()->id)->get([
             'invoice_logo',
             'terms',
+            'signature',
         ]) ->first();
         $productsDatas = Product::where('invoice_id', $id)->get();
         return view('invoices.preview_invoice.all_pre_invoice', compact('data', 'productsDatas','userLogoAndTerms'))->render();
