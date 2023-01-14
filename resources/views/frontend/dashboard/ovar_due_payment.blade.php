@@ -46,16 +46,16 @@ active_left
                         <table id="example" class="table table-hover  mt-1 " style="color: #686868">
                             <thead>
                                 <tr>
-                                    <th class="text-center">SL</th>
-                                    <th>CUSTOMER</th>
-                                    <th>NUMBER</th>
-                                    <th>DATE</th>
-                                    <th>DUE DATE</th>
-                                    <th>TOTAL</th>
-                                    <th>PAID</th>
-                                    <th>DUE</th>
-                                    <th>STATUS</th>
-                                    <th class="text-center">ACTION</th>
+                                    <th class="text-center" style="width:5%;">SL</th>
+                                    <th  style="width:15%;">CUSTOMER</th>
+                                    <th  style="width:8%;">NUMBER</th>
+                                    <th  style="width:10%;">DATE</th>
+                                    <th  style="width:12%;">DUE DATE</th>
+                                    <th  style="width:10%;">TOTAL</th>
+                                    <th  style="width:10%;">PAID</th>
+                                    <th  style="width:10%;">DUE </th>
+                                    <th  style="width:5%;">STATUS</th>
+                                    <th class="text-center"  style="width:15%;">ACTION</th>
                                 </tr>
                             </thead>
                             <tbody>

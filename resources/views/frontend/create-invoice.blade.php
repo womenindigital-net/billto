@@ -336,7 +336,7 @@
                                     <div class="input-group-text invoiceIdOne">&#9839;</div>
                                     <input readonly type="text" name="invoice_id"
                                         class="form-control inputBorderRedius "
-                                        value="    @if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @else {{ 'INVID' . $invoiceCountNew }} @endif"
+                                        value="      @if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @else {{ 'INVID' . $invoiceCountNew }} @endif"
                                         id="invoice_id" placeholder="INVOICE ID">
                                     <input type="hidden" id="id" name="id"
                                         value="@if (isset($invoiceData->id)) {{ $invoiceData->id }} @endif">
@@ -414,11 +414,11 @@
                         <thead class="">
                             <tr class="tr_f">
                                 {{-- <th scope="col" style="width: 3%" class="custab1">#</th> --}}
-                                <th scope="col" style="width: 58% ; padding:8px;" class="custab1">Item &nbsp; &nbsp; <span  id="id_conut_row">0</span>/6</th>
-                                <th scope="col" style="width: 10%" class="custab2">Quantity</th>
-                                <th scope="col" style="width: 10%" class="custab2">Rate</th>
-                                <th scope="col" style="width: 10%" class="custab2">Amount</th>
-                                <th scope="col" style="width: 10%" class="custab3">Action</th>
+                                <th scope="col" style="width: 43% ; padding:8px;" class="custab1">Item &nbsp; &nbsp; <span  id="id_conut_row">0</span>/6</th>
+                                <th scope="col" style="width: 17%" class="custab2">Quantity</th>
+                                <th scope="col" style="width: 17%" class="custab2">Rate</th>
+                                <th scope="col" style="width: 15%" class="custab2">Amount</th>
+                                <th scope="col" style="width: 8%" class="custab3">Action</th>
                             </tr>
                         </thead>
 
@@ -430,31 +430,31 @@
                 </div>
 
                 <div class="product row m-0 mt-3 " id="id_row_limit">
-                    <div class="p-0 pe-2 pb-2 me-2 col-12 col-md-7">
+                    <div class="p-sm-0 p-2  pe-0  pb-2 pe-sm-2  col-12 col-md-5 p_l_r">
                         <textarea type="text" name="product_name" id="product_name" class="form-control inputBorderRedius"
                             placeholder="Description of service or product" rows="1" onchange="addData();"></textarea>
                         <div id="name_error" class="invalid-feedback"></div>
                     </div>
-                    <div class="text-start me-0 p-0 me-sm-3 pb-2 col-6 col-md-1">
+                    <div class="text-start pe-0  pb-2 pe-sm-2 col-6 col-md-2">
                         <div class="input-group">
                             <input type="number" name="product_quantity" id="product_quantity"
                                 class="form-control inputBorderRedius" placeholder="Quantity"
                                 onchange="ptotal();addData();">
-                            {{-- <div class="input-group-text fw-bold border-0">X</div> --}}
+
                             <div id="quantity_error" class="invalid-feedback"></div>
                         </div>
                     </div>
 
-                    <div class="text-start p-0 me-0 me-sm-3 pe-1 pb-2 col-6 col-md-1 ">
+                    <div class="text-start pe-2  pb-0 pe-sm-2 col-6 col-md-2 ">
                         <div class="input-group ">
                             <input type="number" name="product_rate" id="product_rate"
                                 class="form-control inputBorderRedius" placeholder="Rate" onchange="ptotal();addData();">
-                            {{-- <div class="input-group-text inputBorderRedius" id="currency">USD</div> --}}
+
                             <div id="product_rate_error" class="invalid-feedback"></div>
                         </div>
 
                     </div>
-                    <div class=" col-10 col-md-1 p-0  pb-2">
+                    <div class=" col-10 col-md-2 pe-0 pe-sm-2 pb-2">
                         <div
                             class="ps-2 input-group inputBorderRedius text-center  border rounded justify-content-between align-items-center d-flex ">
                             <div class="input-group-text inputBorderRedius border-0 bgInput textColor" id="currency">$
@@ -464,19 +464,25 @@
                     </div>
 <style>
 
-@media screen and (min-width: 768px) {
+@media screen and (width: 1440px) {
     .btn_pluss_image{
-     padding-left: 30px;
+     padding-left: 5px;
     }
 }
 
+@media screen and (max-width: 576px) {
+    .p_l_r{
+        padding-right: 9px !important;
+        padding-left: 12px !important;
+    }
+}
 
 </style>
-                    <div class=" col-2 col-md-1  text-center">
-                        <div class="btn_pluss_image" >
+                    <div class="col-2 col-md-1  text-center">
+                        <div class="btn_pluss_image " >
                             <div class="svg_size_plus">
                                 <img src="{{ asset('uploads/defaultUserImage/icon-add.png') }}" alt=""
-                                    style="width: 33px;height:33px; margin-top:2px;">
+                                    style="width: 33px;height:33px; margin-top:2px; margin-left:2px">
 
                             </div>
                         </div>
@@ -687,6 +693,11 @@
                 }
             @endphp
 
+<style>
+    .btn:hover {
+    color: #ffb713;
+}
+</style>
             <div class="container p-0 create_page mt-4 mb-0">
                 {{-- id="completeInvoice" --}}
                 <button style="background-color: #686868" type="submit" id="completeInvoice"
@@ -699,7 +710,7 @@
                     @endif
                 </button>
 
-                <a id="previw_id" class="btn inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered    py-2 px-4 my-2"
+                <a id="previw_id" class="btn inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered   text-white  py-2 px-4 my-2"
                     data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye"></i> Preview</a>
 
                 <a  style="background-color: #686868" id="complate_invoice_id" class="btn inputBorderRedius d-none  send-invoice  bnt_responsive bordered"><i class="bi bi-clipboard-plus "></i> Complete Invoice</a>

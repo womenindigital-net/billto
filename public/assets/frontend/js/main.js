@@ -23,7 +23,7 @@ const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 3000,
+    timer: 1000,
     timerProgressBar: true,
     didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -705,7 +705,7 @@ $("#send_mail_data").on("click", function () {
                     $('.modal-backdrop').removeClass("show");
                 // Alert disable
                 $('#emai_to').val("");
-                setTimeout( () => location.reload(), 2000 )
+                setTimeout( () => location.reload(), 1000 )
                 } else {
                     button =
                         Toast.fire({

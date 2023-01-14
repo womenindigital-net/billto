@@ -285,7 +285,7 @@ class InvoiceController extends Controller
                     'discount_amounts' => $request->discount_amounts,
                     'discount_percent' => $request->discount_percent,
 
-                    'invoice_status' => 'incomlete',
+                    'invoice_status' => 'complete',
                     'status_due_paid' => $status,
                     'subtotal_no_vat' => $request->subtotal_no_vat,
                     'template_name' => $request->template_name,
