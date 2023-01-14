@@ -271,10 +271,14 @@
                         <p class="payment text-break">{{ $userLogoAndTerms->terms }} <br> {{ $data->invoice_notes }}
                         </p>
                     </div>
+                    @if ($userLogoAndTerms->signature != '')
                     <div class="mx-auto ">
+                        @if($data->invoice_signature=='signature_add')
                         <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
                             height="122px" width="122px" style="object-fit:cover;" />
+                            @endif
                     </div>
+                    @endif
                 </div>
                 </div>
             </div>
