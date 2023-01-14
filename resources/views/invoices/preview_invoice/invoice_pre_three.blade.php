@@ -129,7 +129,7 @@
           </div> --}}
             </div>
             <div class="col-6">
-                <div class="text-end me-5 mt-3">
+                <div class="text-end me-5 mt-3 pe-2">
                     @if ($userLogoAndTerms->invoice_logo != '')
                         <img style="object-fit:cover;"
                             src="{{ asset('storage/invoice/logo/' . $userLogoAndTerms->invoice_logo) }}" alt=""
@@ -137,11 +137,11 @@
                     @endif
 
                 </div>
-                <div class="text-end me-5 mt-2">
+                <div class="text-end me-5 mt-2 pe-2">
                     <h1 class="invoiceColor">INVOICE</h1>
                 </div>
                 <div class="d-flex justify-content-end me-5 ">
-                    <div>
+                    <div class="pe-2">
                         <style>
                             .table>:not(caption)>*>* {
                                 padding: 0.2rem 0.9rem;
@@ -150,7 +150,7 @@
                                 box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
                             }
                         </style>
-                        <table class="table table-borderless">
+                        <table class="table table-borderless ">
                             <thead>
                                 <tr>
                                     <th scope="col-2" class="">Incoice #</th>
@@ -189,7 +189,7 @@
                                 <th scope="col">QTY</th>
                                 <th scope="col">DESCRIPTION</th>
                                 <th scope="col">UNIT PRICE</th>
-                                <th scope="col">AMOUNT</th>
+                                <th scope="col" class="text-end">AMOUNT</th>
                             </tr>
                         </thead>
                         <tbody class="tableRowBgColor">
@@ -198,40 +198,52 @@
                                     <th scope="row">{{ $product_detail->product_quantity }}</th>
                                     <td> {{ $product_detail->product_name }}</td>
                                     <td>{{ number_format($product_detail->product_rate, 2) }}</td>
-                                    <td>{{ number_format($product_detail->product_amount, 2) }}</td>
+                                    <td class="text-end">{{ number_format($product_detail->product_amount, 2) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="row mt-0">
-                        <div class="col-6"></div>
-                        <div class="col-6">
+                        <div class="col-5"></div>
+                        <div class="col-7">
                             <table class="table table-borderless tableTextColor">
-                                <tbody class="tableRowBgColor">
-
-                                    <td>
-                                        @php
-                                            echo $subtotal = $data->total;
-                                            $tax = $data->invoice_tax_percent;
-                                            echo $total_value = ceil($subtotal - ($subtotal * $tax) / 100);
-                                        @endphp
-                                    </td>
-                                    <tr>
-
-                                        <td class="bgColorSubTable">Sub total</td>
-                                        <td class="text-end">{{ number_format($total_value, 2) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bgColorSubTable">Sales Tax{{ $tax = $data->invoice_tax_percent }}%
-                                        </td>
-                                        <td class="text-end">
-                                            {{ number_format($tax_value = ($total_value * $tax) / 100, 2) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="bgColorSubTable fw-bold">Total</td>
-                                        <td class="text-end fw-bold">{{ number_format($subtotal, 2) }}</td>
-                                    </tr>
-                                </tbody>
+                                <table class="table table-borderless tableSection ">
+                                    <tbody>
+                                        <tr>
+                                            <td style="background-color: #039dbf;color:#ffffff" class="text-end">Sub total </td>
+                                            <td style="background-color:#F2F2F2 " class="text-end" style="">  {{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> Sales Tax
+                                                ({{ number_format($percent = $data->invoice_tax_percent) }} %)</td>
+                                            <td  style="background-color:#F2F2F2 "  class="text-end">  {{ number_format(($no_vat * $percent) / 100, 2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> Discount Amount
+                                                ({{ $data->discount_percent }}%)</td>
+                                            <td  style="background-color:#F2F2F2 " class="text-end">
+                                                 {{ number_format($data->discount_amounts,2) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td  style="background-color: #039dbf;color:#ffffff"  class="text-end"> Receive Advance Amount
+                                                ({{ $data->currency }})</td>
+                                            <td  style="background-color:#F2F2F2 " class="text-end">
+                                              {{ number_format($data->receive_advance_amount,2) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> Requesting Advance Amount
+                                                ({{ $data->requesting_advance_amount_percent }}%)</td>
+                                            <td  style="background-color:#F2F2F2 " class="text-end"> {{ number_format(($data->final_total * $data->requesting_advance_amount_percent) / 100, 2) }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end fw-bold">Total</td>
+                                            <td  style="background-color:#F2F2F2 " class="text-end fw-bold">{{ $data->currency }} {{ number_format($data->final_total- $data->receive_advance_amount, 2) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </table>
                         </div>
                     </div>

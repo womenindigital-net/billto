@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <div class="rightSideArea">
-                        <div style="text-align:right; margin-right:80px; margin-top:25px">
+                        <div style="text-align:right; margin-right:88px; margin-top:25px">
                             @if ($userInvoiceLogo->invoice_logo != '')
                                 <img src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}"
                                     alt="img" style="width: 80px; height:80px;">
@@ -143,7 +143,7 @@
                             <h1 style="font-size:40px; color:#039DBF; margin-top:30px;">INVOICE</h1>
                         </div>
                         <div class="" style="color: #686868; margin-top:30px;margin-left:9px">
-                            <table style="padding-left:135px; ">
+                            <table style="padding-left:123px; ">
                                 <tr>
                                     <th style="text-align:left; font-size:18px;">Incoice #</th>
                                     <th style="text-align: right;font-size:18px; padding-left:95px;">
@@ -235,24 +235,58 @@
                             width: 118px;
                         }
                     </style>
-                    <div style="margin-top: 0; width:100%; display:flex;">
+                    {{-- <div style="margin-top: 0; width:100%; display:flex;">
                         <div class="empty_div">
                             <ul style="background: #039DBF; ">
                                 <li>Subtotal</li>
                                 <li>Sales Tax {{ $tax = $invoiceData->invoice_tax_percent }}% </li>
+                                <li>Discount Amount</li>
+                                <li>Receive Advance Amount</li>
+                                <li>Requesting Advance Amount</li>
                                 <li>Total</li>
                             </ul>
                         </div>
                         <div class="table_div" style="background: #F2F2F2;">
                             <ul>
-                                <li>{{ number_format($subtotal = $invoiceData->total, 2) }} </li>
+                                <li>{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }} </li>
                                 <li> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</li>
-                                <li>{{ number_format($subtotal + $tax_value, 2) }}</li>
+                                <li>{{ number_format($invoiceData->discount_amounts,2) }}</li>
+                                <li>{{ number_format($invoiceData->receive_advance_amount,2) }}</li>
+                                <li>{{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}</li>
+                                <li>{{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total- $invoiceData->receive_advance_amount, 2) }}</li>
                             </ul>
                         </div>
+                    </div> --}}
+                    <div style=" width:55%; margin-left: 310px;">
+                        <table style="width: 100%; ">
+                            <tr style="text-align: right; ">
+                                <td style="color:white; background:#039DBF">Subtotal</td>
+                                <td style="color: #686868; background: #F2F2F2;padding-right:25px">{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }}
+                                </td>
+                            </tr>
+                            <tr style="text-align: right">
+                                <td style="color: white; background:#039DBF">Sales Tax  ({{ $tax = $invoiceData->invoice_tax_percent }}%)</td>
+                                <td style="color: #686868; background: #F2F2F2;padding-right:25px"> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</td>
+                            </tr>
+                            <tr style="text-align: right">
+                                <td style="color: white;background:#039DBF ">Discount Amount  ({{ $tax = $invoiceData->discount_percent }}%)</td>
+                                <td style="color: #686868; background:#F2F2F2;padding-right:25px"> {{ number_format($invoiceData->discount_amounts,2) }}</td>
+                            </tr>
+                            <tr style="text-align: right">
+                                <td style="color: white; background:#039DBF">Receive Advance Amount({{ $invoiceData->currency }})</td>
+                                <td style="color: #686868; background:#F2F2F2;padding-right:25px"> {{ number_format($invoiceData->receive_advance_amount,2) }}</td>
+                            </tr>
+                            <tr style="text-align: right">
+                                <td style="color: white; background:#039DBF">Requesting Advance Amount({{ $invoiceData->requesting_advance_amount_percent }}%)</td>
+                                <td style="color: #686868; background:#F2F2F2;padding-right:25px"> {{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}</td>
+                            </tr>
+                            <tr style="text-align: right">
+                                <td style="font-size: 18px; color:white; padding-left:80px; background:#039DBF">Total</td>
+                                <td style="font-size: 18px; color: #686868; background:#F2F2F2;padding-right:25px">
+                                    {{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total- $invoiceData->receive_advance_amount, 2) }}</td>
+                            </tr>
+                        </table>
                     </div>
-
-
                 </div>
             </div>
         </section>
