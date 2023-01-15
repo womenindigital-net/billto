@@ -15,6 +15,7 @@
     .logo_area img {
         width: 100px;
         padding-bottom: 5px;
+
     }
 
     .logo_area {
@@ -24,6 +25,7 @@
         padding-top: 50px;
         padding-bottom: 100px;
         text-align: center;
+        min-height:150px;
     }
 
     .logo_area p {
@@ -218,7 +220,7 @@
                     <img style="object-fit: cover"
                         src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}" alt="img">
                 @endif
-                <p>{{ $invoiceData->invoice_form }}</p>
+                <p style="margin-top:20px;">{{ $invoiceData->invoice_form }}</p>
             </div>
 
             <div class="heading_area" style="color: #686868;">
@@ -323,7 +325,7 @@
                         <td ></td>
                         <td style="font-size: 18px; color: #686868; padding-left:80px;">Total</td>
                         <td style="font-size: 18px; color: #686868;">
-                            {{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total- $invoiceData->receive_advance_amount, 2) }}</td>
+                            {{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total-$invoiceData->receive_advance_amount,2) }}</td>
                     </tr>
                 </table>
             </div>

@@ -164,17 +164,21 @@ left_manu
                                     <td>
 
                                         <a href="" title="Preview" class="preview_image_user btn btn-sm btn_view" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye "></i></a>
-
-                                        @if ($InvoiceData->status_due_paid == 'paid')
                                         <button title="Send mail" style="background-color: #686868" type="button" id="send_email_id" class="btn btn-sm btn_edit send_invoice_mail" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             <i class="bi bi-envelope-fill"></i>
                                         </button>
                                         <a title="Download" style="background-color: #686868" href="/invoice/download/{{ $InvoiceData->id }}" target="_blank" class="btn btn-sm btn_edit "> <i class="bi bi-arrow-down"></i> </a>
-                                        @else
+
+                                        {{-- @if ($InvoiceData->status_due_paid == 'paid')
+                                        <button title="Send mail" style="background-color: #686868" type="button" id="send_email_id" class="btn btn-sm btn_edit send_invoice_mail" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </button>
+                                        <a title="Download" style="background-color: #686868" href="/invoice/download/{{ $InvoiceData->id }}" target="_blank" class="btn btn-sm btn_edit "> <i class="bi bi-arrow-down"></i> </a>
+                                        @else --}}
                                         {{-- <a title="Edit" href="{{ route('edit.invoice', $InvoiceData->id) }}" class="btn btn-sm btn_edit"> <i class="bi bi-pencil"></i></a> --}}
                                         {{-- <a title="Delete" href="" class="btn btn-sm btn_delte"> <i
                                                 class="bi bi-trash "></i></a> --}}
-                                        @endif
+                                        {{-- @endif --}}
 
 
                                     </td>

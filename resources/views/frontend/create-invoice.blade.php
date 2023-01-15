@@ -86,7 +86,7 @@
                                             </div>
 
                                             <div class="avatar-edit" style=" overflow-y: hidden !important; height:100px">
-                                                <input class="" type='file' name="invoice_logo" id="imageUpload" />
+                                                <input class="" type='file' name="invoice_logo" id="imageUpload"  accept="image/*"/>
                                                 @if (isset($user_logo_terms->invoice_logo))
                                                     <img class="hide_image"src="{{ asset('storage/invoice/logo/' . $user_logo_terms->invoice_logo) }}"
                                                         style=" border-radius: 10px; width: 193px; object-fit: cover; height: 100%;"
@@ -722,7 +722,7 @@
                     Send Invoice
                 </button>
 
-                <a style="background-color: #686868" href="/invoice/download/{{Session::get('last_invoice_id_download')}}" id="downlodeInvoice" target="_blank"
+                <a style="background-color: #686868" href="/invoice/download/{{Session::get('last_invoice_id_download')}}" id="downlodeInvoice_" target="_blank"
                     class="btn bnt_responsive send-invoice  px-4  inputBorderRedius  {{ Session::get('last_invoice_id_download') ? '' : 'disabled' }} "> <i
                         class="bi bi-cloud-arrow-down me-2"></i> Download
                     Invoice</a>

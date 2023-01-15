@@ -1,11 +1,10 @@
 
  @if("1"==$invoiceData->template_name)
- @include('invoices.free.invoice_three')
- {{-- @include('invoices.free.invoice_one') --}}
- @elseif ("2"==$invoiceData->template_name)
  @include('invoices.free.invoice_two')
- @elseif ("3"==$invoiceData->template_name)
+ @elseif ("2"==$invoiceData->template_name)
  @include('invoices.free.invoice_three')
+ @elseif ("3"==$invoiceData->template_name)
+ @include('invoices.free.invoice_four')
  @elseif ("4"==$invoiceData->template_name)
  @include('invoices.free.invoice_four')
  @elseif ("5"==$invoiceData->template_name)

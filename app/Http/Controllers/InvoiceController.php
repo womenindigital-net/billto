@@ -453,7 +453,9 @@ class InvoiceController extends Controller
             'discount_percent',
             'total',
             'template_name',
-            'subtotal_no_vat'
+            'subtotal_no_vat',
+            'final_total',
+            'discount_amounts'
         ])->first();
 
         $data['productsDatas'] = Invoice::find($template_id)->products->skip(0)->take(10);
