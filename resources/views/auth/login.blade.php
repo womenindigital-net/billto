@@ -21,7 +21,7 @@
         <div>
             <div class="container ">
                 <div class="text-center">
-                    <h2 class="h2_title  mt-4 mb-3 fw-light">Welcome back to Billto</h2>
+                    <h2 class="h2_title  mt-4 mb-3 fw-light">Welcome to Billto</h2>
                     <h2 class="mb-4  fw-bolder" style="color: #000000">Sign in</h2>
                 </div>
                 <div class="row mb-4">
@@ -45,8 +45,7 @@
                                     @endif
                                     <!-- Email Address -->
                                     <div class="form-group pb-4">
-                                        <label for="email" class="pb-2 " style="font-size: 14px ;">Email / Phone
-                                            number</label>
+                                        <label for="email" class="pb-2 " style="font-size: 14px ;">Email</label>
                                         <input style="background-color: #FFFFFF; border-radius:10px" type="email"
                                             name="email"
                                             class=" inputPadding border-0 form-control @error('email') is-invalid @enderror"
@@ -87,11 +86,20 @@
                                         style="background: #FFB317; font-size:14px; border-radius:10px; ">Continue</button>
 
                                     <!--reset password-->
-                                    <p class="text-center mt-2  ">
-                                        @if (Route::has('password.request'))
-                                            <a href="{{ route('password.request') }}" class="reset color">Forgot your
-                                                password?</a>
+                                    <div class="row mt-2">
+                                        <div class="col-md-6 col-sm-12">
+                                            @if (Route::has('password.request'))
+                                            <a href="{{ route('password.request') }}" class="reset color" style="font-size:14px">Forgot Password?</a>
                                         @endif
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 d-md-flex justify-content-end">
+                                            <a style="font-size: 14px"
+                                            class="color  " href="{{ route('register') }}">Create an Account</a>
+                                        </div>
+                                    </div>
+                                    <p class=" mt-2  ">
+
+
                                     </p>
                                     <div class="mt-3 mb-4"
                                         style="width: 100%; height: 20px; border-bottom: 0.5px solid #CCCCCC; text-align: center">
@@ -108,17 +116,15 @@
                                    </a>
 
                                     <!-- facebook	 -->
-                                    <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
+                                    {{-- <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
                                     class="form_btn mt-3  inputPadding btn btn-dark border-0 w-100 text-bold"
                                     href="/auth/facebook/redirect">
                                     <p class="text-white"><i class="bi bi-facebook me-1"></i> Sign in with Facebook</p>
-                                    </a>
+                                    </a> --}}
                                     <!--text singup -->
-                                    <div class="mt-3 already_billto">
-                                        <p class="text-center" style="color: #898989">Don't have an account yet?<a
-                                                class="color" href="{{ route('register') }}">No worries, joining is easy.
-                                                here</a></p>
-                                    </div>
+                                    {{-- <div class="mt-3 already_billto">
+                                        <p class="text-center" style="color: #898989">Don't have an account yet?</p>
+                                    </div> --}}
 
                                 </div>
                             </form>

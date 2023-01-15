@@ -62,7 +62,7 @@
                                                         <p class="p-0 m-0 mb-1">Signature</p>
                                                         <div class="d-flex align-items-center ">
                                                             <div class="Signature_img">
-                                                                <img  src="{{ asset('uploads/signature/' . $userItem->signature) }}" alt="">
+                                                                <img  src="{{ asset('uploads/signature/' . $userItem->signature) }}"  alt="Signature">
                                                             </div>
                                                             <div class="edit_signatuer_btn">
                                                                 <a href="{{ url('/all/invoices/user-setting') }}" class="fs-4"> <i
@@ -125,19 +125,19 @@
                             <div class="row">
                                 <div class="col-6  col-md-4 col-lg-4">
                                     <div class="card  bg-c-pink">
-                                        <div class="card-body">
+                                        <div class="card-body ">
                                             <div class="d-flex">
-                                                <div class="total_amount_left">
-                                                    <p class=" ">Total Amount</p>
+                                                <div style="width:75%" class="total_amount_left">
+                                                    <p class="">Total Amount</p>
                                                     <span
                                                         class="">{{ number_format($Total_Amount_conut, 2) }}</span>
                                                 </div>
 
-                                                <div class="d-flex align-items-center ms-3">
-                                                    <div style="height: 48px; width:48px; border-radius:50%; background-color:
-                                                    #0072BC" class=" d-flex justify-content-center align-items-center">
-                                                        <div class=""><i
-                                                            class="bi bi-arrows-fullscreen fs-5 text-white"></i> </div>
+                                                <div class="d-flex align-items-center  ">
+                                                    <div  style="height: 40px; width:40px; border-radius:50%; background-color:
+                                                    #0072BC" class=" d-flex justify-content-center align-items-center totalAmountIconBg ">
+                                                        <div ><i
+                                                            class="bi bi-arrows-fullscreen text-white totalAmountIcon"></i> </div>
                                                     </div>
                                                 </div>
 
@@ -150,16 +150,16 @@
                                     <div class="card  bg-c-pink">
                                         <div class="card-body">
                                             <div class="d-flex">
-                                                <div class="total_amount_left_paid">
+                                                <div style="width:75%" class="total_amount_left_paid">
                                                     <p class=" ">Paid Amount</p>
                                                     <span
                                                         class="">{{ number_format($paid_Amount_conut, 2) }}</span>
                                                 </div>
 
-                                                <div class="d-flex align-items-center ms-3">
-                                                    <div style="height: 48px; width:48px; border-radius:50%; background-color:
-                                                    #197B30" class=" d-flex justify-content-center align-items-center">
-                                                        <div class=""><i class="bi bi-bag-check-fill text-white fs-4"></i> </div>
+                                                <div class="d-flex align-items-center ">
+                                                    <div style="height: 40px; width:40px; border-radius:50%; background-color:
+                                                    #197B30" class=" d-flex justify-content-center align-items-center totalAmountIconBg">
+                                                        <div class=""><i class="bi bi-bag-check-fill text-white totalAmountIcon "></i> </div>
                                                     </div>
                                                 </div>
 
@@ -171,16 +171,16 @@
                                     <div class="card  bg-c-pink">
                                         <div class="card-body">
                                             <div class="d-flex">
-                                                <div class="total_amount_left_due">
+                                                <div style="width:75%" class="total_amount_left_due">
                                                     <p class=" ">Due Amount</p>
                                                     <span
                                                         class="">{{ number_format($due_Amount_conut, 2) }}</span>
                                                 </div>
 
-                                                <div class="d-flex align-items-center ms-3">
-                                                    <div style="height: 48px; width:48px; border-radius:50%; background-color:
-                                                    #A950A0" class=" d-flex justify-content-center align-items-center">
-                                                        <div class=""><i class="bi bi-bag-dash-fill fs-4 text-white"></i> </div>
+                                                <div class="d-flex align-items-center    ">
+                                                    <div style="height: 40px; width:40px; border-radius:50%; background-color:
+                                                    #A950A0" class=" d-flex justify-content-center align-items-center totalAmountIconBg">
+                                                        <div class=""><i class="bi bi-bag-dash-fill  text-white totalAmountIcon"></i> </div>
                                                     </div>
                                                 </div>
 

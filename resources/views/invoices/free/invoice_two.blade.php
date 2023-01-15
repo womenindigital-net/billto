@@ -217,7 +217,7 @@
         <section class="first_section">
             <div class="logo_area">
                 @if ($userInvoiceLogo->invoice_logo != '')
-                    <img style="object-fit: cover"
+                    <img style="object-fit: contain;"
                         src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}" alt="img">
                 @endif
                 <p style="margin-top:20px;">{{ $invoiceData->invoice_form }}</p>
@@ -228,22 +228,22 @@
                     <h1>INVOICE</h1>
                 </div>
                 <div style="margin-top:20px;" class="">
-                    <table style="padding-left:160px">
+                    <table style="padding-left:157px">
                         <tr>
                             <th style="text-align:left; font-size:18px;">Incoice #</th>
                             <th style="text-align: right;font-size:18px; padding-left:95px;">
                                 {{ $invoiceData->invoice_id }}</th>
                         </tr>
                         <tr>
-                            <th style="text-align:left; font-size:18px;">invoice date</th>
+                            <th style="text-align:left; font-size:18px;">Invoice Date</th>
                             <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_date }}</td>
                         </tr>
                         <tr>
-                            <th style=" text-align: left; font-size:18px;">p.o.#</th>
+                            <th style=" text-align: left; font-size:18px;">P.O.#</th>
                             <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_po_number }}</td>
                         </tr>
                         <tr>
-                            <th style="text-align: left; font-size:18px;">due date</th>
+                            <th style="text-align: left; font-size:18px;">Due Date</th>
                             <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_dou_date }}
                     </table>
                 </div>
@@ -254,7 +254,7 @@
 
         <section class="second_section" style="margin-top: 270px;">
             <div class="table">
-                <div style="margin-left: 70px; margin-right:60px; ">
+                <div style="margin-left: 70px; margin-right:60px; min-height:250px ">
                     <table class="table1" style="width:100%;  border-collapse: collapse;" class="">
                         <thead>
                             <tr>
@@ -289,7 +289,7 @@
                                         {{ number_format($product_detail->product_amount, 2) }}</td>
                                 </tr>
                             @endforeach
-                        </tbody>
+                        </tbody >
                     </table>
                 </div>
             </div>

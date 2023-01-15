@@ -127,7 +127,6 @@
                         <div class="c">
                             <p style="font-size: 20px; padding-top:15px"><b>{{ $invoiceData->invoice_form }} </b></p>
                         </div>
-
                         <div class="c">
                             <h5>To</h5>
                             <p><b>{{ $invoiceData->invoice_to }}</b></p>
@@ -135,14 +134,14 @@
                     </div>
                 </div>
                 <div class="rightSideArea">
-                        <div style="text-align:right; margin-right:88px; margin-top:25px">
+                        <div style="text-align:right; margin-right:89px; margin-top:25px">
                             @if ($userInvoiceLogo->invoice_logo != '')
-                                <img src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}"
+                                <img style="object-fit: contain;" src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}"
                                     alt="img" style="width: 80px; height:80px;">
                             @endif
-                            <h1 style="font-size:40px; color:#039DBF; margin-top:30px;">INVOICE</h1>
+                            <h1 style="font-size:40px; color:#039DBF; margin-top:30px;margin-left:2px">INVOICE</h1>
                         </div>
-                        <div class="" style="color: #686868; margin-top:30px;margin-left:9px">
+                        <div class="" style="color: #686868; margin-top:30px;margin-left:6px">
                             <table style="padding-left:123px; ">
                                 <tr>
                                     <th style="text-align:left; font-size:18px;">Incoice #</th>
@@ -150,15 +149,15 @@
                                         {{ $invoiceData->invoice_id }}</th>
                                 </tr>
                                 <tr>
-                                    <th style="text-align:left; font-size:18px;">invoice date</th>
+                                    <th style="text-align:left; font-size:18px;">Invoice Date</th>
                                     <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_date }}</td>
                                 </tr>
                                 <tr>
-                                    <th style=" text-align: left; font-size:18px;">p.o.#</th>
+                                    <th style=" text-align: left; font-size:18px;">P.O.#</th>
                                     <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_po_number }}</td>
                                 </tr>
                                 <tr>
-                                    <th style="text-align: left; font-size:18px;">due date</th>
+                                    <th style="text-align: left; font-size:18px;">Due Date</th>
                                     <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_dou_date }}
                             </table>
                         </div>
@@ -176,7 +175,7 @@
         </style>
         <section class="second_section" style="margin-top:240px">
             <div class="table">
-                <div style="margin-left: 50px; margin-right:60px; padding-top:80px; padding-bottom:80px;">
+                <div style="min-height:380px; margin-left: 50px; margin-right:60px; padding-top:80px; padding-bottom:80px;">
                     <table class="table1 border" style="width:100%; background:#F2F2F2;">
                         <thead>
                             <tr style="padding-left:200px !important;">
