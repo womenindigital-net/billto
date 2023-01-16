@@ -60,6 +60,8 @@ class InvoiceController extends Controller
                 $all = explode($lastnum, $text)[0];
                 $lastnum = $lastnum+1;
 
+
+                
             $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
