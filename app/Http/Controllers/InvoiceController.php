@@ -49,9 +49,17 @@ class InvoiceController extends Controller
                 ->get([
                     'invoice_form',
                     'invoice_to',
+                    'invoice_id',
                     'id',
                 ])
                 ->first();
+
+                $text = "$lastInvoice->invoice_id";
+                preg_match('/(\d+)\D*$/', $text, $m);
+                $lastnum= $m[1];
+                $all = explode($lastnum, $text)[0];
+                $lastnum = $lastnum+1;
+
             $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
@@ -65,7 +73,7 @@ class InvoiceController extends Controller
             if ($session != "") {
                 return redirect()->to('/edit/invoices/' . $session);
             } else {
-                return view('frontend.create-invoice')->with(compact('lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
+                return view('frontend.create-invoice')->with(compact('all','lastnum','lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
             }
         } else {
 

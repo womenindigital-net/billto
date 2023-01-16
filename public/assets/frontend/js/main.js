@@ -176,35 +176,7 @@ $("#invoiceForm").submit(function (e) {
                 $('#previw_id').removeClass("d-none");
                 $('#complate_invoice_id').removeClass("d-none");
                 $('#completeInvoice').addClass("d-none");
-
-                // Alert disable
-                // $('#staticBackdrop_previw').addClass("block");
-                // $('.modal-backdrop').css("display","block");
-                // $('#body_alert').addClass("modal-open");
-                // $('#body_alert').css("overflow","hidden");
-                // $('#body_alert').css("padding-right","17px");
-                // $('#staticBackdrop_previw').addClass("show");
-                // Alert disable
-
-
-                // Priview invoice show in this code
-                // var invoice_last_id = document.getElementById('id').value;
-                // // alert(invoice_last_id);
-                // $.ajax({
-                //     url: '/preview/image/' + invoice_last_id,
-                //     method: 'get',
-                //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                //     success: function (data) {
-                //         $('.preview_invoice_show').html(data);
-                //     }
-                // });
-
-                // Priview invoice show in this code
             }
-
-
-            // $('#downlodeInvoice').removeClass("disabled");
-            // $('#send_email_id').removeClass("disabled");
         },
         error: function (error) {
             okButton.fire({

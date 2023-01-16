@@ -102,7 +102,23 @@ Route::get('/check',  function () {
     // ->selectRaw( 'users.*, payment_getways.*, subscription_packages.*, payment_getways.created_at as payment_name, subscription_packages.created_at as contacts_name')
     // ->where('users.id', 1)->get();
 
-    session_start();
-    $sessionId = session_id();
-    dd($sessionId );
+    // session_start();
+    // $sessionId = session_id();
+    // dd($sessionId );
+
+    $inoice_last_id= "99wid999";
+
+     $inoice_last_convert = str_replace(',', '.', $inoice_last_id);
+     $final_invoice_id = preg_replace("/[^0-9.]+/", "",   $inoice_last_convert );
+
+ $result = preg_replace("/[^-a-z\\/]+/i", "", $inoice_last_convert );
+
+    //  $final_invoice_id = preg_replace("/[^0-9.]+/", "$result",   $inoice_last_convert );
+
+
+    $valu =$final_invoice_id  ;
+
+     echo $valu;
+
+
 });
