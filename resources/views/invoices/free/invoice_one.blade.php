@@ -216,7 +216,7 @@
         <section class="first_section">
             <div class="logo_area">
                 @if ($userInvoiceLogo->invoice_logo != '')
-                    <img style="object-fit: cover"
+                    <img style="object-fit: contain;"
                         src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}" alt="img">
                 @endif
                 <p>{{ $invoiceData->invoice_form }}</p>
@@ -234,15 +234,15 @@
                                 {{ $invoiceData->invoice_id }}</th>
                         </tr>
                         <tr>
-                            <th style="text-align:left; font-size:18px;">invoice date</th>
+                            <th style="text-align:left; font-size:18px;">Invoice date</th>
                             <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_date }}</td>
                         </tr>
                         <tr>
-                            <th style=" text-align: left; font-size:18px;">p.o.#</th>
+                            <th style=" text-align: left; font-size:18px;">P.o.#</th>
                             <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_po_number }}</td>
                         </tr>
                         <tr>
-                            <th style="text-align: left; font-size:18px;">due date</th>
+                            <th style="text-align: left; font-size:18px;">Due date</th>
                             <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_dou_date }}
                     </table>
                 </div>
@@ -251,7 +251,7 @@
         </section>
 
 
-        <section class="second_section" style="margin-top: 270px;">
+        <section class="second_section" style="margin-top: 270px; min-height:382px">
             <div class="table">
                 <div style="margin-left: 70px; margin-right:60px; ">
                     <table class="table1" style="width:100%;  border-collapse: collapse;" class="">

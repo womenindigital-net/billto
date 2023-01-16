@@ -40,14 +40,15 @@
     }
 
     @media only screen and (max-width: 425px) {
-        .profileName{
+        .profileName {
             padding: 5px 3px 5px 1px;
             font-size: 8px !important;
         }
+
         .user-menu-wrap .btn {
-        font-size: 12px !important;
-        font-weight: 400;
-    }
+            font-size: 12px !important;
+            font-weight: 400;
+        }
 
     }
 </style>
@@ -62,15 +63,22 @@
             </a>
             <div class="navbar">
                 <div>
-                   @php
-                       use App\Models\User;
-                   @endphp
-                    @if (auth()->check())
+                    @php
+                        use App\Models\User;
+                    @endphp
+                    @if (Auth::check())
                         @php
-                            $user_photo = User::where('id', Auth::user()->id)->get(['picture__input'])->first();
+                            $user_photo = User::where('id', Auth::user()->id)
+                                ->get(['picture__input'])
+                                ->first();
                         @endphp
-                        <img class="me-1" src="{{ asset('uploads/userImage/' . $user_photo->picture__input) }}" height="32px"
-                            width="32px" style="border-radius: 50%" alt="">
+                        @if ($user_photo->picture__input == null)
+                            <i class="bi bi-person-circle"
+                                style="font-size: 23px;margin-right: 5px;margin-top: 0px;"></i>
+                        @else
+                            <img class="me-1" src="{{ asset('uploads/userImage/' . $user_photo->picture__input) }}"
+                                height="32px" width="32px" style="border-radius: 50%">
+                        @endif
                     @else
                     @endif
                 </div>
@@ -150,10 +158,10 @@
                             </svg>
                         </li>
                         <style>
-
                             .navbar-nav .dropdown-menu {
-                            position: absolute !important ;
+                                position: absolute !important;
                             }
+
                             .dropdown-menu {
                                 z-index: 1000;
                                 display: none;
@@ -161,7 +169,6 @@
                                 text-align: center !important;
 
                             }
-
                         </style>
                         <li class="nav-item d-flex align-items-center">
                             <div class=" dropdown">

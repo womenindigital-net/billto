@@ -99,11 +99,11 @@
                                     </a>
 
                                     <!-- facebook	 -->
-                                    <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
+                                    {{-- <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
                                         class="form_btn mt-3  inputPadding btn btn-dark border-0 w-100 text-bold"
                                         href="/auth/facebook/redirect">
                                         <p class="text-white"><i class="bi bi-facebook me-1"></i> Sign in with Facebook</p>
-                                    </a>
+                                    </a> --}}
                                     <div class="my-3 already_billto">
                                         <p class="allreadyOnBillto">Already on Billto? <a class="BetweeenChatac"
                                                 href="{{ route('login') }}">Sign in

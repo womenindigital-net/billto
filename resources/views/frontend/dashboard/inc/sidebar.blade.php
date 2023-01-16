@@ -23,6 +23,7 @@
             $overdue_Invoice_Count = Invoice::where('user_id', $user_id)
                 ->where('invoice_dou_date', '<=', $last_date)->where('balanceDue_amounts','>', 0)->count();
             $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
+            $user_photo = User::where('id', Auth::user()->id)->get(['name'])->first();
 
         @endphp
         @foreach ($user as $item)
@@ -34,7 +35,7 @@
                     <a href="{{ route('all.invoice') }}"><img src="{{ asset('uploads/defaultUserImage/avater.jpg') }}"
                             alt="Logo"></a>
                 @endif
-                <h5 style="">Women In Digital </h5>
+                <h5 style="">{{ $user_photo->name }} </h5>
                 <p>{{ $item->email }}</p>
                 <span href="#" class="nav-icon"><i class="bi bi-list"></i></span>
             </div>

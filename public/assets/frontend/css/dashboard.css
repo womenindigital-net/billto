@@ -53,31 +53,30 @@ div.dataTables_wrapper div.dataTables_paginate,
 .total_amount_left p {
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 15px;
+    line-height: 16px;
     color: #0072bc;
 }
 
 .total_amount_left span {
     font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
-
+    font-size: 15px;
+    line-height: 16px;
     color: #0072bc;
 }
 
 .total_amount_left_paid p {
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 15px;
+    line-height: 16px;
     color: #197b30;
 }
 
 .total_amount_left_paid span {
     font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 15px;
+    line-height: 16px;
 
     color: #197b30;
 }
@@ -88,15 +87,15 @@ div.dataTables_wrapper div.dataTables_paginate,
 .total_amount_left_due p {
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 15px;
+    line-height: 16px;
     color: #a950a0;
 }
 
 .total_amount_left_due span {
     font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 15px;
+    line-height: 16px;
 
     color: #a950a0;
 }
@@ -474,7 +473,7 @@ body {
 }
 
 .user_signeture {
-    margin-top: 16px;
+    margin-top: 5px;
 }
 
 .user_signeture p {
@@ -728,7 +727,7 @@ body {
     border-radius: 6px;
     margin-top: 1px;
 }
-@media all and (min-width: 767px) {
+@media all and (min-width: 767px ) {
     .verticaleHeight_col_4 {
         height: 75vh;
     }
@@ -749,9 +748,10 @@ body {
 
     .mobile_sidebar img {
         width: 60px;
-        height: auto;
+        height: 65px;
         border-radius: 50%;
         margin-top: 11px;
+        object-fit: cover;
     }
 
     .mobile_sidebar h5 {
@@ -1099,6 +1099,7 @@ table.dataTable tfoot td {
         justify-content: center;
         margin-right: 10px;
     }
+
 }
 
 @media all and (max-width: 768px) {
@@ -1110,7 +1111,107 @@ table.dataTable tfoot td {
         width: 70% !important;
         margin-bottom: 8px;
     }
+    .total_amount_left p {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 15px;
+        color: #0072bc;
+    }
+    .total_amount_left span {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 15px;
+        color: #0072bc;
+    }
+    .total_amount_left_paid p {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 15px;
+        color: #197b30;
+    }
+
+    .total_amount_left_paid span {
+        font-weight: 600;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 15px;
+        color: #197b30;
+    }
+    .total_amount_left_due p {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 15px;
+        color: #a950a0;
+    }
+
+    .total_amount_left_due span {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 15px;
+        color: #a950a0;
+    }
+    .totalAmountIconBg{
+        width: 35px !important;
+        height: 35px !important;
+    }
+    .totalAmountIcon{
+        font-size: 16px;
+    }
 }
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .total_amount_left p {
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 14px;
+        color: #0072bc;
+    }
+    .total_amount_left span {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 14px;
+        color: #0072bc;
+    }
+    .total_amount_left_paid p {
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 14px;
+        color: #197b30;
+    }
+
+    .total_amount_left_paid span {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 14px;
+        color: #197b30;
+    }
+    .total_amount_left_due p {
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 14px;
+        color: #a950a0;
+    }
+
+    .total_amount_left_due span {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 14px;
+        color: #a950a0;
+    }
+    .totalAmountIconBg{
+        width: 38px !important;
+        height: 38px !important;
+    }
+    .totalAmountIcon{
+        font-size: 17px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .totalAmountIcon{
+        font-size: 16px;
+    }
+  }
+
 
 .dashboad_card_width {
     width: 100%;
