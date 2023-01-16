@@ -678,7 +678,7 @@ body {
 
 .dash_menu ul li ul li a {
     line-height: 30px;
-    padding: 3px 20px;
+    padding: 3px 3px 0px 23px;
 }
 
 .submenu_circle_bg {
@@ -1215,7 +1215,7 @@ table.dataTable tfoot td {
 
 .dashboad_card_width {
     width: 100%;
-    height: 255px;
+    min-height: 255px;
 }
 .myInvoiceIcon {
     border: 1px solid #898989;

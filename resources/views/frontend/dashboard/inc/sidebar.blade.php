@@ -65,7 +65,7 @@
                         <li class="sub-menu    @yield('all_invoice')">
                             <a class="mb-2" href='#invoice'><i class="bi bi-file-text myInvoiceIcon me-3"></i> My
                                 Invoices
-                                <div class='fa fa-caret-down mt-2'> <i class="bi bi-caret-down"></i></div>
+                                <div class='fa fa-caret-down mt-1'> <i class="bi bi-caret-down"></i></div>
                             </a>
                             <ul class="@yield('d-block')">
                                 <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
