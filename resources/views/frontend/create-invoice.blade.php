@@ -89,7 +89,7 @@
                                                 <input class="" type='file' name="invoice_logo" id="imageUpload"  accept="image/*"/>
                                                 @if (isset($user_logo_terms->invoice_logo))
                                                     <img class="hide_image"src="{{ asset('storage/invoice/logo/' . $user_logo_terms->invoice_logo) }}"
-                                                        style=" border-radius: 10px; width: 193px; object-fit: cover; height: 100%;"
+                                                        style=" border-radius: 10px; width: 193px; object-fit: contain; height: 100%;"
                                                         alt="">
                                                 @endif
                                             </div>
@@ -328,15 +328,15 @@
 
                     <div class="col-md-5" style="display: grid">
                         <div class="row">
-                            <div class="col-sm-4 d-flex">
+                            <h1 class="text-center invoice d-none d-md-block ms-2">INVOICE</h1>
+                            <div class="col-sm-4 ">
+                                <label class="col-form-label textColor">INVOICE ID * </label>
                             </div>
                             <div class="col-sm-8 mb-2">
-                                <h1 class="text-center invoice d-none d-md-block">INVOICE</h1>
-                                <div class="input-group">
-                                    <div class="input-group-text invoiceIdOne">&#9839;</div>
-                                    <input readonly type="text" name="invoice_id"
-                                        class="form-control inputBorderRedius "
-                                        value="      @if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @else {{ 'INVID' . $invoiceCountNew }} @endif"
+                                <div class="">
+                                    <input  type="text" name="invoice_id"
+                                        class="form-control inputBorderRedius textColor"
+                                        value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @elseif(isset($lastInvoice->invoice_id)){{ $all}}{{ $lastnum }}  @endif"
                                         id="invoice_id" placeholder="INVOICE ID">
                                     <input type="hidden" id="id" name="id"
                                         value="@if (isset($invoiceData->id)) {{ $invoiceData->id }} @endif">
