@@ -135,19 +135,19 @@ left_manu
                                     $date = new Carbon($create_date);
                                     $today_date = $date->diffInDays($curren_date);
                                @endphp
-                                <tr class="data_table_id table_th_td">
+                                <tr class="data_table_id table_th_td ">
                                     <th scope="row">{{ ++$key }}</th>
-                                    <td>{{ $InvoiceData->invoice_to }}</td>
-                                    <td>{{ $InvoiceData->invoice_date }}</td>
-                                    <td class="
+                                    <td class="preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $InvoiceData->invoice_to }}</td>
+                                    <td class="preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $InvoiceData->invoice_date }}</td>
+                                    <td class=" preview_image_user
                                     <?php if($today_date <=3 && $curren_date <= $create_date && $InvoiceData->status_due_paid=="due" ){
                                         echo "text_color";
                                       }elseif( $curren_date >= $create_date  && $InvoiceData->status_due_paid=="due"){
                                         echo "text-danger";
-                                     }  ?>" >  {{ $InvoiceData->invoice_dou_date}} </td>
-                                    <td> {{ number_format($InvoiceData->final_total, 2) }} </td>
-                                    <td> {{ number_format($InvoiceData->receive_advance_amount, 2) }}</td>
-                                    <td> {{ number_format($InvoiceData->balanceDue_amounts, 2) }}</td>
+                                     }  ?>" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">  {{ $InvoiceData->invoice_dou_date}} </td>
+                                    <td class="preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"> {{ number_format($InvoiceData->final_total, 2) }} </td>
+                                    <td class="preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"> {{ number_format($InvoiceData->receive_advance_amount, 2) }}</td>
+                                    <td class="preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"> {{ number_format($InvoiceData->balanceDue_amounts, 2) }}</td>
 
                                     <td>
                                         @if ($InvoiceData->status_due_paid == 'due')
@@ -198,20 +198,22 @@ left_manu
                                     <div class="col-4">
                                         <p class="total_text_design"> TOTAL</p>
                                     </div>
-                                    <div class="col-8">
-                                        <p class="total_amount ">{{ number_format($Total_Amount_conut, 2) }}</p>
+                                    <div class="col-5">
+                                        <p class="total_amount text-end">{{ number_format($Total_Amount_conut, 2) }}</p>
                                     </div>
+
                                     <div class="col-4">
                                         <p class="total_text_design "> PAID AMOUNT</p>
                                     </div>
-                                    <div class="col-8">
-                                        <p class="total_amount ">{{ number_format($paid_Total_Amount_conut, 2) }}</p>
+                                    <div class="col-5">
+                                        <p class="total_amount text-end">{{ number_format($paid_Total_Amount_conut, 2) }}</p>
                                     </div>
+
                                     <div class="col-4">
                                         <p class="total_text_design"> BALANCE DUE</p>
                                     </div>
-                                    <div class="col-8">
-                                        <p class="total_amount ">{{ number_format($due_Total_Amount_conut, 2) }}</p>
+                                    <div class="col-5 ">
+                                        <p class="total_amount text-end">{{ number_format($due_Total_Amount_conut, 2) }}</p>
                                     </div>
 
                                 </div>

@@ -16,7 +16,7 @@
             $trash = Invoice::where('user_id', $user_id)
                 ->where('status_due_paid', 'draft')
                 ->count();
-            $all_Invoice_Count = Invoice::where('user_id', $user_id)->count();
+            $all_Invoice_Count = Invoice::where('user_id', $user_id)->whereIn('status_due_paid',['paid','due'])->count();
             $unpaid_Invoice_Count = Invoice::where('user_id', $user_id)->where('invoice_status','complete')->where('receive_advance_amount', null)
                 ->count();
             $partial_payment_Invoice_Count = Invoice::where('user_id', $user_id)->where('receive_advance_amount','>','0')->where('invoice_status','complete')->where('status_due_paid','due')->count();

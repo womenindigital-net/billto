@@ -62,15 +62,15 @@ active_left
                                 @forelse ($overdue_Invoices as $key => $invoiceData)
                                 <tr class="m-0 p-0 data_table_id">
                                     <td class="m-0  text-center ">{{ ++$key }}</td>
-                                    <td class="m-0">{{ $invoiceData->invoice_to }}</td>
-                                    <td class="m-0 "> {{ $invoiceData->invoice_id }}</td>
-                                    <td class="m-0  ">{{ $invoiceData->invoice_date }}</td>
-                                    <td class="m-0  text-danger">{{ $invoiceData->invoice_dou_date }}</td>
-                                    <td class="m-0  ">{{ $invoiceData->currency }} {{
+                                    <td class="m-0  preview_image_user " data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $invoiceData->invoice_to }}</td>
+                                    <td class="m-0  preview_image_user " data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"> {{ $invoiceData->invoice_id }}</td>
+                                    <td class="m-0   preview_image_user " data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $invoiceData->invoice_date }}</td>
+                                    <td class="m-0  text-danger preview_image_user " data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $invoiceData->invoice_dou_date }}</td>
+                                    <td class="m-0  preview_image_user " data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $invoiceData->currency }} {{
                                         number_format($invoiceData->final_total,2) }}</td>
-                                    <td class="m-0  ">{{ $invoiceData->currency }} {{
+                                    <td class="m-0  preview_image_user " data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $invoiceData->currency }} {{
                                         number_format($invoiceData->receive_advance_amount,2) }}</td>
-                                    <td class="m-0  ">{{ $invoiceData->currency }} {{
+                                    <td class="m-0 preview_image_user " data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $invoiceData->currency }} {{
                                         number_format($invoiceData->balanceDue_amounts,2) }}</td>
 
                                     <td class="m-0">

@@ -24,7 +24,7 @@ class SettignsController extends Controller
         $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency']);
 
         $user_id = Auth::user()->id;
-        $all_Invoice_Count = Invoice::where('user_id',$user_id)->count();
+        $all_Invoice_Count = Invoice::where('user_id',$user_id)->whereIn('status_due_paid',['paid','due'])->count();
         $sendByMail_count = SendMail_info::where('user_id', $user_id)->count();
         $Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('final_total');
         $paid_Total_Amount_conut = Invoice::where('user_id',$user_id)->where('invoice_status','complete')->sum('receive_advance_amount');

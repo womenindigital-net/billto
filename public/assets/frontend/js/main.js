@@ -782,7 +782,7 @@ $(document).on("click", ".preview_payment_user", function (e) {
 
 });
 
-$(document).on("keyup", "#date_id , #amount_id", function (e) {
+$(document).on("change", "#date_id , #amount_id", function (e) {
     e.preventDefault();
     var date_id = document.getElementById('date_id').value;
     var amount_id = document.getElementById('amount_id').value;
