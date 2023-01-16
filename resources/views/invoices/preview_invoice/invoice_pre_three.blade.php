@@ -131,7 +131,7 @@
             <div class="col-6">
                 <div class="text-end me-5 mt-3 pe-2">
                     @if ($userLogoAndTerms->invoice_logo != '')
-                        <img style="object-fit:cover;"
+                        <img style="object-fit:contain;"
                             src="{{ asset('storage/invoice/logo/' . $userLogoAndTerms->invoice_logo) }}" alt=""
                             height="122px" width="122px" />
                     @endif

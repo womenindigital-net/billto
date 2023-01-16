@@ -308,7 +308,7 @@
                         </div>
                         <div class="signature_div">
                             @if ($userInvoiceLogo->signature != '')
-                            <img style="width: 100px; height:100px "
+                            <img style="object-fit:contain;" style="width: 100px; height:100px "
                                 src="{{ public_path('uploads/signature/' . $userInvoiceLogo->signature) }}"
                                 alt="img">
                         @endif

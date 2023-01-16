@@ -142,7 +142,7 @@
                 <div class="d-flex justify-content-center imgMarginPadding">
                     @if ($userLogoAndTerms->invoice_logo != '')
                         <img src="{{ asset('storage/invoice/logo/' . $userLogoAndTerms->invoice_logo) }}" alt=""
-                            style="height:80px; width: 80px; object-fit:cover;" />
+                            style="height:80px; width: 80px; object-fit:contain;" />
                     @endif
                 </div>
                 <div class="hadingMarginPadding">
@@ -167,7 +167,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">Invoice date</th>
+                                <th scope="row">Invoice Date</th>
                                 <td>{{ $data->invoice_date }}</td>
 
                             </tr>
@@ -176,7 +176,7 @@
                                 <td>{{ $data->invoice_po_number }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Due date</th>
+                                <th scope="row">Due Date</th>
                                 <td colspan="2">{{ $data->invoice_dou_date }}</td>
                             </tr>
                         </tbody>
