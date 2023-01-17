@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\InvcPymntTransction;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 
@@ -28,8 +29,16 @@ class DashboardController extends Controller
         $Total_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('final_total');
         $due_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('balanceDue_amounts');
         $paid_Amount_conut = Invoice::where('user_id', $user_id)->where('invoice_status', 'complete')->sum('receive_advance_amount');
-        $latestDataInvoices = Invoice::where('user_id', Auth::user()->id)->whereIn('status_due_paid',['paid','due'])->orderBy('id', 'DESC')->limit(7)->get();
-        return view('frontend.all-invoice')->with(compact('invoicessData', 'user', 'Total_Amount_conut','due_Amount_conut','paid_Amount_conut', 'latestDataInvoices'));
+        $latestDataInvoices = Invoice::where('user_id', Auth::user()->id)->whereIn('status_due_paid', ['paid', 'due'])->orderBy('id', 'DESC')->limit(8)->get();
+
+        //    user package details
+        $join_table_value = DB::table('users')
+            ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+            ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+            ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
+            ->selectRaw('payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
+            ->where('users.id',  Auth::user()->id)->get();
+        return view('frontend.all-invoice')->with(compact('join_table_value','invoicessData', 'user', 'Total_Amount_conut', 'due_Amount_conut', 'paid_Amount_conut', 'latestDataInvoices'));
     }
 
 
@@ -146,7 +155,7 @@ class DashboardController extends Controller
     }
 
 
-// user preview invoice
+    // user preview invoice
     public function user_view_tamplate($id)
     {
         $data  = Invoice::find($id);
@@ -154,9 +163,9 @@ class DashboardController extends Controller
             'invoice_logo',
             'terms',
             'signature',
-        ]) ->first();
+        ])->first();
         $productsDatas = Product::where('invoice_id', $id)->get();
-        return view('invoices.preview_invoice.all_pre_invoice', compact('data', 'productsDatas','userLogoAndTerms'))->render();
+        return view('invoices.preview_invoice.all_pre_invoice', compact('data', 'productsDatas', 'userLogoAndTerms'))->render();
     }
 
     // user due bill payment
@@ -164,7 +173,7 @@ class DashboardController extends Controller
     {
 
         $data  = Invoice::findOrfail($id);
-        return view('due_bill_amount.index', compact('data' ))->render();
+        return view('due_bill_amount.index', compact('data'))->render();
     }
 
     //payment save
@@ -180,30 +189,30 @@ class DashboardController extends Controller
         ]);
 
 
-        if( $request->balanceDue_amounts_user < $request->amount_id){
+        if ($request->balanceDue_amounts_user < $request->amount_id) {
             return redirect()->back()->with('delete', 'Psease check due Amount');
         }
-       $receive_advance_amount = $request->amount_id + $request->old_recived_amount;
-       $balanceDue_amounts = $request->balanceDue_amounts_user - $request->amount_id ;
+        $receive_advance_amount = $request->amount_id + $request->old_recived_amount;
+        $balanceDue_amounts = $request->balanceDue_amounts_user - $request->amount_id;
 
-       $status = "due";
-       if($balanceDue_amounts==0){
-        $status = "paid";
-       }
-       Invoice::where('id',$request->invoice_id)->update([
-            'receive_advance_amount'=> $receive_advance_amount,
-            'balanceDue_amounts'=> $balanceDue_amounts,
-            'status_due_paid'=> $status
-         ]);
+        $status = "due";
+        if ($balanceDue_amounts == 0) {
+            $status = "paid";
+        }
+        Invoice::where('id', $request->invoice_id)->update([
+            'receive_advance_amount' => $receive_advance_amount,
+            'balanceDue_amounts' => $balanceDue_amounts,
+            'status_due_paid' => $status
+        ]);
         InvcPymntTransction::create([
 
-            'invoice_id'=> $request->invoice_id,
-            'user_id'=> $request->invoice_user_id,
-            'new_payment'=>$request->amount_id,
-            'payment_date'=>$request->date_id
+            'invoice_id' => $request->invoice_id,
+            'user_id' => $request->invoice_user_id,
+            'new_payment' => $request->amount_id,
+            'payment_date' => $request->date_id
         ]);
 
-         return response()->json(['message' => '1']);
+        return response()->json(['message' => '1']);
     }
 
     public function search_result(Request $request)
@@ -213,32 +222,31 @@ class DashboardController extends Controller
             'from_date' => 'required',
             'invoice_status' => 'required'
         ]);
-        $date_from =$request->from_date;
+        $date_from = $request->from_date;
         $date_to = $request->to_date;
         $invoice_status = $request->invoice_status;
         $all_Invoice_Count = Invoice::where('user_id', Auth::user()->id)->count();
         $search_result = Invoice::whereBetween('invoice_date', [$request->from_date, $request->to_date])->where('status_due_paid', $request->invoice_status)->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
-        return view('frontend.dashboard.search_result_all_invoice')->with(compact('invoice_status','date_to','date_from','search_result', 'all_Invoice_Count'));
+        return view('frontend.dashboard.search_result_all_invoice')->with(compact('invoice_status', 'date_to', 'date_from', 'search_result', 'all_Invoice_Count'));
     }
 
 
     public function unpaid_invoice()
     {
-        $unpaid_Invoice_Counts = Invoice::where('user_id',Auth::user()->id)->where('receive_advance_amount',null)->where('invoice_status','complete')->orderBy('id', 'DESC')->get();
-       return view('frontend.dashboard.unpaid_invoice')->with(compact('unpaid_Invoice_Counts'));
+        $unpaid_Invoice_Counts = Invoice::where('user_id', Auth::user()->id)->where('receive_advance_amount', null)->where('invoice_status', 'complete')->orderBy('id', 'DESC')->get();
+        return view('frontend.dashboard.unpaid_invoice')->with(compact('unpaid_Invoice_Counts'));
     }
     public function pertialy_payment()
     {
-        $partial_payment_Invoices = Invoice::where('user_id',Auth::user()->id)->where('receive_advance_amount','>','0')->where('invoice_status','complete')->where('status_due_paid','due')->orderBy('id', 'DESC')->get();
-       return view('frontend.dashboard.pertial_payment')->with(compact('partial_payment_Invoices'));
+        $partial_payment_Invoices = Invoice::where('user_id', Auth::user()->id)->where('receive_advance_amount', '>', '0')->where('invoice_status', 'complete')->where('status_due_paid', 'due')->orderBy('id', 'DESC')->get();
+        return view('frontend.dashboard.pertial_payment')->with(compact('partial_payment_Invoices'));
     }
 
     public function over_due_payment()
     {
         $last_date = date('Y-m-d');
         $overdue_Invoices = Invoice::where('user_id', Auth::user()->id)
-        ->where('invoice_dou_date', '<=', $last_date)->where('balanceDue_amounts','>', 0)->orderBy('id', 'DESC')->get();
-       return view('frontend.dashboard.ovar_due_payment')->with(compact('overdue_Invoices'));
+            ->where('invoice_dou_date', '<=', $last_date)->where('balanceDue_amounts', '>', 0)->orderBy('id', 'DESC')->get();
+        return view('frontend.dashboard.ovar_due_payment')->with(compact('overdue_Invoices'));
     }
-
 }

@@ -44,24 +44,26 @@ class InvoiceController extends Controller
             $template_id = "";
             $template_id_check = InvoiceTemplate::get()->first();
 
-            $lastInvoice = Invoice::where('user_id', $user)
-                ->orderBy('created_at', 'desc')
-                ->get([
+            $lastInvoice = Invoice::where('user_id', $user)->orderBy('created_at', 'desc')->get([
                     'invoice_form',
                     'invoice_to',
                     'invoice_id',
                     'id',
-                ])
-                ->first();
+                ])->first();
 
-                $text = "$lastInvoice->invoice_id";
-                preg_match('/(\d+)\D*$/', $text, $m);
-                $lastnum= $m[1];
-                $all = explode($lastnum, $text)[0];
-                $lastnum = $lastnum+1;
+                $text="INVC-000";
+                if($lastInvoice!=null){
+                    $text = $lastInvoice->invoice_id;
+                }
+                $all ="";
+                $lastnum = $text;
+                $value = preg_match('/(\d+)\D*$/', $text, $m);
+                if($value==1){
+                    $lastnum= $m[1];
+                    $all = explode($lastnum, $text)[0];
+                    $lastnum = $lastnum+1;
+                }
 
-
-                
             $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
@@ -69,6 +71,7 @@ class InvoiceController extends Controller
             $user_logo_terms = User::where('id', Auth::user()->id)->get([
                 'invoice_logo',
                 'terms',
+                'signature'
             ])->first();
 
             $session = Session::get('session_invoice_id');
@@ -100,6 +103,8 @@ class InvoiceController extends Controller
             $user_logo_terms = User::where('id', 1 && 'is_admin', 1)->get([
                 'invoice_logo',
                 'terms',
+                'signature'
+
             ])->first();
 
             return view('frontend.create-invoice')->with(compact('user_logo_terms', 'lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
@@ -135,6 +140,7 @@ class InvoiceController extends Controller
         $user_logo_terms = User::where('id', Auth::user()->id)->get([
             'invoice_logo',
             'terms',
+            'signature'
         ])->first();
 
 

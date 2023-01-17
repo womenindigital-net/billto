@@ -27,17 +27,16 @@
 
         @endphp
         @foreach ($user as $item)
-            <div class="logo design_logo text-center hide_mobile_view">
-                @if ($item->picture__input)
-                    <a href="{{ route('all.invoice') }}"><img
-                            src="{{ asset('uploads/userImage/' . $item->picture__input) }}" alt="Logo"></a>
+            <div class="logo design_logo text-center hide_mobile_view ">
+               @if ($item->picture__input)
+                    <a href="{{ route('all.invoice') }}"><img src="{{ asset('uploads/userImage/' . $item->picture__input) }}" alt="Logo"></a>
                 @else
                     <a href="{{ route('all.invoice') }}"><img src="{{ asset('uploads/defaultUserImage/avater.jpg') }}"
                             alt="Logo"></a>
                 @endif
-                <h5 style="">{{ $user_photo->name }} </h5>
-                <p>{{ $item->email }}</p>
-                <span href="#" class="nav-icon"><i class="bi bi-list"></i></span>
+              <h5 style="">{{ $user_photo->name }} </h5>
+               <p>{{ $item->email }}</p>
+                <span href="#" class="nav-icon text-end"><i class="bi bi-list"></i></span>
             </div>
         @endforeach
 
@@ -52,7 +51,7 @@
                                 src="{{ asset('uploads/defaultUserImage/avater.jpg') }}" alt="Logo"></a>
                     @endif
 
-                    <h5 style="">Women In Digital   </h5>
+                    <h5 style="">{{ $user_photo->name }}</h5>
                     <p>{{ $item->email }}</p>
                 </div>
                 <div class="create_new_btn_sidebar">

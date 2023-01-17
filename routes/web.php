@@ -106,19 +106,13 @@ Route::get('/check',  function () {
     // $sessionId = session_id();
     // dd($sessionId );
 
-    $inoice_last_id= "99wid999";
-
-     $inoice_last_convert = str_replace(',', '.', $inoice_last_id);
-     $final_invoice_id = preg_replace("/[^0-9.]+/", "",   $inoice_last_convert );
-
- $result = preg_replace("/[^-a-z\\/]+/i", "", $inoice_last_convert );
-
-    //  $final_invoice_id = preg_replace("/[^0-9.]+/", "$result",   $inoice_last_convert );
-
-
-    $valu =$final_invoice_id  ;
-
-     echo $valu;
+    $join_table_value = DB::table('users')
+    ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+    ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+    ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
+    ->selectRaw( 'payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
+    ->where('users.id', 1)->get();
+    dd($join_table_value);
 
 
 });

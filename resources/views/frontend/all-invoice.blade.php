@@ -23,40 +23,92 @@
                     <div class="row mt-2 m-0 p-0">
                         <div class="col-md-12 col-lg-4">
                             <div class="row">
+                                @foreach ($join_table_value as $details_value) @endforeach
+                                @foreach ($user as $userItem )    @endforeach
                                 <div class="col-md-6 col-lg-12">
                                     <div class="card  card_mb dashboad_card_width">
                                         <div class="card-header"
                                             style="background-image: url('{{ asset('assets/frontend/img/user_dashbord/dashboard_img.png') }}');  background-repeat: no-repeat; background-size: cover;  height:96px;">
                                             <div class="heading_tag_desh">
-                                                <h1 class="welcome_back"> Welcome Back</h1>
-                                                <p>WID Dashboard</p>
+                                                <h1 class="welcome_back"> Welcome to</h1>
+                                                <p>{{ $userItem->name }}</p>
                                             </div>
                                         </div>
-                                        @foreach ($user as $userItem )
-                                        <div class="card-body">
+                                        <style>
+                                            .custopm_body_user{
+                                                padding: 0px 12.5px 10px!important;
+                                            }
+                                            .pakage_details P{
+                                                font-size: 12PX;
+                                                color: #686868;
+                                                font-weight: 400;
+                                                margin-top: 10px;
+                                            }
+                                        </style>
+                                        <div class="card-body custopm_body_user">
                                             <div class="row">
-                                                <div class="col-6">
-                                                    <div
-                                                        class="left_content_deshboard d-flex align-items-center justify-content-center">
-                                                        <div class="image_deshboar">
-                                                            <img src="{{ asset('assets/frontend/img/user_dashbord/logo.png') }}"
-                                                                alt="">
+
+                                                @php
+                                                $day =  $details_value->packageDuration;
+                                                @endphp
+                                                <div class="col-7">
+                                                    <div class="address_user_phone">
+                                                        <p class="p-0 m-0 fw-bold">Package details</p>
+                                                    </div>
+                                                    <div class="row pakage_details pt-2">
+                                                        <div class="col-7">
+                                                           <p class="p-0 m-0">Package name</p>
                                                         </div>
+                                                        <div class="col-5">
+                                                           <p class="p-0 m-0 fw-bold"> {{ $details_value->packageName}} </p>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <p class="p-0 m-0">Invoice template</p>
+                                                         </div>
+                                                         <div class="col-5">
+                                                            <p class="p-0 m-0 fw-bold">{{ $details_value->templateQuantity}}</p>
+                                                         </div>
+                                                         <div class="col-7">
+                                                            <p class="p-0 m-0">Total invoice </p>
+                                                         </div>
+                                                         <div class="col-5">
+                                                            <p class="p-0 m-0 fw-bold">{{ $details_value->limitInvoiceGenerate}}</p>
+                                                         </div>
+                                                         <div class="col-7">
+                                                            <p class="p-0 m-0">Total genarate</p>
+                                                         </div>
+                                                         <div class="col-5">
+                                                            <p class="p-0 m-0 fw-bold">{{ $details_value->current_invoice_total}}</p>
+                                                         </div>
+                                                         <div class="col-7">
+                                                            <p class="p-0 m-0 "> Duration</p>
+                                                         </div>
+                                                         <div class="col-5">
+                                                            <p class="p-0 m-0 fw-bold">
+                                                                @php
+                                                                    if ($day == 30) {
+                                                                        echo 'One Month';
+                                                                    } elseif ($day == 90) {
+                                                                        echo 'Three Month';
+                                                                    } elseif ($day == 180) {
+                                                                        echo 'Six Month';
+                                                                    } elseif ($day == 365) {
+                                                                        echo 'Unlimited';
+                                                                    }
+                                                                @endphp
+                                                            </p>
+                                                         </div>
+                                                       <div class="col-12 pt-3">
+                                                         <button class="btn  btn-sm btn-warning btn_bg text-white">More Package</button>
+                                                       </div>
                                                     </div>
-                                                    <div class="address_user">
-                                                        <p class="p-0 m-0"> {{ $userItem->email }}</p>
-
-                                                    </div>
-                                                    <div class="address_user_phone">
-                                                        <p class="p-0 m-0">Phone Number:</p>
-                                                        <span class="p-0 m-0">{{ $userItem->phone }}</span>
-                                                    </div>
-
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-5">
                                                     <div class="address_user_phone">
-                                                        <p class="p-0 m-0">Email Address:</p>
-                                                        <span class="p-0 m-0"> {{ $userItem->email }}</span>
+                                                        <p class="p-0 m-0">Phone</p>
+                                                        <span class="p-0 m-0"> {{ $userItem->phone }}</span>
+                                                        <p class="p-0 m-0">Address</p>
+                                                        <span class="p-0 m-0"> {{ $userItem->address }}</span>
                                                     </div>
                                                     <div class="user_signeture">
                                                         <p class="p-0 m-0 mb-1">Signature</p>
@@ -75,7 +127,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @endforeach
+
                                     </div>
 
                                 </div>

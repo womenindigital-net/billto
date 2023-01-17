@@ -336,7 +336,7 @@
                                 <div class="">
                                     <input  type="text" name="invoice_id"
                                         class="form-control inputBorderRedius textColor"
-                                        value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @elseif(isset($lastInvoice->invoice_id)){{ $all}}{{ $lastnum }}  @endif"
+                                        value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @elseif(isset($lastnum)){{ $all}}{{ $lastnum }} @else INVOICE ID @endif"
                                         id="invoice_id" placeholder="INVOICE ID">
                                     <input type="hidden" id="id" name="id"
                                         value="@if (isset($invoiceData->id)) {{ $invoiceData->id }} @endif">
@@ -533,7 +533,7 @@
                         </div>
                         <div class="pt-3 d-flex align-items-center">
                             <input type="checkbox" style="width: 20px; height:20px" name="invoice_signature"
-                                value="signature_add" checked>
+                            value="signature_add" @if($user_logo_terms->signature) checked @else disabled @endif  >
                             <label class="textColor ms-2">Add Signature</label><br>
                         </div>
                     </div>
