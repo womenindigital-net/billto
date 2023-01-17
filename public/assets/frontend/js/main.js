@@ -760,6 +760,8 @@ $(document).on("click", "#submit_btn", function (e) {
                         icon: 'warning',
                         title: 'Payment Not success',
                   })
+                  $('#amount_id').addClass("is-invalid");
+                  $('#message_error').removeClass("d-none");
             }
           }
     })
@@ -784,26 +786,32 @@ $(document).on("click", ".preview_payment_user", function (e) {
 
 $(document).on("change", "#date_id , #amount_id", function (e) {
     e.preventDefault();
-    var date_id = document.getElementById('date_id').value;
-    var amount_id = document.getElementById('amount_id').value;
-    var balanceDue_amounts_user = document.getElementById('balanceDue_amounts_user').value;
-    var balanceDue_amounts_user = parseInt(balanceDue_amounts_user);
+    var new_date_id = document.getElementById('date_id').value;
+    var new_amount_id = document.getElementById('amount_id').value;
+    var balanceDue_amounts_user_id = document.getElementById('balanceDue_amounts_user').value;
+    var balanceDue_amounts_user = parseInt(balanceDue_amounts_user_id);
+    var amount_id = parseInt(new_amount_id);
 
-    if (date_id != "" && amount_id != "") {
+    document.getElementById("amount_id").readOnly = false;
+
+    if (new_date_id !="" && new_amount_id !="") {
         $('#submit_btn').removeClass("disabled");
     }
+
     if (balanceDue_amounts_user < amount_id) {
         $('#amount_id').addClass("is-invalid");
         $('#message_error').removeClass("d-none");
         $('#submit_btn').addClass("disabled");
     } else {
-        if(amount_id != "" && date_id != ""){
+
+        if(new_date_id != "" && new_amount_id!=""){
             $('#amount_id').removeClass("is-invalid");
             $('#amount_id').addClass("is-valid");
             $('#submit_btn').removeClass("disabled");
             $('#message_error').addClass("d-none");
 
         }
+
 
     }
 
@@ -867,3 +875,22 @@ $(document).on("change", "#invoice_to,#invoice_form,#invoice_id,#invoice_dou_dat
 });
 
 
+$(document).on("keyup", "#password_confirmation", function (e) {
+    e.preventDefault();
+    var password = document.getElementById('password').value;
+    var password_confirmation = document.getElementById('password_confirmation').value;
+
+    if(password==password_confirmation){
+        $('#password').removeClass("is-invalid");
+        $('#password_not_con').addClass("d-none");
+        $('#register_btn_sbmt').removeClass("disabled");
+
+    }else{
+        $('#password').addClass("is-invalid");
+        $('#register_btn_sbmt').addClass("disabled");
+        $('#password_not_con').removeClass("d-none");
+
+
+    }
+
+});

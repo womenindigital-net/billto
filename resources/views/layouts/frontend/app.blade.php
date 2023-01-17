@@ -110,6 +110,9 @@
         $(function() {
             $("#invoice_dou_date").datepicker();
         });
+        $(function() {
+            $("#date_id").datepicker();
+        });
     </script>
 
     {{-- alert message show  --}}

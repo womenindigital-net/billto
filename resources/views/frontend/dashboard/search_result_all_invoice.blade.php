@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-@section('title', 'Home page')
+@section('title', 'Search-result')
 @push('frontend_css')
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap" rel="stylesheet">
 <!--bootstrap css-->
@@ -44,67 +44,6 @@ left_manu
             <div class="container-fluid overflow_scroll">
                 <div class="row mt-2">
                     <div class="card  table-responsive">
-                        {{-- <div class="mt-1">
-                                @if ($errors->any())
-                                    <div class=" alert alert-danger p-0 m-0">
-                                        <ul class="mt-2 text-danger">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                        @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                </div>
-                <form action="{{ route('search.result') }}" method="post">
-                    @csrf
-                    <div class="row mt-2">
-                        <div class="col-12 col-sm-12 col-md-2">
-                            <div class="all_invice_title pt-2 ">
-
-                                <p>All Invoice <span class="rond_all">{{ $all_Invoice_Count }}</span></p>
-
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center m-0 p-0">
-                            <div class="custom_width" style="width: 30%">
-                                <span>Date From </span>
-                            </div>
-                            <div class="input-group bg-white custom_width_text" style="width: 70%">
-                                <label class="input-group-text" for="invoice_date"><i class="bi bi-calendar3"></i></label>
-                                <input type="text" class="form-control  bg-white @error('from_date')  is-invalid @enderror" name="from_date" required id="invoice_date" readonly>
-                            </div>
-
-                        </div>
-
-                        <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
-                            <div class="custom_width" style="width: 10%; text-align:center">
-                                <span>To</span>
-                            </div>
-                            <div class="input-group bg-white custom_width_text" style="width: 90%">
-                                <label class="input-group-text" for="invoice_dou_date"><i class="bi bi-calendar3"></i></label>
-                                <input type="text" class="form-control  bg-white @error('to_date')  is-invalid @enderror" name="to_date" required id="invoice_dou_date" readonly>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
-                            <div class="custom_width" style="width: 20%; text-align:center">
-                                <span>Status</span>
-                            </div>
-                            <div class="input-group bg-white custom_width_text" style="width: 80%">
-                                <select class="form-select  @error('invoice_status')  is-invalid @enderror" id="inputGroupSelect01" name="invoice_status" required>
-                                    <option value="paid">Paid</option>
-                                    <option value="due">Due</option>
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-sm-6 col-md-1 d-flex justify-content-end align-items-center">
-                            <div class="input-group   mr_custom">
-                                <button class=" btn btn-warning  fw-600">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </form> --}}
 
                 <div class="row pt-2 ">
                     <div class="col-10">

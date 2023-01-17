@@ -190,7 +190,7 @@ class DashboardController extends Controller
 
 
         if ($request->balanceDue_amounts_user < $request->amount_id) {
-            return redirect()->back()->with('delete', 'Psease check due Amount');
+            return redirect()->back()->with('delete', 'Please check due Amount');
         }
         $receive_advance_amount = $request->amount_id + $request->old_recived_amount;
         $balanceDue_amounts = $request->balanceDue_amounts_user - $request->amount_id;
@@ -200,15 +200,15 @@ class DashboardController extends Controller
             $status = "paid";
         }
         Invoice::where('id', $request->invoice_id)->update([
-            'receive_advance_amount' => $receive_advance_amount,
-            'balanceDue_amounts' => $balanceDue_amounts,
+            'receive_advance_amount' => round($receive_advance_amount, 2),
+            'balanceDue_amounts' => round($balanceDue_amounts, 2),
             'status_due_paid' => $status
         ]);
         InvcPymntTransction::create([
 
             'invoice_id' => $request->invoice_id,
             'user_id' => $request->invoice_user_id,
-            'new_payment' => $request->amount_id,
+            'new_payment' => round($request->amount_id, 2),
             'payment_date' => $request->date_id
         ]);
 

@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-@section('title', 'Home page')
+@section('title', 'Register-page')
 @push('frontend_css')
 @endpush
 @section('frontend_content')
@@ -9,7 +9,7 @@
         <div>
             <div class="container mb-4">
                 <div class="text-center ">
-                    <h2 class="h2_title  mt-4 mb-3 fw-light">Welcome back to Billto</h2>
+                    <h2 class="h2_title  mt-4 mb-3 fw-light">Welcome to Billto</h2>
                     <h2 class="mb-4  fw-bolder" style="color: #000000">Sign up</h2>
                 </div>
                 <div class="row">
@@ -44,44 +44,59 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    <style>
+                                        .pe_4_custom{
+                                            padding-right: 2.1rem!important;
+                                        }
+                                    </style>
                                     <!-- Password -->
                                     <div class="form-row pb-3">
                                         <label for="password" class="pb-2" style="font-size: 14px;">Password</label>
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-1">
                                             <input style="background-color: #FFFFFF; border-radius:10px" id="password"
                                                 type="password" name="password"
                                                 class="inputPadding form-control @error('password')  is-invalid @enderror"
                                                 required autocomplete="new-password">
                                             <div class=" eye">
-                                                <div class=" inputPadding border-0  eyeColor d-flex align-items-center  pe-4"
+                                                <div class=" inputPadding border-0  eyeColor d-flex align-items-center  pe_4_custom"
                                                     onclick="password_show_hide();">
                                                     <i class="bi bi-eye" id="show_eye"></i>
                                                     <i class="bi bi-eye-slash d-none" id="hide_eye"></i>
                                                 </div>
                                             </div>
+
+                                        </div>
+                                        <div class="d-none text-danger" id="password_not_con">
+                                            <small class="p-0 m-0" style="font-size: 13px;">Password and confirm password not match !</small>
                                         </div>
                                         @error('password')
-                                            <div class="invalid-feedback">
+                                            <div class="invalid-feedback ">
                                                 {{ $message }}
                                             </div>
                                         @enderror
+
                                     </div>
 
                                     {{-- niye aschi --}}
 
                                     <!-- Confirm Password -->
-                                    <div class="form-group pb-3">
+                                    <div class="form-group pb-1">
                                         <label for="password_confirmation" class="pb-2" style="font-size: 14px;">Confirm
                                             Password</label>
                                         <input style="background-color: #FFFFFF; border-radius:10px"
                                             id="password_confirmation" type="password" name="password_confirmation"
-                                            class="inputPadding form-control" required>
+                                            class="inputPadding form-control @error('password_confirmation')  is-invalid @enderror" required>
+                                      @error('password_confirmation')
+                                            <div class="invalid-feedback ">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <p class="BetweeenChatac">Between 8 and 72 characters</p>
 
                                     <!--continue -->
-                                    <button type="submit"
-                                        class="form_btn mt-4 inputPadding btn btn-dark border-0 w-100 text-bold "
+                                    <button type="submit" id="register_btn_sbmt"
+                                        class="form_btn mt-4 inputPadding btn btn-dark border-0 w-100 text-bold disabled"
                                         style="background: #FFB317; font-size:14px; border-radius:10px; ">Continue</button>
 
                                     <div class="mt-3 mb-4"

@@ -38,6 +38,19 @@
             height: 40px;
         }
     }
+    @media only screen and (max-width: 425px) {
+        .navbar-brand {
+
+         margin-right: 0px !important;
+
+        }
+        }
+        @media only screen and (max-width: 380px){
+            .navbar-brand img {
+                width: 80%;
+                height: 33px;
+                }
+        }
 
     @media only screen and (max-width: 425px) {
         .profileName {

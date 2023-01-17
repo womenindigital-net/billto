@@ -297,7 +297,7 @@
                     <div class="mx-auto ">
                         @if($data->invoice_signature=='signature_add')
                         <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
-                            height="122px" width="122px" style="object-fit:cover;" />
+                            height="122px" width="122px" style="object-fit:contain;" />
                         @endif
                     </div>
                     @endif

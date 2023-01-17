@@ -277,7 +277,7 @@
                 @if ($userLogoAndTerms->signature != '')
                     <div class="mx-auto ">
                         <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
-                            height="122px" width="122px" style="object-fit:cover;" />
+                            height="122px" width="122px" style="object-fit:contain;" />
                     </div>
                 @endif
             </div>

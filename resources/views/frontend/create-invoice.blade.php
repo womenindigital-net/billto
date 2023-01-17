@@ -336,7 +336,7 @@
                                 <div class="">
                                     <input  type="text" name="invoice_id"
                                         class="form-control inputBorderRedius textColor"
-                                        value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @elseif(isset($lastnum)){{ $all}}{{ $lastnum }} @else INVOICE ID @endif"
+                                        value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @elseif(isset($lastnum)){{ $all}}{{ $lastnum }} @else INVC ID-1 @endif"
                                         id="invoice_id" placeholder="INVOICE ID">
                                     <input type="hidden" id="id" name="id"
                                         value="@if (isset($invoiceData->id)) {{ $invoiceData->id }} @endif">

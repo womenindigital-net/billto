@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-@section('title', 'Home page')
+@section('title', 'User-dashboard')
 @push('frontend_css')
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap"
         rel="stylesheet">
@@ -51,59 +51,57 @@
                                                 @php
                                                 $day =  $details_value->packageDuration;
                                                 @endphp
-                                                <div class="col-7">
+                                                <div class="col-6">
                                                     <div class="address_user_phone">
                                                         <p class="p-0 m-0 fw-bold">Package details</p>
                                                     </div>
                                                     <div class="row pakage_details pt-2">
-                                                        <div class="col-7">
-                                                           <p class="p-0 m-0">Package name</p>
+                                                        <div class="col-12">
+                                                           <p class="p-0 m-0">Package name: <span class="p-0 m-0 fw-bold"> {{ $details_value->packageName}} </span></p>
                                                         </div>
-                                                        <div class="col-5">
-                                                           <p class="p-0 m-0 fw-bold"> {{ $details_value->packageName}} </p>
-                                                        </div>
-                                                        <div class="col-7">
+
+                                                        {{-- <div class="col-7">
                                                             <p class="p-0 m-0">Invoice template</p>
                                                          </div>
                                                          <div class="col-5">
                                                             <p class="p-0 m-0 fw-bold">{{ $details_value->templateQuantity}}</p>
-                                                         </div>
-                                                         <div class="col-7">
-                                                            <p class="p-0 m-0">Total invoice </p>
-                                                         </div>
-                                                         <div class="col-5">
-                                                            <p class="p-0 m-0 fw-bold">{{ $details_value->limitInvoiceGenerate}}</p>
-                                                         </div>
-                                                         <div class="col-7">
-                                                            <p class="p-0 m-0">Total genarate</p>
-                                                         </div>
-                                                         <div class="col-5">
-                                                            <p class="p-0 m-0 fw-bold">{{ $details_value->current_invoice_total}}</p>
-                                                         </div>
-                                                         <div class="col-7">
-                                                            <p class="p-0 m-0 "> Duration</p>
-                                                         </div>
-                                                         <div class="col-5">
-                                                            <p class="p-0 m-0 fw-bold">
-                                                                @php
-                                                                    if ($day == 30) {
-                                                                        echo 'One Month';
-                                                                    } elseif ($day == 90) {
-                                                                        echo 'Three Month';
-                                                                    } elseif ($day == 180) {
-                                                                        echo 'Six Month';
-                                                                    } elseif ($day == 365) {
-                                                                        echo 'Unlimited';
-                                                                    }
-                                                                @endphp
+                                                         </div> --}}
+                                                         <div class="col-12">
+                                                             <p class="p-0 m-0">Total invoice: <span class="p-0 m-0 fw-bold">{{ $details_value->limitInvoiceGenerate}}</span>
                                                             </p>
                                                          </div>
+                                                         <div class="col-12">
+                                                         </div>
+                                                         <div class="col-12">
+                                                            <p class="p-0 m-0">Total genarate:
+                                                                <span class="p-0 m-0 fw-bold">{{ $details_value->current_invoice_total}}</span>
+                                                            </p>
+                                                         </div>
+
+                                                         <div class="col-12">
+                                                            <p class="p-0 m-0 "> Duration:
+                                                                <span class="p-0 m-0 fw-bold">
+                                                                    @php
+                                                                        if ($day == 30) {
+                                                                            echo 'One Month';
+                                                                        } elseif ($day == 90) {
+                                                                            echo 'Three Month';
+                                                                        } elseif ($day == 180) {
+                                                                            echo 'Six Month';
+                                                                        } elseif ($day == 365) {
+                                                                            echo 'Unlimited';
+                                                                        }
+                                                                    @endphp
+                                                                </span>
+                                                            </p>
+                                                         </div>
+
                                                        <div class="col-12 pt-3">
                                                          <button class="btn  btn-sm btn-warning btn_bg text-white">More Package</button>
                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-5">
+                                                <div class="col-6">
                                                     <div class="address_user_phone">
                                                         <p class="p-0 m-0">Phone</p>
                                                         <span class="p-0 m-0"> {{ $userItem->phone }}</span>
@@ -135,35 +133,60 @@
                                     <div class="card dashboad_card_width">
                                         <div class="card-body">
                                             <div class="earning_header">
-                                                <span> Monthly Earning</span>
+                                                <span> Earning</span>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-6">
+                                                @php
+                                                    // $paid_percentage = ($paid_Amount_conut*100)/$Total_Amount_conut;
+                                                    // $total = round($paid_percentage);
+
+                                                    // $due_percentage = ($due_Amount_conut*100)/$Total_Amount_conut;
+                                                    // $due_total = round($due_percentage);
+                                                    if($Total_Amount_conut!=""){
+                                                    $paid_percentage = ($paid_Amount_conut*100);
+                                                    $total = round($paid_percentage/$Total_Amount_conut);
+
+                                                    $due_percentage = ($due_Amount_conut*100);
+                                                    $due_total = round($due_percentage/$Total_Amount_conut);
+                                                    }else{
+                                                        $total=0;
+                                                        $due_total=0;
+                                                    }
+
+
+                                                @endphp
                                                     <div class="monthly_total">
-                                                        <span class="p-0 m-0">৳ 34,250</span>
-                                                        <p class="p-0 m-0">July 2022 From</p>
+                                                        <span class="p-0 m-0">Total Amount</span>
+                                                        <span class="p-0 m-0 fw-bold">${{ number_format($Total_Amount_conut, 2) }}</span>
+                                                        <div class="d-flex align-items-center amount_div mt-1">
+                                                            <div class="total_amount_bg"> </div>
+                                                            <div class="ps-1"> <span>Paid</span><span class="ps-1">({{ $total }}%)</span> </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center amount_div">
+                                                            <div class="total_due_bg"> </div>
+                                                            <div class="ps-1"> <span>Due </span><span class="ps-1">({{ $due_total }}%)</span></div>
+                                                        </div>
                                                     </div>
-                                                    <div class="monthly_previus">
+                                                    {{-- <div class="monthly_previus">
                                                         <a href="#">Previous month</a>
-                                                    </div>
+                                                    </div> --}}
                                                     <div
                                                         class="more_preview_btn d-flex justify-content-center align-items-center">
-                                                        <a href="">View More</a>
+                                                        <a href="{{ url('/my-all-invoice') }}">View More</a>
                                                     </div>
                                                 </div>
-                                                @php
-                                                    $total = 90;
-                                                @endphp
+
                                                 <div class="col-6 d-flex justify-content-center align-items-center">
                                                     <div
                                                         class="earning_graph  d-flex   justify-content-center align-items-center">
                                                         <div>
                                                             <div role="progressbar" class="bar " aria-valuenow="{{ $total }}" aria-valuemin="0" aria-valuemax="100" style="--value:{{ $total }}"></div>
-
-
-                                                            {{-- <span>12%+ </span> --}}
                                                         </div>
+
                                                     </div>
+
                                                 </div>
                                             </div>
 

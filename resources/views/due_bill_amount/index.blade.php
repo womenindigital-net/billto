@@ -64,12 +64,14 @@
         <input type="hidden" name="invoice_id" id="invoice_id" value="{{ $data->id }}">
         <div class="mb-2 mt-sm-0 mt-3">
          <strong class="mb-2 text-black">Payment Date</strong>
-        <input class="form-control form-control-sm" id="date_id" type="date" name="date_id">
+
+        <input class="form-control form-control-sm" id="date_id" type="date" name="date_id" >
         </div>
         <div class="mb-1">
             <strong class="mb-2 text-black">Payment Amount</strong>
-            <input class="form-control form-control-sm" id="amount_id" type="number" name="amount_id">
+            <input class="form-control form-control-sm" id="amount_id" type="number" name="amount_id" readonly>
             <small id="message_error" class="d-none text-danger"> Please check due amount</small>
         </div>
     </div>
 </div>
+

@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-@section('title', 'Home page')
+@section('title', 'Unpaid-payment')
 @push('frontend_css')
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap"
         rel="stylesheet">
