@@ -86,22 +86,36 @@
                                             </div>
 
                                             <div class="avatar-edit" style=" overflow-y: hidden !important; height:100px">
-                                                <input class="" type='file' name="invoice_logo" id="imageUpload"  accept="image/*"/>
+                                                <input class=" " type='file' name="invoice_logo" id="imageUpload"  accept="image/*"/>
                                                 @if (isset($user_logo_terms->invoice_logo))
                                                     <img class="hide_image"src="{{ asset('storage/invoice/logo/' . $user_logo_terms->invoice_logo) }}"
                                                         style=" border-radius: 10px; width: 193px; object-fit: contain; height: 100%;"
                                                         alt="">
                                                 @endif
                                             </div>
-                                            <div class="avatar-preview">
-                                                <div id="imagePreview"
+
+                                            <div class="avatar-preview ">
+                                                <div id="imagePreview" class=""
                                                     @if (isset($invoiceData->invoice_logo)) style=" border-radius:10px; background-image: url({{ url('storage/invoice/logo/' . $invoiceData->invoice_logo) }});"
                                                       @else
                                                           style="background-image: url();" @endif>
                                                 </div>
                                             </div>
+                                            <style>
+                                                .text_color_img{
+                                                    color: #686868;
+                                                }
+                                                .border_alert{
+                                                    border:1px solid rgb(243, 65, 65);
+                                                    border-radius: 5px;
+                                                }
+                                            </style>
+                                            <div class="text-start pt-1 text_color_img" id="image_error">
+                                                <small >Logo up to 1MB </small>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </label>
 
                             </div>
@@ -295,7 +309,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                {{-- <label for="invoice_form" class="form-label textColor"></label> --}}
+                                <label for="invoice_form" class="form-label textColor">From *</label>
                                 <textarea name="invoice_form" id="invoice_form" rows="2" type="text"
                                     class="form-control inputBorderRedius textColor" placeholder="Who is this invoice from?">
 @if (isset($invoiceData->invoice_form))

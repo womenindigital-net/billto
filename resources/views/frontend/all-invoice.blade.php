@@ -158,16 +158,9 @@
 
                                                 @endphp
                                                     <div class="monthly_total">
-                                                        <span class="p-0 m-0">Total Amount</span>
-                                                        <span class="p-0 m-0 fw-bold">${{ number_format($Total_Amount_conut, 2) }}</span>
-                                                        <div class="d-flex align-items-center amount_div mt-1">
-                                                            <div class="total_amount_bg"> </div>
-                                                            <div class="ps-1"> <span>Paid</span><span class="ps-1">({{ $total }}%)</span> </div>
-                                                        </div>
-                                                        <div class="d-flex align-items-center amount_div">
-                                                            <div class="total_due_bg"> </div>
-                                                            <div class="ps-1"> <span>Due </span><span class="ps-1">({{ $due_total }}%)</span></div>
-                                                        </div>
+                                                        <p class="p-0 m-0">Total Amount</p>
+                                                        <span class="p-0 m-0 fw-bold">{{ number_format($Total_Amount_conut, 2) }}</span>
+
                                                     </div>
                                                     {{-- <div class="monthly_previus">
                                                         <a href="#">Previous month</a>
@@ -178,15 +171,25 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-6 d-flex justify-content-center align-items-center">
-                                                    <div
-                                                        class="earning_graph  d-flex   justify-content-center align-items-center">
-                                                        <div>
-                                                            <div role="progressbar" class="bar " aria-valuenow="{{ $total }}" aria-valuemin="0" aria-valuemax="100" style="--value:{{ $total }}"></div>
+                                                <div class="col-6">
+
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="earning_graph  d-flex   justify-content-center align-items-center">
+                                                            <div>
+                                                                <div role="progressbar" class="bar " aria-valuenow="{{ $total }}" aria-valuemin="0" aria-valuemax="100" style="--value:{{ $total }}"></div>
+                                                            </div>
                                                         </div>
-
                                                     </div>
-
+                                                    <div class="mt-4">
+                                                        <div class="d-flex align-items-center justify-content-center amount_div mt-1">
+                                                            <div class="total_amount_bg"> </div>
+                                                            <div class="ps-1"> <span>Paid</span><span class="ps-1">({{ $total }}%)</span> </div>
+                                                        </div>
+                                                        <div class="d-flex align-items-center justify-content-center amount_div">
+                                                            <div class="total_due_bg"> </div>
+                                                            <div class="ps-1"> <span>Due </span><span class="ps-1">({{ $due_total }}%)</span></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 

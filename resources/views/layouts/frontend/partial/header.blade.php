@@ -75,48 +75,26 @@
                 <img src="{{ asset('assets/frontend/img/LOGO/billto-logo.png') }}" alt="LOGO">
             </a>
             <div class="navbar">
-                <div>
-                    @php
-                        use App\Models\User;
-                    @endphp
-                    @if (Auth::check())
-                        @php
-                            $user_photo = User::where('id', Auth::user()->id)
-                                ->get(['picture__input'])
-                                ->first();
-                        @endphp
-                        @if ($user_photo->picture__input == null)
-                            <i class="bi bi-person-circle"
-                                style="font-size: 23px;margin-right: 5px;margin-top: 0px;"></i>
-                        @else
-                            <img class="me-1" src="{{ asset('uploads/userImage/' . $user_photo->picture__input) }}"
-                                height="32px" width="32px" style="border-radius: 50%">
-                        @endif
-                    @else
-                    @endif
-                </div>
+              @php
+                use App\Models\User;
+            @endphp
+
                 <ul class="navbar-nav d-flex flex-row me-auto mb-2 mb-lg-0">
                     @auth
                         <li class="nav-item d-flex align-items-center">
                             <div class="user-menu-wrap">
+                            @php
+                                $user_photo = User::where('id', Auth::user()->id) ->get(['picture__input'])->first();
+                            @endphp
                                 <div onclick="myFunction()">
-                                    <button class="dropbtn btn  profileName btncustom ">
-                                        {{ auth()->user()->name }}
-                                    </button>
+                                    <button  class="dropbtn btn  profileName btncustom ">
+                                        <img  class="me-1 dropbtn" src="{{ asset('uploads/userImage/' . $user_photo->picture__input) }}"
+                                        height="32px" width="32px" style="border-radius: 50%">
+                                        {{ auth()->user()->name }} </button>
                                 </div>
                                 <div id="myDropdown" class="dropdown-content">
                                     <ul class="user-menu m-0 mt-2 p-0">
                                         <div class="profile-highlight">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
-                                                fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                                <path fill-rule="evenodd"
-                                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                            </svg>
-                                            <div class="details">
-                                                {{-- <div id="profile-name">{{ auth()->user()->name }}</div> --}}
-                                                {{-- <div id="profile-footer">Team Hallaway</div> --}}
-                                            </div>
                                         </div>
                                         <li class="user-menu__item">
                                             <a class="user-menu-link" href="{{ route('all.invoice') }}">
@@ -254,3 +232,4 @@ toggle between hiding and showing the dropdown content */
         }
     }
 </script>
+

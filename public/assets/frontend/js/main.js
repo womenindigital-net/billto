@@ -240,6 +240,8 @@ $("#invoiceForm").submit(function (e) {
                 $('#invoice_amu_paid').removeClass("is-invalid");
                 $('#invoice_amu_paid').addClass("is-valid");
             }
+
+
         }
     });
 
@@ -894,3 +896,18 @@ $(document).on("keyup", "#password_confirmation", function (e) {
     }
 
 });
+
+$('#imageUpload').on('change', function() {
+    let file = Math.round((this.files[0].size / 1024))
+     if( file > 1024){
+        $('#image_error').removeClass("text_color_img");
+        $('#image_error').addClass("text-danger");
+        $('#imagePreview').addClass("border_alert");
+
+     }else{
+        $('#image_error').removeClass("text-danger");
+        $('#imagePreview').removeClass("border_alert");
+        $('#image_error').addClass("text_color_img");
+     }
+   // alert('This file size is: ' + file );
+ });

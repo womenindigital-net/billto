@@ -555,7 +555,7 @@ body {
 }
 
 .monthly_total {
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .monthly_total p {
@@ -568,8 +568,8 @@ body {
 
 .total_amount_bg{
     border: 1px solid rgb(230, 230, 230);
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     background-color: #FFB317;
     border-radius: 2px;
 
@@ -581,8 +581,8 @@ body {
 }
 .total_due_bg{
     border: 1px solid rgb(230, 230, 230);
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     background-color: #def;
     border-radius: 2px;
 }
@@ -636,6 +636,13 @@ body {
 }
 
 .monthly_total span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    color: #686868;
+}
+.monthly_total p {
     font-style: normal;
     font-weight: 600;
     font-size: 13px;
@@ -1181,7 +1188,12 @@ table.dataTable tfoot td {
 @media only screen and (min-width: 525px) and (max-width: 768px) {
     .monthly_total span {
          line-height: 38px;
+         font-size: 15px;
+
       }
+      .more_preview_btn {
+        margin-top: 83px;
+    }
     }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .total_amount_left p {

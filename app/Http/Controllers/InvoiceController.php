@@ -175,6 +175,7 @@ class InvoiceController extends Controller
             'invoice_po_number' => 'max:30',
             'invoice_notes' => 'max:1024',
             'invoice_terms' => 'max:1024',
+            'invoice_logo' => 'max:1024',
         ]);
 
         $user_id = Auth::user()->id;

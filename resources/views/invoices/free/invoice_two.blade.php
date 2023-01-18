@@ -228,24 +228,31 @@
                     <h1>INVOICE</h1>
                 </div>
                 <div style="margin-top:20px;" class="">
-                    <table style="padding-left:157px">
+                    <table style="width:100%">
                         <tr>
-                            <th style="text-align:left; font-size:18px;">Incoice #</th>
-                            <th style="text-align: right;font-size:18px; padding-left:95px;">
+                            <th style="width: 35%"></th>
+                            <th style="text-align:left; font-size:18px; width: 25%">Incoice #</th>
+                            <th style="text-align: right;font-size:18px; width: 30%">
                                 {{ $invoiceData->invoice_id }}</th>
                         </tr>
                         <tr>
-                            <th style="text-align:left; font-size:18px;">Invoice Date</th>
-                            <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_date }}</td>
+                            <th style="width: 35%"></th>
+                            <th style="text-align:left; font-size:18px; width: 25%">Invoice Date</th>
+                            <td style="text-align: right; font-size:18px;  width: 30%">{{ $invoiceData->invoice_date }}</td>
+                            <th style="width: 10%"></th>
                         </tr>
                         <tr>
-                            <th style=" text-align: left; font-size:18px;">P.O.#</th>
-                            <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_po_number }}</td>
+                            <th style="width: 35%"></th>
+                            <th style=" text-align: left; font-size:18px;  width: 25%">P.O.#</th>
+                            <td style="text-align: right; font-size:18px;  width: 30%">{{ $invoiceData->invoice_po_number }}</td>
+                            <th style="width: 10%"></th>
                         </tr>
                         <tr>
-                            <th style="text-align: left; font-size:18px;">Due Date</th>
-                            <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_dou_date }}
-                    </table>
+                            <th style="width: 35%"></th>
+                            <th style="text-align: left; font-size:18px; width: 25%">Due Date</th>
+                            <td style="text-align: right; font-size:18px; width: 30%">{{ $invoiceData->invoice_dou_date }}
+                             <th style="width: 10%"></th>
+                        </table>
                 </div>
 
             </div>
