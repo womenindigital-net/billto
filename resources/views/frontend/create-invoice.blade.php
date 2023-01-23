@@ -80,7 +80,7 @@
                                         <div class="avatar-upload">
                                             <div class="logo_text">
                                                 <label for="imageUpload"><i class="bi bi-plus"></i></label>
-                                                @if ($user_logo_terms->invoice_logo == '')
+                                                @if ($user_logo_terms->invoice_logo == null)
                                                     <span class="textColor">Add your logo</span>
                                                 @endif
                                             </div>

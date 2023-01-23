@@ -75,7 +75,7 @@
                                             <div class="card-body ">
                                                 @if ($item->signature)
                                                     <div class="text-center">
-                                                        <img height="70px" width="120px"
+                                                        <img style="width: 100px; height:100px; object-fit:contain;"
                                                             src="{{ asset('uploads/signature/' . $item->signature) }}"
                                                             alt="">
                                                     </div>

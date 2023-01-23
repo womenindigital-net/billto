@@ -310,7 +310,7 @@ class InvoiceController extends Controller
 
                 );
 
-                Session::forget('session_invoice_id');
+                // Session::forget('session_invoice_id');
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
                 return response()->json([$invoice->id]);
             }
@@ -522,7 +522,11 @@ class InvoiceController extends Controller
         Session::put('last_invoice_id_send', $id);
         Session::put('last_invoice_id_download', $id);
         Invoice::where('id',$id)->update(['invoice_status'=>"complete"]);
+        Session::forget('session_invoice_id');
+
         return response()->json(['message' => $id]);
+
+
     }
 }
 

@@ -88,8 +88,12 @@
                             @endphp
                                 <div onclick="myFunction()">
                                     <button  class="dropbtn btn  profileName btncustom ">
+                                        @if($user_photo->picture__input!=null)
                                         <img  class="me-1 dropbtn" src="{{ asset('uploads/userImage/' . $user_photo->picture__input) }}"
                                         height="32px" width="32px" style="border-radius: 50%">
+                                        @else
+
+                                        @endif
                                         {{ auth()->user()->name }} </button>
                                 </div>
                                 <div id="myDropdown" class="dropdown-content">
@@ -171,8 +175,9 @@
                                                 stroke-width="5" fill="red" />
                                         </svg>
                                     </div>
-                                    <div class="border_custom2">
-                                        <span style="font-size: 15px"> &#2547;</span>
+                                    <div class="border_custom2 me-2">
+                                        {{-- <span style="font-size: 15px"> &#2547;</span> --}}
+                                       <span style="font-size: 15px">BDT</span>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu border p-0 m-0">
