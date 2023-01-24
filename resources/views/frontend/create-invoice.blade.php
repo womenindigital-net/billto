@@ -80,7 +80,7 @@
                                         <div class="avatar-upload">
                                             <div class="logo_text">
                                                 <label for="imageUpload"><i class="bi bi-plus"></i></label>
-                                                @if ($user_logo_terms->invoice_logo == null)
+                                                @if (isset($user_logo_terms->invoice_logo)==null)
                                                     <span class="textColor">Add your logo</span>
                                                 @endif
                                             </div>
@@ -547,7 +547,7 @@
                         </div>
                         <div class="pt-3 d-flex align-items-center">
                             <input type="checkbox" style="width: 20px; height:20px" name="invoice_signature"
-                            value="signature_add" @if($user_logo_terms->signature) checked @else disabled @endif  >
+                            value="signature_add" @if(isset($user_logo_terms->signature)==NULL) checked @else disabled @endif  >
                             <label class="textColor ms-2">Add Signature</label><br>
                         </div>
                     </div>
