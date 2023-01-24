@@ -545,9 +545,15 @@
 </textarea>
                             <div id="invoice_terms_error" class="invalid-feedback"></div>
                         </div>
+                        <style>
+                            .form-check-input:checked {
+                                background-color: #ffb713 !important;
+                                border-color: #ffb713 !important;
+                            }
+                        </style>
                         <div class="pt-3 d-flex align-items-center">
-                            <input type="checkbox" style="width: 20px; height:20px" name="invoice_signature"
-                            value="signature_add" @if(isset($user_logo_terms->signature)==NULL) checked @else disabled @endif  >
+                            <input type="checkbox" class="form-check-input" style="width: 20px; height:20px" name="invoice_signature"
+                            value="signature_add" @if(isset($user_logo_terms->signature)!=NULL) checked @else disabled @endif  >
                             <label class="textColor ms-2">Add Signature</label><br>
                         </div>
                     </div>
