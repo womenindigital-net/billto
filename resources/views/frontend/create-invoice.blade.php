@@ -82,6 +82,8 @@
                                                 <label for="imageUpload"><i class="bi bi-plus"></i></label>
                                                 @if (isset($user_logo_terms->invoice_logo)==null)
                                                     <span class="textColor">Add your logo</span>
+                                                    @else
+
                                                 @endif
                                             </div>
 
