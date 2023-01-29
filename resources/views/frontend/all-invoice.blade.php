@@ -144,7 +144,8 @@
 
                                                     // $due_percentage = ($due_Amount_conut*100)/$Total_Amount_conut;
                                                     // $due_total = round($due_percentage);
-                                                    if($Total_Amount_conut!=""){
+                                                    
+                                                    if($Total_Amount_conut!=null){
                                                     $paid_percentage = ($paid_Amount_conut*100);
                                                     $total = round($paid_percentage/$Total_Amount_conut);
 

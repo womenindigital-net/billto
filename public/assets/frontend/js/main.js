@@ -152,8 +152,8 @@ $("#invoiceForm").submit(function (e) {
             if (response['message'] != null) {
 
                 Swal.fire({
-                    title: '<span style="color:#FFB317;">Please Update Your Package..!</span> ',
-                    text: "",
+                    title: '<span style="color:#FFB317;">Your package limit is over!</span> ',
+                    text: "Please Update Your Package..!",
                     icon: 'error',
                     showCancelButton: true,
                     confirmButtonColor: '#FFB317',

@@ -82,8 +82,6 @@
                                                 <label for="imageUpload"><i class="bi bi-plus"></i></label>
                                                 @if (isset($user_logo_terms->invoice_logo)==null)
                                                     <span class="textColor">Add your logo</span>
-                                                    @else
-
                                                 @endif
                                             </div>
 
@@ -716,14 +714,14 @@
             @endphp
 
 <style>
-    .btn:hover {
+    .btn_hober:hover {
     color: #ffb713;
 }
 </style>
             <div class="container p-0 create_page mt-4 mb-0">
                 {{-- id="completeInvoice" --}}
                 <button style="background-color: #686868" type="submit" id="completeInvoice"
-                    class="btn bnt_responsive send-invoice preview_image  px-4   inputBorderRedius"
+                    class="btn btn_hober bnt_responsive send-invoice preview_image  px-4   inputBorderRedius"
                     @if (isset($invoiceData)) @else disabled @endif>
                     <i class="bi bi-clipboard-plus me-2"></i>
                     {{-- @if (isset($invoiceData)) @else  @endif> --}}
@@ -732,20 +730,20 @@
                     @endif
                 </button>
 
-                <a id="previw_id" class="btn inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered   text-white  py-2 px-4 my-2"
+                <a id="previw_id" class="btn btn_hober inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered   text-white  py-2 px-4 my-2"
                     data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye"></i> Preview</a>
 
-                <a  style="background-color: #686868" id="complate_invoice_id" class="btn inputBorderRedius d-none  send-invoice  bnt_responsive bordered"><i class="bi bi-clipboard-plus "></i> Complete Invoice</a>
+                <a  style="background-color: #686868" id="complate_invoice_id" class="btn btn_hober inputBorderRedius d-none  send-invoice  bnt_responsive bordered"><i class="bi bi-clipboard-plus "></i> Complete Invoice</a>
 
                 <button style="background-color: #686868" type="button" id="send_email_id"
-                    class="btn send-invoice bnt_responsive  px-4   inputBorderRedius {{ Session::get('last_invoice_id_send') ? '' : 'disabled' }}  " data-bs-toggle="modal"
+                    class="btn btn_hober send-invoice bnt_responsive  px-4   inputBorderRedius {{ Session::get('last_invoice_id_send') ? '' : 'disabled' }}  " data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-envelope-fill me-2"></i>
                     Send Invoice
                 </button>
 
                 <a style="background-color: #686868" href="/invoice/download/{{Session::get('last_invoice_id_download')}}" id="downlodeInvoice_" target="_blank"
-                    class="btn bnt_responsive send-invoice  px-4  inputBorderRedius  {{ Session::get('last_invoice_id_download') ? '' : 'disabled' }} "> <i
+                    class="btn btn_hober bnt_responsive send-invoice  px-4  inputBorderRedius  {{ Session::get('last_invoice_id_download') ? '' : 'disabled' }} "> <i
                         class="bi bi-cloud-arrow-down me-2"></i> Download
                     Invoice</a>
             </div>

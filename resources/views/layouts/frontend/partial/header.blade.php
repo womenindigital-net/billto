@@ -136,10 +136,10 @@
 
                             .border_custom2 {
                                 padding: 0px 0px;
-                                margin-top: 2px;
+                                /* margin-top: 2px; */
                                 align-items: center;
-                                height: 24px;
-                                width: 21px;
+                                /* height: 24px;
+                                width: 21px; */
                                 align-items: center;
                                 text-align: center;
                                 display: list-item;
@@ -167,21 +167,23 @@
                         </style>
                         <li class="nav-item d-flex align-items-center">
                             <div class=" dropdown">
-                                <a href="#" class="dropdown-toggle nav-link  align-items-center d-flex"
-                                    data-bs-toggle="dropdown"aria-expanded="false">
-                                    <div class="border_custom1">
+                                <a href="#" class="dropdown-toggle nav-link  align-items-center d-flex" data-bs-toggle="dropdown"aria-expanded="false">
+                                    {{-- <div class="border_custom1">
                                         <svg style="height: 25px; width: 25px">
                                             <circle cx="10" cy="11" r="7" stroke="green"
                                                 stroke-width="5" fill="red" />
                                         </svg>
-                                    </div>
+                                    </div> --}}
                                     <div class="border_custom2 me-2">
-                                        {{-- <span style="font-size: 15px"> &#2547;</span> --}}
-                                       <span style="font-size: 15px">BDT</span>
+                                     <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span> {{ Config::get('languages')[App::getLocale()]['display'] }}
                                     </div>
                                 </a>
                                 <div class="dropdown-menu border p-0 m-0">
-                                    <a class="dropdown-item " href="javascript:void(0);">BD</a>
+                                    @foreach (Config::get('languages') as $lang => $language)
+                                        @if ($lang != App::getLocale())
+                                                <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span> {{$language['display']}}</a>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </li>

@@ -90,8 +90,8 @@
                             <a class="mb-2" href='#'><i class="bi bi-person-circle myInvoiceIcon me-3"></i> My
                                 Customers</a>
                         </li>
-                        <li><a href='#'><i class="bi bi-bar-chart myInvoiceIcon me-3"></i> My Reports</a></li>
-                        <li><a href='{{ url('/all/invoices/user-setting') }}' class="@yield('setting')"> <i
+                        <li><a class="mb-2" href='#'><i class="bi bi-bar-chart myInvoiceIcon me-3"></i> My Reports</a></li>
+                        <li><a class="mb-2" href='{{ url('/all/invoices/user-setting') }}' class="@yield('setting')"> <i
                                     class="bi bi-gear-fill myInvoiceIcon me-3"></i> Settings</a>
 
                         </li>

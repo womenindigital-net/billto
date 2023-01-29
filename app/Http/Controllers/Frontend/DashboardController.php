@@ -32,12 +32,13 @@ class DashboardController extends Controller
         $latestDataInvoices = Invoice::where('user_id', Auth::user()->id)->whereIn('status_due_paid', ['paid', 'due'])->orderBy('id', 'DESC')->limit(8)->get();
 
         //    user package details
-        $join_table_value = DB::table('users')
+              $join_table_value = DB::table('users')
             ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
             ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
             ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
             ->selectRaw('payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
             ->where('users.id',  Auth::user()->id)->get();
+            
         return view('frontend.all-invoice')->with(compact('join_table_value','invoicessData', 'user', 'Total_Amount_conut', 'due_Amount_conut', 'paid_Amount_conut', 'latestDataInvoices'));
     }
 

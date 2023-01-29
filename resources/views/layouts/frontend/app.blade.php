@@ -29,6 +29,7 @@
 
     {{-- datepicker css --}}
     <link rel="stylesheet" href="{{ asset('css/date-ui-css/datepicker-ui.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.min.css" />
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
@@ -51,7 +52,11 @@
         }
 
 
-
+        .dropdown-item.active, .dropdown-item:active {
+            color: #f9fafb;
+            text-decoration: none;
+            background-color: #ffb317 !important;
+        }
     </style>
 
     <!--JQuery-->

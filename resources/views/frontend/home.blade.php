@@ -10,7 +10,7 @@
             <div class="container pt-5">
                 <div class="row align-items-center">
                     <div class="col-sm-6 text ">
-                        <a href="{{ route('create') }}" class="btn billto_btn "><span>Create Bill</span></a>
+                        <a href="{{ route('create') }}" class="btn billto_btn "><span>{{__('messages.home_create_bill_btn')}}</span></a>
                     </div>
                     <div class="col-sm-6 text-end image_width">
                         <img src="{{ asset('assets/frontend/img/banner/banner.png') }}" alt="">

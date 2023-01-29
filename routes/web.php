@@ -26,6 +26,8 @@ use App\Models\SendMail_info;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// only multi-language
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
 // Web site Normal pages
 Route::get('/', [PagesController::class, 'index'])->name('home');
