@@ -44,8 +44,10 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="form-group mb-2">
-                                        <label for="">Pricing Description</label>
+                                        <label for="">Pricing Description(EN)</label>
                                         <textarea name="description[]" class="form-control" required rows="1"></textarea>
+                                        <label for="">Pricing Description(BN)</label>
+                                        <textarea name="descriptionbn[]" class="form-control" required rows="1"></textarea>
                                     </div>
                                 </div>
                             </div>

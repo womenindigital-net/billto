@@ -86,6 +86,13 @@
                                                     name="price" class="form-control" id="validationCustom02" required>
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="validationCustom01" class="form-label">Package name(BN)</label>
+                                                <input type="text" name="packageNamebn" class="form-control" value="{{ $subscriptionPackage->packageNamebn }}"
+                                                    id="validationCustom01" required>
+                                            </div>
+                                        </div>
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom03" class="form-label">Tamplate Quantity</label>
@@ -157,11 +164,14 @@
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group mb-2">
-                                                        <label for="">Pricing Description</label>
+                                                        <label for="">Pricing Description(EN)</label>
                                                         <textarea name="description" class="form-control" id="form_id_des" rows="1">{{ $priceing->description }}</textarea>
+                                                        <label for="">Pricing Description(BN)</label>
+                                                        <textarea name="descriptionbn" class="form-control" id="form_id_des" rows="1">{{ $priceing->descriptionbn }}</textarea>
+
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-1 mt-4">
+                                                <div class="col-sm-1 mt-5">
                                                     <button class="btn btn-sm btn-warning mt-2 d-none"
                                                         id="button_id{{ $priceing->id }}">update</button>
                                                 </div>

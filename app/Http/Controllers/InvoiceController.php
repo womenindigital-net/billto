@@ -19,8 +19,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
-
+use Mpdf\Mpdf;
 
 
 class InvoiceController extends Controller
@@ -45,24 +44,24 @@ class InvoiceController extends Controller
             $template_id_check = InvoiceTemplate::get()->first();
 
             $lastInvoice = Invoice::where('user_id', $user)->orderBy('created_at', 'desc')->get([
-                    'invoice_form',
-                    'invoice_to',
-                    'invoice_id',
-                    'id',
-                ])->first();
+                'invoice_form',
+                'invoice_to',
+                'invoice_id',
+                'id',
+            ])->first();
 
-                $text="INVC-000";
-                if($lastInvoice!=null){
-                    $text = $lastInvoice->invoice_id;
-                }
-                $all ="";
-                $lastnum = $text;
-                $value = preg_match('/(\d+)\D*$/', $text, $m);
-                if($value==1){
-                    $lastnum= $m[1];
-                    $all = explode($lastnum, $text)[0];
-                    $lastnum = $lastnum+1;
-                }
+            $text = "INVC-000";
+            if ($lastInvoice != null) {
+                $text = $lastInvoice->invoice_id;
+            }
+            $all = "";
+            $lastnum = $text;
+            $value = preg_match('/(\d+)\D*$/', $text, $m);
+            if ($value == 1) {
+                $lastnum = $m[1];
+                $all = explode($lastnum, $text)[0];
+                $lastnum = $lastnum + 1;
+            }
 
             $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
             $invoiceCountNew += 1;
@@ -78,7 +77,7 @@ class InvoiceController extends Controller
             if ($session != "") {
                 return redirect()->to('/edit/invoices/' . $session);
             } else {
-                return view('frontend.create-invoice')->with(compact('all','lastnum','lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
+                return view('frontend.create-invoice')->with(compact('all', 'lastnum', 'lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
             }
         } else {
 
@@ -167,14 +166,14 @@ class InvoiceController extends Controller
     {
         $validated = $request->validate([
             'currency' => 'required|max:30',
-            'invoice_form' => 'required|max:1024',
-            'invoice_to' => 'required|max:1024',
+            'invoice_form' => 'required|max:255',
+            'invoice_to' => 'required|max:255',
             'invoice_id' => 'required',
             'invoice_date' => 'required|date',
             'invoice_payment_term' => 'max:30',
             'invoice_po_number' => 'max:30',
-            'invoice_notes' => 'max:1024',
-            'invoice_terms' => 'max:1024',
+            'invoice_notes' => 'max:255',
+            'invoice_terms' => 'max:255',
             'invoice_logo' => 'max:1024',
         ]);
 
@@ -342,65 +341,17 @@ class InvoiceController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Invoice $invoice)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Invoice $invoice)
     {
         //
     }
-
-    /**
-     * Downlode the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
-    // public function download($id)
-    // {
-    //     $invoiceData = Invoice::where('id', $id)->get([
-    //         'invoice_logo',
-    //         'invoice_form',
-    //         'currency',
-    //         'invoice_to',
-    //         'invoice_id',
-    //         'invoice_date',
-    //         'invoice_payment_term',
-    //         'invoice_dou_date',
-    //         'invoice_po_number',
-    //         'invoice_notes',
-    //         'invoice_terms',
-    //         'invoice_tax_percent',
-    //         'requesting_advance_amount_percent',
-    //         // 'invoice_amu_paid_percent',
-    //         // 'invoice_amu_paid',
-    //         'total',
-    //     ])->first();
-    //     $productsDatas = Invoice::find($id)->products->skip(0)->take(6);
-    //     $due = $invoiceData->total;
-    //     //  - $invoiceData->invoice_amu_paid;
-    //     // dd(Auth::user()->plan);
-    //     if (Auth::user()->plan == 'free') {
-    //         return view('invoices.free.invoice_1')->with(compact('invoiceData', 'productsDatas', 'due'));
-    //     } elseif (Auth::user()->plan == 'premium') {
-    //         return view('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'due'));
-    //     }
-    // }
 
 
     public function invoice_download($id)
@@ -430,27 +381,42 @@ class InvoiceController extends Controller
             'discount_amounts'
         ])->first();
 
-        $userInvoiceLogo  = user::where('id', Auth::user()->id)->get(['invoice_logo','terms','signature'])->first();
+        $userInvoiceLogo  = user::where('id', Auth::user()->id)->get(['invoice_logo', 'terms', 'signature'])->first();
 
         $productsDatas = Invoice::find($id)->products->skip(0)->take(10);
         $due = $invoiceData->total;
         Session::forget('last_invoice_id_download');
         if (Auth::user()->plan == 'free') {
-            $pdf = Pdf::loadView('invoices.free.all_invoice', compact('invoiceData', 'productsDatas','userInvoiceLogo', 'due'));
-            return $pdf->stream('invoices.free.all_invoice.pdf');
+
+            $defaultConfig = (new \Mpdf\config\ConfigVariables())->getDefaults();
+            $fontDirs = $defaultConfig['fontDir'];
+            $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+            $fontData = $defaultFontConfig['fontdata'];
+            $path = public_path() . "/fonts";
+            $mpdf = new \Mpdf\Mpdf([
+                'format' => 'A4',
+                'orientation' => 'p',
+                'fontDir' => array_merge($fontDirs, [$path]),
+                'fontdata' => $fontData + [
+                    'solaimanlipi' => [
+                        'R' => 'SolaimanLipi_20-04-07.ttf',
+                        'useOTL' => 0xFF,
+                    ],
+                ],
+                'default_font' => 'solaimanlipi',
+            ]);
+
+            $mpdf->WriteHTML(view('invoices.free.all_invoice')->with(compact('invoiceData', 'productsDatas', 'userInvoiceLogo', 'due')));
+            $mpdf->Output('newdocument.pdf', 'I');
         } elseif (Auth::user()->plan == 'premium') {
-            $pdf = Pdf::loadView('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'userInvoiceLogo','due'));
+            $pdf = Pdf::loadView('invoices.wid')->with(compact('invoiceData', 'productsDatas', 'userInvoiceLogo', 'due'));
             return $pdf->stream('invoices.wid.pdf');
         }
     }
 
     public function send_invoice(Request $request)
     {
-
         $template_id = $request->template_id;
-
-
-
         $data['invoiceData']  = Invoice::where('id', $template_id)->get([
             'invoice_logo',
             'invoice_form',
@@ -481,13 +447,31 @@ class InvoiceController extends Controller
         $data['subject'] = "$request->email_subject";
         $data['body'] = "$request->email_body";
         $data['template_id'] = "$template_id";
+        $data['userInvoiceLogo']  = user::where('id', Auth::user()->id)->get(['invoice_logo', 'terms', 'signature'])->first();
 
-        $data['userInvoiceLogo']  = user::where('id', Auth::user()->id)->get(['invoice_logo','terms','signature'])->first();
-
-        $pdf = Pdf::loadView('invoices.sendMail.mail_pdf', $data);
+        $defaultConfig = (new \Mpdf\config\ConfigVariables())->getDefaults();
+        $fontDirs = $defaultConfig['fontDir'];
+        $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+        $fontData = $defaultFontConfig['fontdata'];
+        $path = public_path() . "/fonts";
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'A4',
+            'orientation' => 'p',
+            'fontDir' => array_merge($fontDirs, [$path]),
+            'fontdata' => $fontData + [
+                'solaimanlipi' => [
+                    'R' => 'SolaimanLipi_20-04-07.ttf',
+                    'useOTL' => 0xFF,
+                ],
+            ],
+            'default_font' => 'solaimanlipi',
+        ]);
+        $mpdf->WriteHTML(view('invoices.sendMail.mail_pdf')->with($data));
+        $pdf =  $mpdf->Output('newdocument.pdf', 'S');
         Mail::send('invoices.sendMail.mail', $data,  function ($message) use ($data, $pdf) {
-            $message->to($data['email'])->subject($data['subject'])->attachData($pdf->output(), "Invoice.pdf");
+            $message->to($data['email'])->subject($data['subject'])->attachData($pdf, "Invoice.pdf");
         });
+
         SendMail_info::create([
             'user_id' => Auth::user()->id,
             'send_mail_to' => $data['email'],
@@ -499,16 +483,18 @@ class InvoiceController extends Controller
 
         Session::forget('last_invoice_id_send');
         return response()->json(['message' => '1']);
-        // return response()->json($template_id = $request->template_id);
-        //    return redirect()->back()->with('success', "Mail Successfully Send");
+        // return redirect()->back();
     }
+
+
+
 
     public function previewImage($id)
     {
         $data  = Invoice::find($id);
         $userLogoAndTerms = User::where('id', Auth::user()->id)->get([
             'invoice_logo',
-            'terms','signature',
+            'terms', 'signature',
 
         ])->first();
 
@@ -521,12 +507,9 @@ class InvoiceController extends Controller
     {
         Session::put('last_invoice_id_send', $id);
         Session::put('last_invoice_id_download', $id);
-        Invoice::where('id',$id)->update(['invoice_status'=>"complete"]);
+        Invoice::where('id', $id)->update(['invoice_status' => "complete"]);
         Session::forget('session_invoice_id');
 
         return response()->json(['message' => $id]);
-
-
     }
 }
-

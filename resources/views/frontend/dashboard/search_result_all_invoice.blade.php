@@ -60,13 +60,13 @@ left_manu
                 <table class="table table-hover btn_design" style="color:#686868">
                     <thead style="border-bottom: 2px solid #FFB317 !important; border-top: 1px solid #FFB317 !important;">
                         <tr>
-                            <th style="width: 8%">SL#</th>
-                            <th style="width: 20%">CUSTOMER </th>
-                            <th style="width: 15%">DATE</th>
-                            <th style="width: 15%">STATUS</th>
-                            <th style="width: 15%">PAID</th>
-                            <th style="width: 15%">TOTAL</th>
-                            <th style="width:12%">ACTION</th>
+                            <th style="width: 8%">{{__('messages.SL')}}#</th>
+                            <th style="width: 20%">{{__('messages.CUSTOMER')}} </th>
+                            <th style="width: 15%">{{__('messages.DATE')}}</th>
+                            <th style="width: 15%">{{__('messages.STATUS')}}</th>
+                            <th style="width: 15%">{{__('messages.PAID')}}</th>
+                            <th style="width: 15%">{{__('messages.TOTAL')}}</th>
+                            <th style="width:12%">{{__('messages.ACTION')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -126,19 +126,19 @@ left_manu
                     <div class="col-8 col-sm-6 col-md-5">
                         <div class="row">
                             <div class="col-4">
-                                <p class="total_text_design"> TOTAL</p>
+                                <p class="total_text_design">{{__('messages.TOTAL')}} </p>
                             </div>
                             <div class="col-5">
                                 <p class="total_amount text-end">{{ number_format($final_total, 2) }}</p>
                             </div>
                             <div class="col-4">
-                                <p class="total_text_design "> PAID AMOUNT</p>
+                                <p class="total_text_design ">{{__('messages.PAID_AMOUNT')}} </p>
                             </div>
                             <div class="col-5">
                                 <p class="total_amount text-end">{{ number_format($paid_total, 2) }}</p>
                             </div>
                             <div class="col-4">
-                                <p class="total_text_design"> BALANCE DUE</p>
+                                <p class="total_text_design"> {{__('messages.BALANCE_DUE')}}</p>
                             </div>
                             <div class="col-5">
                                 <p class="total_amount text-end">{{ number_format($due_total, 2) }}</p>

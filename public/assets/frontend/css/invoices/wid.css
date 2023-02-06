@@ -9,7 +9,7 @@
 }
 
 /* font Use */
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap'); */
 
 body{
     background-color: var(--body-bg);
@@ -69,7 +69,7 @@ body{
     border-width: 1.5px !important;
 }
 .bill-to-top > div{
-   
+
 }
 .bill-to h4{
     color: var(--themeColor);

@@ -34,7 +34,7 @@
                                             list</a></li> --}}
                                 </ul>
                             </li>
-                            
+
                             {{-- Subscription package --}}
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">
@@ -42,10 +42,8 @@
                                     <span key="t-dashboards">Subscription Package</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{ url('admin/package/page') }}" key="t-horizontal">Subscription package
-                                        create</a></li>
-                                        <li><a href="{{ url('admin/package/list') }}" key="t-horizontal">Subscription package
-                                            list</a></li>
+                                    <li><a href="{{ url('admin/package/page') }}" key="t-horizontal">Subscription package create</a></li>
+                                    <li><a href="{{ url('admin/package/list') }}" key="t-horizontal">Subscription package list</a></li>
                                 </ul>
                             </li>
                             {{-- Organization package --}}

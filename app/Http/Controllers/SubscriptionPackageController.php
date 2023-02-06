@@ -56,6 +56,7 @@ class SubscriptionPackageController extends Controller
         // SubscriptionPackage::create($validatedData);
         $SubscriptionPackage = new SubscriptionPackage();
         $SubscriptionPackage->packageName = $request->packageName;
+        $SubscriptionPackage->packageNamebn = $request->packageNamebn;
         $SubscriptionPackage->packageDuration = $request->packageDuration;
         $SubscriptionPackage->price = $request->price;
         $SubscriptionPackage->templateQuantity = $request->templateQuantity;
@@ -74,13 +75,14 @@ class SubscriptionPackageController extends Controller
 
 
         $description = $request->description;
+        $descriptionbn = $request->descriptionbn;
         $logos = $request->logo;
-
         foreach ($logos as $index => $logo) {
             Pricing::create([
                 'subscription_package_id' => $get_id,
                 'logo' => $logo,
                 'description' => $description[$index],
+                'descriptionbn' => $descriptionbn[$index],
 
             ]);
         }
@@ -123,8 +125,10 @@ class SubscriptionPackageController extends Controller
     public function update(StoreSubscriptionPackageRequest $request, $id)
     {
         $get_id = $id;
+
         $subscriptionPackage = SubscriptionPackage::find($get_id);
         $subscriptionPackage->packageName = $request->packageName;
+        $subscriptionPackage->packageNamebn = $request->packageNamebn;
         $subscriptionPackage->packageDuration = $request->packageDuration;
         $subscriptionPackage->price = $request->price;
         $subscriptionPackage->templateQuantity = $request->templateQuantity;
@@ -163,12 +167,15 @@ class SubscriptionPackageController extends Controller
     {
         // dd($request->description, $request->logo, $request->id);
         $description = $request->description;
+        $descriptionbn = $request->descriptionbn;
         $logo = $request->logo;
         $oldLogo = $request->logo_old;
         $id = $request->id;
+
         Pricing::where('id', $id)->update([
             'logo' =>  $logo,
             'description' =>  $description,
+            'descriptionbn' =>  $descriptionbn,
         ]);
         return redirect()->back()->with('message', 'Successfully Update Package.');
     }
@@ -183,6 +190,7 @@ class SubscriptionPackageController extends Controller
 
 
         $description = $request->description;
+        $descriptionbn = $request->descriptionbn;
         $logos = $request->logo;
 
         foreach ($logos as $index => $logo) {
@@ -190,6 +198,7 @@ class SubscriptionPackageController extends Controller
                 'subscription_package_id' => $request->subcription_id,
                 'logo' => $logo,
                 'description' => $description[$index],
+                'descriptionbn' => $descriptionbn[$index],
 
             ]);
         }

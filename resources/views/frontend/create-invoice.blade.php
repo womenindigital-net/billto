@@ -1,20 +1,6 @@
 @extends('layouts.frontend.app')
 @section('title', 'Create Bill page')
-@push('frontend_css')
-    <style>
-        .avatar-upload .avatar-preview>div {
-            border-radius: 0px !important;
-            background-size: contain !important0;
-        }
 
-        .form-control:disabled,
-        .form-control[readonly] {
-            background-color: #fff !important;
-        }
-    </style>
-
-
-@endpush
 @section('frontend_content')
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -81,7 +67,7 @@
                                             <div class="logo_text">
                                                 <label for="imageUpload"><i class="bi bi-plus"></i></label>
                                                 @if (isset($user_logo_terms->invoice_logo)==null)
-                                                    <span class="textColor">Add your logo</span>
+                                                    <span class="textColor"> {{__('messages.Add_your_logo')}}</span>
                                                 @endif
                                             </div>
 
@@ -111,7 +97,7 @@
                                                 }
                                             </style>
                                             <div class="text-start pt-1 text_color_img" id="image_error">
-                                                <small >Logo up to 1MB </small>
+                                                <small >{{__('messages.Logo_up_to_1MB')}} </small>
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +110,7 @@
 
 
                                 <div class="d-flex my-3">
-                                    <label class="form-label pe-2 pt-1 textColor">Currency: </label>
+                                    <label class="form-label pe-2 pt-1 textColor">{{__('messages.Currency')}}: </label>
                                     <select class="tk w-50 fw-bolder form-select form-select-sm inputBorderRedius"
                                         name="currency" id="currencyList" onchange="currency1()">
                                         @if (isset($invoiceData->currency))
@@ -309,9 +295,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <label for="invoice_form" class="form-label textColor">From *</label>
+                                <label for="invoice_form" class="form-label textColor">{{__('messages.From')}} *</label>
                                 <textarea name="invoice_form" id="invoice_form" rows="2" type="text"
-                                    class="form-control inputBorderRedius textColor" placeholder="Who is this invoice from?">
+                                    class="form-control inputBorderRedius textColor" placeholder="{{ __('messages.Who_is_this_invoice_from') }}?"
+                                     >
 @if (isset($invoiceData->invoice_form))
 {{ $invoiceData->invoice_form }}
 @elseif (isset($lastInvoice->invoice_form))
@@ -325,9 +312,9 @@
                         <div class="row pt-4 pb-3">
                             <div class="col-md-8">
 
-                                <label for="invoice_to" class="form-label textColor">Bill to *</label>
+                                <label for="invoice_to" class="form-label textColor">{{__('messages.Bill_to')}} *</label>
                                 <textarea name="invoice_to" id="invoice_to" rows="2" type="text"
-                                    class="form-control inputBorderRedius textColor" placeholder="Who is this invoice to?">
+                                    class="form-control inputBorderRedius textColor" placeholder="{{ __('messages.Who_is_this_invoice_to') }}?">
 @if (isset($invoiceData->invoice_to))
 {{ $invoiceData->invoice_to }}
 @elseif(isset($lastInvoice->invoice_to))
@@ -342,16 +329,19 @@
 
                     <div class="col-md-5" style="display: grid">
                         <div class="row">
-                            <h1 class="text-center invoice d-none d-md-block ms-2">INVOICE</h1>
+                            <h1 class="text-center invoice d-none d-md-block ms-2">{{__('messages.INVOICE')}}</h1>
                             <div class="col-sm-4 ">
-                                <label class="col-form-label textColor">INVOICE ID * </label>
+                                <label class="col-form-label textColor">{{__('messages.INVOICE_ID')}} * </label>
                             </div>
                             <div class="col-sm-8 mb-2">
                                 <div class="">
                                     <input  type="text" name="invoice_id"
                                         class="form-control inputBorderRedius textColor"
                                         value="@if (isset($invoiceData->invoice_id)) {{ $invoiceData->invoice_id }} @elseif(isset($lastnum)){{ $all}}{{ $lastnum }} @else INVC ID-1 @endif"
-                                        id="invoice_id" placeholder="INVOICE ID">
+                                        id="invoice_id" placeholder="INVOICE ID"
+                                        onkeypress="return (event.charCode > 30 &&
+                                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
+                                        >
                                     <input type="hidden" id="id" name="id"
                                         value="@if (isset($invoiceData->id)) {{ $invoiceData->id }} @endif">
                                     <div class="invoiceID d-none">
@@ -368,7 +358,7 @@
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <label class="col-sm-4 col-form-label textColor">Date *</label>
+                            <label class="col-sm-4 col-form-label textColor">{{__('messages.Date')}} *</label>
                             <div class="col-sm-8">
                                 <div class="input-group ">
                                     <input type="text" name="invoice_date"
@@ -383,17 +373,17 @@
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <label for="invoice_payment_term" class="col-sm-4 col-form-label textColor">Payment
-                                Terms</label>
+                            <label for="invoice_payment_term" class="col-sm-4 col-form-label textColor"> {{__('messages.Payment_Terms')}} </label>
                             <div class="col-sm-8">
                                 <input type="text" name="invoice_payment_term" class="form-control inputBorderRedius"
-                                    id="invoice_payment_term" placeholder="Online/Bank/Cash Transaction"
-                                    value="@if (isset($invoiceData->invoice_payment_term)) {{ $invoiceData->invoice_payment_term }} @endif">
+                                    id="invoice_payment_term" placeholder="{{ __('messages.Online/Bank/Cash_Transaction') }}"
+                                    value="@if (isset($invoiceData->invoice_payment_term)) {{ $invoiceData->invoice_payment_term }} @endif"
+                                   >
                                 <div id="invoice_payment_term_error" class="invalid-feedback"></div>
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <label class="col-sm-4 col-form-label textColor">Due Date *</label>
+                            <label class="col-sm-4 col-form-label textColor">{{__('messages.Due_Date')}} *</label>
                             @php
                                 $date = new DateTime(now());
                                 $date->modify('1 day');
@@ -403,7 +393,7 @@
                                     <input type="text" name="invoice_dou_date"
                                         class="form-control textColor inputBorderRedius"
                                         value="@if (isset($invoiceData->invoice_dou_date)) {{ $invoiceData->invoice_dou_date }}@else {{ $date->format('Y-m-d') }} @endif"
-                                        id="invoice_dou_date" readonly>
+                                        id="invoice_dou_date" readonly >
                                     <label class="invoiceID" for="invoice_dou_date">
                                         <i class="bi bi-calendar3"></i>
                                     </label>
@@ -412,11 +402,12 @@
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <label for="invoice_po_number" class="col-sm-4 col-form-label textColor">PO Number</label>
+                            <label for="invoice_po_number" class="col-sm-4 col-form-label textColor"> {{__('messages.PO_Number')}} </label>
                             <div class="col-sm-8">
                                 <input type="text" name="invoice_po_number"
                                     class="form-control inputBorderRedius textColor" id="invoice_po_number"
-                                    value="@if (isset($invoiceData->invoice_po_number)) {{ $invoiceData->invoice_po_number }} @endif">
+                                    value="@if (isset($invoiceData->invoice_po_number)) {{ $invoiceData->invoice_po_number }} @endif"
+                                   >
                                 <div id="invoice_po_number_error" class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -428,11 +419,11 @@
                         <thead class="">
                             <tr class="tr_f">
                                 {{-- <th scope="col" style="width: 3%" class="custab1">#</th> --}}
-                                <th scope="col" style="width: 43% ; padding:8px;" class="custab1">Item &nbsp; &nbsp; <span  id="id_conut_row">0</span>/6</th>
-                                <th scope="col" style="width: 17%" class="custab2">Quantity</th>
-                                <th scope="col" style="width: 17%" class="custab2">Rate</th>
-                                <th scope="col" style="width: 15%" class="custab2">Amount</th>
-                                <th scope="col" style="width: 8%" class="custab3">Action</th>
+                                <th scope="col" style="width: 43% ; padding:8px;" class="custab1">{{__('messages.Item')}}  &nbsp; &nbsp; <span  id="id_conut_row">0</span>/6</th>
+                                <th scope="col" style="width: 17%" class="custab2">{{__('messages.Quantity')}}</th>
+                                <th scope="col" style="width: 17%" class="custab2">{{__('messages.Rate')}}</th>
+                                <th scope="col" style="width: 15%" class="custab2">{{__('messages.Amount')}}</th>
+                                <th scope="col" style="width: 8%" class="custab3">{{__('messages.Action')}}</th>
                             </tr>
                         </thead>
 
@@ -446,13 +437,13 @@
                 <div class="product row m-0 mt-3 " id="id_row_limit">
                     <div class="p-sm-0 p-2  pe-0  pb-2 pe-sm-2  col-12 col-md-5 p_l_r">
                         <textarea type="text" name="product_name" id="product_name" class="form-control inputBorderRedius"
-                            placeholder="Description of service or product" rows="1" onchange="addData();"></textarea>
+                            placeholder="{{ __('messages.Description_of_service_or_product') }}" rows="1"></textarea>
                         <div id="name_error" class="invalid-feedback"></div>
                     </div>
                     <div class="text-start pe-0  pb-2 pe-sm-2 col-6 col-md-2">
                         <div class="input-group">
                             <input type="number" name="product_quantity" id="product_quantity"
-                                class="form-control inputBorderRedius" placeholder="Quantity"
+                                class="form-control inputBorderRedius" placeholder="{{__('messages.Quantity')}}"
                                 onchange="ptotal();addData();">
 
                             <div id="quantity_error" class="invalid-feedback"></div>
@@ -462,7 +453,7 @@
                     <div class="text-start pe-2  pb-0 pe-sm-2 col-6 col-md-2 ">
                         <div class="input-group ">
                             <input type="number" name="product_rate" id="product_rate"
-                                class="form-control inputBorderRedius" placeholder="Rate" onchange="ptotal();addData();">
+                                class="form-control inputBorderRedius" placeholder="{{__('messages.Rate')}}" onchange="ptotal();addData();">
 
                             <div id="product_rate_error" class="invalid-feedback"></div>
                         </div>
@@ -476,22 +467,7 @@
                             <span id="product_amount" class="fw-bolder px-2"></span>
                         </div>
                     </div>
-<style>
 
-@media screen and (width: 1440px) {
-    .btn_pluss_image{
-     padding-left: 5px;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .p_l_r{
-        padding-right: 9px !important;
-        padding-left: 12px !important;
-    }
-}
-
-</style>
                     <div class="col-2 col-md-1  text-center">
                         <div class="btn_pluss_image " >
                             <div class="svg_size_plus">
@@ -505,7 +481,7 @@
             <div class="row">
                 <div class=" col-5 mt-2">
                     <span id="product_clear" class="btn btn-danger inputBorderRedius " onclick="pclear()">
-                        Clear Input
+                        {{__('messages.Clear_Input')}}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-x-octagon" viewBox="0 0 16 16">
                             <path
@@ -516,7 +492,7 @@
                     </span>
                 </div>
                 <div class="col-6 mt-2">
-                    <span class="text-danger text-center d-none ms-3" id="row_limit_alert">Items limit is 6</span>
+                    <span class="text-danger text-center d-none ms-3" id="row_limit_alert"> {{__('messages.Items_limit_is_6')}}</span>
                 </div>
             </div>
 
@@ -525,9 +501,9 @@
                 <div class="row pt-4">
                     <div class="col-md-6">
                         <div>
-                            <label for="invoice_notes" class="form-label textColor">Notes</label>
+                            <label for="invoice_notes" class="form-label textColor">{{__('messages.Notes')}}</label>
                             <textarea name="invoice_notes" id="invoice_notes" rows="3" class="form-control inputBorderRedius"
-                                placeholder="Notes - any related information not already covered">
+                                placeholder="{{__('messages.Notes_-_any_related_information_not_already_covered')}}">
 @if (isset($invoiceData->invoice_notes))
 {{ $invoiceData->invoice_notes }}
 @endif
@@ -536,9 +512,9 @@
                         </div>
                         <div class="">
                             <label for="invoice_terms"
-                                class="form-label pt-2 d-flex align-items-center textColor">Terms</label>
+                                class="form-label pt-2 d-flex align-items-center textColor">{{__('messages.Terms')}}</label>
                             <textarea name="invoice_terms" id="invoice_terms" rows="3" class="form-control inputBorderRedius"
-                                placeholder="Terms and conditions, late fees, payment methods, delivery schedule">
+                                placeholder="{{__('messages.Terms_and_conditions,_late_fees,_payment_methods,_delivery_schedule')}}">
 @if (isset($user_logo_terms->terms))
 {{ $user_logo_terms->terms }}
 @endif
@@ -554,14 +530,14 @@
                         <div class="pt-3 d-flex align-items-center">
                             <input type="checkbox" class="form-check-input" style="width: 20px; height:20px" name="invoice_signature"
                             value="signature_add" @if(isset($user_logo_terms->signature)!=NULL) checked @else disabled @endif  >
-                            <label class="textColor ms-2">Add Signature</label><br>
+                            <label class="textColor ms-2">{{__('messages.Add_Signature')}}</label><br>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-end pt-2 pe-4">
                         <div class="row">
                             <div
                                 class="col-7 d-flex align-items-center justify-content-end pe-5 fw-bolder  textColor text-right">
-                                Sub total</div>
+                                {{__('messages.Sub_total')}}   </div>
                             <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
                                 <div class="input-group-text  InputCustomize border-0  textColor" id="currency">$</div>
                                 <span class="pt-2 pe-2 fw-bolder textColor" id="subtotal">0.00</span>
@@ -569,14 +545,16 @@
                             </div>
                         </div>
                         <div class="row pt-2 ">
-                            <div class="col-7 d-flex align-items-center justify-content-end textColor pe-5">Tax</div>
+                            <div class="col-7 d-flex align-items-center justify-content-end textColor pe-5"> {{__('messages.Tax')}} </div>
                             <div class="col input-group p-0">
                                 {{-- <div class="input-group-text  border-0 bgInput textColor ">&#8453;</div> --}}
 
                                 <input type="text" name="invoice_tax" max="100"
                                     class="form-control text-end pe-4 inputBorderRedius"
                                     value="@if (isset($invoiceData->invoice_tax_percent)) {{ $invoiceData->invoice_tax_percent }} @endif"
-                                    id="invoice_tax" onchange="total()">
+                                    id="invoice_tax" onchange="total()"
+                                    onkeypress="return (event.charCode >45 && event.charCode < 58)"
+                                    >
                                 <div class="input-group-text  InputCustomizeTex border-0 p-0 textColor"> &#8453; </div>
 
                                 <div class="d-flex border_round align-items-center  p-0 ms-2">
@@ -595,13 +573,15 @@
 
                             <div class="row ">
                                 <div class="col-7 d-flex align-items-center pe-5 justify-content-end textColor">
-                                    <label for="#discount_persent">Discount</label>
+                                    <label for="#discount_persent">{{__('messages.Discount')}}</label>
                                 </div>
                                 <div class="col input-group p-0">
                                     <input type="text" name="discount_percent" id="discount_persent" min="0"
                                         max="100"
                                         value="@if (isset($invoiceData->discount_percent)) {{ $invoiceData->discount_percent }} @endif"
-                                        class="form-control text-end pe-4 inputBorderRedius" onchange="total()">
+                                        class="form-control text-end pe-4 inputBorderRedius" onchange="total()"
+                                        onkeypress="return (event.charCode >45 && event.charCode < 58)"
+                                        >
                                     <div class="input-group-text  InputCustomizeTex border-0  textColor p-0">
                                         &#8453;
                                     </div>
@@ -622,7 +602,7 @@
 
                             <div class="row pt-2">
                                 <div class="col-7 d-flex align-items-center fw-bolder justify-content-end  pe-5 textColor">
-                                    Total</div>
+                                    {{__('messages.Total')}}  </div>
                                 <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
                                     <div class="input-group-text  InputCustomize border-0  textColor" id="currency">$
                                     </div>
@@ -641,14 +621,15 @@
 
 
                             <div class="row pt-2 ">
-                                <div class="col-7 d-flex align-items-center justify-content-end  pe-5 textColor">Receive
-                                    Advance Amount</div>
+                                <div class="col-7 d-flex align-items-center justify-content-end  pe-5 textColor">{{__('messages.Receive_Advance_Amount')}}</div>
                                 <div class="col input-group p-0">
                                     <input type="text" name="receive_advance_amount"
                                         class="form-control inputBorderRedius text-end  pe-5" role="button"
                                         aria-disabled="true"
                                         value="@if (isset($invoiceData->receive_advance_amount)) {{ $invoiceData->receive_advance_amount }} @endif"
-                                        id="receive_advance_amount" onchange="total()">
+                                        id="receive_advance_amount" onchange="total()"
+                                        onkeypress="return (event.charCode >45 && event.charCode < 58)"
+                                        >
                                     <div class="input-group-text textColor dateForm_recived pe-4 " id="currency">$</div>
                                     <div id="receive_advance_amount_error" class="invalid-feedback"></div>
                                     <div class="text-danger w-100 ps-2 d-none" id="receive_amount_realtime"
@@ -660,13 +641,15 @@
 
                             <div class="row pt-2 ">
                                 <div class="col-7 d-flex align-items-center pe-5 justify-content-end textColor">
-                                    <label for="#requesting_advance_amount">Requesting Advance Amount</label>
+                                    <label for="#requesting_advance_amount">{{__('messages.Requesting_Advance_Amount')}} </label>
                                 </div>
                                 <div class="col input-group p-0">
                                     <input type="text" name="requesting_advance_amount"
                                         class="form-control text-end  inputBorderRedius"
                                         value="@if (isset($invoiceData->requesting_advance_amount_percent)) {{ $invoiceData->requesting_advance_amount_percent }} @endif"
-                                        id="requesting_advance_amount" onchange="requestingAdvanceAmount()">
+                                        id="requesting_advance_amount" onchange="requestingAdvanceAmount()"
+                                        onkeypress="return (event.charCode >45 && event.charCode < 58)"
+                                        >
                                     {{-- <div class="input-group-text">&#8453;</div> --}}
 
                                     <div class="d-flex border_round align-items-center  p-0 ms-1">
@@ -684,9 +667,8 @@
                             </div>
 
                             <div class="row pt-2">
-                                <div
-                                    class="col-7 d-flex align-items-center justify-content-end pe-5 fw-bolder textColor textColor">
-                                    Balance Due
+                                <div  class="col-7 d-flex align-items-center justify-content-end pe-5 fw-bolder textColor textColor">
+                                    {{__('messages.Balance_Due')}}
                                 </div>
                                 <div class="col d-flex justify-content-end input-group border-bottom rounded p-0">
                                     <div class="input-group-text bgInput border-0 textColor" id="currency">$</div>
@@ -726,26 +708,26 @@
                     <i class="bi bi-clipboard-plus me-2"></i>
                     {{-- @if (isset($invoiceData)) @else  @endif> --}}
                     @if (isset($invoiceData))
-                        {{ 'Save' }} @else{{ 'Save' }}
+                    {{__('messages.Save')}} @else {{__('messages.Save')}}
                     @endif
                 </button>
 
                 <a id="previw_id" class="btn btn_hober inputBorderRedius send-invoice preview_image bnt_responsive d-none bordered   text-white  py-2 px-4 my-2"
-                    data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye"></i> Preview</a>
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw"><i class="bi bi-eye"></i> {{__('messages.Preview')}}</a>
 
-                <a  style="background-color: #686868" id="complate_invoice_id" class="btn btn_hober inputBorderRedius d-none  send-invoice  bnt_responsive bordered"><i class="bi bi-clipboard-plus "></i> Complete Invoice</a>
+                <a  style="background-color: #686868" id="complate_invoice_id" class="btn btn_hober inputBorderRedius d-none  send-invoice  bnt_responsive bordered"><i class="bi bi-clipboard-plus "></i>
+                    {{__('messages.Complete_Invoice')}} </a>
 
                 <button style="background-color: #686868" type="button" id="send_email_id"
                     class="btn btn_hober send-invoice bnt_responsive  px-4   inputBorderRedius {{ Session::get('last_invoice_id_send') ? '' : 'disabled' }}  " data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
                     <i class="bi bi-envelope-fill me-2"></i>
-                    Send Invoice
+                    {{__('messages.Send_Invoice')}}
                 </button>
 
                 <a style="background-color: #686868" href="/invoice/download/{{Session::get('last_invoice_id_download')}}" id="downlodeInvoice_" target="_blank"
                     class="btn btn_hober bnt_responsive send-invoice  px-4  inputBorderRedius  {{ Session::get('last_invoice_id_download') ? '' : 'disabled' }} "> <i
-                        class="bi bi-cloud-arrow-down me-2"></i> Download
-                    Invoice</a>
+                        class="bi bi-cloud-arrow-down me-2"></i> {{__('messages.Download_Invoice')}} </a>
             </div>
 
         </div>
@@ -759,8 +741,8 @@
         <div>
             <div class="container">
                 <div class="text-center  my-5">
-                    <h2 class="h2_title">Choose Your Invoice Template</h2>
-                    <p class="fs-sm fw-bolder">Start creating your professional bill</p>
+                    <h2 class="h2_title"> {{__('messages.Choose_Your_Invoice_Template')}}</h2>
+                    <p class="fs-sm fw-bolder">{{__('messages.Start_creating_your_professional_bill')}}</p>
                 </div>
                 @if (!$template_id == '')
                     <div class="row text-center ">
@@ -837,7 +819,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Send Invoice</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">{{__('messages.Send_Invoice')}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -845,26 +827,25 @@
                         <div class="mb-3">
                             <input type="hidden" name="template_id" id="last_invoice_id"  value="@php echo Session::get('last_invoice_id_send') @endphp" >
 
-                            <label for="emai_to" class="form-label">To</label>
+                            <label for="emai_to" class="form-label">{{__('messages.To')}}</label>
                             <input type="email" class="form-control" id="emai_to" name="emai_to"
                                 placeholder="example@gmail.com" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email_subject" class="form-label">Subject</label>
+                            <label for="email_subject" class="form-label">{{__('messages.Subject')}}</label>
                             <input type="text" class="form-control" id="email_subject" name="email_subject"
                                 id="Input2" value="A Invoice by Billto.io" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email_body" class="form-label">Body</label>
+                            <label for="email_body" class="form-label">{{__('messages.Body')}} </label>
                             <textarea class="form-control" id="email_body" name="email_body" rows="2">A invoice has been sent to you by BillTo.io. You can find it in the attachment below.</textarea>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
-                                    class="bi bi-x-circle"></i> Close</button>
-                            <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i
-                                    class="bi bi-send"></i>
-                                Send Mail</button>
+                                    class="bi bi-x-circle"></i> {{__('messages.Close')}}  </button>
+                            <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
+                                {{__('messages.Send_Mail')}}   </button>
                             {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
                                         Send Mail</button> --}}
                         </div>
@@ -876,57 +857,8 @@
         </div>
     </div>
 
-    <style>
-        .modal-header .priviewModel {
-            border-bottom: none !important
-        }
 
-        .priviewModel {
-            padding: 0.2rem 0.5rem !important;
-            border-bottom: 1px solid #ededed !important;
-        }
 
-        .modal-header .stop_btn {
-            padding: 0.5rem 0.5rem !important;
-            margin: -0.5rem -0.5rem -0.5rem auto;
-            font-size: 12px !important;
-            border: 1px solid !important;
-            margin-right: 0px !important;
-        }
-
-        .modal_footer {
-            padding: 0px;
-            margin-top: 9px;
-        }
-    </style>
-
-    {{-- preview image alert  --}}
-    {{-- <div class="modal fade" id="staticBackdrop_previw" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-xl">
-            <div class="modal-content">
-                <div class="modal-header priviewModel">
-                    <h5 class="modal-title" id="staticBackdropLabel">Preview Invoice</h5>
-                    <button type="button" id="stop_btn" class="btn-close stop_btn" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="padding: 0.5rem 1rem 0rem 1rem;">
-                    <div class="row">
-                        <div class="preview_invoice_show">
-                            <div id="overlay">
-                                <div class="spinner"></div>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer modal_footer">
-                            <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i
-                                    class="bi bi-x-circle"></i> Close</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <!-- Invoice Template End -->
 
     @if (isset($invoiceData->id))
@@ -944,6 +876,7 @@
             $('.modal-backdrop').removeClass("d-none");
 
         });
+
     </script>
 
 

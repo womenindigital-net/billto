@@ -88,39 +88,39 @@
                                     <div class="row ">
                                         <div class="col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Name</label>
+                                                <label class="form-label">{{__('messages.User_name')}}</label>
                                                 <input style="border-radius: 10px !important;" type="text" name="name"
                                                     value="{{ $item->name }}" class="form-control py-2">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Address</label>
+                                                <label class="form-label">{{__('messages.Address')}}</label>
                                                 <textarea style="border-radius: 10px !important;" type="text" rows="5" name="address" value=""
                                                     class="form-control py-2"> {{ $item->address }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Phone</label>
+                                                <label class="form-label">{{__('messages.Phone')}}</label>
                                                 <input style="border-radius: 10px !important;" type="text" name="phone"
                                                     value="{{ $item->phone }}" class="form-control py-2">
                                             </div>
                                             <div class="mb-3 ">
-                                                <label class="form-label mt-1">Email</label>
+                                                <label class="form-label mt-1"> {{__('messages.email')}}</label>
                                                 <input style="border-radius: 10px !important;" type="text" name="email"
                                                     value="{{ $item->email }}" class="form-control py-2" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label mt-2">Signature</label>
+                                                <label class="form-label mt-2">{{__('messages.Signature')}}</label>
                                         <input style="border-radius: 10px !important;" id="imgInp" name="signature" type="file" name="signature" class="form-control " accept="image/*" readonly>
                                                 <img class="mt-3 d-none"  width="80px" height="80px" id="blah" src="#" alt="Add your signature" />
                                             </div>
 
                                         </div>
                                         <div class="mb-2">
-                                            <button type="submit" class="btn settingUpdatebutton">Update</button>
+                                            <button type="submit" class="btn settingUpdatebutton">{{__('messages.Update_btn')}}</button>
                                             <button type="button" class="btn settingUpdatebutton" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal" data-bs-whatever="@mdo">Change
-                                                password</button>
+                                                data-bs-target="#exampleModal" data-bs-whatever="@mdo">{{__('messages.Change_password')}}
+                                                </button>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                     <div class="modal-dialog  modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Change password</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">{{__('messages.Change_password')}}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -143,32 +143,31 @@
                                     @csrf
                                     <div class="card-body">
                                         <div class="mb-3">
-                                            <label for="oldPasswordInput" class="form-label">Old Password</label>
+                                            <label for="oldPasswordInput" class="form-label">{{__('messages.Old_Password')}}</label>
                                             <input name="old_password" type="password"
                                                 class="form-control @error('old_password') is-invalid @enderror"
-                                                id="oldPasswordInput" placeholder="Old Password">
+                                                id="oldPasswordInput" placeholder="{{__('messages.Old_Password')}}">
                                             @error('old_password')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label for="newPasswordInput" class="form-label">New Password</label>
+                                            <label for="newPasswordInput" class="form-label">{{__('messages.New_Password')}}</label>
                                             <input name="new_password" type="password"
                                                 class="form-control @error('new_password') is-invalid @enderror"
-                                                id="newPasswordInput" placeholder="New Password">
+                                                id="newPasswordInput" placeholder="{{__('messages.New_Password')}}">
                                             @error('new_password')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-1">
-                                            <label for="confirmNewPasswordInput" class="form-label ">Confirm New
-                                                Password</label>
+                                            <label for="confirmNewPasswordInput" class="form-label "> {{__('messages.Confirm_New_Password')}}</label>
                                             <input name="new_password_confirmation" type="password" class="form-control"
-                                                id="confirmNewPasswordInput" placeholder="Confirm New Password">
+                                                id="confirmNewPasswordInput" placeholder="{{__('messages.Confirm_New_Password')}}">
                                         </div>
                                     </div>
                                     <div class="">
-                                        <button class="btn settingUpdatebutton ms-3">Update Password</button>
+                                        <button class="btn settingUpdatebutton ms-3">{{__('messages.Update_Password')}}</button>
                                     </div>
                                 </form>
                             </div>

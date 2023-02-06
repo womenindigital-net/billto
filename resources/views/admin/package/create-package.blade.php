@@ -54,7 +54,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom01" class="form-label">Package name</label>
+                                                <label for="validationCustom01" class="form-label">Package name(EN)</label>
                                                 <input type="text" name="packageName" class="form-control"
                                                     id="validationCustom01" required>
                                             </div>
@@ -78,6 +78,13 @@
                                                 <label for="validationCustom03" class="form-label">Package Price</label>
                                                 <input type="number" name="price" class="form-control"
                                                     id="validationCustom02" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="validationCustom01" class="form-label">Package name(BN)</label>
+                                                <input type="text" name="packageNamebn" class="form-control"
+                                                    id="validationCustom01" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -129,8 +136,11 @@
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="form-group mb-2">
-                                                    <label for="">Pricing Description</label>
+                                                    <label for="">Pricing Description(EN)</label>
                                                     <textarea name="description[]" class="form-control" required rows="1"></textarea>
+                                                    <label for="" class="mt-2">Pricing Description(BN)</label>
+                                                    <textarea name="descriptionbn[]" class="form-control" required rows="1"></textarea>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -180,8 +190,10 @@
                                                                 </div>\
                                                                 <div class="col-sm-7">\
                                                                     <div class="form-group mb-2">\
-                                                                        <label for="">Pricing Description</label>\
+                                                                        <label for="">Pricing Description(EN)</label>\
                                                                             <textarea  name="description[]" class="form-control" required  rows="1"></textarea>\
+                                                                            <label for="">Pricing Description(BN)</label>\
+                                                                            <textarea  name="descriptionbn[]" class="form-control" required  rows="1"></textarea>\
                                                                     </div>\
                                                                 </div>\
                                                                 <div class="col-sm-1">\

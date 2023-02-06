@@ -1,8 +1,6 @@
 
-
-
  @if("1"==$invoiceData->template_name)
- @include('invoices.free.invoice_two')
+ @include('invoices.free.invoice_one')
  @elseif ("2"==$invoiceData->template_name)
  @include('invoices.free.invoice_two')
  @elseif ("3"==$invoiceData->template_name)

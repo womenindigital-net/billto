@@ -12,8 +12,9 @@ class Pricing extends Model
     protected $fillable = [
         'logo',
         'description',
+        'descriptionbn',
         'subscription_package_id',
     ];
 
-   
+
 }

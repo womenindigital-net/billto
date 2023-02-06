@@ -1,27 +1,11 @@
 {
-    "roboto": {
-        "300_italic": "D:\\GitHub\\billto\\storage\\fonts\/roboto_300_italic_3d719d848a0b6b3f4f0918985ffd2db7",
-        "300": "D:\\GitHub\\billto\\storage\\fonts\/roboto_300_32acfcb296f555e063ebba2be7db9e2f",
-        "normal": "D:\\GitHub\\billto\\storage\\fonts\/roboto_normal_7bc701b343c10631f60048716b96e4f7",
-        "500": "D:\\GitHub\\billto\\storage\\fonts\/roboto_500_5774d6fb05eba3d096525f821dbe4137",
-        "bold": "D:\\GitHub\\billto\\storage\\fonts\/roboto_bold_8db5cb5d0586c1e891426d13097b1d04",
-        "900": "roboto_900_7bf41cacaff90e7097ddd49fb9296601"
+    "custum_bangla_fonts": {
+        "normal": "custum_bangla_fonts_normal_f29afe6c55a67613693fa96294d6da39"
     },
-    "font awesome 6 brands": {
-        "normal": "font_awesome_6_brands_normal_fe9f8889de14dac4e5423b59c7c9c4d7"
-    },
-    "font awesome 6 free": {
-        "normal": "D:\\GitHub\\billto\\storage\\fonts\/font_awesome_6_free_normal_63ceaa3a26a25d15acc67a2a92a86505",
-        "900": "font_awesome_6_free_900_e28be8b0559d1fb8cc4e17872df29e2a"
-    },
-    "font awesome 5 brands": {
-        "normal": "font_awesome_5_brands_normal_fe9f8889de14dac4e5423b59c7c9c4d7"
-    },
-    "font awesome 5 free": {
-        "900": "D:\\GitHub\\billto\\storage\\fonts\/font_awesome_5_free_900_e28be8b0559d1fb8cc4e17872df29e2a",
-        "normal": "font_awesome_5_free_normal_63ceaa3a26a25d15acc67a2a92a86505"
-    },
-    "fontawesome": {
-        "normal": "fontawesome_normal_06860fa9961d464ff5b77a2ec3345004"
+    "dejavu sans": {
+        "bold": "D:\\Git_new\\billto\\vendor\\dompdf\\dompdf\/lib\/fonts\/DejaVuSans-Bold",
+        "bold_italic": "D:\\Git_new\\billto\\vendor\\dompdf\\dompdf\/lib\/fonts\/DejaVuSans-BoldOblique",
+        "italic": "D:\\Git_new\\billto\\vendor\\dompdf\\dompdf\/lib\/fonts\/DejaVuSans-Oblique",
+        "normal": "dejavu_sans_normal_f29afe6c55a67613693fa96294d6da39"
     }
 }

@@ -32,7 +32,7 @@
     <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
             <div class="modal-header priviewModel">
-                <h5 class="modal-title " id="staticBackdropLabel">New payment</h5>
+                <h5 class="modal-title " id="staticBackdropLabel">{{__('messages.New_payment')}} </h5>
                 <button type="button" id="stop_btn" class="btn-close stop_btn " data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="modal-footer modal_footer ">
                         <button type="button" class="btn btn-outline-danger btn-sm "
-                            data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i> Cancel</button>
+                            data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i>{{__('messages.Close')}}  </button>
                         <button class="btn  btn-sm btn-warning disabled"  id="submit_btn"><i class="bi bi-clipboard-plus"></i> Submit  </button>
                     </div>
                 </form>
@@ -59,7 +59,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">{{__('messages.New_Message')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -67,22 +67,22 @@
                 <div class="row">
                     <input type="hidden" id="last_invoice_id" name="template_id">
                     <div class="mb-3">
-                        <label for="emai_to" class="form-label">To</label>
+                        <label for="emai_to" class="form-label">{{__('messages.To')}}</label>
                         <input type="email" class="form-control" id="emai_to" name="emai_to" placeholder="example@gmail.com" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email_subject" class="form-label">Subject</label>
+                        <label for="email_subject" class="form-label">{{__('messages.Subject')}}</label>
                         <input type="text" class="form-control" id="email_subject" name="email_subject" id="Input2" value="A Invoice by Billto.io" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email_body" class="form-label">Body</label>
+                        <label for="email_body" class="form-label">{{__('messages.Body')}}</label>
                         <textarea class="form-control" id="email_body" name="email_body" rows="2">A invoice has been sent to you by BillTo.io. You can find it in the attachment below.</textarea>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i> Close</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i>{{__('messages.Close')}}</button>
                         <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                            Send Mail</button>
+                            {{__('messages.Send_Mail')}}</button>
                         {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
                             Send Mail</button> --}}
                     </div>
@@ -101,7 +101,7 @@
     <div class="modal-dialog  modal-xl">
         <div class="modal-content">
             <div class="modal-header priviewModel">
-                <h5 class="modal-title" id="staticBackdropLabel">Preview Invoice</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">{{__('messages.Preview_Invoice')}}</h5>
                 <button type="button" id="stop_btn" class="btn-close stop_btn save_btn_anable" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="modal-footer modal_footer">
                         <button type="button" class="btn btn-outline-danger btn-sm save_btn_anable"
-                            data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i> Close</button>
+                            data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i>{{__('messages.Close')}}</button>
                         {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
                                 Download Image </button> --}}
                     </div>
@@ -140,12 +140,12 @@
             <div class="py-4 row">
                 <div class="col-md-6 text-center text-md-start text_abc">
                     <a href="{{ url('/clear-cache') }}">
-                        <p>© 2022 Billto. All rights reserved.</p>
+                        <p>© 2022-{{ date('Y') }} {{__('messages.Billto_All_rights_reserved.')}}</p>
                     </a>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p>Design And Developed By <a href="#">Women In Digital</a> | <a href="#">Lumina
-                            Dev</a></p>
+                    <p>{{__('messages.Design_And_Developed_By')}} <a target="_blank" href="https://womenindigital.net/">{{__('messages.Women_In_Digital')}}</a> |
+                        <a target="_blank" href="https://luminadev.com/"> {{__('messages.Lumina_Dev')}}</a></p>
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@
                                         <div class="card-header"
                                             style="background-image: url('{{ asset('assets/frontend/img/user_dashbord/dashboard_img.png') }}');  background-repeat: no-repeat; background-size: cover;  height:96px;">
                                             <div class="heading_tag_desh">
-                                                <h1 class="welcome_back"> Welcome to</h1>
+                                                <h1 class="welcome_back"> {{__('messages.Welcome_to')}}</h1>
                                                 <p>{{ $userItem->name }}</p>
                                             </div>
                                         </div>
@@ -53,11 +53,11 @@
                                                 @endphp
                                                 <div class="col-6">
                                                     <div class="address_user_phone">
-                                                        <p class="p-0 m-0 fw-bold">Package details</p>
+                                                        <p class="p-0 m-0 fw-bold">{{__('messages.Package_details')}}</p>
                                                     </div>
                                                     <div class="row pakage_details pt-2">
                                                         <div class="col-12">
-                                                           <p class="p-0 m-0">Package name: <span class="p-0 m-0 fw-bold"> {{ $details_value->packageName}} </span></p>
+                                                           <p class="p-0 m-0"> {{__('messages.Package_name')}}: <span class="p-0 m-0 fw-bold"> {{ $details_value->packageName}} </span></p>
                                                         </div>
 
                                                         {{-- <div class="col-7">
@@ -67,19 +67,19 @@
                                                             <p class="p-0 m-0 fw-bold">{{ $details_value->templateQuantity}}</p>
                                                          </div> --}}
                                                          <div class="col-12">
-                                                             <p class="p-0 m-0">Total invoice: <span class="p-0 m-0 fw-bold">{{ $details_value->limitInvoiceGenerate}}</span>
+                                                             <p class="p-0 m-0">{{__('messages.Total_invoice')}}: <span class="p-0 m-0 fw-bold">{{ $details_value->limitInvoiceGenerate}}</span>
                                                             </p>
                                                          </div>
                                                          <div class="col-12">
                                                          </div>
                                                          <div class="col-12">
-                                                            <p class="p-0 m-0">Total genarate:
+                                                            <p class="p-0 m-0">{{__('messages.Total_genarate')}}:
                                                                 <span class="p-0 m-0 fw-bold">{{ $details_value->current_invoice_total}}</span>
                                                             </p>
                                                          </div>
 
                                                          <div class="col-12">
-                                                            <p class="p-0 m-0 "> Duration:
+                                                            <p class="p-0 m-0 "> {{__('messages.Duration')}}:
                                                                 <span class="p-0 m-0 fw-bold">
                                                                     @php
                                                                         if ($day == 30) {
@@ -97,19 +97,19 @@
                                                          </div>
 
                                                        <div class="col-12 pt-3">
-                                                         <button class="btn  btn-sm btn-warning btn_bg text-white">More Package</button>
+                                                         <button class="btn  btn-sm btn-warning btn_bg text-white">{{__('messages.More_Package')}}</button>
                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="address_user_phone">
-                                                        <p class="p-0 m-0">Phone</p>
+                                                        <p class="p-0 m-0">{{__('messages.Phone')}}</p>
                                                         <span class="p-0 m-0"> {{ $userItem->phone }}</span>
-                                                        <p class="p-0 m-0">Address</p>
+                                                        <p class="p-0 m-0">{{__('messages.Address')}}</p>
                                                         <span class="p-0 m-0"> {{ $userItem->address }}</span>
                                                     </div>
                                                     <div class="user_signeture">
-                                                        <p class="p-0 m-0 mb-1">Signature</p>
+                                                        <p class="p-0 m-0 mb-1">{{__('messages.Signature')}}</p>
                                                         <div class="d-flex align-items-center ">
                                                             <div class="Signature_img">
                                                                 <img  src="{{ asset('uploads/signature/' . $userItem->signature) }}"  alt="Signature">
@@ -144,7 +144,7 @@
 
                                                     // $due_percentage = ($due_Amount_conut*100)/$Total_Amount_conut;
                                                     // $due_total = round($due_percentage);
-                                                    
+
                                                     if($Total_Amount_conut!=null){
                                                     $paid_percentage = ($paid_Amount_conut*100);
                                                     $total = round($paid_percentage/$Total_Amount_conut);
@@ -159,7 +159,7 @@
 
                                                 @endphp
                                                     <div class="monthly_total">
-                                                        <p class="p-0 m-0">Total Amount</p>
+                                                        <p class="p-0 m-0">{{__('messages.Total_Amount_earnig')}}</p>
                                                         <span class="p-0 m-0 fw-bold">{{ number_format($Total_Amount_conut, 2) }}</span>
 
                                                     </div>
@@ -168,7 +168,7 @@
                                                     </div> --}}
                                                     <div
                                                         class="more_preview_btn d-flex justify-content-center align-items-center">
-                                                        <a href="{{ url('/my-all-invoice') }}">View More</a>
+                                                        <a href="{{ url('/my-all-invoice') }}">{{__('messages.View_More')}}</a>
                                                     </div>
                                                 </div>
 
@@ -184,11 +184,11 @@
                                                     <div class="mt-4">
                                                         <div class="d-flex align-items-center justify-content-center amount_div mt-1">
                                                             <div class="total_amount_bg"> </div>
-                                                            <div class="ps-1"> <span>Paid</span><span class="ps-1">({{ $total }}%)</span> </div>
+                                                            <div class="ps-1"> <span>{{__('messages.Paid_earning')}}</span><span class="ps-1">({{ $total }}%)</span> </div>
                                                         </div>
                                                         <div class="d-flex align-items-center justify-content-center amount_div">
                                                             <div class="total_due_bg"> </div>
-                                                            <div class="ps-1"> <span>Due </span><span class="ps-1">({{ $due_total }}%)</span></div>
+                                                            <div class="ps-1"> <span> {{__('messages.Due_earning')}} </span><span class="ps-1">({{ $due_total }}%)</span></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -207,7 +207,7 @@
                                         <div class="card-body ">
                                             <div class="d-flex">
                                                 <div style="width:75%" class="total_amount_left">
-                                                    <p class="">Total Amount</p>
+                                                    <p class="">{{__('messages.Total_Amount_earnig')}}</p>
                                                     <span
                                                         class="">{{ number_format($Total_Amount_conut, 2) }}</span>
                                                 </div>
@@ -230,7 +230,7 @@
                                         <div class="card-body">
                                             <div class="d-flex">
                                                 <div style="width:75%" class="total_amount_left_paid">
-                                                    <p class=" ">Paid Amount</p>
+                                                    <p class=" ">{{__('messages.Paid_Amount')}}</p>
                                                     <span
                                                         class="">{{ number_format($paid_Amount_conut, 2) }}</span>
                                                 </div>
@@ -251,7 +251,7 @@
                                         <div class="card-body">
                                             <div class="d-flex">
                                                 <div style="width:75%" class="total_amount_left_due">
-                                                    <p class=" ">Due Amount</p>
+                                                    <p class=" "> {{__('messages.Due_Amount')}}</p>
                                                     <span
                                                         class="">{{ number_format($due_Amount_conut, 2) }}</span>
                                                 </div>
@@ -291,19 +291,19 @@
                                     <div class="card table-responsive">
                                         <div class="card-body">
                                             <div class="card_title">
-                                                <p> Latest Transaction</p>
+                                                <p>{{__('messages.Latest_Transaction')}} </p>
                                             </div>
 
                                             <table class="table table-hover table-responsive" style="color:#686868;   ">
                                                 <thead
                                                     style="border-bottom: 2px solid #FFB317 !important;  border-top: 1px solid #FFB317 !important;">
                                                     <tr>
-                                                        <th style="width:5%">SL#</th>
-                                                        <th style="width:30%">CUSTOMER </th>
-                                                        <th style="width:20%">DATE</th>
-                                                        <th style="width:15%">STATUS</th>
-                                                        <th style="width:15%">PAID</th>
-                                                        <th style="width:15%">TOTAL</th>
+                                                        <th style="width:5%">{{__('messages.SL')}}#</th>
+                                                        <th style="width:30%">{{__('messages.CUSTOMER')}} </th>
+                                                        <th style="width:20%">{{__('messages.DATE')}}</th>
+                                                        <th style="width:15%">{{__('messages.STATUS')}}</th>
+                                                        <th style="width:15%">{{__('messages.PAID')}}</th>
+                                                        <th style="width:15%">{{__('messages.TOTAL')}}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

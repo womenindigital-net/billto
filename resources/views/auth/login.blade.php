@@ -21,8 +21,8 @@
         <div>
             <div class="container ">
                 <div class="text-center">
-                    <h2 class="h2_title  mt-4 mb-3 fw-light">Welcome to Billto</h2>
-                    <h2 class="mb-4  fw-bolder" style="color: #000000">Sign in</h2>
+                    <h2 class="h2_title  mt-4 mb-3 fw-light">{{ __('messages.Welcome_to_Billto') }}</h2>
+                    <h2 class="mb-4  fw-bolder" style="color: #000000">{{ __('messages.Signin') }} </h2>
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-6 my-0 mx-auto">
@@ -45,7 +45,7 @@
                                     @endif
                                     <!-- Email Address -->
                                     <div class="form-group pb-4">
-                                        <label for="email" class="pb-2 " style="font-size: 14px ;">Email</label>
+                                        <label for="email" class="pb-2 " style="font-size: 14px ;">{{ __('messages.Email') }}</label>
                                         <input style="background-color: #FFFFFF; border-radius:10px" type="email"
                                             name="email"
                                             class=" inputPadding border-0 form-control @error('email') is-invalid @enderror"
@@ -61,7 +61,7 @@
                                     <!-- show password -->
                                     <div class="login_oueter">
                                         <div class="form-row">
-                                            <label for="email" class="pb-2 " style="font-size: 14px ;">Password</label>
+                                            <label for="email" class="pb-2 " style="font-size: 14px ;">{{ __('messages.Password') }}</label>
                                             <div class="input-group mb-3">
                                                 <input style="border-radius: 10px;" type="password" name="password" required
                                                     class="form-control inputPadding border-0 @error('email') is-invalid @enderror"
@@ -83,18 +83,18 @@
 
                                     <button type="submit"
                                         class="form_btn mt-3 inputPadding btn btn-dark border-0 w-100 text-bold "
-                                        style="background: #FFB317; font-size:14px; border-radius:10px; ">Continue</button>
+                                        style="background: #FFB317; font-size:14px; border-radius:10px; ">{{ __('messages.Continue') }}</button>
 
                                     <!--reset password-->
                                     <div class="row mt-2">
                                         <div class="col-md-6 col-sm-12">
                                             @if (Route::has('password.request'))
-                                            <a href="{{ route('password.request') }}" class="reset color" style="font-size:14px">Forgot Password?</a>
+                                            <a href="{{ route('password.request') }}" class="reset color" style="font-size:14px">{{ __('messages.Forgot_Password?') }}</a>
                                         @endif
                                         </div>
                                         <div class="col-md-6 col-sm-12 d-md-flex justify-content-end">
                                             <a style="font-size: 14px"
-                                            class="color  " href="{{ route('register') }}">Create an Account</a>
+                                            class="color  " href="{{ route('register') }}">{{ __('messages.Create_an_Account') }}</a>
                                         </div>
                                     </div>
                                     <p class=" mt-2  ">
@@ -112,7 +112,7 @@
                                     <a style="background: #FFB317; font-size:14px; border-radius:10px; " type="button"
                                     class="form_btn my-3 inputPadding btn btn-dark border-0 w-100 text-bold"
                                     href="/auth/google/redirect">
-                                        <p class="text-white"><i class="bi bi-google me-1"></i> Sign in with Google</p>
+                                        <p class="text-white"><i class="bi bi-google me-1"></i> {{ __('messages.Sign_in_with_Google') }}</p>
                                    </a>
 
                                     <!-- facebook	 -->

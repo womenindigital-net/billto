@@ -46,16 +46,16 @@ active_left
                             <table id="example" class="table table-hover  mt-1 " style="color: #686868">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">SL</th>
-                                        <th>CUSTOMER</th>
-                                        <th>NUMBER</th>
-                                        <th>DATE</th>
-                                        <th>DUE DATE</th>
-                                        <th>TOTAL</th>
-                                        <th>PAID</th>
-                                        <th>DUE</th>
-                                        <th>STATUS</th>
-                                        <th class="text-center">ACTION</th>
+                                        <th class="text-center">{{__('messages.SL')}}</th>
+                                        <th>{{__('messages.CUSTOMER')}}</th>
+                                        <th>{{__('messages.NUMBER')}}</th>
+                                        <th>{{__('messages.DATE')}}</th>
+                                        <th>{{__('messages.DUE_DATE')}}</th>
+                                        <th>{{__('messages.TOTAL')}}</th>
+                                        <th>{{__('messages.PAID')}}</th>
+                                        <th>{{__('messages.DUE')}}</th>
+                                        <th>{{__('messages.STATUS')}}</th>
+                                        <th class="text-center">{{__('messages.ACTION')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

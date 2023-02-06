@@ -54,45 +54,40 @@
                     <p>{{ $item->email }}</p>
                 </div>
                 <div class="create_new_btn_sidebar">
-                    <a href="{{ route('create') }}" class="btn btn-warning btn-blog ">Create New
-                        Invoice</a>
+                    <a href="{{ route('create') }}" class="btn btn-warning btn-blog ">{{__('messages.Create_New_Invoice')}}</a>
                 </div>
                 <nav class='dash_menu @yield('custom_dash_menu') '>
 
                     <ul>
                         <li class="sub-menu    @yield('all_invoice')">
-                            <a class="mb-2" href='#invoice'><i class="bi bi-file-text myInvoiceIcon me-3"></i> My
-                                Invoices
+                            <a class="mb-2" href='#invoice'><i class="bi bi-file-text myInvoiceIcon me-3"></i> {{__('messages.My_Invoices')}}
                                 <div class='fa fa-caret-down mt-1'> <i class="bi bi-caret-down"></i></div>
                             </a>
                             <ul class="@yield('d-block')">
-                                <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">All
-                                        Invoices <span
+                                <li><a href="{{ url('my-all-invoice') }}" class="@yield('all-invoice')">{{__('messages.All_Invoices')}} <span
                                             class="circle @yield('all_invoice_left') submenu_circle_bg">{{ $all_Invoice_Count }}</span></a>
                                 </li>
-                                <li><a href='{{ url('/over/due/payment/list/') }}' class="@yield('over_due') ">Over Due <span class="circle   submenu_circle_bg @yield('over_due_bg')">{{ $overdue_Invoice_Count }}</span></a></li>
-                                <li><a href='{{ url('pertialy/payment/list') }}' class="@yield('pertial') ">Pertially Paid
+                                <li><a href='{{ url('/over/due/payment/list/') }}' class="@yield('over_due')">{{__('messages.Over_Due')}} <span class="circle   submenu_circle_bg @yield('over_due_bg')">{{ $overdue_Invoice_Count }}</span></a></li>
+                                <li><a href='{{ url('pertialy/payment/list') }}' class="@yield('pertial') "> {{__('messages.Pertially_Paid')}}
                                     <span class="circle submenu_circle_bg @yield('pertial_bg')">{{ $partial_payment_Invoice_Count }}</span></a>
                                 </li>
-                                <li><a href='{{ url('/unpaid/invoice/list') }}' class="@yield('unpaid') ">Unpaid <span
+                                <li><a href='{{ url('/unpaid/invoice/list') }}' class="@yield('unpaid') ">{{__('messages.Unpaid')}} <span
                                             class="circle submenu_circle_bg @yield('unpaid_bg')">{{ $unpaid_Invoice_Count }}</span></a>
                                 </li>
-                                <li><a href='{{ url('/all/invoices/send-by-Mail') }}' class="@yield('SendbyEmail') ">Send
-                                        by Email <span
+                                <li><a href='{{ url('/all/invoices/send-by-Mail') }}' class="@yield('SendbyEmail') ">{{__('messages.Send_by_Email')}}<span
                                             class="circle @yield('SendbyEmail_bg') submenu_circle_bg">{{ $sendByMail_count }}</span></a>
                                 </li>
-                                <li><a href='{{ url('/my-trash-invoice') }}' class="@yield('Trush') "> Drafts <span
+                                <li><a href='{{ url('/my-trash-invoice') }}' class="@yield('Trush') ">{{__('messages.Drafts')}}  <span
                                             class="circle submenu_circle_bg @yield('Trush_bg')">{{ $trash }}</span>
                                     </a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="mb-2" href='#'><i class="bi bi-person-circle myInvoiceIcon me-3"></i> My
-                                Customers</a>
+                            <a class="mb-2" href='#'><i class="bi bi-person-circle myInvoiceIcon me-3"></i> {{__('messages.My_Customers')}}</a>
                         </li>
-                        <li><a class="mb-2" href='#'><i class="bi bi-bar-chart myInvoiceIcon me-3"></i> My Reports</a></li>
+                        <li><a class="mb-2" href='#'><i class="bi bi-bar-chart myInvoiceIcon me-3"></i>{{__('messages.My_Reports')}} </a></li>
                         <li><a class="mb-2" href='{{ url('/all/invoices/user-setting') }}' class="@yield('setting')"> <i
-                                    class="bi bi-gear-fill myInvoiceIcon me-3"></i> Settings</a>
+                                    class="bi bi-gear-fill myInvoiceIcon me-3"></i>{{__('messages.Settings')}}</a>
 
                         </li>
                     </ul>

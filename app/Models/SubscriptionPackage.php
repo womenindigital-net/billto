@@ -11,10 +11,11 @@ class SubscriptionPackage extends Model
     protected $table = 'subscription_packages';
     protected $fillable = [
         'packageDuration',
+        'packageDurationbn',
         'price',
         'templateQuantity',
         'limitInvoiceGenerate'
     ];
 
-  
+
 }

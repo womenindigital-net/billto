@@ -1,70 +1,4 @@
-<style>
-    .dropbtn {
-        cursor: pointer;
-    }
 
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        z-index: 1;
-        right: 0;
-    }
-
-    .show {
-        display: block;
-    }
-
-    .btncustom.btn-check:focus+.btn,
-    .btncustom:focus {
-        box-shadow: none !important;
-        font-size: 14px;
-        line-height: 17px;
-        font-weight: 400;
-    }
-
-    .user-menu-wrap .btn {
-        font-size: 14px !important;
-        font-weight: 400;
-    }
-
-    .navbar-brand img {
-        width: 100%;
-        height: 50px;
-    }
-
-    @media only screen and (max-width: 769px) {
-        .navbar-brand img {
-            width: 100%;
-            height: 40px;
-        }
-    }
-    @media only screen and (max-width: 425px) {
-        .navbar-brand {
-
-         margin-right: 0px !important;
-
-        }
-        }
-        @media only screen and (max-width: 380px){
-            .navbar-brand img {
-                width: 80%;
-                height: 33px;
-                }
-        }
-
-    @media only screen and (max-width: 425px) {
-        .profileName {
-            padding: 5px 3px 5px 1px;
-            font-size: 8px !important;
-        }
-
-        .user-menu-wrap .btn {
-            font-size: 12px !important;
-            font-weight: 400;
-        }
-
-    }
-</style>
 
 <header class="header_sevtion sticky-top p-0 m-0">
 
@@ -103,7 +37,7 @@
                                         <li class="user-menu__item">
                                             <a class="user-menu-link" href="{{ route('all.invoice') }}">
                                                 <i class="bi bi-grid-fill"></i>
-                                                <div class="fw-bold">DashBoard</div>
+                                                <div class="fw-bold">{{__('messages.DashBoard')}}</div>
                                             </a>
                                         </li>
                                         <div class="footer">
@@ -112,7 +46,7 @@
                                                     @csrf
                                                     <a class="user-menu-link fw-bold" href="#" style="color: #F44336;"
                                                         onclick="event.preventDefault(); this.closest('form').submit();"><i
-                                                            class="bi bi-box-arrow-right pe-2 fw-bold"></i> Sign out</a>
+                                                            class="bi bi-box-arrow-right pe-2 fw-bold"></i> {{__('messages.Signout')}}</a>
                                                 </form>
                                             </li>
                                             <!--<li class="user-menu__item"><a class="user-menu-link fw-bold" href="{{ route('settigns') }}"><i class="bi bi-gear pe-2 fw-bold"></i> Settings</a></li>-->
@@ -121,30 +55,7 @@
                                 </div>
                             </div>
                         </li>
-                        <style>
-                            .border_custom1 {
 
-                                margin-left: -5px;
-                                margin-top: 2px;
-                                align-items: center;
-                                height: 24px;
-                                width: 24px;
-                                align-items: center;
-                                text-align: center;
-                                display: list-item;
-                            }
-
-                            .border_custom2 {
-                                padding: 0px 0px;
-                                /* margin-top: 2px; */
-                                align-items: center;
-                                /* height: 24px;
-                                width: 21px; */
-                                align-items: center;
-                                text-align: center;
-                                display: list-item;
-                            }
-                        </style>
                         <li class="nav-item d-flex align-items-center pe-2">
                             <svg height="50" width="3">
                                 <line x1="0" y1="15" x2="0" y2="40"
@@ -152,19 +63,7 @@
                                 Sorry, your browser does not support inline SVG.
                             </svg>
                         </li>
-                        <style>
-                            .navbar-nav .dropdown-menu {
-                                position: absolute !important;
-                            }
 
-                            .dropdown-menu {
-                                z-index: 1000;
-                                display: none;
-                                min-width: 20px !important;
-                                text-align: center !important;
-
-                            }
-                        </style>
                         <li class="nav-item d-flex align-items-center">
                             <div class=" dropdown">
                                 <a href="#" class="dropdown-toggle nav-link  align-items-center d-flex" data-bs-toggle="dropdown"aria-expanded="false">
@@ -190,7 +89,7 @@
                     @endauth
                     @guest
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link p-1" aria-current="page" href="{{ route('login') }}">Sign in</a>
+                            <a class="nav-link p-1" aria-current="page" href="{{ route('login') }}">{{__('messages.Signin')}}</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <svg height="50" width="3">
@@ -200,7 +99,7 @@
                             </svg>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link p-1" aria-current="page" href="{{ route('create') }}">Create Bill</a>
+                            <a class="nav-link p-1" aria-current="page" href="{{ route('create') }}">{{__('messages.CreateBill')}}</a>
                         </li>
                     @endguest
 

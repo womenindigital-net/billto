@@ -18,6 +18,7 @@ class CreatePricingsTable extends Migration
             $table->string('subscription_package_id')->nullable();
             $table->string('logo')->nullable();
             $table->text('description')->nullable();
+            $table->text('descriptionbn')->nullable();
             $table->timestamps();
         });
     }

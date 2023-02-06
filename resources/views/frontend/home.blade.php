@@ -31,24 +31,24 @@
                         <img src="{{ asset('assets/frontend/img/icon/file.png') }}" alt=""
                             style="width: 39px; height: 42px; top:3px; left:4.5px;">
                     </div>
-                    <h2 class="h2_title heading">Create Bill</h2>
-                    <p class="create_section_p">Choose from 20 templates</p>
+                    <h2 class="h2_title heading">{{__('messages.CreateBill')}}</h2>
+                    <p class="create_section_p">{{__('messages.Choose_from_20_templates')}}</p>
                 </div>
                 <div class="col-sm-4 mb_sm_3">
                     <div class="icon_style imgHeightwidth">
                         <img src="{{ asset('assets/frontend/img/icon/pdf.png') }}" alt=""
                             style="width: 39px; height: 42px; top:3px; left:4.5px;">
                     </div>
-                    <h2 class=" h2_title">Send PDF</h2>
-                    <p class="create_section_p">Email or print your invoice<br>to send to your client</p>
+                    <h2 class=" h2_title">{{__('messages.SendPDF')}}</h2>
+                    <p class="create_section_p">{{__('messages.Email_or_print_your_invoice')}} <br> {{__('messages.to_send_to_your_client')}}</p>
                 </div>
                 <div class="col-sm-4 ">
                     <div class="icon_style imgHeightwidth">
                         <img src="{{ asset('assets/frontend/img/icon/card.png') }}" alt=""
                             style="width: 38px; height: 34px; top:3px; left:4.5px;">
                     </div>
-                    <h2 class="h2_title">Get Paid</h2>
-                    <p class="create_section_p">Receive payment in<br>accounts by Card or Paypal</p>
+                    <h2 class="h2_title">{{__('messages.GetPaid')}}</h2>
+                    <p class="create_section_p">{{__('messages.Receive_payment_in')}}<br>{{__('messages.accounts_by_Card_or_Paypal')}}</p>
                 </div>
             </div>
         </div>
@@ -58,8 +58,8 @@
     <section class="invoice_template ">
         <div class="container ">
             <div class="text-center ctrate-text">
-                <p class="h2_title2">Choose Your Invoice Template</p>
-                <p class="invoice_p">Start creating your professional bill</p>
+                <p class="h2_title2">{{__('messages.Choose_Your_Invoice_Template')}}</p>
+                <p class="invoice_p">{{__('messages.Start_creating_your_professional_bill')}}</p>
             </div>
             <div class="row invoice_template_margin">
                 @foreach ($invoice_template as $invoice_temp)
@@ -99,9 +99,8 @@
             <div class="row" style="margin-bottom: 58px;">
                 <div class="col-12">
                     <div class="plan text-center ctrate-text">
-                        <span>There’s a BillTO for every business</span>
-                        <p>It takes just a few seconds to create and send a professional-looking invoice. Automated
-                            reminders and customized templates make paying even easier.</p>
+                        <span>{{__('messages.There’s_a_BillTO_for_every_business')}}</span>
+                        <p>{{__('messages.There’s_a_BillTO_description')}}</p>
                     </div>
                 </div>
             </div>
@@ -137,8 +136,7 @@
                                     <div class="text-muted margingPlanP">
                                         <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}"
                                             alt="" />
-                                        Package
-                                        Duration: <strong> @php
+                                        Package  Duration: <strong> @php
                                             if ($day == 30) {
                                                 echo 'One Month';
                                             } elseif ($day == 90) {

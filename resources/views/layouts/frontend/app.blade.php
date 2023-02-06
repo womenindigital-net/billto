@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="bn">
 
 <head>
     <meta charset="utf-8">
@@ -14,69 +14,40 @@
         content="Billto is an online invoice generator and accounting software – an innovative business tool you can use for creating invoices online without any hassle. It allows businesses to produce invoices using a ready-made template, where all that needs to be done is inserting the client’s details, the items for payment, taxes (if necessary), and the total amount – then sending the invoice to the client online.">
     <meta property="og:url" content="https://billto.io">
     <meta property="og:image" content="{{ asset('assets/frontend/img/thumbnail/banner.png') }}">
+    <meta name="theme-color" content="#fafafa">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="{{ asset('icon.png') }}">
-    <!-- Place favicon.ico in the root directory -->
-
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/normalize.css') }}">
-
-    <!-- Bootstrap v5.1.3  -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
     <!-- Bootstrap icons v1.7.2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     {{-- datepicker css --}}
     <link rel="stylesheet" href="{{ asset('css/date-ui-css/datepicker-ui.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.min.css" />
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
-
-        * {
-            font-family: 'Open Sans', sans-serif !important;
-        }
-
-        .swal2-icon.swal2-error {
-            border: 10px solid #FFB317 !important;
-            color: #f27474;
-        }
-
-        .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
-            background-color: #FFB317 !important;
-            height: 8px !important;
-        }
-        .swal2-styled.swal2-confirm {
-        background-color:  #FFB317 !important;
-        }
-
-
-        .dropdown-item.active, .dropdown-item:active {
-            color: #f9fafb;
-            text-decoration: none;
-            background-color: #ffb317 !important;
-        }
-    </style>
-
-    <!--JQuery-->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/normalize.css') }}">
+    <!-- Bootstrap v5.1.3  -->
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
+    @stack('frontend_css')
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">
 
-    @stack('frontend_css')
 
-    <meta name="theme-color" content="#fafafa">
+    @if (Config::get('languages')[App::getLocale()]['flag-icon'] == 'bd')
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/fonts_bangla.css') }}">
+    @else
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/fonts_english.css') }}">
+    @endif
+
 
 </head>
 
+<body id="body_alert">
 
-<body style="min-height: 100vh;" id="body_alert">
     <!-- Header Start -->
     @include('layouts.frontend.partial.header')
     <!-- Header End -->
-
-
     @yield('frontend_content')
 
     <!-- Footer Start -->
@@ -154,7 +125,8 @@
             })
             Toast.fire({
                 icon: 'success',
-                title: '{{ session()->get('success') }}',
+                title: '{{ session()->get('
+                                                            success ') }}',
             })
         </script>
     @endif
@@ -186,13 +158,11 @@
             })
             Toast.fire({
                 icon: 'warning',
-                title: '{{ session()->get('delete') }}',
+                title: '{{ session()->get('
+                                                            delete ') }}',
             })
         </script>
     @endif
-
-
-
     <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 </body>
 

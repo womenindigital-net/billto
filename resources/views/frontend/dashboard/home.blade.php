@@ -56,7 +56,7 @@ left_manu
                                 <div class="col-12 col-sm-12 col-md-2">
                                     <div class="all_invice_title pt-2 d-flex ">
                                         <div>
-                                            <p>All Invoice </p>
+                                            <p> {{__('messages.All_Invoice')}} </p>
                                         </div>
                                         <div>
                                             <span class="rond_all circle ms-2"> {{ $all_Invoice_Count }}</span>
@@ -66,7 +66,7 @@ left_manu
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center m-0 p-0">
                                     <div class="custom_width" style="width: 30%">
-                                        <span>Date From </span>
+                                        <span>{{__('messages.Date_From')}}</span>
                                     </div>
                                     <div class="input-group bg-white custom_width_text" style="width: 70%">
                                         <label class="input-group-text" for="invoice_date"><i class="bi bi-calendar3"></i></label>
@@ -77,7 +77,7 @@ left_manu
 
                                 <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
                                     <div class="custom_width" style="width: 10%; text-align:center">
-                                        <span>To</span>
+                                        <span>{{__('messages.To')}}</span>
                                     </div>
                                     <div class="input-group bg-white custom_width_text" style="width: 90%">
                                         <label class="input-group-text" for="invoice_dou_date"><i class="bi bi-calendar3"></i></label>
@@ -86,7 +86,7 @@ left_manu
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3 d-flex justify-content-center align-items-center p-0">
                                     <div class="custom_width" style="width: 20%; text-align:center">
-                                        <span>Status</span>
+                                        <span>{{__('messages.Status')}}</span>
                                     </div>
                                     <div class="input-group bg-white custom_width_text" style="width: 80%">
                                         <select class="form-select  @error('invoice_status')  is-invalid @enderror" id="inputGroupSelect01" name="invoice_status" required>
@@ -99,7 +99,7 @@ left_manu
 
                                 <div class="col-12 col-sm-6 col-md-1 d-flex justify-content-end align-items-center">
                                     <div class="input-group   mr_custom">
-                                        <button class=" btn btn-warning ">Search</button>
+                                        <button class=" btn btn-warning text-white">{{__('messages.Search_btn')}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -113,15 +113,15 @@ left_manu
                         <table class="table table-hover btn_design" style="color:#686868" id="cart_realaod_table">
                             <thead style="border-bottom: 2px solid #FFB317 !important; border-top: 1px solid #FFB317 !important;">
                                 <tr>
-                                    <th style="width: 5%">SL#</th>
-                                    <th style="width: 20%">CUSTOMER </th>
-                                    <th style="width: 10%">DATE</th>
-                                    <th style="width: 12%">DUE DATE</th>
-                                    <th style="width: 11%">TOTAL</th>
-                                    <th style="width: 10%">PAID</th>
-                                    <th style="width: 10%">DUE</th>
-                                    <th style="width: 10%">STATUS</th>
-                                    <th style="width:12%">ACTION</th>
+                                    <th style="width: 5%">{{__('messages.SL')}}#</th>
+                                    <th style="width: 20%">{{__('messages.CUSTOMER')}} </th>
+                                    <th style="width: 10%">{{__('messages.DATE')}}</th>
+                                    <th style="width: 12%">{{__('messages.DUE_DATE')}}</th>
+                                    <th style="width: 11%">{{__('messages.TOTAL')}}</th>
+                                    <th style="width: 10%">{{__('messages.PAID')}}</th>
+                                    <th style="width: 10%">{{__('messages.DUE')}}</th>
+                                    <th style="width: 10%">{{__('messages.STATUS')}}</th>
+                                    <th style="width:12%">{{__('messages.ACTION')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -196,21 +196,21 @@ left_manu
                             <div class="col-8 col-sm-6 col-md-5">
                                 <div class="row">
                                     <div class="col-4">
-                                        <p class="total_text_design"> TOTAL</p>
+                                        <p class="total_text_design">{{__('messages.TOTAL')}} </p>
                                     </div>
                                     <div class="col-5">
                                         <p class="total_amount text-end">{{ number_format($Total_Amount_conut, 2) }}</p>
                                     </div>
 
                                     <div class="col-4">
-                                        <p class="total_text_design "> PAID AMOUNT</p>
+                                        <p class="total_text_design ">{{__('messages.PAID_AMOUNT')}} </p>
                                     </div>
                                     <div class="col-5">
                                         <p class="total_amount text-end">{{ number_format($paid_Total_Amount_conut, 2) }}</p>
                                     </div>
 
                                     <div class="col-4">
-                                        <p class="total_text_design"> BALANCE DUE</p>
+                                        <p class="total_text_design">{{__('messages.BALANCE_DUE')}} </p>
                                     </div>
                                     <div class="col-5 ">
                                         <p class="total_amount text-end">{{ number_format($due_Total_Amount_conut, 2) }}</p>

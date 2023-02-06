@@ -44,11 +44,11 @@ active_left
                             <table id="example" class="table table-hover  mt-1"  style="color:#686868"  >
                                 <thead>
                                     <tr>
-                                        <th class="text-center">SL</th>
-                                        <th> Mail To</th>
-                                        <th>Subject</th>
-                                        <th>Body</th>
-                                        <th class="text-center">ACTION</th>
+                                        <th class="text-center">{{__('messages.SL')}}</th>
+                                        <th>{{__('messages.MAIL_TO')}} </th>
+                                        <th> {{__('messages.SUBJECT')}}</th>
+                                        <th>{{__('messages.BODY')}}</th>
+                                        <th class="text-center">{{__('messages.ACTION')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody >
