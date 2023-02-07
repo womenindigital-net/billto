@@ -318,7 +318,7 @@
         <section class="third_section">
             <div class="left_Side_bar" style=" background-color: #ffb137;">
                 <div class="third_sectionc">
-                    <h5>{{ __('messages.To') }}</h5>
+                    <h5>{{__('messages.To_send')}}</h5>
                     <div class="border"></div>
                     <p>{{ $invoiceData->invoice_to }}</p>
                 </div>

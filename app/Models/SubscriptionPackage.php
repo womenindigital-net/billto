@@ -13,8 +13,11 @@ class SubscriptionPackage extends Model
         'packageDuration',
         'packageDurationbn',
         'price',
+        'pricebn',
         'templateQuantity',
-        'limitInvoiceGenerate'
+        'limitInvoiceGenerate',
+        'templateQuantitybn',
+        'limitInvoiceGeneratebn',
     ];
 
 

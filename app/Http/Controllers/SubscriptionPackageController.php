@@ -59,8 +59,11 @@ class SubscriptionPackageController extends Controller
         $SubscriptionPackage->packageNamebn = $request->packageNamebn;
         $SubscriptionPackage->packageDuration = $request->packageDuration;
         $SubscriptionPackage->price = $request->price;
+        $SubscriptionPackage->pricebn = $request->pricebn;
         $SubscriptionPackage->templateQuantity = $request->templateQuantity;
+        $SubscriptionPackage->templateQuantitybn = $request->templateQuantitybn;
         $SubscriptionPackage->limitInvoiceGenerate = $request->limitInvoiceGenerate;
+        $SubscriptionPackage->limitInvoiceGeneratebn = $request->limitInvoiceGeneratebn;
         $SubscriptionPackage->save();
 
         $get_id = $SubscriptionPackage->id;
@@ -131,8 +134,11 @@ class SubscriptionPackageController extends Controller
         $subscriptionPackage->packageNamebn = $request->packageNamebn;
         $subscriptionPackage->packageDuration = $request->packageDuration;
         $subscriptionPackage->price = $request->price;
+        $subscriptionPackage->pricebn = $request->pricebn;
         $subscriptionPackage->templateQuantity = $request->templateQuantity;
+        $subscriptionPackage->templateQuantitybn = $request->templateQuantitybn;
         $subscriptionPackage->limitInvoiceGenerate = $request->limitInvoiceGenerate;
+        $subscriptionPackage->limitInvoiceGeneratebn = $request->limitInvoiceGeneratebn;
         $subscriptionPackage->save();
 
         $tamp_names = $request->template;

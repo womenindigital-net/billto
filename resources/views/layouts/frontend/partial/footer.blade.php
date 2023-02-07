@@ -46,7 +46,7 @@
                     <div class="modal-footer modal_footer ">
                         <button type="button" class="btn btn-outline-danger btn-sm "
                             data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i>{{__('messages.Close')}}  </button>
-                        <button class="btn  btn-sm btn-warning disabled"  id="submit_btn"><i class="bi bi-clipboard-plus"></i> Submit  </button>
+                        <button class="btn  btn-sm btn-warning disabled"  id="submit_btn"><i class="bi bi-clipboard-plus"></i> {{ __('messages.submit_btn') }}  </button>
                     </div>
                 </form>
                 </div>
@@ -67,16 +67,16 @@
                 <div class="row">
                     <input type="hidden" id="last_invoice_id" name="template_id">
                     <div class="mb-3">
-                        <label for="emai_to" class="form-label">{{__('messages.To')}}</label>
-                        <input type="email" class="form-control" id="emai_to" name="emai_to" placeholder="example@gmail.com" required>
+                        <label for="emai_to" class="form-label">{{__('messages.To_send')}}</label>
+                        <input type="email" class="form-control" id="emai_to" name="emai_to" placeholder="{{ __('messages.placeholder_email_example') }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="email_subject" class="form-label">{{__('messages.Subject')}}</label>
-                        <input type="text" class="form-control" id="email_subject" name="email_subject" id="Input2" value="A Invoice by Billto.io" required>
+                        <input type="text" class="form-control" id="email_subject" name="email_subject" id="Input2" value="{{ __('messages.placeholder_subject_A_Invoice_by_Billto.io') }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="email_body" class="form-label">{{__('messages.Body')}}</label>
-                        <textarea class="form-control" id="email_body" name="email_body" rows="2">A invoice has been sent to you by BillTo.io. You can find it in the attachment below.</textarea>
+                        <textarea class="form-control" id="email_body" name="email_body" rows="2">{{ __('messages.placeholder_body_A_invoice_has_been_sent_to_you_by') }}.</textarea>
                     </div>
 
                     <div class="modal-footer">

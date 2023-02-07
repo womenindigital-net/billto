@@ -80,86 +80,153 @@
                 </div>
             </div>
             <div class="col-sm-5">
-                @foreach ($subscribe_package as $subscribe)
-                    @php
-                        $day = $subscribe->packageDuration;
-                    @endphp
+                @if (Config::get('languages')[App::getLocale()]['flag-icon'] == 'bd')
+                    @foreach ($subscribe_package as $sub_package_free)
+                        @php
+                            $day = $sub_package_free->packageDuration;
+                        @endphp
 
-                    <div class="card text-center ">
-                        <div class="card-body">
-                            <h3 class="heding">{{ $subscribe->packageName }}</h3>
-                            <h1 class="priceColor">${{ $subscribe->price }}</h1>
-                            <p class="text-muted">
-                                galley of type and scrambled it to make a type specimen book.
-                            </p>
-                            <hr />
-                            <div class="text-start">
-                                <p class="text-muted mb-3">
-                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
-                                    Invoice
-                                    Template: <strong> {{ $subscribe->templateQuantity }}</strong>
-                                </p>
-                                <p class="text-muted mb-3">
-                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> Total
-                                    invoice Genarate: <strong>{{ $subscribe->limitInvoiceGenerate }}</strong>
-                                </p>
-                                <p class="text-muted mb-3">
-                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" />
-                                    Package
-                                    Duration: <strong> @php
-                                        if ($day == 30) {
-                                            echo 'One Month';
-                                        } elseif ($day == 90) {
-                                            echo 'Three Month';
-                                        } elseif ($day == 180) {
-                                            echo 'Six Month';
-                                        } elseif ($day == 365) {
-                                            echo 'One Year';
-                                        }
-                                    @endphp
-                                    </strong>
-                                </p>
-                                <p class="text-muted mb-3">
-                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
-                                    type
-                                    specimen book.
-                                </p>
-                                <p class="text-muted mb-3">
-                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> galley
-                                    of
-                                    type and
-                                    scrambled
-                                    it to
-                                </p>
-                                <p class="text-muted mb-2">
-                                    <img src="{{ asset('assets/frontend/img/icon/tik.png') }}" alt="" /> make a
-                                    type
-                                    specimen book.
-                                </p>
-                                <p class="text-muted mb-3">
-                                    <img src="{{ asset('assets/frontend/img/icon/none.png') }}" alt="" /> make
-                                    a
-                                    type
-                                    specimen book.
-                                </p>
-                            </div>
-
-
-                            <form action="{{ route('payment.store') }}" method="post">
-                                @csrf
-                                <div class="card-body">
-                                    <input type="hidden" name="package_id" value="{{ $subscribe->id }}">
-                                    {{-- <input type="hidden"  name="auth_user_id" value="{{ auth()->user()->id }}"> --}}
-                                    <input type="hidden" name="package_price" value="{{ $subscribe->price }}">
-                                    <div class="mt-2">
-                                        <button class="btnCss" disabled>Submit</button>
+                        <div class="card text-center ">
+                            <div class="card-body shadowcard p-0">
+                                <h3 class="heding"> {{ $sub_package_free->packageNamebn }}</h3>
+                                <h1 class="priceColor"> &#2547;{{ $sub_package_free->pricebn }}<span
+                                        class="month">/মাস</span>
+                                </h1>
+                                {{-- <p class="text_muted">
+            galley of type and scrambled it to make a type specimen book.
+        </p> --}}
+                                <div class="emty_margin"></div>
+                                <div class="text-start text_start ">
+                                    <div class="text-muted margingPlanP">
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}"
+                                            alt="" />
+                                        মোট চালান : <strong> {{ $sub_package_free->templateQuantitybn }}</strong>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="text-muted margingPlanP">
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}"
+                                            alt="" /> চালান তৈরি করতে পারবেন : <strong>
+                                            {{ $sub_package_free->limitInvoiceGeneratebn }}</strong>
+                                    </div>
+                                    <div class="text-muted margingPlanP">
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}"
+                                            alt="" />
+                                        প্যাকেজের সময়কাল : <strong> @php
+                                            if ($day == 30) {
+                                                echo 'এক মাস';
+                                            } elseif ($day == 90) {
+                                                echo 'তিন মাস';
+                                            } elseif ($day == 180) {
+                                                echo 'ছয় মাস';
+                                            } elseif ($day == 365) {
+                                                echo 'এক বছর';
+                                            }
+                                        @endphp
+                                        </strong>
+                                    </div>
 
+                                    @php
+                                        $join_pricing_subcription_tbl = DB::table('subscription_packages')
+                                            ->join('pricings', 'subscription_packages.id', '=', 'pricings.subscription_package_id')
+                                            ->where('pricings.subscription_package_id', $sub_package_free->id)
+                                            ->get();
+                                    @endphp
+                                    @foreach ($join_pricing_subcription_tbl as $join_pricing_subcription_value)
+                                        <div class="text-muted margingPlanP">
+                                            @if ($join_pricing_subcription_value->logo == 'Success')
+                                                <img class="none_image"
+                                                    src="{{ asset('assets/frontend/img/icon/tik.png') }}"
+                                                    alt="" />{{ $join_pricing_subcription_value->descriptionbn }}
+                                            @else
+                                                <img class="none_image"
+                                                    src="{{ asset('assets/frontend/img/icon/none.png') }}"
+                                                    alt="" />{{ $join_pricing_subcription_value->descriptionbn }}
+                                            @endif
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                                <div class="pricing_btn_design">
+                                    <a href="{{ url('payment-gateway', $sub_package_free->id) }}"><button
+                                            class="btnCss">সাবমিট</button></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                    @foreach ($subscribe_package as $sub_package_free)
+                        @php
+                            $day = $sub_package_free->packageDuration;
+                        @endphp
+
+                        <div class="card text-center ">
+                            <div class="card-body shadowcard p-0">
+                                <h3 class="heding"> {{ $sub_package_free->packageName }}</h3>
+                                <h1 class="priceColor">${{ $sub_package_free->price }}<span class="month">/month</span>
+                                </h1>
+                                
+                                <div class="emty_margin"></div>
+                                <div class="text-start text_start ">
+                                    <div class="text-muted margingPlanP">
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}"
+                                            alt="" />
+                                        Invoice
+                                        Template: <strong> {{ $sub_package_free->price }}</strong>
+                                    </div>
+                                    <div class="text-muted margingPlanP">
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}"
+                                            alt="" /> Total
+                                        invoice Genarate: <strong> {{ $sub_package_free->limitInvoiceGenerate }}</strong>
+                                    </div>
+                                    <div class="text-muted margingPlanP">
+                                        <img class="none_image" src="{{ asset('assets/frontend/img/icon/tik.png') }}"
+                                            alt="" />
+                                        Package Duration: <strong> @php
+                                            if ($day == 30) {
+                                                echo 'One Month';
+                                            } elseif ($day == 90) {
+                                                echo 'Three Month';
+                                            } elseif ($day == 180) {
+                                                echo 'Six Month';
+                                            } elseif ($day == 365) {
+                                                echo 'One Year';
+                                            }
+                                        @endphp
+                                        </strong>
+                                    </div>
+
+                                    @php
+                                        $join_pricing_subcription_tbl = DB::table('subscription_packages')
+                                            ->join('pricings', 'subscription_packages.id', '=', 'pricings.subscription_package_id')
+                                            ->where('pricings.subscription_package_id', $sub_package_free->id)
+                                            ->get();
+                                    @endphp
+                                    @foreach ($join_pricing_subcription_tbl as $join_pricing_subcription_value)
+                                        <div class="text-muted margingPlanP">
+                                            @if ($join_pricing_subcription_value->logo == 'Success')
+                                                <img class="none_image"
+                                                    src="{{ asset('assets/frontend/img/icon/tik.png') }}"
+                                                    alt="" />{{ $join_pricing_subcription_value->description }}
+                                            @else
+                                                <img class="none_image"
+                                                    src="{{ asset('assets/frontend/img/icon/none.png') }}"
+                                                    alt="" />{{ $join_pricing_subcription_value->description }}
+                                            @endif
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                                <div class="pricing_btn_design">
+                                    <a href="{{ url('payment-gateway', $sub_package_free->id) }}"><button
+                                            class="btnCss">Submit</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                @endif
+
+
+
             </div>
         </div>
         {{-- ----------------- javascript kora ache--------  --}}

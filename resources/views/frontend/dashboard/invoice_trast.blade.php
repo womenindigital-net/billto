@@ -59,7 +59,7 @@ Trush_bg
                                     @forelse ($invoicessData as $key => $invoiceData)
                                         <tr class="m-0 p-0 ">
                                             <td class="m-0  text-center ">{{ ++$key }}</td>
-                                            <td class="m-0  ">{{ $invoiceData->invoice_to }}</td>
+                                            <td class="m-0  "> {!! Str::limit($invoiceData->invoice_to, 20, ' ...') !!}</td>
                                             <td class="m-0   ">
                                                 {{ $invoiceData->invoice_id }}
                                             </td>

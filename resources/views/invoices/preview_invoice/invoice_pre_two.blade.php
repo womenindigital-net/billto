@@ -164,7 +164,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">Invoice Date</th>
+                                <th scope="row">{{__('messages.Invoice_Date')}}</th>
                                 <td>{{ $data->invoice_date }}</td>
 
                             </tr>
@@ -281,7 +281,7 @@
         <div class="row">
             <div class="col-4 bgColorYellow2">
                 <div class="">
-                    <h4 class="footerHader">To</h4>
+                    <h4 class="footerHader">{{__('messages.To_send')}}</h4>
                     <p class="footertext   text-break ps-1">{{ $data->invoice_to }}</p>
                 </div>
             </div>

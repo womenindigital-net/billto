@@ -137,7 +137,7 @@ left_manu
                                @endphp
                                 <tr class="data_table_id table_th_td ">
                                     <th scope="row">{{ ++$key }}</th>
-                                    <td class="preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $InvoiceData->invoice_to }}</td>
+                                    <td class="preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{!! Str::limit($InvoiceData->invoice_to, 20, ' ...') !!}</td>
                                     <td class="preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">{{ $InvoiceData->invoice_date }}</td>
                                     <td class=" preview_image_user
                                     <?php if($today_date <=3 && $curren_date <= $create_date && $InvoiceData->status_due_paid=="due" ){

@@ -133,7 +133,7 @@
                                     <div class="card dashboad_card_width">
                                         <div class="card-body">
                                             <div class="earning_header">
-                                                <span> Earning</span>
+                                                <span>{{__('messages.Earning')}} </span>
                                             </div>
 
                                             <div class="row">
@@ -310,7 +310,7 @@
                                                     @foreach($latestDataInvoices as $key => $latestDataInvoice)
                                                     <tr class="data_table_id preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw">
                                                         <th scope="row">{{ ++$key }}</th>
-                                                        <td>{{ $latestDataInvoice->invoice_to }}</td>
+                                                        <td>{!! Str::limit($latestDataInvoice->invoice_to, 20, ' ...') !!}</td>
                                                         <td>{{ $latestDataInvoice->invoice_date }}</td>
                                                         <td>
                                                             @if ($latestDataInvoice->status_due_paid=="due")

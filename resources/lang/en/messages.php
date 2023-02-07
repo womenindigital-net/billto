@@ -30,6 +30,8 @@ return [
     'There’s_a_BillTO_description'=>'It takes just a few seconds to create and send a professional-looking invoice. Automated
     reminders and customized templates make paying even easier.',
 
+
+
     // sidebar.blade.php
     'Create_New_Invoice'=>' Create New Invoice',
         'My_Invoices'=>'My Invoices',
@@ -63,9 +65,11 @@ return [
     'Due_earning'=>'Due',
 
     //three card
-    'Due_earning'=>'Due',
+    'Earning'=>'Earning',
     'Paid_Amount'=>'Paid Amount',
     'Due_Amount'=>'Due Amount',
+
+
 
     // Latest Transaction
     'Latest_Transaction'=>'Latest Transactions',
@@ -112,7 +116,7 @@ return [
     'Who_is_this_invoice_from'=> 'Who is this invoice from',
 
     'Bill_to' =>'Bill to',
-    'Who_is_this_invoice_to'=> 'Who is this invoice from',
+    'Who_is_this_invoice_to'=> 'Who is this invoice to',
 
     'INVOICE'=>'INVOICE',
     'INVOICE_ID'=>'INVOICE ID',
@@ -149,8 +153,8 @@ return [
     'Complete_Invoice'=>'Complete Invoice',
     'Send_Invoice'=>'Send Invoice',
     'Download_Invoice'=>'Download Invoice',
-    'Choose_Your_Invoice_Template'=>'Choose Your Invoice Template',
-    'Start_creating_your_professional_bill'=>'Start creating your professional bill',
+    // 'Choose_Your_Invoice_Template'=>'Choose Your Invoice Template',
+    // 'Start_creating_your_professional_bill'=>'Start creating your professional bill',
     'Subject'=>'Subject',
     'Body'=>'Body',
     'Close'=>'Close',
@@ -161,10 +165,16 @@ return [
     'New_Message'=>' New Message',
     'Preview_Invoice'=>'Preview Invoice',
     'Billto_All_rights_reserved.'=>'Billto. All rights reserved.',
-    'Design_And_Developed_By'=>'Billto. All rights reserved.',
+    'Design_And_Developed_By'=>'Design And Developed By',
     'Women_In_Digital'=>'Women In Digital',
     'Lumina_Dev'=>'Lumina Dev',
 
+    'Total_Amount'=>'Total Amount',
+    'Received_Amount'=>'Received Amount',
+    'Due_Amount'=>'Due Amount',
+    'Payment_Date'=>'Payment Date',
+    'Payment_Amount'=>'Payment Amount',
+    'submit_btn'=>'Submit ',
 
     // Preview invoice
 
@@ -197,6 +207,11 @@ return [
     'Subtotal'=>'Subtotal',
     'Sales_Tax'=>'Sales Tax',
     'Discount_Amount'=>'Discount Amount',
+    'To_send'=>'To',
+
+    'placeholder_email_example'=>'example@gmail.com',
+    'placeholder_subject_A_Invoice_by_Billto.io'=>'A Invoice by Billto.io',
+    'placeholder_body_A_invoice_has_been_sent_to_you_by'=>'A invoice has been sent to you by BillTo.io. You can find it in the attachment below.',
 
 
     // login.blade.php
@@ -208,5 +223,14 @@ return [
     'Create_an_Account'=>'Create an Account',
     'Sign_in_with_Google'=>'Sign in with Google',
 
+
+  // register.blade.php
+  'Sign_up'=>'Sign up',
+  'Full_Name'=>'Full Name',
+  'Password_and_confirm_password_not_match'=>'Password and confirm password not match !',
+  'Confirm_Password'=>'Confirm Password',
+  'Between_8_and_72_characters'=>'Between 8 and 72 characters',
+  'Already_on_Billto'=>'Already on Billto',
+  'Sign_in_here'=>'Sign in here',
 
 ];

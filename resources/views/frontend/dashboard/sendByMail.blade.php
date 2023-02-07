@@ -57,7 +57,7 @@ active_left
                                             <td class="m-0  text-center ">{{ ++$key }}</td>
                                             <td class="m-0  ">{{ $sendByMail->send_mail_to }}</td>
                                             <td class="m-0  "> {{ $sendByMail->mail_subject }}</td>
-                                            <td class="m-0  ">{{ $sendByMail->mail_body }}</td>
+                                            <td class="m-0  "> {!! Str::limit($sendByMail->mail_body, 60, ' ...') !!}</td>
                                             <td class="m-0 text-center ">
                                                  <a href="" class="preview_image_user btn btn-sm btn_view send_view_btn"    data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop_previw" ><i class="bi bi-eye "></i></a>

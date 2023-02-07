@@ -78,7 +78,7 @@ left_manu
                         @forelse($search_result as $key => $InvoiceData)
                         <tr class="data_table_id preview_image_user" data-bs-toggle="modal" data-bs-target="#staticBackdrop_previw" >
                             <th scope="row">{{ ++$key }}</th>
-                            <td>{{ $InvoiceData->invoice_to }}</td>
+                            <td>{!! Str::limit($invoiceData->invoice_to, 20, ' ...') !!}</td>
                             <td>{{ $InvoiceData->invoice_date }}</td>
                             <td>
                                 @if ($InvoiceData->status_due_paid == 'due')

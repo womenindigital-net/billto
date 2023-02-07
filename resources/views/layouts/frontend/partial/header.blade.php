@@ -88,6 +88,28 @@
                         </li>
                     @endauth
                     @guest
+                    <li class="nav-item d-flex align-items-center">
+                        <div class=" dropdown">
+                            <a href="#" class="dropdown-toggle nav-link  align-items-center d-flex" data-bs-toggle="dropdown"aria-expanded="false">
+                                {{-- <div class="border_custom1">
+                                    <svg style="height: 25px; width: 25px">
+                                        <circle cx="10" cy="11" r="7" stroke="green"
+                                            stroke-width="5" fill="red" />
+                                    </svg>
+                                </div> --}}
+                                <div class="border_custom2 me-2">
+                                 <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span> {{ Config::get('languages')[App::getLocale()]['display'] }}
+                                </div>
+                            </a>
+                            <div class="dropdown-menu border p-0 m-0">
+                                @foreach (Config::get('languages') as $lang => $language)
+                                    @if ($lang != App::getLocale())
+                                            <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span> {{$language['display']}}</a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="nav-link p-1" aria-current="page" href="{{ route('login') }}">{{__('messages.Signin')}}</a>
                         </li>

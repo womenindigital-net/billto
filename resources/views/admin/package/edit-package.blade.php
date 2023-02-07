@@ -55,6 +55,12 @@
                                                 <input type="text" value="{{ $subscriptionPackage->packageName }}"
                                                     name="packageName" class="form-control" id="validationCustom01"
                                                     required>
+
+                                                <label for="validationCustom01" class="form-label">Package name(BN)</label>
+                                                <input type="text" name="packageNamebn" class="form-control" value="{{ $subscriptionPackage->packageNamebn }}"
+                                                    id="validationCustom01" required>
+
+
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -84,21 +90,23 @@
                                                 <label for="validationCustom03" class="form-label">Package Price</label>
                                                 <input type="number" value="{{ $subscriptionPackage->price }}"
                                                     name="price" class="form-control" id="validationCustom02" required>
+
+                                                    <label for="validationCustom03" class="form-label mt-2">Package Price(BN)</label>
+                                                    <input type="text" name="pricebn" class="form-control"
+                                                        id="validationCustom02" value="{{ $subscriptionPackage->pricebn }}" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="validationCustom01" class="form-label">Package name(BN)</label>
-                                                <input type="text" name="packageNamebn" class="form-control" value="{{ $subscriptionPackage->packageNamebn }}"
-                                                    id="validationCustom01" required>
-                                            </div>
-                                        </div>
+
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="validationCustom03" class="form-label">Tamplate Quantity</label>
                                                 <input type="number" value="{{ $subscriptionPackage->templateQuantity }}"
                                                     name="templateQuantity" class="form-control" id="validationCustom02"
                                                     required>
+
+                                                    <label for="validationCustom03" class="form-label mt-2">Tamplate Quantity(BN)</label>
+                                                    <input type="text" name="templateQuantitybn" class="form-control"
+                                                        id="validationCustom02"  value="{{ $subscriptionPackage->templateQuantitybn }}" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -109,6 +117,10 @@
                                                     value="{{ $subscriptionPackage->limitInvoiceGenerate }}"
                                                     name="limitInvoiceGenerate" class="form-control" id="validationCustom02"
                                                     required>
+                                                    <label for="validationCustom03" class="form-label mt-2">Limit invoice
+                                                        generate(BN)</label>
+                                                    <input type="text" name="limitInvoiceGeneratebn" value="{{ $subscriptionPackage->limitInvoiceGeneratebn }}" class="form-control"
+                                                        id="validationCustom02" required>
                                             </div>
                                         </div>
                                     </div>

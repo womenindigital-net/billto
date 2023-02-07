@@ -19,8 +19,11 @@ class CreateSubscriptionPackagesTable extends Migration
             $table->string('packageNamebn')->nullable();
             $table->string('packageDuration')->nullable();
             $table->string('price')->nullable();
-            $table->integer('templateQuantity')->nullable();
+            $table->string('pricebn')->nullable();
+            $table->string('templateQuantity')->nullable();
+            $table->string('templateQuantitybn')->nullable();
             $table->string('limitInvoiceGenerate')->nullable();
+            $table->string('limitInvoiceGeneratebn')->nullable();
             $table->string('templateId')->nullable();
             $table->timestamps();
         });

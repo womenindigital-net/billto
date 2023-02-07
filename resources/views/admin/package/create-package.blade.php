@@ -57,6 +57,11 @@
                                                 <label for="validationCustom01" class="form-label">Package name(EN)</label>
                                                 <input type="text" name="packageName" class="form-control"
                                                     id="validationCustom01" required>
+
+                                                <label for="validationCustom01" class="form-label mt-2">Package name(BN)</label>
+                                                <input type="text" name="packageNamebn" class="form-control"
+                                                    id="validationCustom01" required>
+
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -75,22 +80,23 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Package Price</label>
+                                                <label for="validationCustom03" class="form-label">Package Price(EN)</label>
                                                 <input type="number" name="price" class="form-control"
                                                     id="validationCustom02" required>
+
+                                                    <label for="validationCustom03" class="form-label mt-2">Package Price(BN)</label>
+                                                    <input type="text" name="pricebn" class="form-control"
+                                                        id="validationCustom02" required>
                                             </div>
                                         </div>
+
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom01" class="form-label">Package name(BN)</label>
-                                                <input type="text" name="packageNamebn" class="form-control"
-                                                    id="validationCustom01" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Tamplate Quantity</label>
+                                                <label for="validationCustom03" class="form-label">Tamplate Quantity(EN)</label>
                                                 <input type="number" name="templateQuantity" class="form-control"
+                                                    id="validationCustom02" required>
+                                                <label for="validationCustom03" class="form-label mt-2">Tamplate Quantity(BN)</label>
+                                                <input type="text" name="templateQuantitybn" class="form-control"
                                                     id="validationCustom02" required>
                                             </div>
                                         </div>
@@ -100,6 +106,11 @@
                                                     generate</label>
                                                 <input type="number" name="limitInvoiceGenerate" class="form-control"
                                                     id="validationCustom02" required>
+
+                                                    <label for="validationCustom03" class="form-label mt-2">Limit invoice
+                                                        generate(BN)</label>
+                                                    <input type="text" name="limitInvoiceGeneratebn" class="form-control"
+                                                        id="validationCustom02" required>
                                             </div>
                                         </div>
                                     </div>
