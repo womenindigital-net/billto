@@ -105,7 +105,7 @@ return [
     'New_Password' =>'New Password',
     'Confirm_New_Password' =>'Confirm New Password',
     'Update_Password' =>' Update Password',
-
+    'Edit_your_profile_picture'=>'Edit your profile picture',
 
     //  create-invoice.blade.php
 

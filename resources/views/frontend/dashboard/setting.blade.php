@@ -63,7 +63,8 @@
                                                     <img id="hide_image" class="propic"
                                                         src="{{ asset('uploads/userImage/' . $item->picture__input) }}"
                                                         alt="">
-                                                    <span class="picture__image text-warning"></span>
+                                                    <span class="picture__image"></span>
+                                                    <span class="text_hidden text-warning">{{ __('messages.Edit_your_profile_picture') }}</span>
                                                 </label>
                                                 <input type="file" name="picture__input" id="picture__input"
                                                     accept="image/*">

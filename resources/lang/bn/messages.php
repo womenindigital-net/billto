@@ -103,17 +103,17 @@ return [
     'New_Password' =>'নতুন পাসওয়ার্ড ',
     'Confirm_New_Password' =>'নতুন পাসওয়ার্ড নিশ্চিত করুন',
     'Update_Password' =>'পাসওয়ার্ড সংশোধন করুন',
-
+    'Edit_your_profile_picture'=>' ছবি পরিবর্তন করুন',
 
     //  create-invoice.blade.php
 
     'Add_your_logo' =>'লোগো যোগ করুন',
     'Logo_up_to_1MB' =>'1MB পর্যন্ত লোগো',
     'Currency' =>'মুদ্রা',
-    'From' =>'থেকে',
+    'From' =>'প্রেরক',
     'Who_is_this_invoice_from'=> 'এই চালানপত্রটি কার কাছ থেকে',
 
-    'Bill_to' =>'Bill to',
+    'Bill_to' =>'প্রাপক',
     'Who_is_this_invoice_to'=> ' এই চালানপ্ত্র কার কাছে?',
 
     'INVOICE'=>'চালান পত্র',

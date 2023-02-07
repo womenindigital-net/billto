@@ -1,6 +1,6 @@
 const inputFile = document.querySelector("#picture__input");
 const pictureImage = document.querySelector(".picture__image");
-const pictureImageTxt = "Edit your profile picture";
+const pictureImageTxt = "";
 pictureImage.innerHTML = pictureImageTxt;
 
 inputFile.addEventListener("change", function (e) {
@@ -21,8 +21,10 @@ inputFile.addEventListener("change", function (e) {
       pictureImage.appendChild(img);
     });
     $('#hide_image').hide();
+    $('.text_hidden').hide();
     reader.readAsDataURL(file);
   } else {
     pictureImage.innerHTML = pictureImageTxt;
+
   }
 });

@@ -391,13 +391,11 @@ textarea {
 /* Button Start  */
 .billto_btn {
     background-color: #ffb317;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 500;
-    /* width: 200px; */
     color: #ffffff;
     align-items: center;
-    line-height: 45px;
-    /* height: 60px; */
+    padding-top: 8px;
     text-align: center;
     border-radius: 10px;
 }
@@ -408,7 +406,7 @@ textarea {
     color: #ffb317;
     text-align: center;
     font-weight: 700;
-    /* margin-top: 20px; */
+    margin-top: 10px;
     margin-bottom: 0;
     line-height: 24px;
     font-size: 24px;
