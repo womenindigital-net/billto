@@ -395,7 +395,7 @@ class InvoiceController extends Controller
             $path = public_path() . "/fonts";
             $mpdf = new \Mpdf\Mpdf([
                 'format' => 'A4',
-                'orientation' => 'p',
+                'orientation' => 'P',
                 'fontDir' => array_merge($fontDirs, [$path]),
                 'fontdata' => $fontData + [
                     'solaimanlipi' => [

@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <head>
     <style>
+        @page {
+            margin: 0%;
+        }
+
         .first_section {
             width: 100%;
             display: flex;
@@ -14,7 +18,7 @@
             background: #0370BF;
             padding-top: 30px;
             text-align: center;
-            height: 160px;
+            height: 200px;
             padding-bottom:40px;
         }
         .logo_image{
@@ -150,9 +154,9 @@
 
             <div class="heading_area" style="color: #686868;">
                 <div class="i_title">
-                    <p style=" font-weight: 700; ">{{ __('messages.INVOICE') }} </p>
+                    <p style=" font-weight: 700; margin-right:40px; margin-top:30px;margin-bottom:10px;">{{ __('messages.INVOICE') }} </p>
                 </div>
-                    <table style="width:100%;  margin-right:-40px; ">
+                    <table style="width:100%;  margin-right:-5px; ">
                         <tr>
                             <td style=""></td>
                             <td style="text-align:left; color:#686868; font-size:16px; ">{{ __('messages.INVOICE_no') }}#</td>
@@ -184,7 +188,7 @@
         </section>
         <section class="second_section">
             <div class="table">
-                <div style="margin-left: 10px; margin-right:10px; height:200px;  ">
+                <div style="margin-left: 50px; margin-right:50px; height:250px;  ">
                     <table class="table1" style="width:100%;   border-collapse: collapse;">
                         <thead>
                             <tr>
@@ -224,40 +228,40 @@
                 </div>
             </div>
             <div style="margin-left:300px; margin-top:80px;">
-                <table style="width: 100%;  border-top:2px solid #0370BF ">
+                <table style="width: 100%;  border-top:2px solid #0370BF;margin-right:50px; ">
                     <tr style="text-align: right;">
                         <td></td>
                         <td style="color: #686868; "> {{ __('messages.Subtotal') }} </td>
-                        <td style="color: #686868; text-align:right; padding-right:10px; font-size:16px;">{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }}
+                        <td style="color: #686868; text-align:right; font-size:16px;">{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }}
                         </td>
                     </tr>
                     <tr style="text-align: right">
                         <td></td>
                         <td style="color: #686868; "> {{ __('messages.Sales_Tax') }}  ({{ $tax = $invoiceData->invoice_tax_percent }}%)</td>
-                        <td style="color: #686868;text-align:right; padding-right:10px;font-size:16px;"> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</td>
+                        <td style="color: #686868;text-align:right; font-size:16px;"> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</td>
                     </tr>
                     <tr style="text-align: right">
                         <td></td>
                         <td style="color: #686868; ">{{ __('messages.Discount_Amount') }}  ({{ $tax = $invoiceData->discount_percent }}%)
                         </td>
-                        <td style="color: #686868; text-align:right; padding-right:10px;font-size:16px;"> {{ number_format($invoiceData->discount_amounts, 2) }}</td>
+                        <td style="color: #686868; text-align:right; font-size:16px;"> {{ number_format($invoiceData->discount_amounts, 2) }}</td>
                     </tr>
                     <tr style="text-align: right">
                         <td></td>
                         <td style="color: #686868; "> {{ __('messages.Receive_Advance_Amount') }}  ({{ $invoiceData->currency }})</td>
-                        <td style="color: #686868;text-align:right; padding-right:10px;font-size:16px;"> {{ number_format($invoiceData->receive_advance_amount, 2) }}</td>
+                        <td style="color: #686868;text-align:right; font-size:16px;"> {{ number_format($invoiceData->receive_advance_amount, 2) }}</td>
                     </tr>
                     <tr style="text-align: right">
                         <td></td>
                         <td style="color: #686868;">{{ __('messages.Requesting_Advance_Amount') }} ({{ $invoiceData->requesting_advance_amount_percent }}%)</td>
-                        <td style="color: #686868; text-align:right; padding-right:10px;font-size:16px;">
+                        <td style="color: #686868; text-align:right; font-size:16px;">
                             {{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}
                         </td>
                     </tr>
                     <tr style="text-align: right">
                         <td></td>
-                        <td style="font-size: 18px; color: #686868; padding-left:80px;">{{ __('messages.Total') }} </td>
-                        <td style="font-size: 18px; color: #686868;">
+                        <td style="font-size: 18px; color: #686868;">{{ __('messages.Total') }} </td>
+                        <td style="font-size: 18px; color: #686868; text-align:right; ">
                             {{ $invoiceData->currency }}
                             {{ number_format($invoiceData->final_total - $invoiceData->receive_advance_amount, 2) }}</td>
                     </tr>
@@ -276,7 +280,7 @@
             width: 30%;
             background-color: #0370BF;
             float: left;
-            height: 230px;
+            height: 260px;
             padding-bottom: 30px;
         }
         .third_sectionc {
