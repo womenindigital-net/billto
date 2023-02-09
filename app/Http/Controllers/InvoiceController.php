@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use Mpdf\Mpdf;
 use App\Models\User;
+use ConfigVariables;
 use App\Models\Invoice;
 use App\Models\Product;
 use Carbon\Cli\Invoker;
 use Illuminate\Http\Request;
 use App\Mail\InvoiceSendMail;
+use App\Models\SendMail_info;
 use Illuminate\Support\Carbon;
+use Mpdf\Config\FontVariables;
 use App\Models\InvoiceTemplate;
+
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\ComplateInvoiceCount;
-use App\Models\SendMail_info;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Mpdf\Mpdf;
-
+use Mpdf\Config\ConfigVariables as ConfigConfigVariables;
 
 class InvoiceController extends Controller
 {
@@ -388,9 +391,9 @@ class InvoiceController extends Controller
         Session::forget('last_invoice_id_download');
         if (Auth::user()->plan == 'free') {
 
-            $defaultConfig = (new \Mpdf\config\ConfigVariables())->getDefaults();
+            $defaultConfig = (new ConfigConfigVariables())->getDefaults();
             $fontDirs = $defaultConfig['fontDir'];
-            $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+            $defaultFontConfig = (new FontVariables())->getDefaults();
             $fontData = $defaultFontConfig['fontdata'];
             $path = public_path() . "/fonts";
             $mpdf = new \Mpdf\Mpdf([
@@ -449,9 +452,9 @@ class InvoiceController extends Controller
         $data['template_id'] = "$template_id";
         $data['userInvoiceLogo']  = user::where('id', Auth::user()->id)->get(['invoice_logo', 'terms', 'signature'])->first();
 
-        $defaultConfig = (new \Mpdf\config\ConfigVariables())->getDefaults();
+        $defaultConfig = (new ConfigConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
-        $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+        $defaultFontConfig = (new FontVariables())->getDefaults();
         $fontData = $defaultFontConfig['fontdata'];
         $path = public_path() . "/fonts";
         $mpdf = new \Mpdf\Mpdf([
