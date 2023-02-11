@@ -108,13 +108,13 @@ Route::get('/check',  function () {
     // $sessionId = session_id();
     // dd($sessionId );
 
-    // $join_table_value = DB::table('users')
-    // ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
-    // ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
-    // ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
-    // ->selectRaw( 'payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
-    // ->where('users.id', 1)->get();
-    // dd($join_table_value);
+//     $join_table_value = DB::table('users')
+//    ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+//     ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+//   ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
+//      ->selectRaw( 'payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
+//      ->where('users.id', 1)->get();
+//      dd($join_table_value);
 
 
 });
