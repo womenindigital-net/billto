@@ -195,7 +195,7 @@ return [
 
     // Invoice download and send invoice
 
-    'INVOICE_no'=>'INVOICE NO',
+    'INVOICE_no'=>'Invoice No',
     'Invoice_Date'=>'Invoice Date',
     'P.O.'=>'P.O.',
     'Due_Date'=>'Due Date',

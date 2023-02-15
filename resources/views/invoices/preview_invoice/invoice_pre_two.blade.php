@@ -148,7 +148,7 @@
             </div>
             <div class="col-2"></div>
             <div class="col-6">
-                <h1 class="invoiceText">{{__('messages.INVOICE')}}</h1>
+                <h1 class="invoiceText">{{ __('messages.INVOICE') }}</h1>
                 <div class="invoiceMarginPadding">
                     <style>
                         .table>:not(caption)>*>* {
@@ -158,22 +158,22 @@
                     <table class="table table-borderless mb-5">
                         <thead>
                             <tr>
-                                <th scope="col-2">{{__('messages.Invoice_ID')}} #</th>
+                                <th scope="col-2">{{ __('messages.Invoice_ID') }} #</th>
                                 <td scope="col-2">{{ $data->invoice_id }}</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">{{__('messages.Invoice_Date')}}</th>
+                                <th scope="row">{{ __('messages.Invoice_Date') }}</th>
                                 <td>{{ $data->invoice_date }}</td>
 
                             </tr>
                             <tr>
-                                <th scope="row">{{__('messages.P_O_umber')}} #</th>
+                                <th scope="row">{{ __('messages.P_O_umber') }} #</th>
                                 <td>{{ $data->invoice_po_number }}</td>
                             </tr>
                             <tr>
-                                <th scope="row"> {{__('messages.Due_Date')}}</th>
+                                <th scope="row"> {{ __('messages.Due_Date') }}</th>
                                 <td colspan="2">{{ $data->invoice_dou_date }}</td>
                             </tr>
                         </tbody>
@@ -191,13 +191,16 @@
                 <table class="table tableSection">
                     <thead>
                         <tr>
-                            <th scope="col"> {{__('messages.QTY')}}</th>
-                            <th scope="col">{{__('messages.DESCRIPTION')}}</th>
-                            <th scope="col" class="text-end">{{__('messages.UNIT_PRICE')}}</th>
-                            <th scope="col" class="text-end">{{__('messages.AMOUNT')}}</th>
+                            <th scope="col"> {{ __('messages.QTY') }}</th>
+                            <th scope="col">{{ __('messages.DESCRIPTION') }}</th>
+                            <th scope="col" class="text-end">{{ __('messages.UNIT_PRICE') }}</th>
+                            <th scope="col" class="text-end">{{ __('messages.AMOUNT') }}</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $count = 1;
+                        @endphp
                         @foreach ($productsDatas as $product_detail)
                             <tr>
                                 <th>{{ $product_detail->product_quantity }}</th>
@@ -205,19 +208,18 @@
                                 <td class="text-end">{{ number_format($product_detail->product_rate, 2) }}</td>
                                 <td class="text-end">{{ number_format($product_detail->product_amount, 2) }}</td>
                             </tr>
+                            @php
+                            $last_count = $count++;
+                        @endphp
                         @endforeach
-                        {{-- <tr>
-              <th>1</th>
-              <td>Front and rear brake cable</td>
-              <td class="text-end">1000</td>
-              <td class="text-end">100</td>
-            </tr>
-            <tr>
-              <th>1</th>
-              <td>Front and rear brake cable</td>
-              <td class="text-end">1000</td>
-              <td class="text-end">100</td>
-            </tr> --}}
+                        @for ($x = $last_count; $x <= 5; $x++)
+                            <tr>
+                                <th>&nbsp;</th>
+                                <td> </td>
+                                <td class="text-end"></td>
+                                <td class="text-end"></td>
+                            </tr>
+                        @endfor
                     </tbody>
                 </table>
                 <div class="row">
@@ -230,40 +232,43 @@
                     </div>
                     <div class="col-8">
                         <div class="bordertop"></div>
-                        <table class="table table-borderless tableSection "  >
+                        <table class="table table-borderless tableSection ">
                             <tbody>
                                 <tr>
-                                    <td class="text-end"> {{__('messages.Sub_total')}}</td>
-                                    <td class="text-end" style="">  {{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
+                                    <td class="text-end"> {{ __('messages.Sub_total') }}</td>
+                                    <td class="text-end" style="">
+                                        {{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-end">  {{__('messages.Sales_Tax')}}
+                                    <td class="text-end"> {{ __('messages.Sales_Tax') }}
                                         ({{ number_format($percent = $data->invoice_tax_percent) }} %)</td>
-                                    <td class="text-end">  {{ number_format(($no_vat * $percent) / 100, 2) }}</td>
+                                    <td class="text-end"> {{ number_format(($no_vat * $percent) / 100, 2) }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-end">{{__('messages.Discount_Amount')}}
+                                    <td class="text-end">{{ __('messages.Discount_Amount') }}
                                         ({{ $data->discount_percent }}%)</td>
                                     <td class="text-end">
-                                         {{ number_format($data->discount_amounts,2) }}
+                                        {{ number_format($data->discount_amounts, 2) }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-end">{{__('messages.Receive_Advance_Amount')}}
+                                    <td class="text-end">{{ __('messages.Receive_Advance_Amount') }}
                                         ({{ $data->currency }})</td>
                                     <td class="text-end">
-                                      {{ number_format($data->receive_advance_amount,2) }}
+                                        {{ number_format($data->receive_advance_amount, 2) }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-end">{{__('messages.Requesting_Advance_Amount')}}
+                                    <td class="text-end">{{ __('messages.Requesting_Advance_Amount') }}
                                         ({{ $data->requesting_advance_amount_percent }}%)</td>
-                                    <td class="text-end"> {{ number_format(($data->final_total * $data->requesting_advance_amount_percent) / 100, 2) }}
+                                    <td class="text-end">
+                                        {{ number_format(($data->final_total * $data->requesting_advance_amount_percent) / 100, 2) }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-end fw-bold">{{__('messages.Total')}} </td>
-                                    <td class="text-end fw-bold">{{ $data->currency }} {{ number_format($data->final_total- $data->receive_advance_amount, 2) }}</td>
+                                    <td class="text-end fw-bold">{{ __('messages.Total') }} </td>
+                                    <td class="text-end fw-bold">{{ $data->currency }}
+                                        {{ number_format($data->final_total - $data->receive_advance_amount, 2) }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -281,31 +286,27 @@
         <div class="row">
             <div class="col-4 bgColorYellow2">
                 <div class="">
-                    <h4 class="footerHader">{{__('messages.To_send')}}</h4>
+                    <h4 class="footerHader">{{ __('messages.To_send') }}</h4>
                     <p class="footertext   text-break ps-1">{{ $data->invoice_to }}</p>
                 </div>
             </div>
             <div class="col-8">
-                <h1 class="footerThank">{{__('messages.Thank_You_for_your_business')}}  </h1>
+                <h1 class="footerThank">{{ __('messages.Thank_You_for_your_business') }} </h1>
                 <div class="d-flex">
                     <div>
-                        <h5 class="tramsAndCondition ">{{__('messages.Terms_&_conditions')}}  </h5>
+                        <h5 class="tramsAndCondition ">{{ __('messages.Terms_&_conditions') }} </h5>
                         <p class="payment text-break">{{ $userLogoAndTerms->terms }} <br> {{ $data->invoice_notes }}
                         </p>
                     </div>
                     @if ($userLogoAndTerms->signature != '')
-                    <div class="mx-auto ">
-                        @if($data->invoice_signature=='signature_add')
-                        <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
-                            height="122px" width="122px" style="object-fit:contain;" />
-                        @endif
-                    </div>
+                        <div class="mx-auto ">
+                            @if ($data->invoice_signature == 'signature_add')
+                                <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}"
+                                    alt="" height="122px" width="122px" style="object-fit:contain;" />
+                            @endif
+                        </div>
                     @endif
                 </div>
-                {{-- <div class="mt-4">
-                    <h5 class="tramsAndCondition ">Terms & conditions </h5>
-                    <p class="payment"></p>
-                </div> --}}
             </div>
         </div>
     </section>

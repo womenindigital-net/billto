@@ -11,8 +11,6 @@
     .first_section {
         width: 100%;
         display: flex;
-        box-sizing: border-box;
-
     }
 
     .first_section_right {
@@ -32,7 +30,7 @@
     }
 
     .invoice_form_to {
-        padding: 80px 0px 0px 50px;
+        padding: 20px 0px 0px 50px;
 
     }
 
@@ -45,15 +43,15 @@
     }
 
     .empty_div {
-        width: 25%;
+        width: 30%;
         float: left;
-
+        padding: 0px 0px 0px 50px;
     }
 
     .invoice_date_details {
         width: 31.5%;
         float: right;
-        margin-top: -100px;
+
         padding-right: 35px;
 
     }
@@ -142,7 +140,8 @@
         padding-left: 56px;
         height: 170px;
         color: #686868;
-        margin-top:50px;
+        padding-top:70px;
+
 
     }
 
@@ -162,29 +161,24 @@
 <body>
 
     <div class="invoice_body " style="background: url('assets/vector-invoice/vactor7.png') no-repeat scroll;">
-        <section class="first_section">
+        <section class="first_section" style="">
             <div class="first_section_left">
                 <div class="invoice_form_to">
                     <p style="color:#686868;text-weight:bold;">{{ $invoiceData->invoice_form }} </p>
-                    <h5 style="font-size: 18px; color:#686868; text-weight:bold; padding:0px; margin:0px; ">
-                        {{ __('messages.To_send') }}
 
-                    </h5>
-                    <p style="border-bottom:2px solid #A950A0; padding:0px; margin:0px; width:70%;"></p>
-                    <p style="color:#686868;text-weight:bold;">{{ $invoiceData->invoice_to }}</p>
                 </div>
             </div>
             <div class="first_section_right">
                 <div class="logo_five_invoice" style="padding-top:10px;">
                     @if ($invoiceData->invoice_logo != '')
-                        <img style="width:100px; height:100px; object-fit: contain;"
+                        <img style="width:80px; height:80px; object-fit: contain;"
                             src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}"
                             alt="img">
                     @endif
                 </div>
                 <div class="five_invoice_text">
                     <div class="invoice_text_title">
-                        <h1 style="padding:10px -40px; margin:0px; font-weight: bold; font-size:45px;">
+                        <h1 style="padding:1px -40px; margin:0px; font-weight: bold; font-size:45px;">
                             {{ __('messages.INVOICE') }}</h1>
                     </div>
                 </div>
@@ -193,17 +187,22 @@
         </section>
         <section class="second_section">
             <div class="empty_div">
-                &nbsp;
+                <h5 style="font-size: 18px; color:#686868; text-weight:bold; padding:0px; margin:0px; ">
+                    {{ __('messages.To_send') }}
+
+                </h5>
+                <p style="border-bottom:2px solid #A950A0; padding:0px; margin:0px; width:70%;"></p>
+                <p style="color:#686868;text-weight:bold;">{{ $invoiceData->invoice_to }}</p>
             </div>
             <div class="invoice_date_details">
-                <table style="">
+                <table style="width:100%; margin-right:10px;">
                     <tr>
                         <td
-                            style="text-align:left; color:#FFFFFF; font-size:16px; padding-top:7px; padding-bottom:7px; ">
+                            style="text-align:left; color:#FFFFFF; font-size:16px; padding-top:7px; padding-bottom:7px; width:50%; ">
                             {{ __('messages.INVOICE_no') }}#
                         </td>
                         <td
-                            style="text-align: right; font-size:16px; color:#FFFFFF; padding-top:7px; padding-bottom:7px;">
+                            style="text-align: right; font-size:16px; color:#FFFFFF; padding-top:7px; padding-bottom:7px; width:50%;">
                             {{ $invoiceData->invoice_id }}
                         </td>
                     </tr>

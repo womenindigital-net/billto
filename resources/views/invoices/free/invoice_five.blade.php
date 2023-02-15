@@ -44,6 +44,7 @@
         width: 100%;
         display: flex;
         box-sizing: border-box;
+        height: 190px;
 
     }
 
@@ -56,7 +57,6 @@
     .invoice_form_to {
         width: 30%;
         float: left;
-
     }
 
     .invoice_date_details {
@@ -195,23 +195,23 @@
                 <p style="color:#686868;text-weight:bold;">{{ $invoiceData->invoice_to }}</p>
             </div>
             <div class="invoice_date_details">
-                <table style="margin-top: 10px; margin-right:47px;">
+                <table style="margin-right:47px; width:100%;">
                     <tr>
                         <td
-                            style="text-align:left; color:#686868; font-size:16px; padding-top:10px; padding-bottom:10px; ">
+                            style="text-align:left;  width:45%; color:#686868; font-size:16px; padding-top:10px; padding-bottom:10px; ">
                             {{ __('messages.INVOICE_no') }}#
                         </td>
                         <td
-                            style="text-align: right; font-size:16px; color:#686868; padding-top:10px; padding-bottom:10px;">
+                            style="text-align: right; width:55%;   font-size:16px; color:#686868; padding-top:10px; padding-bottom:10px;">
                             {{ $invoiceData->invoice_id }}
                         </td>
                     </tr>
                     <tr>
                         <td
-                            style="text-align:left; color:#686868; font-size:16px; padding-top:10px; padding-bottom:10px;">
+                            style="text-align:left; color:#686868;  font-size:16px; padding-top:10px; padding-bottom:10px;">
                             {{ __('messages.Invoice_Date') }}</td>
                         <td
-                            style="text-align: right; color:#686868; font-size:16px; padding-top:10px; padding-bottom:10px;">
+                            style="text-align: right; color:#686868;  font-size:16px; padding-top:10px; padding-bottom:10px;">
                             {{ $invoiceData->invoice_date }}
                         </td>
 
@@ -219,16 +219,16 @@
                     <tr>
 
                         <td
-                            style=" text-align: left;  color:#686868; font-size:16px; padding-top:10px; padding-bottom:10px;">
+                            style=" text-align: left;  color:#686868;   font-size:16px;padding-top:10px; padding-bottom:10px;">
                             {{ __('messages.P.O.') }}#</td>
-                        <td style="text-align: right; color:#686868; font-size:16px;  width: 30%">
+                        <td style="text-align: right; color:#686868;  font-size:16px; width: 30%">
                             {{ $invoiceData->invoice_po_number }}</td>
 
                     </tr>
                     <tr>
-                        <td style="text-align: left;  color:#686868; font-size:16px; width: 25%">
+                        <td style="text-align: left;  color:#686868;  font-size:16px; width: 25%">
                             {{ __('messages.Due_Date') }}</td>
-                        <td style="text-align: right; color:#686868; font-size:16px; width: 30%">
+                        <td style="text-align: right; color:#686868;  font-size:16px; width: 30%">
                             {{ $invoiceData->invoice_dou_date }}
 
                 </table>
@@ -300,7 +300,7 @@
                 </table>
 
                 <div class="subtotal_section ">
-                    <p style="border-bottom:1px solid #A950A0; padding:0; margin:0px;"> &nbsp;</p>
+                    <p style="border-bottom:1px solid #A950A0; padding:0; margin:0px; margin-top:30px;"> &nbsp;</p>
                     <div style=" width:100%; display:flex;">
                         <div class="col_60">
                             <p>{{ __('messages.Subtotal') }}</p>
@@ -322,9 +322,9 @@
                 </div>
 
             </div>
-            <div class="total_amount_title_total_amount_amount">
+            <div class="total_amount_title_total_amount_amount " style="margin-left:30px;">
                 <div class="total_amount_title">
-                    <h5 style="font-size:16px;   padding:5px 20px 5px 0px; margin:0px; background:#A950A0; ">
+                    <h5 style="font-size:16px; padding:5px 20px 5px 0px; margin:0px; background:#A950A0; ">
                         {{ __('messages.Total') }}</h5>
                 </div>
                 <div class="total_amount_amount">

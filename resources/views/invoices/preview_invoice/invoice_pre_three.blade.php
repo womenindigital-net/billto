@@ -112,11 +112,11 @@
                 <div class="">
                     <h4 class="HeaderText text-break"> {{ $data->invoice_form }}</h4>
                     <p class="HeaderTextP">
-                        {{-- {{ $data->invoice_form }} --}}
+
                     </p>
                 </div>
                 <div class="mt-5">
-                    <h4 class="to">TO</h4>
+                    <h4 class="to">{{ __('messages.To_send') }}</h4>
                     <p class="Neals text-break">{{ $data->invoice_to }}</p>
                 </div>
                 {{-- <div class="mt-4">
@@ -138,7 +138,7 @@
 
                 </div>
                 <div class="text-end me-5 mt-2 pe-2">
-                    <h1 class="invoiceColor">INVOICE</h1>
+                    <h1 class="invoiceColor">{{ __('messages.INVOICE') }}</h1>
                 </div>
                 <div class="d-flex justify-content-end me-5 ">
                     <div class="pe-2">
@@ -153,22 +153,22 @@
                         <table class="table table-borderless ">
                             <thead>
                                 <tr>
-                                    <th scope="col-2" class="">Incoice #</th>
+                                    <th scope="col-2" class="">{{ __('messages.Invoice_ID') }} #</th>
                                     <td scope="col-2" class="text-end pe-0">{{ $data->invoice_id }}</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row" class="">Invoice date</th>
+                                    <th scope="row" class="">{{ __('messages.Invoice_Date') }}</th>
                                     <td class="text-end pe-0">{{ $data->invoice_date }}</td>
 
                                 </tr>
                                 <tr>
-                                    <th scope="row" class="">P.O.#</th>
+                                    <th scope="row" class="">{{ __('messages.P_O_umber') }} #</th>
                                     <td class="text-end pe-0">{{ $data->invoice_po_number }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row" class="">Due date</th>
+                                    <th scope="row" class="">{{ __('messages.Due_Date') }}</th>
                                     <td colspan="2" class="text-end pe-0">{{ $data->invoice_dou_date }}</td>
                                 </tr>
                             </tbody>
@@ -186,13 +186,16 @@
                     <table class="table table-bordered tableTextColor mb-0 pb-0 borderColor">
                         <thead>
                             <tr class="tablaHeaderColor ms-3">
-                                <th scope="col">QTY</th>
-                                <th scope="col">DESCRIPTION</th>
-                                <th scope="col">UNIT PRICE</th>
-                                <th scope="col" class="text-end">AMOUNT</th>
+                                <th scope="col"> {{ __('messages.QTY') }}</th>
+                                <th scope="col">{{ __('messages.DESCRIPTION') }}</th>
+                                <th scope="col" class="text-end">{{ __('messages.UNIT_PRICE') }}</th>
+                                <th scope="col" class="text-end">{{ __('messages.AMOUNT') }}</th>
                             </tr>
                         </thead>
                         <tbody class="tableRowBgColor">
+                            @php
+                            $count = 1;
+                        @endphp
                             @foreach ($productsDatas as $product_detail)
                                 <tr>
                                     <th scope="row">{{ $product_detail->product_quantity }}</th>
@@ -200,7 +203,18 @@
                                     <td>{{ number_format($product_detail->product_rate, 2) }}</td>
                                     <td class="text-end">{{ number_format($product_detail->product_amount, 2) }}</td>
                                 </tr>
-                            @endforeach
+                                @php
+                                $last_count = $count++;
+                            @endphp
+                        @endforeach
+                        @for ($x = $last_count; $x <= 5; $x++)
+                        <tr>
+                            <th>&nbsp;</th>
+                            <td> </td>
+                            <td class="text-end"></td>
+                            <td class="text-end"></td>
+                        </tr>
+                    @endfor
                         </tbody>
                     </table>
                     <div class="row mt-0">
@@ -210,36 +224,36 @@
                                 <table class="table table-borderless tableSection ">
                                     <tbody>
                                         <tr>
-                                            <td style="background-color: #039dbf;color:#ffffff" class="text-end">Sub total </td>
+                                            <td style="background-color: #039dbf;color:#ffffff" class="text-end">{{ __('messages.Sub_total') }}</td>
                                             <td style="background-color:#F2F2F2 " class="text-end" style="">  {{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</td>
                                         </tr>
                                         <tr>
-                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> Sales Tax
+                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> {{ __('messages.Sales_Tax') }}
                                                 ({{ number_format($percent = $data->invoice_tax_percent) }} %)</td>
                                             <td  style="background-color:#F2F2F2 "  class="text-end">  {{ number_format(($no_vat * $percent) / 100, 2) }}</td>
                                         </tr>
                                         <tr>
-                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> Discount Amount
+                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> {{ __('messages.Discount_Amount') }}
                                                 ({{ $data->discount_percent }}%)</td>
                                             <td  style="background-color:#F2F2F2 " class="text-end">
                                                  {{ number_format($data->discount_amounts,2) }}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td  style="background-color: #039dbf;color:#ffffff"  class="text-end"> Receive Advance Amount
+                                            <td  style="background-color: #039dbf;color:#ffffff"  class="text-end"> {{ __('messages.Receive_Advance_Amount') }}
                                                 ({{ $data->currency }})</td>
                                             <td  style="background-color:#F2F2F2 " class="text-end">
                                               {{ number_format($data->receive_advance_amount,2) }}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> Requesting Advance Amount
+                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end"> {{ __('messages.Requesting_Advance_Amount') }}
                                                 ({{ $data->requesting_advance_amount_percent }}%)</td>
                                             <td  style="background-color:#F2F2F2 " class="text-end"> {{ number_format(($data->final_total * $data->requesting_advance_amount_percent) / 100, 2) }}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end fw-bold">Total</td>
+                                            <td style="background-color: #039dbf;color:#ffffff"  class="text-end fw-bold">{{ __('messages.Total') }}</td>
                                             <td  style="background-color:#F2F2F2 " class="text-end fw-bold">{{ $data->currency }} {{ number_format($data->final_total- $data->receive_advance_amount, 2) }}</td>
                                         </tr>
                                     </tbody>
@@ -254,16 +268,16 @@
     <section>
         <div class="row">
             <div class="col-1"></div>
-            <div class="col-6 ">
+            <div class="col-7 ">
                 <div class="">
                     <h1
                         style="color: #686868; font-size: 22px; line-height: 36px; font-weight: 400; padding-left: 68px; margin-top: 50px;">
-                        Thank You for your business</h1>
+                        {{ __('messages.Thank_You_for_your_business') }} </h1>
                 </div>
                 <div class="mt-5">
                     <h3
                         style="padding-left: 65px; font-size: 16px; font-weight: 700; line-height: 17px; color: #039dbf;">
-                        TERMS & CONDITIONS</h3>
+                        {{ __('messages.Terms_&_conditions') }}</h3>
                     <P class="mb-3 text-break"
                         style="padding-left: 65px; font-size: 14px; font-weight: 400; line-height: 14px; color: #686868;">
                         {{ $userLogoAndTerms->terms }}</P>
@@ -273,7 +287,7 @@
                 </div>
             </div>
 
-            <div class="col-5  d-flex justify-content-center align-items-center">
+            <div class="col-4  d-flex justify-content-center align-items-center">
                 @if ($userLogoAndTerms->signature != '')
                     <div class="mx-auto ">
                         <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
