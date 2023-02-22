@@ -14,7 +14,7 @@
 
 
     .text-color {
-        color: #202D58;
+        color: #0072BC;
     }
 
     .text-gray {
@@ -32,7 +32,7 @@
             <div class="row " style="display:flex; width:100%;">
                 <div class="col-5 border" style="width:40%; float: left;">
                     <div class="mt-4 ps-5 border" style="padding-left:30px;  padding-top:20px;">
-                        <h1 style="color: #FCB21C; font-size:50px; padding:0; margin:0;">{{ __('messages.INVOICE') }}
+                        <h1 style="color: #0072BC; font-size:50px; padding:0; margin:0;">{{ __('messages.INVOICE') }}
                         </h1>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                     <div class="w-75 ps-5 "style="width: 70%; padding-left:25px;">
                         <p class="text-color p-0 m-0 text-gray" style="font-size:16px; ">
                             {{ $invoiceData->invoice_form }}</p>
-                        <h5 class="p-0 m-0 fs-4 text-gray mt-3" style="font-size:20px;  padding:0; margin:0px;">
+                        <h5 class="p-0 m-0 fs-4  mt-3" style="font-size:20px; color:#0072BC; padding:0; margin:0px;">
                             {{ __('messages.To_send') }}</h5>
                         <p class="p-0 m-0 text-gray" style="font-size:16px;  padding:0; margin:0px;">
                             {{ $invoiceData->invoice_to }}
@@ -100,7 +100,7 @@
             <div class="row" style="width: 100%; display:flex;">
                 <div class="col-12 ps-5 " style="margin-left:30px;margin-right:30px; ">
                     <table class="table ps-5 p-0 m-0"
-                        style="width: 100%; border-top:1px solid #202D58; border-bottom:1px solid #202D58;">
+                        style="width: 100%; border-top:1px solid #0072BC; border-bottom:1px solid #0072BC;">
                         <tr style="border-collapse: collapse; ">
                             <th class="text-color " style="padding:8px; text-transform:uppercase; width:10%; text-align:left; padding-left:20px; ">{{ __('messages.qty') }}</th>
                             <th class="text-start pe-5 text-color " style=" text-transform:uppercase; width:46%;   text-align:left">
@@ -154,7 +154,7 @@
                                 ({{ $invoiceData->currency }})</p>
                             <p class="text-end border-0 p-1 m-0">{{ __('messages.Requesting_Advance_Amount') }}
                                 ({{ $invoiceData->requesting_advance_amount_percent }}%) </p>
-                            <p class="" style="color:#202D58;font-size:20px; padding:0; margin:0px; ">
+                            <p class="" style="color:#0072BC;font-size:20px; padding:0; margin:0px; ">
                                 {{ __('messages.Total') }}
                             </p>
                         </div>
@@ -172,7 +172,7 @@
                             <p class="text-end pt-1 pb-1 m-0">
                                 {{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}
                             </p>
-                            <p style="color:#202D58; font-size:20px; padding:0; margin:0px; ">
+                            <p style="color:#0072BC; font-size:20px; padding:0; margin:0px; ">
                                 {{ $invoiceData->currency }}   {{ number_format($invoiceData->final_total - $invoiceData->receive_advance_amount, 2) }}
                             </p>
                         </div>
@@ -183,7 +183,7 @@
         </section>
         <!-- four section end-->
         <!-- five section start-->
-        <div class="row" style="display:flex; width:100%;">
+        <div class="row" style="display:flex; width:90%;">
             <div  style="margin-top: 60px; padding-right: 30px;display:flex; width:100%; text-align:right">
 
                 @if ($userInvoiceLogo->signature != '')
@@ -193,14 +193,14 @@
 
             </div>
 
-            <div style="width:40%; float:left; margin-top:12%;">
-                <h3 style="color:#202D58; font-size:18.99px;   padding-left:30px;  padding-top:70px;">{{ __('messages.Thank_You_for_your_business') }}</h3>
+            <div style="width:40%; float:left; margin-top:0%;">
+                <h3 style="color:#0072BC; font-size:18.99px;   padding-left:30px;  padding-top:70px;">{{ __('messages.Thank_You_for_your_business') }}</h3>
             </div>
-            <div style=" width:48%; float:right; padding-left:10px; padding-right:35px; border-left:2px solid #202D58;">
-                <p style="color: #FCB21C; font-size:18px; text-transform:uppercase; padding:0; margin:0px;">
+            <div style=" width:48%; float:right; padding-left:10px;  margin-top:70px; padding-right:35px; border-left:2px solid #0072BC;">
+                <p style="color: #0072BC; font-size:18px; text-transform:uppercase; padding:0; margin:0px;">
                     {{ __('messages.Terms_&_conditions') }} </p>
-                <span style="color: #202D58; font-size: 14px;  padding:0; margin:0px;">{{ $userInvoiceLogo->terms }}</span>
-                <p style="color: #202D58; font-size: 14px;  padding:0; margin:0px;"> {{ $invoiceData->invoice_notes }}</p>
+                <span style="color: #686868; font-size: 14px;  padding:0; margin:0px;">{{ $userInvoiceLogo->terms }}</span>
+                <p style="color: #686868; font-size: 14px;  padding:0; margin:0px;"> {{ $invoiceData->invoice_notes }}</p>
             </div>
         </div>
     </div>

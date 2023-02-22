@@ -169,14 +169,14 @@ class InvoiceController extends Controller
     {
         $validated = $request->validate([
             'currency' => 'required|max:30',
-            'invoice_form' => 'required|max:255',
-            'invoice_to' => 'required|max:255',
+            'invoice_form' => 'required|max:90',
+            'invoice_to' => 'required|max:90',
             'invoice_id' => 'required',
             'invoice_date' => 'required|date',
             'invoice_payment_term' => 'max:30',
             'invoice_po_number' => 'max:30',
-            'invoice_notes' => 'max:255',
-            'invoice_terms' => 'max:255',
+            'invoice_notes' => 'max:100',
+            'invoice_terms' => 'max:100',
             'invoice_logo' => 'max:1024',
         ]);
 

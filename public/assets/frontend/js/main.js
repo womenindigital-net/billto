@@ -241,6 +241,13 @@ $("#invoiceForm").submit(function (e) {
                 $('#invoice_amu_paid').addClass("is-valid");
             }
 
+            if (error.responseJSON.errors.invoice_terms != null) {
+                $('#invoice_terms').addClass("is-invalid");
+                $('#invoice_terms_error').text(error.responseJSON.errors.invoice_terms);
+            } else {
+                $('#invoice_terms').removeClass("is-invalid");
+                $('#invoice_terms').addClass("is-valid");
+            }
 
         }
     });

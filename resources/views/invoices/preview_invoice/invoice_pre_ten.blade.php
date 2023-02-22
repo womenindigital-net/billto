@@ -17,7 +17,7 @@
     </style>
     <!-- background-size: 300px 1140px; -->
 
-    <div class="page  " style=" background-image:  url('{{ asset('assets/vector-invoice/vactor8.png') }}'); background-repeat: no-repeat;">
+    <div class="page  " style=" background-image:  url('{{ asset('assets/vector-invoice/vector10.png') }}'); background-repeat: no-repeat;">
         <div class="custom_border_lr">
         <!-- first section -->
         <section class=" first_section">
@@ -38,7 +38,7 @@
                 <div class="col-7 ">
                     <div class="w-50 ps-5 text-color">
                         <h5 class="p-0 m-0 fs-4">{{ __('messages.To_send') }}</h5>
-                        <p style="border-bottom:2px solid #686868; padding:0px; margin:0px; width:70%;"></p>
+                        <p style="border-bottom:2px solid #ED1C24; padding:0px; margin:0px; width:70%;"></p>
                         <p class="p-0 m-0 text-color">
                             {{ $data->invoice_to }}
                         </p>
@@ -74,8 +74,8 @@
                 <div class="col-12 ps-5 ">
                     <table class="table ps-5 p-0 m-0 text-color ">
                         <tr >
-                            <th scope="col" class="text-end pe-5 text-white border font-size"  style="width:15%; background-color: #414141; font-size:16px;">{{ __('messages.QTY') }}</th>
-                            <th scope="col" class="text-start pe-5 text-white border font-size" style="width:46.2%;background-color: #414141; font-size:16px;"> {{ __('messages.DESCRIPTION') }}</th>
+                            <th scope="col" class="text-end pe-5 text-white border font-size"  style="width:15%; background-color: #ED1C24; font-size:16px;">{{ __('messages.QTY') }}</th>
+                            <th scope="col" class="text-start pe-5 text-white border font-size" style="width:46.2%;background-color: #ED1C24; font-size:16px;"> {{ __('messages.DESCRIPTION') }}</th>
                             <th scope="col" class="text-end pe-5 text-color "style="width:18%;background-color: #fff; font-size:14px;">{{ __('messages.UNIT_PRICE') }}</th>
                             <th scope="col" class="text-end pe-5 text-color  "style="width:24%; background-color: #fff; font-size:14px;">{{ __('messages.AMOUNT') }}</th>
                         </tr>
