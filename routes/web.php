@@ -31,6 +31,7 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 
 // Web site Normal pages
 Route::get('/', [PagesController::class, 'index'])->name('home');
+Route::post('/load-data', [PagesController::class, 'loadData'])->name('load-more-data');
 Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::post('/create/bill', [PagesController::class, 'createbill'])->name('create.boll');
 
@@ -52,7 +53,7 @@ Route::post('/product/store', [ProductController::class, 'store'])->name('store.
 Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
 Route::PUT('/products/update', [ProductController::class, 'update']);
 Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
-
+Route::post('/loadmore',[InvoiceController::class, 'loadmore']);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 

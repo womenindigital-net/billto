@@ -24,6 +24,7 @@ return [
     // /third section
     'Choose_Your_Invoice_Template'=>'আপনার চালানপত্রের ডিজাইন পছন্দ করুন',
     'Start_creating_your_professional_bill'=>'পেশাদার বিল তৈরি করা শুরু করুন',
+    'more_template'=>'আরও টেমপ্লেট',
 
     //   four section
     'There’s_a_BillTO_for_every_business'=>'প্রতিটি ব্যবসার জন্য একটি BillTO',

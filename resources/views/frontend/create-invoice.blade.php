@@ -754,73 +754,27 @@
 
     <section class="invoice_template">
         <div>
-            <div class="container">
+            <div class="container" >
                 <div class="text-center  my-5">
                     <h2 class="h2_title"> {{ __('messages.Choose_Your_Invoice_Template') }}</h2>
                     <p class="fs-sm fw-bolder">{{ __('messages.Start_creating_your_professional_bill') }}</p>
                 </div>
                 @if (!$template_id == '')
-                    <div class="row text-center ">
-                        @foreach ($invoice_template as $invoice_temp)
-                            @php
-                                $join_table_valu = DB::table('subscription_package_templates')
-                                    ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
-                                    ->where('subscription_package_templates.template', $invoice_temp->id)
-                                    ->get();
-                                $join_table_value = $join_table_valu->unique('subscription_packages.id');
-                            @endphp
-                            @foreach ($join_table_value as $join_table_values)
-                                <label class="custom-radio col-sm-6 col-md-4 col-lg-3  ">
-                                    <div class="card shadow border-0">
-                                        <span class="pakages_name">
-                                            {{ $join_table_values->packageName }}
-                                        </span>
-                                        <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"
-                                            @if ($template_id == $invoice_temp->id) checked @else @endif />
-                                        <span class="radio-btn"> <i class="bi bi-check-lg"></i>
-                                            <div class="hobbies-icon tempResponsive">
-                                                <img src=" {{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
-                                                    alt="">
-                                            </div>
-                                        </span>
-                                    </div>
-                                </label>
-                            @endforeach
-                        @endforeach
+                    <div class="row text-center mb-4" id="load_data_select">
+
                     </div>
                 @else
-                    <div class="row text-center mb-5 ">
-                        @foreach ($invoice_template as $invoice_temp)
-                            @php
-                                $join_table_valu = DB::table('subscription_package_templates')
-                                    ->join('subscription_packages', 'subscription_package_templates.subscriptionPackageId', '=', 'subscription_packages.id')
-                                    ->where('subscription_package_templates.template', $invoice_temp->id)
-                                    ->get();
-                                $join_table_value = $join_table_valu->unique('subscription_packages.id');
-                            @endphp
-                            @foreach ($join_table_value as $join_table_values)
-                                <label class="custom-radio  col-sm-6 col-md-4 col-lg-3 mb-3 ">
-                                    <div class=" card shadow border-0">
-                                        <span class="pakages_name">
-                                            @if (Config::get('languages')[App::getLocale()]['flag-icon'] == 'bd')
-                                                {{ $join_table_values->packageNamebn }}
-                                            @else
-                                                {{ $join_table_values->packageName }}
-                                            @endif
-                                        </span>
-                                        <input type="radio" name="template_name" value="{{ $invoice_temp->id }}"
-                                            @if ($template_id_check->id == $invoice_temp->id) checked @else @endif />
-                                        <span class="radio-btn"> <i class="bi bi-check-lg"></i>
-                                            <div class="hobbies-icon tempResponsive">
-                                                <img src=" {{ asset('uploads/template/' . $invoice_temp->templateImage) }}"
-                                                    alt="">
-                                            </div>
-                                        </span>
-                                    </div>
-                                </label>
-                            @endforeach
-                        @endforeach
+                    <div class="row text-center mb-4 " id="load_data">
+
                     </div>
+                @endif
+
+            </div>
+
+            <div id="load_data_message" class="mb-3 " style="width: 100%">
+                <div style='padding:1px;margin-top: 10px; text-align:center;'>
+                    <img src="{{ asset('assets/frontend/img/loadding.gif') }}" alt="" style="width:2%; ">
+                </div>
             </div>
         </div>
     </section>
@@ -853,7 +807,8 @@
                         <div class="mb-3">
                             <label for="email_subject" class="form-label">{{ __('messages.Subject') }}</label>
                             <input type="text" class="form-control" id="email_subject" name="email_subject"
-                                id="Input2" value="{{ __('messages.placeholder_subject_A_Invoice_by_Billto.io') }}" required>
+                                id="Input2" value="{{ __('messages.placeholder_subject_A_Invoice_by_Billto.io') }}"
+                                required>
                         </div>
                         <div class="mb-3">
                             <label for="email_body" class="form-label">{{ __('messages.Body') }} </label>
@@ -871,7 +826,6 @@
                         </div>
                     </div>
 
-                    @endif
                 </div>
             </div>
         </div>
@@ -885,6 +839,63 @@
     @endif
 @endsection
 @push('frontend_js')
+    <script>
+        $(document).ready(function() {
+
+            var limit = 1;
+            var start = 0;
+            var action = 'inactive';
+            var template_id = "{{ $template_id }}";
+            function loadData(limit, start) {
+
+                $.ajax({
+                    url: "/loadmore",
+                    method: "POST",
+                    data: {
+                        limit: limit,
+                        start: start,
+                        template_id: template_id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    cache: false,
+                    success: function(data) {
+                        $('#load_data').append(data.data);
+                        $('#load_data_select').append(data.get_data_select);
+
+                        if (data.data == '' || data.get_data_select == '') {
+                            $('#load_data_message').hide();
+                            action = 'active';
+                        } else {
+                            $('#load_data_message').show();
+                            action = "inactive";
+                        }
+
+                    }
+                });
+            }
+            if (action == 'inactive') {
+                action = 'active';
+                loadData(limit, start);
+            }
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() + $(window).height() > $("#load_data,#load_data_select").height() && action ==
+                    'inactive') {
+                    action = 'active';
+                    start = start + limit;
+                    setTimeout(function() {
+                        loadData(limit, start);
+                    }, 500);
+                }
+            });
+        });
+    </script>
+
+
+
+
     <script>
         $(document).on("click", "#send_email_id", function(e) {
             e.preventDefault();
@@ -902,9 +913,9 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        // A $( document ).ready() block.
         $(document).ready(function() {
             allData();
         });
     </script>
+    {{-- load more data template  --}}
 @endpush

@@ -918,3 +918,24 @@ $('#imageUpload').on('change', function() {
      }
    // alert('This file size is: ' + file );
  });
+// invoice tamplate more data load function home page
+var token = $('input[name="_token"]').val();
+load_more('', token);
+function load_more(id = '', token) {
+    $.ajax({
+        url: '/load-data',
+        method: "POST",
+        data: { id: id, _token: token },
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function (data) {
+            $('.load-more-template').addClass("d-none");
+            $('.invoice_template_margin').append(data);
+        }
+    })
+}
+$('body').on('click', '#loadMoreBotton', function () {
+    var id = $(this).data('id');
+    $('#loadMoreBotton').html('loading...');
+    load_more(id);
+});
+// invoice tamplate more data load function

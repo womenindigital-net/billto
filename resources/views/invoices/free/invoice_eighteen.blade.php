@@ -193,10 +193,10 @@
 
             </div>
 
-            <div style="width:40%; float:left; margin-top:0%;">
+            <div style="width:45%; float:left; margin-top:0%;">
                 <h3 style="color:#0072BC; font-size:18.99px;   padding-left:30px;  padding-top:70px;">{{ __('messages.Thank_You_for_your_business') }}</h3>
             </div>
-            <div style=" width:48%; float:right; padding-left:10px;  margin-top:70px; padding-right:35px; border-left:2px solid #0072BC;">
+            <div style=" width:53%; float:right; padding-left:10px;  margin-top:70px; border-left:2px solid #0072BC;">
                 <p style="color: #0072BC; font-size:18px; text-transform:uppercase; padding:0; margin:0px;">
                     {{ __('messages.Terms_&_conditions') }} </p>
                 <span style="color: #686868; font-size: 14px;  padding:0; margin:0px;">{{ $userInvoiceLogo->terms }}</span>

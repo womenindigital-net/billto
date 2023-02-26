@@ -7,14 +7,11 @@ use App\Models\User;
 use ConfigVariables;
 use App\Models\Invoice;
 use App\Models\Product;
-use Carbon\Cli\Invoker;
 use Illuminate\Http\Request;
-use App\Mail\InvoiceSendMail;
 use App\Models\SendMail_info;
 use Illuminate\Support\Carbon;
 use Mpdf\Config\FontVariables;
 use App\Models\InvoiceTemplate;
-
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\ComplateInvoiceCount;
@@ -22,7 +19,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 use Mpdf\Config\ConfigVariables as ConfigConfigVariables;
 
 class InvoiceController extends Controller
@@ -32,6 +28,7 @@ class InvoiceController extends Controller
         session_start();
     }
 
+    public   $template_id;
     /**
      * Display a listing of the resource.
      *
@@ -113,9 +110,21 @@ class InvoiceController extends Controller
         }
     }
 
+
+    public function loadmore(Request $request)
+    {
+        $template_id_check = InvoiceTemplate::get()->first();
+        $template_id = $request->template_id;
+        $invoice_template = DB::table('invoice_templates')->limit($request['limit'])->offset($request['start'])->get();
+        $get_data = view('frontend.craet_page_load_data', compact('invoice_template', 'template_id_check'))->render();
+        $get_data_select = view('frontend.craete_data_select_tmp', compact('invoice_template', 'template_id'))->render();
+        return response()->json(['data' => $get_data, 'get_data_select' => $get_data_select]);
+    }
+
     public function index_home($id)
     {
         $template_id = $id;
+
         $user = Auth::user()->id;
 
         $join_table_template = DB::table('users')
@@ -124,16 +133,12 @@ class InvoiceController extends Controller
             ->join('subscription_package_templates', 'payment_getways.subscription_package_id', '=', 'subscription_package_templates.subscriptionPackageId')
             ->where('users.id',  $user)->get();
 
-        // Invoice::where('user_id', $user)->where('invoice_status', 'incomlete')->delete();
-
-        $lastInvoice = Invoice::where('user_id', $user)
-            ->orderBy('created_at', 'desc')
+        $lastInvoice = Invoice::where('user_id', $user)->orderBy('created_at', 'desc')
             ->get([
                 'invoice_form',
                 'invoice_to',
                 'id',
-            ])
-            ->first();
+            ])->first();
 
         $invoice_template = InvoiceTemplate::get();
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
@@ -149,11 +154,6 @@ class InvoiceController extends Controller
         return view('frontend.create-invoice')->with(compact('lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function complete($id)
     {
         dd($id);
@@ -190,9 +190,6 @@ class InvoiceController extends Controller
             ->join('subscription_package_templates', 'payment_getways.subscription_package_id', '=', 'subscription_package_templates.subscriptionPackageId')
             ->selectRaw('users.*, payment_getways.*, subscription_packages.*,subscription_package_templates.*, payment_getways.created_at as payment_created_at')
             ->where('users.id',  $user_id)->get();
-
-        // dd($join_table_value);
-
         $data = "";
         foreach ($join_table_value as $join_table) {
             $truvalue = $join_table->template === $template_id_check;
@@ -219,16 +216,12 @@ class InvoiceController extends Controller
                 ComplateInvoiceCount::where('user_id', $user_id)->where('count_invoice_id', $request->id)->increment('current_invoice_total');
             }
 
-
-
             if ($request->id != null) {
                 // Tax Calculation Formula Start
                 $taxPercentage = $request->invoice_tax;
                 $products = Invoice::find($request->id)->products->pluck('product_amount')->sum();
                 $tax = ($taxPercentage * $products) / 100;
                 $total = $tax + $products;
-
-
                 // invocie Logo name Strat
                 $id = $request->id;
                 $filename = null;
@@ -262,14 +255,10 @@ class InvoiceController extends Controller
                             ]);
                     }
                 }
-
-
                 if ($request->invoice_terms != null) {
-
-                    User::where('id', Auth::user()->id)
-                        ->update([
-                            'terms' => $request->invoice_terms,
-                        ]);
+                    User::where('id', Auth::user()->id)->update([
+                        'terms' => $request->invoice_terms,
+                    ]);
                 }
 
 
@@ -309,10 +298,7 @@ class InvoiceController extends Controller
                     'subtotal_no_vat' => round($request->subtotal_no_vat, 2),
                     'template_name' => $request->template_name,
                     'invoice_signature' => $request->invoice_signature,
-
                 );
-
-                // Session::forget('session_invoice_id');
                 $invoice =  Invoice::updateOrCreate(['id' => $id], $data);
                 return response()->json([$invoice->id]);
             }

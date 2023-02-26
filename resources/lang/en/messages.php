@@ -24,7 +24,7 @@ return [
     // /third section
     'Choose_Your_Invoice_Template'=>'Choose Your Invoice Template',
     'Start_creating_your_professional_bill'=>'Choose Your Invoice Template',
-
+    'more_template'=>'More Template',
     //   four section
     'There’s_a_BillTO_for_every_business'=>'There’s a BillTO for every business',
     'There’s_a_BillTO_description'=>'It takes just a few seconds to create and send a professional-looking invoice. Automated
