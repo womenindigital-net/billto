@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class RegisteredUserController extends Controller
 {
@@ -75,4 +76,9 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         return redirect(RouteServiceProvider::HOME);
     }
+
+
+
+
+
 }

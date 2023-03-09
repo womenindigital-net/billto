@@ -1,24 +1,66 @@
 <?php
 
+use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\InvoiceController;
+use App\Http\Controllers\Api\PagesController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+
+
+
+
+// index page api
+Route::get('/index', [PagesController::class, 'Apiindex']);
+
+
+
+
+// product store invoice page api
+// Route::post('/products/create', [ProductController::class, 'index']);
+// Route::post('/products/store', [ProductController::class, 'store']);
 
 
 
 
 
+//register and login api
+Route::controller(RegisterController::class)->group(function () {
+    Route::post('/register', 'register');
+    Route::get('verify-mail/{id}/{hash}', 'verify_email');
+    Route::post('/login', 'login');
+});
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Deshboard controller api
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/deshboard', 'index');
+        Route::get('/user-edit-page', 'userSettingEdit');
+        Route::post('/user-update', 'userUpdate');
+        Route::post('/user-password-update', 'changePassword');
+        Route::get('/unpaid/invoice/list', 'unpaid_invoice');
+        Route::get('/pertialy/payment/list', 'pertialy_payment');
+        Route::get('/over/due/payment/list/', 'over_due_payment');
+        Route::get('/all/invoices/send-by-Mail',  'SendByMail');
+        Route::get('/create/invoice/view/{id?}', 'user_view_tamplate');
+        Route::get('/create/invoice/payment/{id?}', 'user_view_payment');
+        Route::post('/create/invoice/payment/save', 'user_payment_save');
+        Route::post('/search-result', 'search_result');
+    });
+    Route::controller(SettingController::class)->group(function () {
+        Route::get('/myallinvoice',  'Myallinvoice');
+        Route::get('/my-trash-invoice', 'MyTrashinvoice');
+    });
+
+
+
+    // create invoice page api
+    Route::controller(InvoiceController::class)->group(function () {
+        Route::get('/create-invoice',  'index');
+        Route::post('/invoice-store',  'invoiceStore');
+    });
 });

@@ -749,9 +749,6 @@
     </section>
     <!-- Invoice Section End -->
 
-
-
-
     <section class="invoice_template">
         <div>
             <div class="container" >
@@ -759,23 +756,24 @@
                     <h2 class="h2_title"> {{ __('messages.Choose_Your_Invoice_Template') }}</h2>
                     <p class="fs-sm fw-bolder">{{ __('messages.Start_creating_your_professional_bill') }}</p>
                 </div>
+                <input type="hidden" value="{{ $template_id }}" id="template_id">
                 @if (!$template_id == '')
                     <div class="row text-center mb-4" id="load_data_select">
-
+                        @include('frontend.craete_data_select_tmp')
                     </div>
                 @else
                     <div class="row text-center mb-4 " id="load_data">
-
+                        @include('frontend.craet_page_load_data')
                     </div>
                 @endif
 
             </div>
-
+{{-- 
             <div id="load_data_message" class="mb-3 " style="width: 100%">
                 <div style='padding:1px;margin-top: 10px; text-align:center;'>
                     <img src="{{ asset('assets/frontend/img/loadding.gif') }}" alt="" style="width:2%; ">
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
     </form>
@@ -830,72 +828,10 @@
             </div>
         </div>
     </div>
-
-
-
     <!-- Invoice Template End -->
-
-    @if (isset($invoiceData->id))
-    @endif
+    @if (isset($invoiceData->id))  @endif
 @endsection
 @push('frontend_js')
-    <script>
-        $(document).ready(function() {
-
-            var limit = 1;
-            var start = 0;
-            var action = 'inactive';
-            var template_id = "{{ $template_id }}";
-            function loadData(limit, start) {
-
-                $.ajax({
-                    url: "/loadmore",
-                    method: "POST",
-                    data: {
-                        limit: limit,
-                        start: start,
-                        template_id: template_id
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    cache: false,
-                    success: function(data) {
-                        $('#load_data').append(data.data);
-                        $('#load_data_select').append(data.get_data_select);
-
-                        if (data.data == '' || data.get_data_select == '') {
-                            $('#load_data_message').hide();
-                            action = 'active';
-                        } else {
-                            $('#load_data_message').show();
-                            action = "inactive";
-                        }
-
-                    }
-                });
-            }
-            if (action == 'inactive') {
-                action = 'active';
-                loadData(limit, start);
-            }
-
-            $(window).scroll(function() {
-                if ($(window).scrollTop() + $(window).height() > $("#load_data,#load_data_select").height() && action ==
-                    'inactive') {
-                    action = 'active';
-                    start = start + limit;
-                    setTimeout(function() {
-                        loadData(limit, start);
-                    }, 500);
-                }
-            });
-        });
-    </script>
-
-
-
-
     <script>
         $(document).on("click", "#send_email_id", function(e) {
             e.preventDefault();
@@ -905,17 +841,13 @@
             $('#body_alert').css("overflow", "hidden");
             $('#staticBackdrop').removeClass("d-none");
             $('.modal-backdrop').removeClass("d-none");
-
         });
     </script>
-
-
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         $(document).ready(function() {
             allData();
+            loadDataCreatePage();
         });
     </script>
-    {{-- load more data template  --}}
 @endpush

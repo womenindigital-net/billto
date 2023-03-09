@@ -28,7 +28,6 @@ class InvoiceController extends Controller
         session_start();
     }
 
-    public   $template_id;
     /**
      * Display a listing of the resource.
      *
@@ -87,14 +86,13 @@ class InvoiceController extends Controller
             $template_id = "";
             $template_id_check = InvoiceTemplate::get()->first();
 
-            $lastInvoice = Invoice::where('session_id',  $sessionId)
-                ->orderBy('created_at', 'desc')
+            $lastInvoice = Invoice::where('session_id',  $sessionId)->orderBy('created_at', 'desc')
                 ->get([
                     'invoice_form',
                     'invoice_to',
                     'id',
-                ])
-                ->first();
+                ])->first();
+                
             $invoiceCountNew = Invoice::where('session_id',  $sessionId)->count();
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
@@ -111,15 +109,15 @@ class InvoiceController extends Controller
     }
 
 
-    public function loadmore(Request $request)
-    {
-        $template_id_check = InvoiceTemplate::get()->first();
-        $template_id = $request->template_id;
-        $invoice_template = DB::table('invoice_templates')->limit($request['limit'])->offset($request['start'])->get();
-        $get_data = view('frontend.craet_page_load_data', compact('invoice_template', 'template_id_check'))->render();
-        $get_data_select = view('frontend.craete_data_select_tmp', compact('invoice_template', 'template_id'))->render();
-        return response()->json(['data' => $get_data, 'get_data_select' => $get_data_select]);
-    }
+    // public function loadmore(Request $request)
+    // {
+    //     $template_id_check = InvoiceTemplate::get()->first();
+    //     $template_id = $request->template_id;
+    //     $invoice_template = DB::table('invoice_templates')->limit($request['limit'])->offset($request['start'])->get();
+    //     $get_data = view('frontend.craet_page_load_data', compact('invoice_template', 'template_id_check'))->render();
+    //     $get_data_select = view('frontend.craete_data_select_tmp', compact('invoice_template', 'template_id'))->render();
+    //     return response()->json(['data' => $get_data, 'get_data_select' => $get_data_select]);
+    // }
 
     public function index_home($id)
     {

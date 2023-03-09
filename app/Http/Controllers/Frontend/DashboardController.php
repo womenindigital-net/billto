@@ -38,7 +38,7 @@ class DashboardController extends Controller
             ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
             ->selectRaw('payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
             ->where('users.id',  Auth::user()->id)->get();
-            
+
         return view('frontend.all-invoice')->with(compact('join_table_value','invoicessData', 'user', 'Total_Amount_conut', 'due_Amount_conut', 'paid_Amount_conut', 'latestDataInvoices'));
     }
 
