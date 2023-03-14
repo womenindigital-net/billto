@@ -62,5 +62,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::controller(InvoiceController::class)->group(function () {
         Route::get('/create-invoice',  'index');
         Route::post('/invoice-store',  'invoiceStore');
+        // send invoice mail with PDF
+        Route::post('/invoice/send',  'send_invoice');
     });
 });
