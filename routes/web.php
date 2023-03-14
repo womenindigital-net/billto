@@ -31,6 +31,7 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 
 // Web site Normal pages
 Route::get('/', [PagesController::class, 'index'])->name('home');
+Route::post('/load-data', [PagesController::class, 'loadData'])->name('load-more-data');
 Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::post('/create/bill', [PagesController::class, 'createbill'])->name('create.boll');
 
@@ -52,15 +53,10 @@ Route::post('/product/store', [ProductController::class, 'store'])->name('store.
 Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
 Route::PUT('/products/update', [ProductController::class, 'update']);
 Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
-
+// Route::post('/loadmore',[InvoiceController::class, 'loadmore']);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    // Route::post('/products/create', [ProductController::class, 'index']);
-    // Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
-    // Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
-    // Route::PUT('/products/update', [ProductController::class, 'update']);
-    // Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
     Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('store.');
 
     Route::get('/invoice/complate/page/{id}', [InvoiceController::class, 'complate_invoice']);
@@ -75,7 +71,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 
     //payment payment gateway
-Route::post('/payment/store', [SubscriptionPackContoller::class, 'payment_gateway_store'])->name('payment.store');
+    Route::post('/payment/store', [SubscriptionPackContoller::class, 'payment_gateway_store'])->name('payment.store');
 
 
     // just chek route
@@ -91,6 +87,7 @@ Route::get('/clear-cache', function () {
     Artisan::call('optimize');
     return redirect()->back();
 });
+
 Route::get('/notice/div/hidden', function () {
     Session::put('hidden_session', 'd-none');
     return redirect()->back();
@@ -108,13 +105,13 @@ Route::get('/check',  function () {
     // $sessionId = session_id();
     // dd($sessionId );
 
-    // $join_table_value = DB::table('users')
-    // ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
-    // ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
-    // ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
-    // ->selectRaw( 'payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
-    // ->where('users.id', 1)->get();
-    // dd($join_table_value);
+    //     $join_table_value = DB::table('users')
+    //    ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
+    //     ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
+    //   ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
+    //      ->selectRaw( 'payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
+    //      ->where('users.id', 1)->get();
+    //      dd($join_table_value);
 
 
 });

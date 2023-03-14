@@ -1,154 +1,179 @@
-<style>
-    .page {
-        width: 21cm;
-        min-height: 29.7cm;
-        overflow: hidden;
-        margin: 0 auto;
-        background-color: #fffffff3;
-    }
+<body>
+    <style>
+        .page {
+            width: 21cm;
+            min-height: 29.7cm;
+            overflow: hidden;
+            margin: 0 auto;
+            background-color: #fffffff3;
+            border: 1px solid rgba(20, 20, 20, 0.123);
+        }
 
+        .text-color {
+            color: #686868;
+        }
+    </style>
+    <!-- background-size: 300px 1140px; -->
 
-
-    .footer h1 {
-        color: aliceblue;
-    }
-
-    .to,
-    .ship_to {
-        color: #A950A0;
-        border-bottom: 1.3px solid #A950A0;
-    }
-</style>
-<div class="page"
-    style="background-image:  url('{{ asset('assets/vector-invoice/group_sape.png') }}');
-background-repeat: no-repeat;
-background-size: 300px 1140px;
-">
-    <div class="row border">
-        <section class="col-3">
-            <div class="">
-                <img src="./img/logowid.png" alt="" style="width:120px; margin-left:40px; margin-top:20px;">
-            </div>
-            <div class="footer" style="padding: 20px;">
-                <h6 style="color: #ffffff; font-weight: 600; padding-top: 20cm;">
-                    TERMS & CONDITIONS </h6>
-                <span style="color: #ffffff; font-size: 14px;">Payment is due within 15 days<br>
-                    Please make checks payable <br>to: Company Name</span>
-            </div>
-        </section>
-
-        <section class="col-9" style="padding-left: 30px; padding-right: 60px;">
-            <div class="row">
-                <div class="d-flex justify-content-end">
-                    <h1 style="background-color: #A950A0;
-          color: #ffffff; padding:10px;">INVOICE</h1>
-                </div>
-            </div>
-
-            <div class="row my-3">
-                <div class="col-5 my-3">
-                    <h3>Company Name</h3>
-                    <p>123 Rockfeller Street,<br>New York, NY 12210</p>
-                </div>
-                <div class="col-4">
-                    <h5>
-                        INVOICE# <br>INVOICE DATE<br>P.O.#<br>DUE DATE
-                    </h5>
-                </div>
-                <div class="col-3 text-end">
-                    10201<br>11/02/2022<br>12/11/2022<br>27/01/2022</div>
-            </div>
-
-            <div class="row">
-                <div class="col-5">
-                    <div class="to">
-                        <h5>TO</h5>
-                    </div>
-                    <div class="to_text">
-                        <p>
-                            Neals BD.<br>123 Rockfeller Street,<br>New York, NY 12210
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-5">
-                    <div class="ship_to">
-                        <h5>SHIP TO</h5>
-                    </div>
-                    <div class="to_text">
-                        <p>
-                            Neals BD.<br>123 Rockfeller Street,<br>New York, NY 12210
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <table class="">
-                    <thead>
-                        <tr style="background-color: #F2F2F2; margin: 20px; height: 47px;">
-                            <th scope="col" style="padding-left: 20px;">QTY</th>
-                            <th scope="col">DESCRIPTION</th>
-                            <th scope="col">UNIT PRICE</th>
-                            <th scope="col">AMOUNT</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" style="padding-left: 20px;">1</th>
-                            <td> Front and rear brake cable</td>
-                            <td> 1,00.00</td>
-                            <td> 1,00.00</td>
-                        </tr>
-                        <tr style="background-color: #F2F2F2; margin: 20px; height: 47px;">
-                            <th scope="row" style="padding-left: 20px;">1</th>
-                            <td> Front and rear brake cable</td>
-                            <td scope="col"> 1,00.00</td>
-                            <td scope="col"> 1,00.00</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="padding-left: 20px;">1</th>
-                            <td> Front and rear brake cable</td>
-                            <td> 1,00.00</td>
-                            <td> 1,00.00</td>
-                        </tr>
-                        <tr style="background-color: #F2F2F2; margin: 20px; height: 47px;">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="row" style="margin-top:100px;">
-                <hr style="width: 100%; color: #A950A0; height: 2px; background-color:#A950A0;" />
+    <div class="page  "
+        style="  background-image:  url('{{ asset('assets/vector-invoice/vector3.png') }}'); background-repeat: no-repeat;">
+        <div class="custom_border_lr">
+            <!-- first section -->
+            <section class=" first_section">
                 <div class="row">
-                    <div class="col-12 d-flex justify-content-end">
-                        <div class="col-6"></div>
-                        <div class="col-3 d-flex justify-content-end">Subtotal</div>
-                        <div class="col-3 d-flex justify-content-end">300.00</div>
+                    <div class="col-4 ">
+                        <div class="mt-4 ps-5">
+                            <p class="text-white p-0 m-0 fs-6">{{ $data->invoice_form }}</p>
+                        </div>
+                    </div>
+                    <div class="col-3  text-center"> </div>
+                    <div class="col-5">
+                        <div class=" me-1 text-end pe-5">
+                            @if ($userLogoAndTerms->invoice_logo != '')
+                                <img style="object-fit:contain;"
+                                    src="{{ asset('storage/invoice/logo/' . $userLogoAndTerms->invoice_logo) }}"
+                                    alt="" height="122px" width="122px" />
+                            @endif
+                            <h1 style="color: #FCB21C; font-size:59.99px;">{{ __('messages.INVOICE') }}</h1>
+                        </div>
+                    </div>
+                    <div class="col-6 ">
+                        <div class="w-75 ps-5 text-white">
+                            <h5 class="p-0 m-0 fs-4">{{ __('messages.To_send') }}</h5>
+                            <p class="p-0 m-0 text-white">
+                                {{ $data->invoice_to }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <table class="table p-0 m-0 text-color mt-3">
+                            <tr>
+                                <th class="border-0 p-1">{{ __('messages.Invoice_ID') }}#</th>
+                                <th class="text-end border-0 p-1 pe-5">{{ $data->invoice_id }}</th>
+                            </tr>
+                            <tr>
+                                <th class="border-0 p-1">{{ __('messages.Invoice_Date') }}</th>
+                                <th class="text-end border-0 p-1 pe-5">{{ $data->invoice_date }}</th>
+                            </tr>
+                            <tr>
+                                <th class="border-0 p-1">{{ __('messages.P_O_umber') }}#</th>
+                                <th class="text-end border-0 p-1 pe-5">{{ $data->invoice_po_number }}</th>
+                            </tr>
+                            <tr>
+                                <th class="border-0 p-1">{{ __('messages.Due_Date') }}</th>
+                                <th class="text-end border-0 p-1 pe-5">{{ $data->invoice_dou_date }}</th>
+                            </tr>
+                        </table>
+
                     </div>
                 </div>
+            </section>
+            <!-- first section end-->
+            <!-- four section -->
+            <section class="four_section mt-4">
                 <div class="row">
-                    <div class="col-12 d-flex justify-content-end">
-                        <div class="col-3"></div>
-                        <div class="col-5 d-flex justify-content-end">Sales Tax 6.25%</div>
-                        <div class="col-3 d-flex justify-content-end">20.00</div>
+                    <div class="col-12 ps-5 ">
+                        <table class="table ps-5 p-0 m-0 text-color border">
+                            <tr style="background-color: #414141;">
+                                <th scope="col" class="text-end pe-5 text-white border" style="width:10%;">
+                                    {{ __('messages.QTY') }}</th>
+                                <th scope="col" class="text-start pe-5 text-white border" style="width:40%;">
+                                    {{ __('messages.DESCRIPTION') }}</th>
+                                <th scope="col" class="text-end pe-5 text-white border"style="width:25%;">
+                                    {{ __('messages.UNIT_PRICE') }}</th>
+                                <th scope="col" class="text-end pe-5 text-white border "style="width:25%;">
+                                    {{ __('messages.AMOUNT') }}</th>
+                            </tr>
+                            @php
+                                $count = 1;
+                            @endphp
+                            @foreach ($productsDatas as $product_detail)
+                                <tr style="background-color: #F2F2F2;">
+                                    <th class="border" scope="row">{{ $product_detail->product_quantity }}</th>
+                                    <td class="border"> {{ $product_detail->product_name }}</td>
+                                    <td class="text-end pe-5 border">
+                                        {{ number_format($product_detail->product_rate, 2) }}</td>
+                                    <td class="text-end pe-5 border">
+                                        {{ number_format($product_detail->product_amount, 2) }}</td>
+                                </tr>
+
+                                @php
+                                    $last_count = $count++;
+                                @endphp
+                            @endforeach
+                            @for ($x = $last_count; $x <= 5; $x++)
+                                <tr style="background-color: #F2F2F2;">
+                                    <th class="border">&nbsp;</th>
+                                    <td class="border"> </td>
+                                    <td class="text-end border"></td>
+                                    <td class="text-end border"></td>
+                                </tr>
+                            @endfor
+                        </table>
+                        <style>
+                            .bg_blue {
+                                background-color: #039DBF !important;
+                            }
+
+                            .bg_light {
+                                background-color: #F2F2F2 !important;
+                            }
+                        </style>
+                        <div class="row m-0 p-0 ">
+                            <div class="col-4"></div>
+                            <div class="col-5 bg_blue text-white">
+                                <p class="text-end border-0 p-1 m-0 text-white">{{ __('messages.Sub_total') }}</p>
+                                <p class="text-end border-0 p-1 m-0 text-white">{{ __('messages.Sales_Tax') }}
+                                    ({{ number_format($percent = $data->invoice_tax_percent) }} %)</p>
+                                <p class="text-end border-0 p-1 m-0 text-white">{{ __('messages.Discount_Amount') }}
+                                    ({{ $data->discount_percent }}%)</p>
+                                <p class="text-end border-0 p-1 m-0 text-white">
+                                    {{ __('messages.Receive_Advance_Amount') }}
+                                    ({{ $data->currency }})</p>
+                                <p class="text-end border-0 p-1 m-0 text-white">
+                                    {{ __('messages.Requesting_Advance_Amount') }}
+                                    ({{ $data->requesting_advance_amount_percent }}%)</p>
+                                <p class="text-end border-0 p-1 m-0 fs-5 text-white">{{ __('messages.Total') }} </p>
+                            </div>
+                            <div class="col-3 pe-5 bg_light  text-color">
+                                <p class="text-end p-1 m-0 text-color">
+                                    {{ number_format($no_vat = $data->subtotal_no_vat, 2) }}</p>
+                                <p class="text-end p-1 m-0 text-color">
+                                    {{ number_format(($no_vat * $percent) / 100, 2) }}</p>
+                                <p class="text-end p-1 m-0 text-color"> {{ number_format($data->discount_amounts, 2) }}
+                                </p>
+                                <p class="text-end p-1 m-0 text-color">
+                                    {{ number_format($data->receive_advance_amount, 2) }}</p>
+                                <p class="text-end p-1 m-0 text-color">
+                                    {{ number_format(($data->final_total * $data->requesting_advance_amount_percent) / 100, 2) }}
+                                </p>
+                                <p class="text-end p-1 m-0 fs-5 text-color">{{ $data->currency }}
+                                    {{ number_format($data->final_total - $data->receive_advance_amount, 2) }} </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-
-            {{-- <div class="row" style="margin-top:100px;">
-                <h5>Thank You for your business</h5>
-                <div class="row justify-content-end" style="margin-top:100px;">
-                    <img src="./img/Layer 2.png" alt="" style="width: 173px; height: 111px;">
+            </section>
+            <!-- four section end-->
+            <!-- five section start-->
+            <div class="row">
+                <div class="col-12 text-center" style="margin-top:60px;">
+                    <h3 style="color:#686868; "> {{ __('messages.Thank_You_for_your_business') }}</h3>
                 </div>
-            </div> --}}
 
+                <div class="col-4 ps-5" style="margin-top:60px;">
+                    <p style="color: #686868; font-weight: 500; font-size:14px; text-transform:uppercase;">
+                        {{ __('messages.Terms_&_conditions') }} </p>
+                    <span style="color: #686868; font-size: 14px;">{{ $userLogoAndTerms->terms }}</span>
+                </div>
+                <div class="col-5"></div>
+                <div class="col-3 ">
+                    @if ($userLogoAndTerms->signature != '')
+                        <img src="{{ asset('uploads/signature/' . $userLogoAndTerms->signature) }}" alt=""
+                            style="object-fit:contain; width:100px; margin-left:40px; margin-top:60px;" />
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
-    </section>
-</div>
-</div>
+</body>

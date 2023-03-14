@@ -241,6 +241,13 @@ $("#invoiceForm").submit(function (e) {
                 $('#invoice_amu_paid').addClass("is-valid");
             }
 
+            if (error.responseJSON.errors.invoice_terms != null) {
+                $('#invoice_terms').addClass("is-invalid");
+                $('#invoice_terms_error').text(error.responseJSON.errors.invoice_terms);
+            } else {
+                $('#invoice_terms').removeClass("is-invalid");
+                $('#invoice_terms').addClass("is-valid");
+            }
 
         }
     });
@@ -911,3 +918,75 @@ $('#imageUpload').on('change', function() {
      }
    // alert('This file size is: ' + file );
  });
+// invoice tamplate more data load function home page
+var token = $('input[name="_token"]').val();
+load_more('', token);
+function load_more(id = '', token) {
+    $.ajax({
+        url: '/load-data',
+        method: "POST",
+        data: { id: id, _token: token },
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function (data) {
+            $('.load-more-template').addClass("d-none");
+            $('.invoice_template_margin').append(data);
+        }
+    })
+}
+$('body').on('click', '#loadMoreBotton', function () {
+    var id = $(this).data('id');
+    $('#loadMoreBotton').html('loading...');
+    load_more(id);
+});
+// invoice tamplate more data load function
+
+
+// invoice create page tamplate load data  function start
+function loadDataCreatePage() {
+            var limit = 1;
+            var start = 0;
+            var action = 'inactive';
+            var template_id = $('#template_id').val();
+            function loadData(limit, start) {
+                $.ajax({
+                    url: "/loadmore",
+                    method: "POST",
+                    data: {
+                        limit: limit,
+                        start: start,
+                        template_id: template_id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    cache: false,
+                    success: function(data) {
+                        $('#load_data').html(data.data);
+                        $('#load_data_select').html(data.get_data_select);
+
+                        if (data.data == '' || data.get_data_select == '') {
+                            $('#load_data_message').hide();
+                            action = 'active';
+                        } else {
+                            $('#load_data_message').show();
+                            action = "inactive";
+                        }
+
+                    }
+                });
+            }
+            if (action == 'inactive') {
+                action = 'active';
+                loadData(limit, start);
+            }
+            $(window).scroll(function() {
+                if ($(window).scrollTop() + $(window).height() > $("#load_data,#load_data_select").height() && action ==
+                    'inactive') {
+                    action = 'active';
+                    start = start + limit;
+                    setTimeout(function() {
+                        loadData(limit, start);
+                    }, 500);
+                }
+            });
+        }

@@ -17,13 +17,14 @@ return [
     'SendPDF'=>'পিডিএফ পাঠান',
     'Email_or_print_your_invoice'=>'আপনার ক্লায়েন্টকে পাঠাতে আপনার ',
     'to_send_to_your_client'=>'চালানপ্ত্র ইমেল বা প্রিন্ট করুন',
-    'GetPaid'=>'অর্থ পেয়েছেন',
+    'GetPaid'=>'অর্থ গ্রহন করুন',
     'Receive_payment_in'=>'কার্ড বা পেপ্যালের মাধ্যমে',
-    'accounts_by_Card_or_Paypal'=>'অ্যাকাউন্টে অর্থ পান',
+    'accounts_by_Card_or_Paypal'=>'অ্যাকাউন্টে অর্থ গ্রহন করুন',
 
     // /third section
     'Choose_Your_Invoice_Template'=>'আপনার চালানপত্রের ডিজাইন পছন্দ করুন',
     'Start_creating_your_professional_bill'=>'পেশাদার বিল তৈরি করা শুরু করুন',
+    'more_template'=>'আরও টেমপ্লেট',
 
     //   four section
     'There’s_a_BillTO_for_every_business'=>'প্রতিটি ব্যবসার জন্য একটি BillTO',

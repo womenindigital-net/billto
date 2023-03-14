@@ -1,6 +1,6 @@
 {{-- three invoice --}}
 <style>
-    * {
+    @page {
         padding: 0;
         margin: 0;
     }
@@ -9,11 +9,7 @@
     .first_section {
         width: 100%;
         display: flex;
-        /* margin-top:100px; */
-        /* position: relative; */
-        /* z-index: 2; */
-
-    }
+     }
 
     .leftSideArea {
         float: left;
@@ -22,39 +18,26 @@
 
     .rightSideArea {
         float: right;
-        width: 60%
+        width: 57%
 
     }
-
-    /* end frist serction  */
-    .second_section {
-        padding-top: 20px;
-        padding-bottom: 80px;
-
-    }
-
     .third_section {
         width: 100%;
         display: flex;
 
     }
-
     .left_Side_bar {
         width: 30%;
         background-color: #0370BF;
-        padding-top: 20px;
-        padding-bottom: 20px;
         float: left;
     }
 
 
 
     .c {
-        padding: 5px;
         color: #FFF;
-        line-height: 24px;
         font-size: 16px;
-        padding-bottom: 20px;
+        padding-top:5px;
     }
 
 
@@ -63,7 +46,6 @@
         color: #FFF;
         line-height: 24px;
         font-size: 16px;
-        padding-bottom: 40px;
     }
 
 
@@ -80,7 +62,6 @@
         width: 75%;
         float: right;
         text-align: right;
-        /* border-top: 2px solid #FCB21C; */
         padding-right: 20px;
     }
 
@@ -92,11 +73,7 @@
         box-shadow: var(--pageShadow);
     }
 
-    .page[size="A4"] {
-        width: 21cm;
-        min-height: 29.7cm;
-        overflow: hidden;
-    }
+
     .termsFelx{
         display: flex;
         width: 100%;
@@ -107,8 +84,10 @@
     }
     .signature_div{
         float: right;
-        width: 35%
-            }
+        width: 35%;
+        text-align: center;
+        padding-top: 80px;
+          }
 </style>
 <title>Billto.io</title>
 
@@ -118,173 +97,165 @@
 <body>
 
 
-    <div class="invoice_body page" size="A4"
+    <div class="invoice_body page"
         style="background: url('assets/vector-invoice/vector1.png');background-repeat:no-repeat">
         <section>
             <div class="first_section">
-                <div class="leftSideArea" >
-                    <div class="logo_area" style="margin-left:50px;">
-                        <div class="c">
-                            <p style="font-size: 20px; padding-top:15px"><b>{{ $invoiceData->invoice_form }} </b></p>
+                <div class="leftSideArea">
+                    <div class="" style="margin-left:50px;">
+                        <div class="c" style="padding-top:5px;">
+                            <p style="font-size: 15px; padding:0px; margin:0px; ">{{ $invoiceData->invoice_form }}</p>
                         </div>
                         <div class="c">
-                            <h5>To</h5>
-                            <p><b>{{ $invoiceData->invoice_to }}</b></p>
+                            <h5 style=" font-size:16px;">{{ __('messages.To_send') }}</h5>
+                            <p style="padding:0px; margin:0px; font-size: 15px; padding-right:20px;">{{ $invoiceData->invoice_to }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="rightSideArea">
-                        <div style="text-align:right; margin-right:89px; margin-top:25px">
+                        <div style="text-align:right; margin-right:89px; ">
                             @if ($userInvoiceLogo->invoice_logo != '')
                                 <img style="object-fit: contain;" src="{{ public_path('storage/invoice/logo/' . $userInvoiceLogo->invoice_logo) }}"
                                     alt="img" style="width: 80px; height:80px;">
                             @endif
-                            <h1 style="font-size:40px; color:#039DBF; margin-top:30px;margin-left:2px">INVOICE</h1>
+                            <h1 style="font-size:40px; color:#039DBF; margin-left:2px; padding:3px; margin:0px; ">{{ __('messages.INVOICE') }} </h1>
                         </div>
-                        <div class="" style="color: #686868; margin-top:30px;margin-left:6px">
-                            <table style="padding-left:123px; ">
+                        <div class="" style="color: #686868;margin-left:6px">
+                            <table style="padding-left:97px; ">
                                 <tr>
-                                    <th style="text-align:left; font-size:18px;">Incoice #</th>
-                                    <th style="text-align: right;font-size:18px; padding-left:95px;">
-                                        {{ $invoiceData->invoice_id }}</th>
+                                    <td style="text-align:left; font-size:16px;color: #686868;">{{ __('messages.INVOICE_no') }}#</td>
+                                    <td style="text-align: right;font-size:16px; padding-left:95px; color: #686868;">
+                                        {{ $invoiceData->invoice_id }}</td>
                                 </tr>
                                 <tr>
-                                    <th style="text-align:left; font-size:18px;">Invoice Date</th>
-                                    <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_date }}</td>
+                                    <td style="text-align:left; font-size:16px; color: #686868;">{{ __('messages.Invoice_Date') }}</td>
+                                    <td style="text-align: right; font-size:16px; color: #686868;">{{ $invoiceData->invoice_date }}</td>
                                 </tr>
                                 <tr>
-                                    <th style=" text-align: left; font-size:18px;">P.O.#</th>
-                                    <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_po_number }}</td>
+                                    <td style=" text-align: left; font-size:16px; color: #686868;">   {{ __('messages.P.O.') }}#</td>
+                                    <td style="text-align: right; font-size:16px; color: #686868;">{{ $invoiceData->invoice_po_number }}</td>
                                 </tr>
                                 <tr>
-                                    <th style="text-align: left; font-size:18px;">Due Date</th>
-                                    <td style="text-align: right; font-size:18px;">{{ $invoiceData->invoice_dou_date }}
+                                    <td style="text-align: left; font-size:16px;color: #686868;">{{ __('messages.Due_Date') }}</td>
+                                    <td style="text-align: right; font-size:16px;color: #686868;">{{ $invoiceData->invoice_dou_date }}
                             </table>
                         </div>
                 </div>
             </div>
         </section>
 
-        <style>
-            .border {
-                border-left: 1px solid #FFF;
-                border-right: 1px solid #FFF;
-                border-bottom: 1px solid rgb(255, 255, 255);
-                border-top: 1px solid #FFF;
-            }
-        </style>
-        <section class="second_section" style="margin-top:240px">
+        <section class="second_section" style="margin-top:20px;">
             <div class="table">
-                <div style="min-height:380px; margin-left: 50px; margin-right:60px; padding-top:80px; padding-bottom:80px;">
-                    <table class="table1 border" style="width:100%; background:#F2F2F2;">
+                <div style=" margin-left: 50px; margin-right:60px;  padding-bottom:80px;">
+                <div style="height:200px;">
+                    <table class="table1 " style="width:100%;">
                         <thead>
                             <tr style="padding-left:200px !important;">
-                                <th class="border"
-                                    style="border-left:none; border-top:none; border-right:none; padding-left:5px; text-align:left; width:20%; font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;">
-                                    qty</th>
-                                <th class="border"
-                                    style="border-top:none; border-right:none; padding-left:10px; text-align:left; width:40%;font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;">
-                                    description</th>
-                                <th class="border"
-                                    style="border-top:none; border-right:none; padding-right:20px; text-align:right; width:20%; font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;">
-                                    unit price</th>
-                                <th class="border"
-                                    style="border-top:none; border-right:none; padding-right:20px; text-align:right; width:20%;font-weight: 700; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #686868;">
-                                    amount</th>
+                                <th  style=" border-collapse: collapse; background-color: #414141;  width:20%;  font-size: 17px; text-transform: uppercase; padding-left:5px; color: #fff; text-align:left; ">
+                                    {{ __('messages.qty') }} </th>
+                                <th  style="  border-collapse: collapse; border-top:none; background:#414141; border-right:none; padding-left:10px; text-align:left; width:40%; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #fff;">
+                                    {{ __('messages.description') }} </th>
+                                <th  style="  border-collapse: collapse; border-top:none; background:#414141;  border-right:none; padding-right:20px; text-align:right; width:20%; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #fff;">
+                                    {{ __('messages.unit_price') }}  </th>
+                                <th  style="  border-collapse: collapse; border-top:none;background:#414141;  border-right:none; padding-right:20px; text-align:right; width:20%; font-size: 17px; line-height: 29px;text-transform: uppercase; color: #fff;">
+                                    {{ __('messages.amount') }} </th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $count = 1;
+                        @endphp
                             @foreach ($productsDatas as $product_detail)
                                 <tr>
                                     <td class="border"
-                                        style="border-left:none; border-top:none; border-right:none; padding:6px 0px; padding-left:5px; text-align:left; width:20%;  font-weight: 400; font-size: 16px; color: #686868; ">
+                                        style="border-left:none;    border-collapse: collapse; background:#F2F2F2;  border-top:none; border-right:none; padding:6px 0px; padding-left:5px; text-align:left; width:20%;  font-weight: 400; font-size: 16px; color: #686868; ">
                                         {{ $product_detail->product_quantity }}</td>
                                     <td class="border"
-                                        style=" border-top:none; border-right:none; padding-left:10px; text-align:left; width:40%;font-weight: 400; font-size: 16px; color: #686868; ">
+                                        style="background:#F2F2F2;    border-collapse: collapse; border-top:none; border-right:none; padding-left:10px; text-align:left; width:40%;font-weight: 400; font-size: 16px; color: #686868; ">
                                         {{ $product_detail->product_name }}</td>
                                     <td class="border"
-                                        style="border-top:none; border-right:none; padding-right:20px;  width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
+                                        style="background:#F2F2F2;   border-collapse: collapse; border-top:none; border-right:none; padding-right:20px;  width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
                                         {{ number_format($product_detail->product_rate, 2) }}</td>
                                     <td class="border"
-                                        style="border-top:none; border-right:none; padding-right:20px; width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
+                                        style="background:#F2F2F2;    border-collapse: collapse;  border-top:none; border-right:none; padding-right:20px; width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
                                         {{ number_format($product_detail->product_amount, 2) }}</td>
                                 </tr>
+                                @php
+                                $last_count = $count++;
+                            @endphp
                             @endforeach
+                            @for ($x = $last_count; $x <= 5; $x++)
+                            <tr>
+                                <td class="border"
+                                    style="border-left:none;    border-collapse: collapse; background:#F2F2F2;  border-top:none; border-right:none; padding:6px 0px; padding-left:5px; text-align:left; width:20%;  font-weight: 400; font-size: 16px; color: #686868; ">
+                                    &nbsp;</td>
+                                <td class="border"
+                                    style="background:#F2F2F2;    border-collapse: collapse; border-top:none; border-right:none; padding-left:10px; text-align:left; width:40%;font-weight: 400; font-size: 16px; color: #686868; ">
+                                  </td>
+                                <td class="border"
+                                    style="background:#F2F2F2;   border-collapse: collapse; border-top:none; border-right:none; padding-right:20px;  width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
+                                    </td>
+                                <td class="border"
+                                    style="background:#F2F2F2;    border-collapse: collapse;  border-top:none; border-right:none; padding-right:20px; width:20%; font-weight: 400; font-size: 16px; color: #686868; text-align:right; ">
+                                    </td>
+                            </tr>
+                            @endfor
                         </tbody>
+
                     </table>
-                    <style>
-                        .empty_div ul li {
-                            list-style-type: none;
-                            padding: 10px;
+                </div>
+                    <div style=" width:100%; display:flex; margin-left: 250px;">
 
-                        }
+                        <style>
+                            .col_60{
+                                width: 60%;
+                                float: left;
+                                background: #039DBF;
+                                color: #FFF;
+                                text-align: right;
+                            }
+                            .col_60 p{
+                                text-align: right;
+                                padding:5px 10px 0px 10px;
+                                 margin:0px;
+                                 font-size: 15px;
+                                 font-weight: 500;
+                            }
 
-                        .table_div ul li {
-                            list-style-type: none;
-                            padding: 10px;
+                            .col_40{
+                                width: 39%;
+                                float: right;
+                                background: #F2F2F2;
+                                text-align: right;
+                            }
 
-                        }
+                            .col_40 p{
+                                text-align: right;
+                                padding:5px 20px 0px 10px;
+                                 margin:0px;
+                                 font-size: 15px;
+                                 font-weight: 500;
+                                 color: #686868;
+                            }
+                        </style>
+                        <div class="col_60">
+                            <p>{{ __('messages.Subtotal') }}</p>
+                            <p> {{ __('messages.Sales_Tax') }} ({{ $tax = $invoiceData->invoice_tax_percent }}%)</p>
+                            <p>{{ __('messages.Discount_Amount') }}  ({{ $tax = $invoiceData->discount_percent }}%)</p>
+                            <p>{{ __('messages.Receive_Advance_Amount') }} ({{ $invoiceData->currency }})</p>
+                            <p>{{ __('messages.Requesting_Advance_Amount') }}({{ $invoiceData->requesting_advance_amount_percent }}%)</p>
+                            <h5 style="font-size:16px;  padding:5px 10px 0px 10px; margin:0px;">{{ __('messages.Total') }}</h5>
 
-                        .empty_div {
-                            margin-left: 410px;
-                            width: 135px;
-                        }
-
-                        .table_div {
-                            width: 118px;
-                        }
-                    </style>
-                    {{-- <div style="margin-top: 0; width:100%; display:flex;">
-                        <div class="empty_div">
-                            <ul style="background: #039DBF; ">
-                                <li>Subtotal</li>
-                                <li>Sales Tax {{ $tax = $invoiceData->invoice_tax_percent }}% </li>
-                                <li>Discount Amount</li>
-                                <li>Receive Advance Amount</li>
-                                <li>Requesting Advance Amount</li>
-                                <li>Total</li>
-                            </ul>
                         </div>
-                        <div class="table_div" style="background: #F2F2F2;">
-                            <ul>
-                                <li>{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }} </li>
-                                <li> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</li>
-                                <li>{{ number_format($invoiceData->discount_amounts,2) }}</li>
-                                <li>{{ number_format($invoiceData->receive_advance_amount,2) }}</li>
-                                <li>{{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}</li>
-                                <li>{{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total- $invoiceData->receive_advance_amount, 2) }}</li>
-                            </ul>
+                        <div class="col_40">
+                            <p>{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }}</p>
+                            <p> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</p>
+                            <p>{{ number_format($invoiceData->discount_amounts,2) }}</p>
+                            <p>{{ number_format($invoiceData->receive_advance_amount,2) }}</p>
+                            <p>{{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}</p>
+                            <h5 style="font-size:16px; color: #686868; padding:5px 20px 0px 10px; margin:0px;">{{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total- $invoiceData->receive_advance_amount, 2) }}</h5>
                         </div>
-                    </div> --}}
-                    <div style=" width:55%; margin-left: 310px;">
-                        <table style="width: 100%; ">
-                            <tr style="text-align: right; ">
-                                <td style="color:white; background:#039DBF">Subtotal</td>
-                                <td style="color: #686868; background: #F2F2F2;padding-right:25px">{{ number_format($subtotal = $invoiceData->subtotal_no_vat, 2) }}
-                                </td>
-                            </tr>
-                            <tr style="text-align: right">
-                                <td style="color: white; background:#039DBF">Sales Tax  ({{ $tax = $invoiceData->invoice_tax_percent }}%)</td>
-                                <td style="color: #686868; background: #F2F2F2;padding-right:25px"> {{ number_format($tax_value = ($subtotal * $tax) / 100, 2) }}</td>
-                            </tr>
-                            <tr style="text-align: right">
-                                <td style="color: white;background:#039DBF ">Discount Amount  ({{ $tax = $invoiceData->discount_percent }}%)</td>
-                                <td style="color: #686868; background:#F2F2F2;padding-right:25px"> {{ number_format($invoiceData->discount_amounts,2) }}</td>
-                            </tr>
-                            <tr style="text-align: right">
-                                <td style="color: white; background:#039DBF">Receive Advance Amount({{ $invoiceData->currency }})</td>
-                                <td style="color: #686868; background:#F2F2F2;padding-right:25px"> {{ number_format($invoiceData->receive_advance_amount,2) }}</td>
-                            </tr>
-                            <tr style="text-align: right">
-                                <td style="color: white; background:#039DBF">Requesting Advance Amount({{ $invoiceData->requesting_advance_amount_percent }}%)</td>
-                                <td style="color: #686868; background:#F2F2F2;padding-right:25px"> {{ number_format(($invoiceData->final_total * $invoiceData->requesting_advance_amount_percent) / 100, 2) }}</td>
-                            </tr>
-                            <tr style="text-align: right">
-                                <td style="font-size: 18px; color:white; padding-left:80px; background:#039DBF">Total</td>
-                                <td style="font-size: 18px; color: #686868; background:#F2F2F2;padding-right:25px">
-                                    {{ $invoiceData->currency }}  {{ number_format($invoiceData->final_total- $invoiceData->receive_advance_amount, 2) }}</td>
-                            </tr>
-                        </table>
+
                     </div>
                 </div>
             </div>
@@ -297,18 +268,17 @@
                     <div class="thanks" style="padding-top: 50px;">
                         <h5
                             style="color: #686868; font-weight: 400; font-size: 25px; padding-bottom:20px;  width: 80%">
-                            Thank You for your business</h5>
+                            {{ __('messages.Thank_You_for_your_business') }}</h5>
                     </div>
                     <div class="termsFelx">
                         <div class="termsAndConditionDiv" style="color: #686868;">
-                            <p style="padding-bottom:15px; font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">terms &
-                                conditions</p>
+                            <p style="padding-bottom:15px; font-weight: 700;font-size: 14px;color: #0370BF; text-transform: uppercase;">{{ __('messages.Terms_&_conditions') }}</p>
                             <p  style="padding-bottom:15px">{{  $userInvoiceLogo->terms }}</p>
                             <p>{{  $invoiceData->invoice_notes }}</p>
                         </div>
-                        <div class="signature_div">
+                        <div class="signature_div" >
                             @if ($userInvoiceLogo->signature != '')
-                            <img style="object-fit:contain;" style="width: 100px; height:100px "
+                            <img style="object-fit:contain;" style="width: 80px; height:80px;margin-top:20px; "
                                 src="{{ public_path('uploads/signature/' . $userInvoiceLogo->signature) }}"
                                 alt="img">
                         @endif
