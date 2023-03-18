@@ -56,8 +56,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/my-trash-invoice', 'MyTrashinvoice');
     });
 
-
-
     // create invoice page api
     Route::controller(InvoiceController::class)->group(function () {
         Route::get('/create-invoice',  'index');

@@ -34,7 +34,6 @@ Route::group([  'prefix' => 'admin',
                 Route::post('/package/updates', [SubscriptionPackageController::class, 'packageUpdate']);
                 Route::get('/package/{id}/addRow', [SubscriptionPackageController::class, 'addRow']);
                 Route::post('/package/addRow', [SubscriptionPackageController::class, 'addRowStore']);
-
                 //organization package route
                 Route::get('/organization/package/page', [OrganizationPackageController::class, 'create']);
                 Route::post('/organization/package/store', [OrganizationPackageController::class, 'store']);

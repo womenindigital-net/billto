@@ -88,9 +88,6 @@ Route::get('/clear-cache', function () {
     return redirect()->back();
 });
 
-Route::get('/notice/div/hidden', function () {
-    Session::put('hidden_session', 'd-none');
-    return redirect()->back();
-});
+
 
 

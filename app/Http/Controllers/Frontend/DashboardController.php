@@ -147,7 +147,7 @@ class DashboardController extends Controller
     }
 
 
-    /////dashboard send by mail
+    /////dashboard send by mail 
     public function SendByMail()
     {
         $user_id = auth()->user()->id;
