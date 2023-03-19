@@ -54,7 +54,6 @@
     @include('layouts.frontend.partial.footer')
     <!-- Footer End -->
 
-
     <script src="{{ asset('assets/frontend/js/vendor/modernizr-3.11.2.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/plugins.js') }}"></script>
 

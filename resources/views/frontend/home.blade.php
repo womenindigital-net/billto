@@ -62,7 +62,7 @@
                 <p class="invoice_p">{{__('messages.Start_creating_your_professional_bill')}}</p>
             </div>
             <div class="row invoice_template_margin">
-              
+
             </div>
         </div>
     </section>

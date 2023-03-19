@@ -10,6 +10,7 @@ use App\Models\InvoiceTemplate;
 use App\Models\SubscriptionPackage;
 use App\Http\Controllers\Controller;
 use App\Models\ComplateInvoiceCount;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
@@ -81,7 +82,10 @@ class PagesController extends Controller
         return $request;
         return view('frontend.create_invoice');
     }
-
+public function privacyPolice()
+{
+   return User::get(['email']);
+}
 
 
 

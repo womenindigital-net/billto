@@ -34,7 +34,6 @@
                                             list</a></li> --}}
                                 </ul>
                             </li>
-
                             {{-- Subscription package --}}
                             <li>
                                 <a href="javascript: void(0);" class="waves-effect">

@@ -9,23 +9,8 @@ use App\Http\Controllers\Api\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-
-
-
 // index page api
 Route::get('/index', [PagesController::class, 'Apiindex']);
-
-
-
-
-// product store invoice page api
-// Route::post('/products/create', [ProductController::class, 'index']);
-// Route::post('/products/store', [ProductController::class, 'store']);
-
-
-
-
 
 //register and login api
 Route::controller(RegisterController::class)->group(function () {

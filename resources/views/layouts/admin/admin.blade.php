@@ -18,7 +18,7 @@
         <!-- App Css-->
         <link href="{{ asset('assets/admin')}}/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
-        
+
     </head>
 
     <body data-sidebar="dark">
@@ -31,8 +31,6 @@
             @include('layouts.admin.topbar')
 
             @include('layouts.admin.leftside_menu')
-
-
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
