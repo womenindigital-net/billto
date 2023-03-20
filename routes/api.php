@@ -22,6 +22,7 @@ Route::controller(RegisterController::class)->group(function () {
 //Deshboard controller api
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
+    // Dashboartd contoller all route 
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/deshboard', 'index');
         Route::get('/user-edit-page', 'userSettingEdit');

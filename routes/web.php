@@ -29,13 +29,15 @@ require __DIR__ . '/socialite.php';
 
 // product add route With Ajax
 
-// Invoice create this route
+// Invoice create  and product store
 Route::post('/products/create', [ProductController::class, 'index']);
 Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
 Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
 Route::PUT('/products/update', [ProductController::class, 'update']);
 Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create');
 // Route::post('/loadmore',[InvoiceController::class, 'loadmore']);
+
+
 
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -61,8 +63,5 @@ Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy'])->name('
 Route::get('/privacy/police', [PagesController::class, 'privacyPolice']);
 Route::post('/create/bill', [PagesController::class, 'createbill'])->name('create.boll');
 Route::get('/test/bill', [DashboardController::class, 'test_bill']);
-
-
-
 
 
