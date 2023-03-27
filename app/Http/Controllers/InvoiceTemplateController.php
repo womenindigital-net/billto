@@ -75,4 +75,6 @@ class InvoiceTemplateController extends Controller
         return redirect()->back()->with('message', 'Successfully Delete Invoice Template Package.');
     }
 
+  
+
 }

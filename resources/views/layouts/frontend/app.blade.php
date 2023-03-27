@@ -124,8 +124,7 @@
             })
             Toast.fire({
                 icon: 'success',
-                title: '{{ session()->get('
-                                                            success ') }}',
+                title: '{{ session()->get('success') }}',
             })
         </script>
     @endif
@@ -157,8 +156,7 @@
             })
             Toast.fire({
                 icon: 'warning',
-                title: '{{ session()->get('
-                                                            delete ') }}',
+                title: '{{ session()->get('delete') }}',
             })
         </script>
     @endif

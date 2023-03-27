@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DoumentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\InvoiceTemplateController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\SubscriptionPackageController;
 use App\Models\OrganizationPackage;
 
 
-// Backend all roue 
+// Backend all roue
 
 Route::group([  'prefix' => 'admin',
                 'middleware' => ['admin','auth'],
@@ -40,4 +41,6 @@ Route::group([  'prefix' => 'admin',
                 Route::put('/manage/template/{id}', [InvoiceTemplateController::class, 'update']);
                 Route::get('/manage/template/{id}/delete', [InvoiceTemplateController::class, 'destroy']);
 
+                Route::get('/docoment/create', [DoumentController::class, 'document_create']);
+                Route::post('/store/document', [DoumentController::class, 'document_store']);
             });

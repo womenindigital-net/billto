@@ -5,7 +5,7 @@ use App\Http\Controllers\Frontend\SettignsController;
 use Illuminate\Support\Facades\Route;
 
 
-// user desh board all route 
+// user desh board all route
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/all/invoices', [DashboardController::class, 'allInvoice'])->name('all.invoice');
     Route::delete('/delete/invoices/{id}', [DashboardController::class, 'destroy'])->name('delete.invoice');
@@ -29,5 +29,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/create/invoice/payment/save', [DashboardController::class, 'user_payment_save'])->name('payment.save');
     // search result dasboard
     Route::post('/search-result', [DashboardController::class, 'search_result'])->name('search.result');
-
+    Route::get('/all/invoices/documents', [DashboardController::class, 'user_documents']);
+    Route::post('/user-document/store', [DashboardController::class, 'user_documents_store']);
+    Route::get('/document/view/{id}', [DashboardController::class, 'user_documents_view']);
+    Route::get('/document/edit/{id}', [DashboardController::class, 'user_documents_edit']);
+    Route::post('/user-document/update', [DashboardController::class, 'user_documents_update']);
+    Route::get('/document/delete/{id}', [DashboardController::class, 'user_documents_delete']);
 });

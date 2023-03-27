@@ -58,7 +58,19 @@
                                             list</a></li>
                                 </ul>
                             </li>
-
+                            {{-- Organization package --}}
+                            <li>
+                                <a href="javascript: void(0);" class="waves-effect">
+                                    <i class="bx bx-package"></i>
+                                    <span key="t-dashboards">User Document</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ url('admin/docoment/create') }}" key="t-horizontal">Document type
+                                        create</a></li>
+                                        {{-- <li><a href="{{ url('admin/organization/package/list') }}" key="t-horizontal">Organization Package
+                                            list</a></li> --}}
+                                </ul>
+                            </li>
 
                             <li class="menu-title" key="t-apps">Apps</li>
 

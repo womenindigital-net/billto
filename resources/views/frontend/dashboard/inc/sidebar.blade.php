@@ -90,6 +90,10 @@
                                     class="bi bi-gear-fill myInvoiceIcon me-3"></i>{{__('messages.Settings')}}</a>
 
                         </li>
+                        <li><a class="mb-2" href='{{ url('/all/invoices/documents') }}' class="@yield('setting')"> <i
+                            class="bi bi-gear-fill myInvoiceIcon me-3"></i>Documents</a>
+
+                </li>
                     </ul>
                 </nav>
             </div>
