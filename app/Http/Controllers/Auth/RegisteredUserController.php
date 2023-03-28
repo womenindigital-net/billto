@@ -62,7 +62,7 @@ class RegisteredUserController extends Controller
         PaymentGetway::create([
             'user_id'=> $get_id,
             'amount'=>'0',
-            'subscription_package_id'=>'1',
+            'subscription_package_id'=>'0',
             'organization_package_id'=>'0',
             'created_at'=>Carbon::now()
         ]);
