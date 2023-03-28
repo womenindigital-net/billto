@@ -54,7 +54,6 @@
     @include('layouts.frontend.partial.footer')
     <!-- Footer End -->
 
-
     <script src="{{ asset('assets/frontend/js/vendor/modernizr-3.11.2.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/plugins.js') }}"></script>
 
@@ -125,8 +124,7 @@
             })
             Toast.fire({
                 icon: 'success',
-                title: '{{ session()->get('
-                                                            success ') }}',
+                title: '{{ session()->get('success') }}',
             })
         </script>
     @endif
@@ -158,8 +156,7 @@
             })
             Toast.fire({
                 icon: 'warning',
-                title: '{{ session()->get('
-                                                            delete ') }}',
+                title: '{{ session()->get('delete') }}',
             })
         </script>
     @endif

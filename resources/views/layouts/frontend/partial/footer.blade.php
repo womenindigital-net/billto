@@ -83,8 +83,7 @@
                         <button type="button" class="btn btn-outline-danger btn-sm " data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i>{{__('messages.Close')}}</button>
                         <button id="send_mail_data" class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
                             {{__('messages.Send_Mail')}}</button>
-                        {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                            Send Mail</button> --}}
+
                     </div>
                 </div>
             </div>
@@ -116,18 +115,13 @@
                     <div class="modal-footer modal_footer">
                         <button type="button" class="btn btn-outline-danger btn-sm save_btn_anable"
                             data-bs-dismiss="modal"> <i class="bi bi-x-circle"></i>{{__('messages.Close')}}</button>
-                        {{-- <button class="btn send-invoice btn-sm btn-outline-warning"><i class="bi bi-send"></i>
-                                Download Image </button> --}}
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 
 <style>
     .text_abc a {

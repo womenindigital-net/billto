@@ -15,10 +15,12 @@ class SettignsController extends Controller
     {
         return view('frontend.settings');
     }
+
     public function DefaultSetting()
     {
         return view('frontend.default-setting');
     }
+
     public function Myallinvoice()
     {
         $invoicessData = Invoice::where('user_id', Auth::user()->id)->get(['id', 'invoice_to', 'invoice_id', 'invoice_date', 'total','invoice_status','template_name','currency']);

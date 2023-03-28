@@ -22,6 +22,7 @@ imgInp.onchange = evt => {
     if (file) {
         blah.src = URL.createObjectURL(file)
         $("#blah").removeClass('d-none');
+        $("#blah_hidden").addClass('d-none');
     }
 };
 

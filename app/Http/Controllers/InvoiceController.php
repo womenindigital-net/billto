@@ -108,7 +108,7 @@ class InvoiceController extends Controller
         }
     }
 
-
+    // Only load page 
     // public function loadmore(Request $request)
     // {
     //     $template_id_check = InvoiceTemplate::get()->first();

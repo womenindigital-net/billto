@@ -196,6 +196,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($id)
     {
         $product_amount =  Product::where('id', $id)->get(['invoice_id', 'product_amount'])->first();
@@ -212,5 +213,5 @@ class ProductController extends Controller
         ]);
     }
 
-  
+
 }

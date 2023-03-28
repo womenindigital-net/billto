@@ -31,7 +31,6 @@ class SubscriptionPackContoller extends Controller
     $request->validate([
         'package_price'=>'required',
         'package_id'=>'required',
-        // 'auth_user_id'=>'required'
     ]);
 
     if(1==$request->package_id){
@@ -48,12 +47,12 @@ class SubscriptionPackContoller extends Controller
             PaymentGetway::where('user_id',auth()->user()->id )->update([
             'amount'=>$request->package_price,
             'subscription_package_id'=> $request->package_id,
-            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
             ]);
 
             ComplateInvoiceCount::where('user_id',auth()->user()->id )->update([
             'current_invoice_total'=>'0',
-            'created_at'=>Carbon::now()
+            'updated_at'=>Carbon::now()
             ]);
 
             return redirect()->back()->with('success',' Package succesfuly purchase. ');

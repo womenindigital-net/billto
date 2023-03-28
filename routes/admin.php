@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DoumentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\InvoiceTemplateController;
@@ -7,16 +8,8 @@ use App\Http\Controllers\OrganizationPackageController;
 use App\Http\Controllers\SubscriptionPackageController;
 use App\Models\OrganizationPackage;
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web Admin routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+// Backend all roue
 
 Route::group([  'prefix' => 'admin',
                 'middleware' => ['admin','auth'],
@@ -34,7 +27,6 @@ Route::group([  'prefix' => 'admin',
                 Route::post('/package/updates', [SubscriptionPackageController::class, 'packageUpdate']);
                 Route::get('/package/{id}/addRow', [SubscriptionPackageController::class, 'addRow']);
                 Route::post('/package/addRow', [SubscriptionPackageController::class, 'addRowStore']);
-
                 //organization package route
                 Route::get('/organization/package/page', [OrganizationPackageController::class, 'create']);
                 Route::post('/organization/package/store', [OrganizationPackageController::class, 'store']);
@@ -49,4 +41,6 @@ Route::group([  'prefix' => 'admin',
                 Route::put('/manage/template/{id}', [InvoiceTemplateController::class, 'update']);
                 Route::get('/manage/template/{id}/delete', [InvoiceTemplateController::class, 'destroy']);
 
+                Route::get('/docoment/create', [DoumentController::class, 'document_create']);
+                Route::post('/store/document', [DoumentController::class, 'document_store']);
             });

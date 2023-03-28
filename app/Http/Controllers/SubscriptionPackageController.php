@@ -117,6 +117,7 @@ class SubscriptionPackageController extends Controller
         $pricings = Pricing::where('subscription_package_id', $id)->get();
         return view('admin.package.edit-package', compact('subscriptionPackage', 'templats', 'invoiceTemplates', 'pricings'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -141,6 +142,8 @@ class SubscriptionPackageController extends Controller
         $subscriptionPackage->limitInvoiceGeneratebn = $request->limitInvoiceGeneratebn;
         $subscriptionPackage->save();
 
+
+
         $tamp_names = $request->template;
         SubscriptionPackageTemplate::where('subscriptionPackageId', $get_id)->delete();
         foreach ($tamp_names as  $tamp_name) {
@@ -149,6 +152,8 @@ class SubscriptionPackageController extends Controller
                 'template' => $tamp_name,
             ]);
         }
+
+
 
         // $logos = $request->file('logo');
         // $description = $request->description;

@@ -9,23 +9,8 @@ use App\Http\Controllers\Api\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-
-
-
 // index page api
 Route::get('/index', [PagesController::class, 'Apiindex']);
-
-
-
-
-// product store invoice page api
-// Route::post('/products/create', [ProductController::class, 'index']);
-// Route::post('/products/store', [ProductController::class, 'store']);
-
-
-
-
 
 //register and login api
 Route::controller(RegisterController::class)->group(function () {
@@ -37,6 +22,7 @@ Route::controller(RegisterController::class)->group(function () {
 //Deshboard controller api
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
+    // Dashboartd contoller all route 
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/deshboard', 'index');
         Route::get('/user-edit-page', 'userSettingEdit');
@@ -55,8 +41,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/myallinvoice',  'Myallinvoice');
         Route::get('/my-trash-invoice', 'MyTrashinvoice');
     });
-
-
 
     // create invoice page api
     Route::controller(InvoiceController::class)->group(function () {
