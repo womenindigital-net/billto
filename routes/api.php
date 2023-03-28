@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 // index page api
 Route::get('/index', [PagesController::class, 'Apiindex']);
 
-
 //register and login api
 Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
@@ -39,11 +38,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::post('/create/invoice/payment/save', 'user_payment_save');
         Route::post('/search-result', 'search_result');
     });
+
     Route::controller(SettingController::class)->group(function () {
         Route::get('/myallinvoice',  'Myallinvoice');
         Route::get('/my-trash-invoice', 'MyTrashinvoice');
     });
-    
 
     // create invoice page api
     Route::controller(InvoiceController::class)->group(function () {
