@@ -50,47 +50,57 @@
                         @endif
                     </div>
 
-                        <form action="{{ url('/user-document/update') }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('post')
-                            <div class="row   bg-white border_radius mb-2 ">
-                                <div class="col-sm-12 mt-4   ">
-                                    <div class="row border">
-                                        <div class="col-4">
-                                            <div class="mb-3">
-                                                <label class="form-label mt-2">Documents Type</label>
-                                                 <select name="document_type_id" id="" class="form-control">
-                                                    <option class="text-center" value="">---------Select----------</option>
-                                                     @foreach ($documents as $document)
-                                                       <option {{ $document->document_type == $join_table_value->document_type ? "selected" : "" }} value="{{ $document->id }}">{{ $document->document_type }}</option>
-                                                     @endforeach
-                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="mb-3">
-                                                <label class="form-label mt-2">Document image</label>
-                                                 <input style="border-radius: 10px !important;" id="imgInp" name="document_image" type="file"  class="form-control " accept="image/*" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                         <div class="mt-3">
-                                            <label for="" class="text-center">Preview Document</label>
-                                           <img class="mt-3" id="blah_hidden" src="{{ asset('uploads/document/' .$join_table_value->document_image) }}" alt="" style="width:100%; max-height:300px;">
-
-                                            <img class="mt-3 d-none"  width="100%" style="max-height:300px;" id="blah" src="#" alt="Add your signature" />
+                    <form action="{{ url('/user-document/update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('post')
+                        <div class="row   bg-white border_radius mb-2 ">
+                            <div class="col-sm-12 mt-4   ">
+                                <div class="row border">
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label class="form-label mt-2">Documents Type</label>
+                                            <select name="document_type_id" id="" class="form-control">
+                                                <option class="text-center" value="">---------Select----------
+                                                </option>
+                                                @foreach ($documents as $document)
+                                                    <option
+                                                        {{ $document->document_type == $join_table_value->document_type ? 'selected' : '' }}
+                                                        value="{{ $document->id }}">{{ $document->document_type }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('document_type_id')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
-                                        <div class="mb-2">
-                                            <input type="hidden" name="hidden_id" value="{{ $join_table_value->id }}">
-                                            <button type="submit" class="btn settingUpdatebutton">Update Document</button>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label class="form-label mt-2">Document image</label>
+                                            <input style="border-radius: 10px !important;" id="imgInp"
+                                                name="document_image" type="file" class="form-control " accept="image/*"
+                                                readonly>
                                         </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mt-3">
+                                            <label for="" class="text-center">Preview Document</label>
+                                            <img class="mt-3" id="blah_hidden"
+                                                src="{{ asset('uploads/document/' . $join_table_value->document_image) }}"
+                                                alt="" style="width:100%; max-height:300px;">
+
+                                            <img class="mt-3 d-none" width="100%" style="max-height:300px;" id="blah"
+                                                src="#" alt="Add your signature" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="hidden" name="hidden_id" value="{{ $join_table_value->id }}">
+                                        <button type="submit" class="btn settingUpdatebutton">Update Document</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                        </form>
+                    </form>
 
                 </div>
 

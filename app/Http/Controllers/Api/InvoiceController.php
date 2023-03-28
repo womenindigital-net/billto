@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Mpdf\Config\FontVariables;
 use Mpdf\Config\ConfigVariables as ConfigConfigVariables;
+
 class InvoiceController extends BaseController
 {
 
@@ -259,7 +260,7 @@ class InvoiceController extends BaseController
         $data['subject'] = "$request->email_subject";
         $data['body'] = "$request->email_body";
         $data['template_id'] = "$template_id";
-        $data['userInvoiceLogo']  = user::where('id',  $user_id )->get(['invoice_logo', 'terms', 'signature'])->first();
+        $data['userInvoiceLogo']  = user::where('id',  $user_id)->get(['invoice_logo', 'terms', 'signature'])->first();
 
         $defaultConfig = (new ConfigConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
@@ -285,7 +286,7 @@ class InvoiceController extends BaseController
         });
 
         SendMail_info::create([
-            'user_id' =>  $user_id ,
+            'user_id' =>  $user_id,
             'send_mail_to' => $data['email'],
             'mail_subject' => $data['subject'],
             'mail_body' => $data['body'],
@@ -296,8 +297,4 @@ class InvoiceController extends BaseController
 
         return $this->sendResponse("Successfully send", 'Verified user ');
     }
-
-
-
-
 }

@@ -38,8 +38,6 @@ Route::get('/create/invoice', [InvoiceController::class, 'index'])->name('create
 // Route::post('/loadmore',[InvoiceController::class, 'loadmore']);
 
 
-
-
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('store.');
     Route::get('/invoice/complate/page/{id}', [InvoiceController::class, 'complate_invoice']);
@@ -56,7 +54,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 
-
 // Web site Normal pages
 Route::get('/', [PagesController::class, 'index'])->name('home');
 Route::post('/load-data', [PagesController::class, 'loadData'])->name('load-more-data');
@@ -64,5 +61,3 @@ Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy'])->name('
 Route::get('/privacy/police', [PagesController::class, 'privacyPolice']);
 Route::post('/create/bill', [PagesController::class, 'createbill'])->name('create.boll');
 Route::get('/test/bill', [DashboardController::class, 'test_bill']);
-
-

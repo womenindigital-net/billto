@@ -68,6 +68,7 @@
     </section>
     <script src="{{ asset('js/custom.js') }}"></script>
     <!-- Sign in form End -->
+    
 @endsection
 @push('frontend_js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

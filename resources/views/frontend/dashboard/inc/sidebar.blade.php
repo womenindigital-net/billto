@@ -91,8 +91,8 @@
 
                         </li>
                         <li><a class="mb-2" href='{{ url('/all/invoices/documents') }}' class="@yield('setting')"> <i
-                            class="bi bi-gear-fill myInvoiceIcon me-3"></i>Documents</a>
-
+                            class="bi bi-file-earmark myInvoiceIcon me-3"></i>Documents</a>
+                           
                 </li>
                     </ul>
                 </nav>

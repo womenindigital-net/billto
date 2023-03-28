@@ -29,13 +29,13 @@ class OrganizationPackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function create()
     {
         $data = [
             'invoiceTemplates' => InvoiceTemplate::get(),
         ];
-        return view('admin.organization-package.create-organization-package',$data);
+        return view('admin.organization-package.create-organization-package', $data);
     }
 
     /**
@@ -83,7 +83,7 @@ class OrganizationPackageController extends Controller
         $templats = OrganizationPackageTemplate::where('organizationPackageId', $id)->get();
         $invoiceTemplates = InvoiceTemplate::get();
 
-        return view('admin.organization-package.edit-organization-package', compact('organizationPackage','invoiceTemplates','templats' ));
+        return view('admin.organization-package.edit-organization-package', compact('organizationPackage', 'invoiceTemplates', 'templats'));
     }
 
     /**

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 // index page api
 Route::get('/index', [PagesController::class, 'Apiindex']);
 
+
 //register and login api
 Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
@@ -19,10 +20,11 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/login', 'login');
 });
 
+
 //Deshboard controller api
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
-    // Dashboartd contoller all route 
+    // Dashboartd contoller all route
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/deshboard', 'index');
         Route::get('/user-edit-page', 'userSettingEdit');
@@ -41,6 +43,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/myallinvoice',  'Myallinvoice');
         Route::get('/my-trash-invoice', 'MyTrashinvoice');
     });
+    
 
     // create invoice page api
     Route::controller(InvoiceController::class)->group(function () {
