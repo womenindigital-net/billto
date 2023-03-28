@@ -16,16 +16,7 @@ use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Frontend\SubscriptionPackContoller;
 use App\Models\SendMail_info;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 // only multi-language
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
@@ -91,27 +82,4 @@ Route::get('/clear-cache', function () {
 Route::get('/notice/div/hidden', function () {
     Session::put('hidden_session', 'd-none');
     return redirect()->back();
-});
-
-Route::get('/check',  function () {
-    // only for  check
-    // $join_table_value = DB::table('users')
-    // ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
-    // ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
-    // ->selectRaw( 'users.*, payment_getways.*, subscription_packages.*, payment_getways.created_at as payment_name, subscription_packages.created_at as contacts_name')
-    // ->where('users.id', 1)->get();
-
-    // session_start();
-    // $sessionId = session_id();
-    // dd($sessionId );
-
-    //     $join_table_value = DB::table('users')
-    //    ->join('payment_getways', 'users.id', '=', 'payment_getways.user_id')
-    //     ->join('subscription_packages', 'payment_getways.subscription_package_id', '=', 'subscription_packages.id')
-    //   ->join('complate_invoice_counts', 'users.id', '=', 'complate_invoice_counts.user_id')
-    //      ->selectRaw( 'payment_getways.*, subscription_packages.*,complate_invoice_counts.*')
-    //      ->where('users.id', 1)->get();
-    //      dd($join_table_value);
-
-
 });

@@ -92,7 +92,7 @@ class InvoiceController extends Controller
                     'invoice_to',
                     'id',
                 ])->first();
-                
+
             $invoiceCountNew = Invoice::where('session_id',  $sessionId)->count();
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();

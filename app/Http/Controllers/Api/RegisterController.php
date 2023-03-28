@@ -47,7 +47,7 @@ class RegisterController extends BaseController
 
         if ($user->email) {
             $domain = URL::to('/');
-            $url = $domain .'/verify-mail/'.$user->id .'/'. $random;
+            $url = $domain . '/verify-mail/' .$user->id .'/'.$random;
 
             $data['url'] =  $url;
             $data['email'] = $user->email;
