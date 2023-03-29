@@ -6,6 +6,7 @@
         margin: 0;
         margin-bottom: 0;
     }
+    
 
     /* my csss  */
     .first_section {
