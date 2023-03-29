@@ -54,8 +54,7 @@
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ $document->document_type }}</td>
                                                     <td>
-                                                        <a href="{{ url('admin/organization/package/') }}" type="button"
-                                                            class="btn btn-sm btn-success btn-rounded waves-effect waves-light mb-2 me-1"> <i
+                                                        <a href="{{ url('admin/organization/package/') }}" type="button"   class="btn btn-sm btn-success btn-rounded waves-effect waves-light mb-2 me-1"> <i
                                                                 class="mdi mdi-pencil"></i></a>
 
                                                     </td>

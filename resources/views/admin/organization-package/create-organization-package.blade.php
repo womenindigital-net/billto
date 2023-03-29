@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <!--************************************
-                        ********** Main content Start ***********
-                        ************************************-->
+                            ********** Main content Start ***********
+                            ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -39,7 +39,8 @@
                                 <div class="card p-2 mt-1">
                                     <h3>Create organization package
                                         <a href="{{ url('admin/organization/package/list') }}"
-                                            class="btn btn-primary btn-sm text-white  float-end p-2"> <i class="bx bx-right-arrow-alt"></i> Organization Package List
+                                            class="btn btn-primary btn-sm text-white  float-end p-2"> <i
+                                                class="bx bx-right-arrow-alt"></i> Organization Package List
                                         </a>
                                     </h3>
                                 </div>
@@ -110,9 +111,11 @@
                                             @foreach ($invoiceTemplates as $invoiceTemplate)
                                                 <div class="col-md-4 mb-2">
                                                     <div class=" d-flex">
-                                                        <input type="checkbox" name="template[]" value="{{ $invoiceTemplate->id }}"
+                                                        <input type="checkbox" name="template[]"
+                                                            value="{{ $invoiceTemplate->id }}"
                                                             style="height: 20px; width:20px">
-                                                        <label class="form-label ms-2">{{ $invoiceTemplate->templateName }}</label>
+                                                        <label
+                                                            class="form-label ms-2">{{ $invoiceTemplate->templateName }}</label>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -135,8 +138,8 @@
 
 
             <!--************************************
-                             ********** Main content END ***********
-                             ************************************-->
+                                 ********** Main content END ***********
+                                 ************************************-->
 
         </div>
         <!-- container-fluid -->

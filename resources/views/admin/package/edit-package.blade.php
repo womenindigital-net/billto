@@ -22,9 +22,9 @@
                         </div>
                     </div>
                 </div>
-            <!--************************************
-            ********** Main content Start ***********
-            ************************************-->
+                <!--************************************
+                ********** Main content Start ***********
+                ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -57,7 +57,8 @@
                                                     required>
 
                                                 <label for="validationCustom01" class="form-label">Package name(BN)</label>
-                                                <input type="text" name="packageNamebn" class="form-control" value="{{ $subscriptionPackage->packageNamebn }}"
+                                                <input type="text" name="packageNamebn" class="form-control"
+                                                    value="{{ $subscriptionPackage->packageNamebn }}"
                                                     id="validationCustom01" required>
 
 
@@ -91,9 +92,11 @@
                                                 <input type="number" value="{{ $subscriptionPackage->price }}"
                                                     name="price" class="form-control" id="validationCustom02" required>
 
-                                                    <label for="validationCustom03" class="form-label mt-2">Package Price(BN)</label>
-                                                    <input type="text" name="pricebn" class="form-control"
-                                                        id="validationCustom02" value="{{ $subscriptionPackage->pricebn }}" required>
+                                                <label for="validationCustom03" class="form-label mt-2">Package
+                                                    Price(BN)</label>
+                                                <input type="text" name="pricebn" class="form-control"
+                                                    id="validationCustom02" value="{{ $subscriptionPackage->pricebn }}"
+                                                    required>
                                             </div>
                                         </div>
 
@@ -104,9 +107,11 @@
                                                     name="templateQuantity" class="form-control" id="validationCustom02"
                                                     required>
 
-                                                    <label for="validationCustom03" class="form-label mt-2">Tamplate Quantity(BN)</label>
-                                                    <input type="text" name="templateQuantitybn" class="form-control"
-                                                        id="validationCustom02"  value="{{ $subscriptionPackage->templateQuantitybn }}" required>
+                                                <label for="validationCustom03" class="form-label mt-2">Tamplate
+                                                    Quantity(BN)</label>
+                                                <input type="text" name="templateQuantitybn" class="form-control"
+                                                    id="validationCustom02"
+                                                    value="{{ $subscriptionPackage->templateQuantitybn }}" required>
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -117,10 +122,11 @@
                                                     value="{{ $subscriptionPackage->limitInvoiceGenerate }}"
                                                     name="limitInvoiceGenerate" class="form-control" id="validationCustom02"
                                                     required>
-                                                    <label for="validationCustom03" class="form-label mt-2">Limit invoice
-                                                        generate(BN)</label>
-                                                    <input type="text" name="limitInvoiceGeneratebn" value="{{ $subscriptionPackage->limitInvoiceGeneratebn }}" class="form-control"
-                                                        id="validationCustom02" required>
+                                                <label for="validationCustom03" class="form-label mt-2">Limit invoice
+                                                    generate(BN)</label>
+                                                <input type="text" name="limitInvoiceGeneratebn"
+                                                    value="{{ $subscriptionPackage->limitInvoiceGeneratebn }}"
+                                                    class="form-control" id="validationCustom02" required>
                                             </div>
                                         </div>
                                     </div>
@@ -152,15 +158,16 @@
                                 {{-- pricing description --}}
                                 <h3 class="mt-3">Pricing Description</h3>
                                 @foreach ($pricings as $priceing)
-                                    <form action=" {{ url('admin/package/updates') }}" method="POST" class="data_foreach"
-                                        enctype="multipart/form-data">
+                                    <form action=" {{ url('admin/package/updates') }}" method="POST"
+                                        class="data_foreach" enctype="multipart/form-data">
                                         @csrf
                                         <div class="main-form  ">
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <div class="form-group mb-2 " id="form_id_des">
                                                         <label for="">Select Icon/Logo</label>
-                                                        <select class="form-control" name="logo" id="form_id_logo" required>
+                                                        <select class="form-control" name="logo" id="form_id_logo"
+                                                            required>
                                                             <option selected disabled value="">Select Icon</option>
                                                             <option value="Success"
                                                                 {{ $priceing->logo == 'Success' ? 'selected' : '' }}>
@@ -215,8 +222,8 @@
                     });
                 </script>
                 <!--************************************
-                ********** Main content END ***********
-                ************************************-->
+                    ********** Main content END ***********
+                    ************************************-->
 
             </div>
             <!-- container-fluid -->

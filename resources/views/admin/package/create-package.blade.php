@@ -25,8 +25,8 @@
                     </div>
                 </div>
                 <!--************************************
-                                    ********** Main content Start ***********
-                                    ************************************-->
+                ********** Main content Start ***********
+                ************************************-->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -58,7 +58,8 @@
                                                 <input type="text" name="packageName" class="form-control"
                                                     id="validationCustom01" required>
 
-                                                <label for="validationCustom01" class="form-label mt-2">Package name(BN)</label>
+                                                <label for="validationCustom01" class="form-label mt-2">Package
+                                                    name(BN)</label>
                                                 <input type="text" name="packageNamebn" class="form-control"
                                                     id="validationCustom01" required>
 
@@ -84,18 +85,21 @@
                                                 <input type="number" name="price" class="form-control"
                                                     id="validationCustom02" required>
 
-                                                    <label for="validationCustom03" class="form-label mt-2">Package Price(BN)</label>
-                                                    <input type="text" name="pricebn" class="form-control"
-                                                        id="validationCustom02" required>
+                                                <label for="validationCustom03" class="form-label mt-2">Package
+                                                    Price(BN)</label>
+                                                <input type="text" name="pricebn" class="form-control"
+                                                    id="validationCustom02" required>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="validationCustom03" class="form-label">Tamplate Quantity(EN)</label>
+                                                <label for="validationCustom03" class="form-label">Tamplate
+                                                    Quantity(EN)</label>
                                                 <input type="number" name="templateQuantity" class="form-control"
                                                     id="validationCustom02" required>
-                                                <label for="validationCustom03" class="form-label mt-2">Tamplate Quantity(BN)</label>
+                                                <label for="validationCustom03" class="form-label mt-2">Tamplate
+                                                    Quantity(BN)</label>
                                                 <input type="text" name="templateQuantitybn" class="form-control"
                                                     id="validationCustom02" required>
                                             </div>
@@ -107,10 +111,10 @@
                                                 <input type="number" name="limitInvoiceGenerate" class="form-control"
                                                     id="validationCustom02" required>
 
-                                                    <label for="validationCustom03" class="form-label mt-2">Limit invoice
-                                                        generate(BN)</label>
-                                                    <input type="text" name="limitInvoiceGeneratebn" class="form-control"
-                                                        id="validationCustom02" required>
+                                                <label for="validationCustom03" class="form-label mt-2">Limit invoice
+                                                    generate(BN)</label>
+                                                <input type="text" name="limitInvoiceGeneratebn" class="form-control"
+                                                    id="validationCustom02" required>
                                             </div>
                                         </div>
                                     </div>
@@ -188,33 +192,33 @@
 
                         $(document).on('click', '.add-more-form', function() {
                             $('.paste-new-forms').append('<div class="main-form ">\
-                                                            <div class="row">\
-                                                                <div class="col-sm-4">\
-                                                                    <div class="form-group ">\
-                                                                        <label for="">Select Icon/Logo</label>\
-                                                                        <select class="form-control" name="logo[]" id="" required>\
-                                                                            <option selected disabled value="">Select Icon</option>\
-                                                                            <option value="Success">Success</option>\
-                                                                            <option value="Cross">Cross</option>\
-                                                                        </select>\
-                                                                    </div>\
-                                                                </div>\
-                                                                <div class="col-sm-7">\
-                                                                    <div class="form-group mb-2">\
-                                                                        <label for="">Pricing Description(EN)</label>\
-                                                                            <textarea  name="description[]" class="form-control" required  rows="1"></textarea>\
-                                                                            <label for="">Pricing Description(BN)</label>\
-                                                                            <textarea  name="descriptionbn[]" class="form-control" required  rows="1"></textarea>\
-                                                                    </div>\
-                                                                </div>\
-                                                                <div class="col-sm-1">\
-                                                                    <div class="form-group mb-2 mt-2">\
-                                                                        <br>\
-                                                                        <button type="button" class="remove-btn btn-sm btn btn-danger"> <i class="bx bx-trash-alt fs-4"></i></button>\
-                                                                    </div>\
-                                                                </div>\
-                                                            </div>\
-                                                    </div>');
+                                                                            <div class="row">\
+                                                                                <div class="col-sm-4">\
+                                                                                    <div class="form-group ">\
+                                                                                        <label for="">Select Icon/Logo</label>\
+                                                                                        <select class="form-control" name="logo[]" id="" required>\
+                                                                                            <option selected disabled value="">Select Icon</option>\
+                                                                                            <option value="Success">Success</option>\
+                                                                                            <option value="Cross">Cross</option>\
+                                                                                        </select>\
+                                                                                    </div>\
+                                                                                </div>\
+                                                                                <div class="col-sm-7">\
+                                                                                    <div class="form-group mb-2">\
+                                                                                        <label for="">Pricing Description(EN)</label>\
+                                                                                            <textarea  name="description[]" class="form-control" required  rows="1"></textarea>\
+                                                                                            <label for="">Pricing Description(BN)</label>\
+                                                                                            <textarea  name="descriptionbn[]" class="form-control" required  rows="1"></textarea>\
+                                                                                    </div>\
+                                                                                </div>\
+                                                                                <div class="col-sm-1">\
+                                                                                    <div class="form-group mb-2 mt-2">\
+                                                                                        <br>\
+                                                                                        <button type="button" class="remove-btn btn-sm btn btn-danger"> <i class="bx bx-trash-alt fs-4"></i></button>\
+                                                                                    </div>\
+                                                                                </div>\
+                                                                            </div>\
+                                                                    </div>');
                         });
 
                     });
@@ -222,8 +226,8 @@
 
 
                 <!--************************************
-                        ********** Main content END ***********
-                        ************************************-->
+                            ********** Main content END ***********
+                            ************************************-->
 
             </div>
             <!-- container-fluid -->
