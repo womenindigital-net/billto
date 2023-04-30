@@ -18,6 +18,7 @@ class CreateInvoiceTemplatesTable extends Migration
             $table->string('templateName')->default('1');
             $table->string('templateDesignHtml')->nullable();
             $table->string('templateImage')->nullable();
+            $table->string('company')->nullable();
             $table->timestamps();
         });
     }

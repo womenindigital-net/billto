@@ -163,7 +163,7 @@
                                 <h3 class="heding"> {{ $sub_package_free->packageName }}</h3>
                                 <h1 class="priceColor">${{ $sub_package_free->price }}<span class="month">/month</span>
                                 </h1>
-                                
+
                                 <div class="emty_margin"></div>
                                 <div class="text-start text_start ">
                                     <div class="text-muted margingPlanP">

@@ -13,5 +13,5 @@ class SubscriptionPackageTemplate extends Model
         'subscriptionPackageId',
         'template',
     ];
-    
+
 }

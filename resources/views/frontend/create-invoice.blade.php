@@ -751,7 +751,7 @@
 
     <section class="invoice_template">
         <div>
-            <div class="container" >
+            <div class="container">
                 <div class="text-center  my-5">
                     <h2 class="h2_title"> {{ __('messages.Choose_Your_Invoice_Template') }}</h2>
                     <p class="fs-sm fw-bolder">{{ __('messages.Start_creating_your_professional_bill') }}</p>
@@ -768,7 +768,7 @@
                 @endif
 
             </div>
-{{-- 
+            {{--
             <div id="load_data_message" class="mb-3 " style="width: 100%">
                 <div style='padding:1px;margin-top: 10px; text-align:center;'>
                     <img src="{{ asset('assets/frontend/img/loadding.gif') }}" alt="" style="width:2%; ">
@@ -829,7 +829,8 @@
         </div>
     </div>
     <!-- Invoice Template End -->
-    @if (isset($invoiceData->id))  @endif
+    @if (isset($invoiceData->id))
+    @endif
 @endsection
 @push('frontend_js')
     <script>

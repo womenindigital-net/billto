@@ -55,12 +55,17 @@ class PagesController extends Controller
     {
         if ($request->ajax()) {
             if ($request->id) {
-                $invoice_template = InvoiceTemplate::where('id', '>', $request->id)->limit('1')->get();
+                $invoice_template = InvoiceTemplate::where('id', '>', $request->id)->limit('4')->get();
             } else {
-                $invoice_template = InvoiceTemplate::limit(2)->get();
+                $invoice_template = InvoiceTemplate::limit(8)->get();
+            }
+            if ($request->id) {
+                $invoice_template_not_com = InvoiceTemplate::where('id', '>', $request->id)->where('company','not company')->limit('4')->get();
+            } else {
+                $invoice_template_not_com = InvoiceTemplate::limit(8)->where('company','not company')->get();
             }
 
-            return view('frontend.get-load-data', compact('invoice_template'));
+            return view('frontend.get-load-data', compact('invoice_template','invoice_template_not_com'));
         }
     }
 

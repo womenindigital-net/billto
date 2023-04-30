@@ -117,7 +117,7 @@ class SubscriptionPackageController extends Controller
         $pricings = Pricing::where('subscription_package_id', $id)->get();
         return view('admin.package.edit-package', compact('subscriptionPackage', 'templats', 'invoiceTemplates', 'pricings'));
     }
-    
+
 
     /**
      * Update the specified resource in storage.

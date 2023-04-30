@@ -93,8 +93,7 @@
                             <div class="card text-center ">
                                 <div class="card-body shadowcard p-0">
                                     <h3 class="heding"> {{ $sub_package_free->packageNamebn }}</h3>
-                                    <h1 class="priceColor"> &#2547;{{ $sub_package_free->pricebn }}<span class="month">/মাস</span>
-                                    </h1>
+                                    <h1 class="priceColor"> &#2547;{{ $sub_package_free->pricebn }}<span class="month">/মাস</span></h1>
                                     {{-- <p class="text_muted">
                                         galley of type and scrambled it to make a type specimen book.
                                     </p> --}}

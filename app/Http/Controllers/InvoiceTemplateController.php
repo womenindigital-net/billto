@@ -32,6 +32,7 @@ class InvoiceTemplateController extends Controller
             $file->move('uploads/template/', $filename);
             $invoiceTemplate->templateImage = $filename;
         }
+        $invoiceTemplate->company = 'not company';
         $invoiceTemplate->save();
         return redirect()->back()->with('message', 'Successfully create Invoice');
     }
@@ -64,6 +65,7 @@ class InvoiceTemplateController extends Controller
             $file->move('uploads/template/', $filename);
             $invoiceTemplate->templateImage = $filename;
         }
+        $invoiceTemplate->company = 'not company';
         $invoiceTemplate->update();
         return redirect()->to('/admin/manage/template/page')->with('message', 'Successfully Update Invoice Template.');
     }
@@ -75,6 +77,6 @@ class InvoiceTemplateController extends Controller
         return redirect()->back()->with('message', 'Successfully Delete Invoice Template Package.');
     }
 
-  
+
 
 }

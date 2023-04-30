@@ -48,7 +48,6 @@ class InvoiceController extends Controller
                 'invoice_id',
                 'id',
             ])->first();
-
             $text = "INVC-000";
             if ($lastInvoice != null) {
                 $text = $lastInvoice->invoice_id;
@@ -64,8 +63,8 @@ class InvoiceController extends Controller
 
             $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
             $invoiceCountNew += 1;
+            $invoice_template_not_com = InvoiceTemplate::where('company','not company')->get();
             $invoice_template = InvoiceTemplate::get();
-
             $user_logo_terms = User::where('id', Auth::user()->id)->get([
                 'invoice_logo',
                 'terms',
@@ -76,7 +75,7 @@ class InvoiceController extends Controller
             if ($session != "") {
                 return redirect()->to('/edit/invoices/' . $session);
             } else {
-                return view('frontend.create-invoice')->with(compact('all', 'lastnum', 'lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
+                return view('frontend.create-invoice')->with(compact('all', 'lastnum', 'lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template','invoice_template_not_com', 'template_id_check', 'data'));
             }
         } else {
 
@@ -96,6 +95,7 @@ class InvoiceController extends Controller
             $invoiceCountNew = Invoice::where('session_id',  $sessionId)->count();
             $invoiceCountNew += 1;
             $invoice_template = InvoiceTemplate::get();
+            $invoice_template_not_com = InvoiceTemplate::where('company','not company')->get();
 
             $user_logo_terms = User::where('id', 1 && 'is_admin', 1)->get([
                 'invoice_logo',
@@ -104,11 +104,11 @@ class InvoiceController extends Controller
 
             ])->first();
 
-            return view('frontend.create-invoice')->with(compact('user_logo_terms', 'lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data'));
+            return view('frontend.create-invoice')->with(compact('user_logo_terms', 'lastInvoice', 'invoiceCountNew', 'template_id', 'invoice_template', 'template_id_check', 'data','invoice_template_not_com'));
         }
     }
 
-    // Only load page 
+    // Only load page
     // public function loadmore(Request $request)
     // {
     //     $template_id_check = InvoiceTemplate::get()->first();
@@ -139,6 +139,7 @@ class InvoiceController extends Controller
             ])->first();
 
         $invoice_template = InvoiceTemplate::get();
+         $invoice_template_not_com = InvoiceTemplate::where('company','not company')->get();
         $invoiceCountNew = Invoice::where('user_id', Auth::user()->id)->count();
         $invoiceCountNew += 1;
 
@@ -149,7 +150,7 @@ class InvoiceController extends Controller
         ])->first();
 
 
-        return view('frontend.create-invoice')->with(compact('lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template'));
+        return view('frontend.create-invoice')->with(compact('lastInvoice', 'user_logo_terms', 'invoiceCountNew', 'template_id', 'invoice_template','invoice_template_not_com'));
     }
 
     public function complete($id)
@@ -177,6 +178,7 @@ class InvoiceController extends Controller
             'invoice_terms' => 'max:100',
             'invoice_logo' => 'max:1024',
         ]);
+
 
         $user_id = Auth::user()->id;
 
