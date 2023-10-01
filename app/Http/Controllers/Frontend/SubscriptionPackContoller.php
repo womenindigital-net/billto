@@ -55,7 +55,7 @@ class SubscriptionPackContoller extends Controller
                 'updated_at' => Carbon::now()
             ]);
 
-            return redirect()->back()->with('success', ' Package succesfuly purchase. ');
+            return redirect()->back()->with('success', ' Package succesfuly purchase . ');
         } else {
             return redirect()->back()->with('delete', 'Something went wrong. Please try again.');
         }
